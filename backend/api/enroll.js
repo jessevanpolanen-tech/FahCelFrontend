@@ -51,6 +51,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ ok: true, leadId: lead.id, enrollmentId: enrollment.id, sequenceId });
   } catch (err) {
-    res.status(500).json({ error: String((err && err.message) || err) });
+    const message = String((err && err.message) || err || 'unknown-error');
+    res.status(500).json({ error: message });
   }
 }

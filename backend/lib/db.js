@@ -29,9 +29,8 @@ function client() {
     process.env.SUPABASE_DB_URL;
 
   if (!connectionString) {
-    throw new Error(
-      'No database URL set. Add POSTGRES_URL (Supabase Transaction-pooler string, port 6543) to the environment.'
-    );
+    const message = 'No database URL set. Add POSTGRES_URL (Supabase Transaction-pooler string, port 6543) to the environment.';
+    throw new Error(message);
   }
 
   // `max: 1` + short idle timeout suits short-lived function invocations
