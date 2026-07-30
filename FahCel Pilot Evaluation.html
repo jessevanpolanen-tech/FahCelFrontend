@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — Pilot Evaluation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --ink:#0f1622; --ink-2:#39435420; 
+    --text:#1b2431; --muted:#5c6675; --muted-2:#8b94a3;
+    --line:#e4e7ec; --line-2:#d6dae1;
+    --accent:#1f7a8c; --accent-ink:#0f5563; --accent-wash:#e6f2f4;
+    --slate:#1E2A5A;
+    --amber:#b07d1f; --amber-wash:#fbf3e2;
+    --red:#b3402c; --red-wash:#fbe9e5;
+    --green:#2E6B4E; --green-wash:#e7f1ec;
+    --radius:10px;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0c0f14; --panel:#141922; --ink:#eef1f6;
+      --text:#dfe4ec; --muted:#98a2b3; --muted-2:#6b7686;
+      --line:#242c38; --line-2:#313b4a;
+      --accent:#4fb3c4; --accent-ink:#9fdbe6; --accent-wash:#152a2f;
+      --amber:#d6a441; --amber-wash:#2a2213;
+      --red:#e07a63; --red-wash:#2c1712;
+      --green:#5fae82; --green-wash:#13241b;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent-wash);color:var(--accent-ink)}
+
+  /* progress bar */
+  .progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:50}
+  .progress .fill{height:100%;width:0;background:var(--accent);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+  .prog-label{position:fixed;top:10px;right:16px;font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:4px 11px;z-index:50}
+
+  .wrap{max-width:820px;margin:0 auto;padding:56px 24px 120px}
+
+  /* header */
+  .logo-slot{display:inline-flex;align-items:center;gap:11px;margin-bottom:34px}
+  .logo-slot .mark{width:34px;height:34px;border:1.5px dashed var(--line-2);border-radius:8px;display:grid;place-items:center;font-family:var(--mono);font-size:8px;letter-spacing:.5px;color:var(--muted-2);text-align:center;line-height:1.1}
+  .logo-slot .wm{font-weight:700;font-size:19px;letter-spacing:-.4px;color:var(--ink)}
+  h1{font-size:30px;line-height:1.1;letter-spacing:-.6px;margin:0 0 8px;color:var(--ink);font-weight:650}
+  .sub{color:var(--muted);font-size:15px;max-width:60ch;margin:0 0 6px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+
+  /* section */
+  section{margin-top:52px;scroll-margin-top:40px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .sec-num{font-family:var(--mono);font-size:13px;color:var(--muted-2);font-weight:500;flex:0 0 auto}
+  .sec-head h2{font-size:19px;font-weight:620;letter-spacing:-.3px;margin:0;color:var(--ink)}
+  .sec-head .hint{margin-left:auto;font-size:12.5px;color:var(--muted-2)}
+
+  /* confirm grid (auto-filled fields) */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .fld.full{grid-column:1/-1}
+  label,.lab{font-size:12.5px;font-weight:600;color:var(--text)}
+  .lab .opt{color:var(--muted-2);font-weight:400}
+  input[type=text],input[type=date],input[type=email],textarea{
+    font-family:var(--sans);font-size:14.5px;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line-2);border-radius:9px;padding:10px 12px;outline:0;width:100%;transition:border-color .15s,box-shadow .15s}
+  textarea{resize:vertical;min-height:80px;line-height:1.5}
+  input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  input::placeholder,textarea::placeholder{color:var(--muted-2)}
+
+  /* verdict cards */
+  .verdict{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .vcard{position:relative;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--panel);padding:16px 14px;cursor:pointer;transition:.15s;display:flex;flex-direction:column;gap:5px}
+  .vcard:hover{border-color:var(--muted-2)}
+  .vcard input{position:absolute;opacity:0;width:1px;height:1px}
+  .vcard .vt{font-size:14.5px;font-weight:640;color:var(--ink)}
+  .vcard .vd{font-size:12px;color:var(--muted);line-height:1.4}
+  .vcard .tick{position:absolute;top:12px;right:12px;width:16px;height:16px;border:1.5px solid var(--line-2);border-radius:99px;transition:.15s}
+  .vcard:has(input:checked){border-color:var(--accent);background:var(--accent-wash);box-shadow:0 0 0 1px var(--accent)}
+  .vcard:has(input:checked) .tick{background:var(--accent);border-color:var(--accent)}
+  .vcard:has(input:checked) .tick::after{content:"";position:absolute;inset:0;background:var(--panel);width:6px;height:6px;border-radius:99px;margin:auto}
+  .vcard input:focus-visible ~ .tick{box-shadow:0 0 0 3px var(--accent-wash)}
+  .vcard.yes:has(input:checked){border-color:var(--green);background:var(--green-wash);box-shadow:0 0 0 1px var(--green)}
+  .vcard.yes:has(input:checked) .tick{background:var(--green);border-color:var(--green)}
+  .vcard.no:has(input:checked){border-color:var(--red);background:var(--red-wash);box-shadow:0 0 0 1px var(--red)}
+  .vcard.no:has(input:checked) .tick{background:var(--red);border-color:var(--red)}
+
+  .conditional{margin-top:16px;display:none}
+  .conditional.show{display:block}
+
+  /* NPS */
+  .nps{margin-top:26px}
+  .nps .lab{display:block;margin-bottom:10px}
+  .nps-scale{display:grid;grid-template-columns:repeat(11,1fr);gap:6px}
+  .nps-scale label{position:relative;cursor:pointer}
+  .nps-scale input{position:absolute;opacity:0;width:1px;height:1px}
+  .nps-scale .box{display:grid;place-items:center;height:44px;border:1px solid var(--line-2);border-radius:8px;font-family:var(--mono);font-size:14px;color:var(--muted);background:var(--panel);transition:.12s;font-weight:500}
+  .nps-scale label:hover .box{border-color:var(--accent);color:var(--accent)}
+  .nps-scale input:checked ~ .box{background:var(--accent);border-color:var(--accent);color:#fff}
+  .nps-scale input:focus-visible ~ .box{box-shadow:0 0 0 3px var(--accent-wash)}
+  .nps-ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted-2);margin-top:7px;font-family:var(--mono);letter-spacing:.3px}
+
+  /* rated rows */
+  .scale-key{display:flex;justify-content:flex-end;gap:0;margin-bottom:6px}
+  .scale-key .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.4px;color:var(--muted-2);text-transform:uppercase}
+  .rrow{padding:15px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:14px 18px;align-items:center}
+  .rrow:last-child{border-bottom:0}
+  .rrow .q{font-size:14.5px;color:var(--text);line-height:1.4}
+  .rrow .q .inv{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.4px;color:var(--amber);background:var(--amber-wash);border-radius:4px;padding:1px 6px;margin-left:8px;vertical-align:middle;text-transform:uppercase}
+  .rate{display:flex;gap:6px;flex:0 0 auto}
+  .rate label{position:relative;cursor:pointer}
+  .rate input{position:absolute;opacity:0;width:1px;height:1px}
+  .rate .dot{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line-2);border-radius:8px;font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--panel);transition:.12s;font-weight:500}
+  .rate label:hover .dot{border-color:var(--accent);color:var(--accent)}
+  .rate input:checked ~ .dot{background:var(--accent);border-color:var(--accent);color:#fff}
+  .rate input:focus-visible ~ .dot{box-shadow:0 0 0 3px var(--accent-wash)}
+  .rrow .addc{grid-column:1/-1;justify-self:start}
+  .addc button{background:none;border:0;color:var(--accent);font-family:var(--sans);font-size:12.5px;font-weight:600;cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:5px}
+  .addc button:hover{color:var(--accent-ink);text-decoration:underline}
+  .rrow textarea{grid-column:1/-1;display:none;margin-top:2px}
+  .rrow textarea.show{display:block}
+  @media (min-width:620px){.scale-min{display:none}}
+
+  /* channels / checklist multi-select */
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px}
+  .chip{position:relative;cursor:pointer}
+  .chip input{position:absolute;opacity:0;width:1px;height:1px}
+  .chip .lb{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-2);background:var(--panel);border-radius:99px;padding:9px 15px;font-size:13.5px;color:var(--text);transition:.14s;min-height:40px}
+  .chip .lb::before{content:"";width:15px;height:15px;border:1.5px solid var(--line-2);border-radius:4px;flex:0 0 auto;transition:.14s}
+  .chip:hover .lb{border-color:var(--muted-2)}
+  .chip input:checked ~ .lb{border-color:var(--accent);background:var(--accent-wash);color:var(--accent-ink)}
+  .chip input:checked ~ .lb::before{background:var(--accent);border-color:var(--accent)}
+  .chip input:checked ~ .lb::after{content:"✓";position:absolute;left:19px;color:#fff;font-size:10px;font-weight:700;pointer-events:none}
+  .chip input:focus-visible ~ .lb{box-shadow:0 0 0 3px var(--accent-wash)}
+
+  .stack{display:flex;flex-direction:column;gap:18px}
+  .callout{font-size:12.5px;color:var(--muted);background:var(--accent-wash);border-left:2px solid var(--accent);border-radius:0 7px 7px 0;padding:9px 13px;margin-top:4px}
+
+  /* segmented (case-study / reference) */
+  .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden;background:var(--panel)}
+  .seg label{cursor:pointer;position:relative}
+  .seg input{position:absolute;opacity:0}
+  .seg .sg{display:block;padding:9px 16px;font-size:13.5px;color:var(--muted);border-right:1px solid var(--line);transition:.13s;min-height:40px;display:flex;align-items:center}
+  .seg label:last-child .sg{border-right:0}
+  .seg input:checked ~ .sg{background:var(--accent);color:#fff}
+  .seg input:focus-visible ~ .sg{box-shadow:inset 0 0 0 2px var(--accent-wash)}
+  .qa-line{display:flex;flex-wrap:wrap;gap:14px 30px;align-items:flex-end}
+  .qa-line .fld{flex:1 1 240px}
+
+  /* actions */
+  .actions{margin-top:56px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:600;border-radius:9px;padding:12px 22px;cursor:pointer;border:1px solid var(--line-2);background:var(--panel);color:var(--text);transition:.14s;min-height:44px}
+  .btn:hover{border-color:var(--muted-2)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+  .saved{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin-left:auto;display:flex;align-items:center;gap:7px}
+  .saved .d{width:6px;height:6px;border-radius:99px;background:var(--green)}
+
+  /* thank-you */
+  .thanks{display:none;text-align:center;padding:70px 20px}
+  .thanks.show{display:block}
+  .thanks .ck{width:60px;height:60px;border-radius:99px;background:var(--green);display:grid;place-items:center;margin:0 auto 22px}
+  .thanks .ck::after{content:"";width:22px;height:12px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(-45deg);margin-top:-4px}
+  .thanks h2{font-size:26px;letter-spacing:-.4px;margin:0 0 8px;color:var(--ink)}
+  .thanks p{color:var(--muted);max-width:44ch;margin:0 auto 26px}
+  .thanks .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* print */
+  @media print{
+    :root{--bg:#fff;--panel:#fff}
+    body{font-size:11px;color:#000}
+    .progress,.prog-label,.actions,.addc,.callout{display:none !important}
+    .wrap{max-width:none;padding:0}
+    section{margin-top:18px;page-break-inside:avoid}
+    #verdict{page-break-after:auto}
+    .sec-head{margin-bottom:10px;padding-bottom:6px}
+    h1{font-size:20px}
+    .rrow textarea,.rrow textarea.show{display:block !important}
+    textarea{min-height:auto;border:1px solid #ccc}
+    .rrow{padding:7px 0}
+    input,textarea{color:#000}
+    .rate .dot,.nps-scale .box{width:26px;height:26px}
+    .logo-slot .mark{border-style:solid}
+    a[href]::after{content:""}
+  }
+</style>
+</head>
+<body>
+<div class="progress"><div class="fill" id="pfill"></div></div>
+<div class="prog-label" id="plabel">0% complete</div>
+
+<div class="wrap">
+<form id="form">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-slot">
+      <div class="mark">LOGO</div>
+      <span class="wm">FahCel</span>
+    </div>
+    <p class="eyebrow">Cold-chain pilot · confidential</p>
+    <h1>Pilot Evaluation</h1>
+    <p class="sub">A structured review of FahCel deployed on your real shipments. Takes about 7 minutes. Your answers save automatically as you go — you can close this and return to it.</p>
+  </header>
+
+  <!-- 1 · CONFIRM DETAILS -->
+  <section id="details">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Pilot details</h2><span class="hint">We've pre-filled these — correct anything that's off</span></div>
+    <div class="grid">
+      <div class="fld"><label for="f_company">Company</label><input type="text" id="f_company" name="company" placeholder="e.g. Nordkjøl Logistics" /></div>
+      <div class="fld"><label for="f_eval">Evaluator name &amp; role</label><input type="text" id="f_eval" name="evaluator" placeholder="e.g. Ingrid Sundby, QA Manager" /></div>
+      <div class="fld"><label for="f_start">Pilot start date</label><input type="date" id="f_start" name="pilot_start" /></div>
+      <div class="fld"><label for="f_end">Pilot end date</label><input type="date" id="f_end" name="pilot_end" /></div>
+      <div class="fld"><label for="f_ships">Shipments monitored</label><input type="text" id="f_ships" name="shipments" placeholder="e.g. 42" /></div>
+      <div class="fld"><label for="f_sensors">Sensor models used</label><input type="text" id="f_sensors" name="sensors" placeholder="e.g. Elitech RC-5+, LogEt 8" /></div>
+      <div class="fld full"><label for="f_lanes">Lanes / routes covered</label><input type="text" id="f_lanes" name="lanes" placeholder="e.g. Ålesund → Rotterdam (reefer), Oslo → Hamburg (air)" /></div>
+    </div>
+  </section>
+
+  <!-- 2 · VERDICT -->
+  <section id="verdict">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Overall verdict</h2></div>
+    <p class="lab" style="margin-bottom:12px">Would you move forward with FahCel?</p>
+    <div class="verdict" role="radiogroup" aria-label="Would you move forward with FahCel?">
+      <label class="vcard yes"><input type="radio" name="verdict" value="Yes" required /><span class="tick"></span><span class="vt">Yes</span><span class="vd">Ready to proceed</span></label>
+      <label class="vcard"><input type="radio" name="verdict" value="Yes, with conditions" /><span class="tick"></span><span class="vt">Yes, with conditions</span><span class="vd">Proceed once specifics are met</span></label>
+      <label class="vcard"><input type="radio" name="verdict" value="Not yet" /><span class="tick"></span><span class="vt">Not yet</span><span class="vd">Needs more before we commit</span></label>
+      <label class="vcard no"><input type="radio" name="verdict" value="No" /><span class="tick"></span><span class="vt">No</span><span class="vd">Not a fit for us</span></label>
+    </div>
+    <div class="conditional" id="cond">
+      <div class="fld"><label for="f_cond">What has to be true?</label><textarea id="f_cond" name="conditions" placeholder="The specific conditions, fixes, or commitments that would move this to a yes."></textarea></div>
+    </div>
+    <div class="nps">
+      <span class="lab" id="npslab">How likely are you to recommend FahCel to a peer in your industry?</span>
+      <div class="nps-scale" role="radiogroup" aria-labelledby="npslab" id="npsScale"></div>
+      <div class="nps-ends"><span>0 · Not at all likely</span><span>Extremely likely · 10</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · RATED SECTIONS (built by JS) -->
+  <div id="ratedRoot"></div>
+
+  <!-- 4 · OPEN QUESTIONS -->
+  <section id="open">
+    <div class="sec-head"><span class="sec-num">08</span><h2>In your words</h2></div>
+    <div class="stack">
+      <div class="fld"><label for="f_best">What is the single biggest thing FahCel did better than your current process?</label><textarea id="f_best" name="q_best"></textarea></div>
+      <div class="fld"><label for="f_stop">What almost made you stop using it during the pilot?</label><textarea id="f_stop" name="q_stop"></textarea></div>
+      <div class="fld"><label for="f_missing">What is missing before you could roll this out across all lanes?</label><textarea id="f_missing" name="q_missing"></textarea></div>
+      <div class="fld"><label for="f_incident">Any excursion or incident during the pilot where FahCel changed the outcome? Describe it.</label><textarea id="f_incident" name="q_incident" placeholder="What happened, what FahCel surfaced, and what you did differently."></textarea><div class="callout">With your permission, a story like this is exactly what we'd anonymize into a case study — see the final section.</div></div>
+    </div>
+  </section>
+
+  <!-- 5 · BLOCKERS -->
+  <section id="blockers">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Deployment blockers</h2><span class="hint">What stands between a pilot and a rollout</span></div>
+    <div class="chips" id="blockerChips"></div>
+    <div class="fld full" style="margin-top:20px"><label for="f_signoff">Who else needs to sign off?</label><input type="text" id="f_signoff" name="signoff" placeholder="e.g. VP Quality, Head of IT Security, Procurement" /></div>
+  </section>
+
+  <!-- 6 · CONTACT / PERMISSION -->
+  <section id="contact">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Contact &amp; permissions</h2><span class="hint">Optional</span></div>
+    <div class="stack">
+      <div class="fld">
+        <span class="lab">OK to quote you in a case study?</span>
+        <div class="seg" role="radiogroup" aria-label="OK to quote you in a case study?">
+          <label><input type="radio" name="quote" value="Yes, named" /><span class="sg">Yes, named</span></label>
+          <label><input type="radio" name="quote" value="Anonymous only" /><span class="sg">Anonymous only</span></label>
+          <label><input type="radio" name="quote" value="No" /><span class="sg">No</span></label>
+        </div>
+      </div>
+      <div class="fld">
+        <span class="lab">Happy to be a reference customer?</span>
+        <div class="seg" role="radiogroup" aria-label="Happy to be a reference customer?">
+          <label><input type="radio" name="reference" value="Yes" /><span class="sg">Yes</span></label>
+          <label><input type="radio" name="reference" value="No" /><span class="sg">No</span></label>
+        </div>
+      </div>
+      <div>
+        <label class="chip" style="display:inline-block"><input type="checkbox" id="f_followup" name="followup_call" /><span class="lb">I'd like a follow-up call to discuss</span></label>
+        <div class="qa-line" style="margin-top:14px">
+          <div class="fld"><label for="f_fdate">Preferred date</label><input type="date" id="f_fdate" name="followup_date" /></div>
+          <div class="fld"><label for="f_email">Best email to reach you</label><input type="email" id="f_email" name="email" placeholder="you@company.com" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button type="submit" class="btn primary">Submit evaluation</button>
+    <button type="button" class="btn" id="btnJson">Copy summary as JSON</button>
+    <button type="button" class="btn" id="btnClear">Clear form</button>
+    <span class="saved" id="savedNote"><span class="d"></span> Saved</span>
+  </div>
+
+</form>
+
+<!-- THANK YOU -->
+<div class="thanks" id="thanks">
+  <div class="ck"></div>
+  <h2>Evaluation received</h2>
+  <p>Thank you — this goes straight to the FahCel team reviewing your pilot. Keep a copy for your records:</p>
+  <div class="row">
+    <button type="button" class="btn primary" id="btnPrint">Download as PDF</button>
+    <button type="button" class="btn" id="btnJson2">Copy summary as JSON</button>
+    <button type="button" class="btn" id="btnMail">Email a copy to FahCel</button>
+    <button type="button" class="btn" id="btnEdit">Back to edit</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var KEY='fahcel_pilot_eval_v1';
+  var form=document.getElementById('form');
+
+  // ---- rated section data ----
+  var SECTIONS=[
+    {n:'03',title:'Data capture & reliability',items:[
+      'Sensor pairing / provisioning was straightforward',
+      'Readings arrived on time and without gaps',
+      'Data matched what we saw on the ground (spot-check accuracy)',
+      'Handling of offline / out-of-coverage stretches'
+    ]},
+    {n:'04',title:'Alerts & excursions',items:[
+      'Excursion alerts fired when they should have',
+      {q:'Alert-noise level — how free of false positives was it?',inv:true},
+      'Enough context in the alert to act on it'
+    ],channels:true},
+    {n:'05',title:'Compliance & audit readiness',items:[
+      'PDF audit pack is something I would hand to an auditor as-is',
+      'Electronic signature flow was acceptable to our QA process',
+      'Tamper-evidence / hash-chain verification was understandable and credible',
+      'CAPA / deviation handling fit our workflow',
+      'Fits alongside our existing QMS rather than fighting it'
+    ]},
+    {n:'06',title:'Day-to-day usability',items:[
+      'Dashboard is clear at a glance',
+      'Time to find a specific shipment\u2019s record',
+      'Onboarding effort for the wider team',
+      'Mobile / on-the-floor usability'
+    ]},
+    {n:'07',title:'Commercial fit',items:[
+      'Value relative to what we spend today',
+      'Confidence in data ownership / no vendor lock-in',
+      'Confidence in EU data residency and access control'
+    ]}
+  ];
+  var CHANNELS=['Email','WhatsApp','SMS','Dashboard only','Webhook / API'];
+  var BLOCKERS=['Procurement / legal review','Security questionnaire','SOC 2 / ISO 27001','Validation (CSV / GxP)','Integration with QMS / ERP','Budget cycle','Internal training','Other'];
+
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var slug=function(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,40);};
+
+  // ---- build NPS ----
+  var nps=document.getElementById('npsScale');
+  for(var i=0;i<=10;i++){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="radio" name="nps" value="'+i+'" aria-label="'+i+'"><span class="box">'+i+'</span>';
+    nps.appendChild(l);
+  }
+
+  // ---- build rated sections ----
+  var root=document.getElementById('ratedRoot');
+  SECTIONS.forEach(function(sec){
+    var s=document.createElement('section');
+    var rows='';
+    sec.items.forEach(function(it,idx){
+      var q=typeof it==='string'?it:it.q;
+      var inv=typeof it==='object'&&it.inv;
+      var name='r_'+slug(sec.title)+'_'+idx;
+      var rate='';
+      for(var v=1;v<=5;v++){rate+='<label><input type="radio" name="'+name+'" value="'+v+'" aria-label="'+v+' of 5"><span class="dot">'+v+'</span></label>';}
+      rows+='<div class="rrow"><div class="q">'+esc(q)+(inv?'<span class="inv">5 = least noise</span>':'')+
+        '</div><div class="rate" role="radiogroup" aria-label="'+esc(q)+'">'+rate+'</div>'+
+        '<div class="addc"><button type="button" data-c="'+name+'">+ Add comment</button></div>'+
+        '<textarea name="'+name+'_c" placeholder="Optional comment"></textarea></div>';
+    });
+    var chan='';
+    if(sec.channels){
+      var chips='';
+      CHANNELS.forEach(function(c){chips+='<label class="chip"><input type="checkbox" name="ch_'+slug(c)+'" value="'+esc(c)+'"><span class="lb">'+esc(c)+'</span></label>';});
+      chan='<div style="padding:16px 0 4px;border-top:1px solid var(--line)"><span class="lab" style="display:block;margin-bottom:10px">Which alert channels did you actually use?</span><div class="chips">'+chips+'</div></div>';
+    }
+    s.innerHTML='<div class="sec-head"><span class="sec-num">'+sec.n+'</span><h2>'+esc(sec.title)+'</h2>'+
+      '<span class="hint">1 Poor · 5 Excellent</span></div>'+rows+chan;
+    root.appendChild(s);
+  });
+
+  // add-comment toggles
+  root.addEventListener('click',function(e){
+    var b=e.target.closest('[data-c]');if(!b)return;
+    var ta=b.closest('.rrow').querySelector('textarea');
+    ta.classList.toggle('show');
+    if(ta.classList.contains('show')){ta.focus();b.textContent='– Hide comment';}else{b.textContent='+ Add comment';}
+  });
+
+  // build blocker chips
+  var bc=document.getElementById('blockerChips');
+  BLOCKERS.forEach(function(b){bc.insertAdjacentHTML('beforeend','<label class="chip"><input type="checkbox" name="blk_'+slug(b)+'" value="'+esc(b)+'"><span class="lb">'+esc(b)+'</span></label>');});
+
+  // conditional verdict textarea
+  var cond=document.getElementById('cond');
+  form.addEventListener('change',function(e){
+    if(e.target.name==='verdict'){
+      var v=e.target.value;
+      cond.classList.toggle('show', v==='Yes, with conditions'||v==='Not yet');
+    }
+  });
+
+  // ---- persistence ----
+  function collect(){
+    var fd=new FormData(form),o={};
+    // multi-value (checkboxes) handled by grouping
+    for(var el of form.elements){
+      if(!el.name)continue;
+      if(el.type==='checkbox'){ if(el.checked){(o[el.name]=o[el.name]||[]).push(el.value===''?true:el.value);} }
+      else if(el.type==='radio'){ if(el.checked)o[el.name]=el.value; }
+      else if(el.value!=='')o[el.name]=el.value;
+    }
+    return o;
+  }
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(e){} flashSaved();}
+  var savedNote=document.getElementById('savedNote'),st;
+  function flashSaved(){savedNote.style.opacity=1;clearTimeout(st);st=setTimeout(function(){savedNote.style.opacity=.5;},1200);}
+  function restore(){
+    var raw;try{raw=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return;}
+    Object.keys(raw).forEach(function(k){
+      var val=raw[k];
+      var els=form.elements[k];if(!els)return;
+      if(NodeList.prototype.isPrototypeOf(els)||(els.length&&!els.tagName)){
+        [].forEach.call(els,function(el){
+          if(el.type==='checkbox')el.checked=Array.isArray(val)&&val.indexOf(el.value)>=0;
+          else if(el.type==='radio')el.checked=(el.value===val);
+        });
+      }else{
+        if(els.type==='checkbox')els.checked=Array.isArray(val)?val.indexOf(els.value)>=0:!!val;
+        else if(els.type==='radio')els.checked=(els.value===val);
+        else els.value=val;
+      }
+    });
+    // reveal any restored comments + conditional
+    [].forEach.call(form.querySelectorAll('.rrow textarea'),function(ta){if(ta.value){ta.classList.add('show');var b=ta.closest('.rrow').querySelector('[data-c]');if(b)b.textContent='– Hide comment';}});
+    if(raw.verdict==='Yes, with conditions'||raw.verdict==='Not yet')cond.classList.add('show');
+  }
+
+  // ---- progress ----
+  var pfill=document.getElementById('pfill'),plabel=document.getElementById('plabel');
+  function progress(){
+    // count "answerable" groups: text/date inputs + each radio group + channel/blocker sets optional
+    var groups={},total=0,done=0;
+    for(var el of form.elements){
+      if(!el.name||el.type==='button'||el.type==='submit')continue;
+      if(el.type==='radio'){ if(!groups[el.name]){groups[el.name]={any:false};total++;} if(el.checked)groups[el.name].any=true; }
+    }
+    // core text fields that matter
+    var core=['company','evaluator','q_best','q_missing'];
+    core.forEach(function(n){total++;if(form.elements[n]&&form.elements[n].value.trim())done++;});
+    Object.keys(groups).forEach(function(g){if(groups[g].any)done++;});
+    var pct=total?Math.round(done/total*100):0;
+    pfill.style.width=pct+'%';plabel.textContent=pct+'% complete';
+  }
+
+  form.addEventListener('input',function(){save();progress();});
+  form.addEventListener('change',function(){save();progress();});
+
+  // ---- summary / JSON ----
+  function summaryObj(){
+    var o=collect();o._submitted_at=new Date().toISOString();o._form='FahCel Pilot Evaluation';return o;
+  }
+  function copyJson(){
+    var txt=JSON.stringify(summaryObj(),null,2);
+    navigator.clipboard&&navigator.clipboard.writeText(txt).then(function(){toast('Summary JSON copied');},function(){fallbackCopy(txt);})||fallbackCopy(txt);
+  }
+  function fallbackCopy(txt){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Summary JSON copied');}catch(e){toast('Copy failed — see console');console.log(txt);}t.remove();}
+  function toast(msg){var el=document.createElement('div');el.textContent=msg;el.style.cssText='position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:13px;padding:11px 20px;border-radius:99px;z-index:99;font-family:var(--mono)';document.body.appendChild(el);setTimeout(function(){el.remove();},1800);}
+
+  function mailBody(){
+    var o=collect();var lines=['FahCel Pilot Evaluation','',
+      'Company: '+(o.company||'—'),'Evaluator: '+(o.evaluator||'—'),
+      'Verdict: '+(o.verdict||'—'),'NPS: '+(o.nps||'—')+'/10',''];
+    if(o.conditions)lines.push('Conditions: '+o.conditions,'');
+    if(o.q_best)lines.push('Did better: '+o.q_best);
+    if(o.q_stop)lines.push('Almost stopped: '+o.q_stop);
+    if(o.q_missing)lines.push('Missing for rollout: '+o.q_missing);
+    if(o.q_incident)lines.push('Incident: '+o.q_incident);
+    lines.push('','Full structured summary attached below as JSON:','',JSON.stringify(o,null,2));
+    return lines.join('\n');
+  }
+
+  document.getElementById('btnJson').addEventListener('click',copyJson);
+  document.getElementById('btnJson2').addEventListener('click',copyJson);
+  document.getElementById('btnClear').addEventListener('click',function(){
+    if(!confirm('Clear all answers? This cannot be undone.'))return;
+    try{localStorage.removeItem(KEY);}catch(e){}form.reset();cond.classList.remove('show');
+    [].forEach.call(form.querySelectorAll('.rrow textarea'),function(t){t.classList.remove('show');});
+    progress();
+  });
+  document.getElementById('btnPrint').addEventListener('click',function(){window.print();});
+  document.getElementById('btnMail').addEventListener('click',function(){
+    var o=collect();var subj='FahCel Pilot Evaluation — '+(o.company||'submission');
+    window.location.href='mailto:pilots@fahcel.co?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(mailBody());
+  });
+
+  var thanks=document.getElementById('thanks');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.reportValidity())return;
+    save();
+    form.style.display='none';document.getElementById('plabel').style.display='none';
+    thanks.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});
+  });
+  document.getElementById('btnEdit').addEventListener('click',function(){
+    thanks.classList.remove('show');form.style.display='';document.getElementById('plabel').style.display='';
+  });
+
+  restore();progress();
+})();
+</script>
+</body>
+</html>

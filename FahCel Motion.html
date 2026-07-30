@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — Motion System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#fff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#2f8da0;
+    --green:#2E6B4E; --amber:#c88912;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  /* Lenis recommended base */
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto !important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:#d9ddf0;color:var(--indigo)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+  h1,h2,h3{margin:0}
+
+  /* scroll progress bar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--teal),var(--teal-2));z-index:100}
+
+  /* top nav */
+  nav.top{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;transition:background .3s,box-shadow .3s,padding .3s}
+  nav.top.scrolled{background:rgba(246,247,244,.86);backdrop-filter:saturate(140%) blur(10px);box-shadow:0 1px 0 var(--line);padding:12px 40px}
+  nav.top .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+  nav.top .logo img{width:28px;height:28px;object-fit:contain;mix-blend-mode:multiply}
+  nav.top ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500;color:var(--ink-2)}
+  nav.top li{cursor:pointer}
+  nav.top .cta{background:var(--indigo);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600}
+  @media (max-width:880px){nav.top ul{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;overflow:hidden;background:var(--indigo)}
+  .hero .bg{position:absolute;inset:0;z-index:0;will-change:transform}
+  .hero .bg img{width:100%;height:120%;object-fit:cover;display:block}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.62),rgba(11,18,32,.32) 45%,rgba(11,18,32,.72))}
+  .hero-content{position:relative;z-index:2;width:100%;will-change:transform,opacity}
+  .h-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.28);color:#fff;font-size:11.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+  .h-eyebrow .dot{width:6px;height:6px;border-radius:999px;background:var(--teal-2);box-shadow:0 0 0 4px rgba(47,141,160,.3)}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.6vw,90px);line-height:1.01;letter-spacing:-2px;color:#fff;margin:22px 0 18px;max-width:15ch}
+  .hero h1 .word{display:inline-block;will-change:transform}
+  .hero h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .hero .lede{font-size:clamp(16px,1.7vw,21px);color:rgba(255,255,255,.85);max-width:48ch;margin:0 0 30px}
+  .hero .row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;border:1px solid transparent}
+  .btn.primary{background:#fff;color:var(--indigo)}
+  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+  .btn svg{width:15px;height:15px}
+  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.7);
+    font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollcue .mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.5);border-radius:12px;position:relative}
+  .scrollcue .mouse::after{content:"";position:absolute;top:6px;left:50%;width:3px;height:6px;border-radius:2px;background:#fff;transform:translateX(-50%);animation:wheel 1.6s ease-in-out infinite}
+  @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+
+  /* ---------- LOGO CLOUD ---------- */
+  .cloud{padding:54px 0 46px;background:var(--paper);border-bottom:1px solid var(--line);overflow:hidden}
+  .cloud p{text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted-2);margin:0 0 26px}
+  .marquee{display:flex;gap:56px;width:max-content;animation:scrollx 28s linear infinite}
+  .marquee span{font-weight:800;font-size:21px;letter-spacing:-.5px;color:var(--ink-2);opacity:.55;white-space:nowrap}
+  .marquee span.serif{font-family:var(--serif);font-style:italic;font-weight:600}
+  .marquee-mask{position:relative;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+
+  /* generic reveal */
+  .reveal{will-change:transform,opacity}
+
+  /* section heading */
+  .sec-head{max-width:760px;margin:0 auto 56px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-2);
+    background:var(--white);color:var(--indigo);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+  .eyebrow .dot{width:6px;height:6px;border-radius:999px;background:var(--teal)}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.8vw,52px);line-height:1.08;letter-spacing:-1px;margin:18px 0 0;color:var(--ink);text-wrap:balance}
+  h2 em{color:var(--indigo);font-style:italic;font-weight:400}
+  .sec-head .desc{font-size:17px;color:var(--muted);margin:16px auto 0;max-width:52ch;text-wrap:pretty}
+
+  /* ---------- SIGNATURE PINNED FEATURE SCROLL ---------- */
+  .feature{background:var(--white);border-bottom:1px solid var(--line)}
+  .feature-pin{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:90px 0}
+  .feature-stage{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--paper-2);box-shadow:0 50px 90px -50px rgba(11,18,32,.5)}
+  .feature-stage .layer{position:absolute;inset:0;opacity:0}
+  .feature-stage .layer img{width:100%;height:100%;object-fit:cover;display:block}
+  .feature-stage .layer::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.15),rgba(11,18,32,.55))}
+  .feature-stage .chip{position:absolute;left:18px;bottom:18px;z-index:3;display:flex;align-items:center;gap:9px;
+    background:rgba(255,255,255,.95);border-radius:11px;padding:10px 14px;font-family:var(--mono);font-size:12px;color:var(--ink);
+    box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+  .feature-stage .chip .led{width:8px;height:8px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.2)}
+  .feature-copy{position:relative}
+  .feature-steps{position:relative;min-height:340px}
+  .fstep{position:absolute;inset:0;opacity:0}
+  .fstep .num{font-family:var(--mono);font-size:13px;color:var(--teal);letter-spacing:2px}
+  .fstep h3{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,38px);line-height:1.12;letter-spacing:-.6px;color:var(--ink);margin:14px 0 14px}
+  .fstep p{font-size:17px;color:var(--muted);line-height:1.6;max-width:42ch}
+  .feature-progress{display:flex;flex-direction:column;gap:14px;margin-top:34px}
+  .fp{display:flex;align-items:center;gap:12px;cursor:default}
+  .fp .bar{position:relative;width:46px;height:3px;border-radius:99px;background:var(--line-2);overflow:hidden;flex:0 0 auto}
+  .fp .bar i{position:absolute;inset:0;transform:scaleX(0);transform-origin:0 50%;background:var(--teal);border-radius:99px}
+  .fp .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--muted-2);text-transform:uppercase}
+  .fp.on .lbl{color:var(--ink)}
+
+  /* stacked fallback (mobile / no-pin) */
+  .feature.stacked .feature-pin{display:block;min-height:0;padding:60px 0}
+  .feature.stacked .feature-stage{display:none}
+  .feature.stacked .feature-steps{min-height:0}
+  .feature.stacked .fstep{position:relative;opacity:1;padding:26px 0;border-top:1px solid var(--line)}
+  .feature.stacked .fstep:first-child{border-top:0}
+  .feature.stacked .feature-progress{display:none}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
+  .stats::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 360px at 85% -20%,rgba(47,141,160,.4),transparent 60%)}
+  .stats .wrap{position:relative;z-index:1;padding:80px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .stat .n{font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,68px);letter-spacing:-1.5px;line-height:1}
+  .stat .n .suf{color:#9fd6e0}
+  .stat .l{margin-top:12px;font-size:14px;color:rgba(255,255,255,.72);letter-spacing:.3px}
+  @media (max-width:880px){.stats .wrap{grid-template-columns:1fr;gap:30px}}
+
+  /* ---------- HORIZONTAL PINNED SOLUTIONS ---------- */
+  .solutions{background:var(--paper)}
+  .solutions .intro{padding:90px 0 10px}
+  .hscroll{position:relative;overflow:hidden}
+  .htrack{display:flex;gap:30px;padding:48px 40px 80px;width:max-content}
+  .panel{position:relative;flex:0 0 auto;width:min(78vw,560px);border-radius:20px;overflow:hidden;background:var(--white);
+    border:1px solid var(--line);box-shadow:0 30px 60px -44px rgba(11,18,32,.4);min-height:440px;display:flex;flex-direction:column}
+  .panel .ph{position:relative;height:240px;overflow:hidden}
+  .panel .ph img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+  .panel .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.25),transparent 50%)}
+  .panel .tagrow{position:absolute;top:14px;left:14px;z-index:2;display:flex;gap:7px}
+  .panel .tag{background:rgba(255,255,255,.92);border-radius:999px;padding:5px 11px;font-size:11.5px;font-weight:600;color:var(--ink)}
+  .panel .pbody{padding:26px 26px 28px}
+  .panel h3{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.3px;margin:0 0 10px;color:var(--ink)}
+  .panel p{font-size:15px;color:var(--muted);line-height:1.6;margin:0 0 16px}
+  .panel .link{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--indigo)}
+  .panel .link svg{width:14px;height:14px}
+  .htip{text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);padding-bottom:30px}
+  /* mobile horizontal fallback = native scroll-snap */
+  .hscroll.native .htrack{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;flex-wrap:nowrap}
+  .hscroll.native .panel{scroll-snap-align:center;width:82vw}
+
+  /* ---------- PARALLAX BAND ---------- */
+  .band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+  .band .wrap{padding:100px 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .band .media{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 70px -44px rgba(11,18,32,.45)}
+  .band .media img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;will-change:transform}
+  .band .chip{position:absolute;left:18px;top:18px;z-index:2;background:rgba(255,255,255,.95);border-radius:11px;padding:9px 13px;
+    font-family:var(--mono);font-size:11.5px;display:flex;align-items:center;gap:8px;box-shadow:0 12px 30px -14px rgba(0,0,0,.45)}
+  .band .chip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.18)}
+  .band h2{text-align:left}
+  .band ul{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:15px}
+  .band li{display:flex;gap:13px;font-size:16px;color:var(--ink-2);line-height:1.5}
+  .band li svg{flex:0 0 auto;width:21px;height:21px;color:var(--green);margin-top:1px}
+  .band li b{color:var(--ink)}
+  @media (max-width:880px){.band .wrap{grid-template-columns:1fr;gap:36px;padding:64px 40px}.band .media{order:-1}}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 80% -10%,rgba(47,141,160,.4),transparent 60%)}
+  .cta .wrap{position:relative;z-index:1;padding:110px 40px;text-align:center}
+  .cta h2{color:#fff;max-width:18ch;margin:0 auto}
+  .cta h2 em{color:#9fd6e0}
+  .cta p{color:rgba(255,255,255,.82);font-size:18px;max-width:48ch;margin:18px auto 32px}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{background:#0b1220;color:rgba(255,255,255,.6);font-size:13px}
+  footer .wrap{padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800}
+  footer .logo img{width:26px;height:26px;object-fit:contain;background:#fff;border-radius:7px;padding:2px}
+
+  @media (max-width:880px){
+    .feature-pin{grid-template-columns:1fr}
+    .wrap{padding:0 22px}
+    nav.top{padding:14px 22px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee,.scrollcue .mouse::after{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav class="top" id="nav">
+  <a class="logo" href="#"><img src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
+  <ul>
+    <li>Platform</li><li>Trackers</li><li>Intelligence</li><li>Monitoring</li>
+  </ul>
+  <a class="cta" href="#cta">Book a demo</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="hero" data-screen-label="Hero">
+  <div class="bg" id="heroBg"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2200&q=80" alt="Cold storage warehouse aisle" /></div>
+  <div class="hero-content" id="heroContent">
+    <div class="wrap">
+      <span class="h-eyebrow"><span class="dot"></span> Cold-chain integrity</span>
+      <h1 id="heroTitle"><span class="word">Every</span> <span class="word">reading.</span> <span class="word"><em>Sealed</em></span> <span class="word">and</span> <span class="word">provable.</span></h1>
+      <p class="lede">From the dock to the shelf, FahCel turns every logger reading into a tamper-evident record — so you can prove your cold chain held.</p>
+      <div class="row">
+        <a class="btn primary" href="#cta">Book a demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn ghost" href="FahCel Hash Chain Page.html">See the hash chain</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="mouse"></span> Scroll</div>
+</header>
+
+<!-- ===================== LOGO CLOUD ===================== -->
+<section class="cloud">
+  <div class="wrap"><p class="reveal">Trusted across the cold chain</p></div>
+  <div class="marquee-mask">
+    <div class="marquee" id="marquee">
+      <span class="serif">Nordkjøl</span><span>POLARLINK</span><span>FreshRoute</span><span class="serif">Vørma Foods</span><span>ARCTIC 9</span><span>Meridian Cold</span>
+      <span class="serif">Nordkjøl</span><span>POLARLINK</span><span>FreshRoute</span><span class="serif">Vørma Foods</span><span>ARCTIC 9</span><span>Meridian Cold</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SIGNATURE PINNED FEATURE SCROLL ===================== -->
+<section class="feature" id="feature">
+  <div class="wrap">
+    <div class="feature-pin" id="featurePin">
+      <div class="feature-stage" id="featureStage">
+        <div class="layer" data-step="0"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1100&q=80" alt="Logger placed in cold storage" /></div>
+        <div class="layer" data-step="1"><img src="https://images.unsplash.com/photo-1565891741441-64926e441838?w=1100&q=80" alt="Pallets at loading docks" /></div>
+        <div class="layer" data-step="2"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1100&q=80" alt="Operator at monitoring dashboard" /></div>
+        <div class="layer" data-step="3"><img src="https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1100&q=80" alt="Retail cold case" /></div>
+        <div class="chip" id="featureChip"><span class="led"></span> <span id="chipText">logger paired · sealing on</span></div>
+      </div>
+
+      <div class="feature-copy">
+        <span class="eyebrow"><span class="dot"></span> How it works</span>
+        <div class="feature-steps" id="featureSteps">
+          <article class="fstep" data-step="0">
+            <div class="num">01</div>
+            <h3>It starts the moment a reading lands.</h3>
+            <p>A wireless logger reports temperature, humidity, shock and light. FahCel seals each reading into a hash chain the instant it arrives — before anyone could touch it.</p>
+          </article>
+          <article class="fstep" data-step="1">
+            <div class="num">02</div>
+            <h3>The seal rides with the pallet.</h3>
+            <p>Across every handoff — dock, truck, port, store — the chain travels with the goods, logging location and door-open events the whole way.</p>
+          </article>
+          <article class="fstep" data-step="2">
+            <div class="num">03</div>
+            <h3>Excursions surface in real time.</h3>
+            <p>Threshold breaches hit the right team immediately, and the alerting record is already sealed — not reconstructed after the fact.</p>
+          </article>
+          <article class="fstep" data-step="3">
+            <div class="num">04</div>
+            <h3>Proof, ready before the auditor asks.</h3>
+            <p>Hand inspectors a signed history with a one-click integrity check. The cryptography did the work; you just get the readiness.</p>
+          </article>
+        </div>
+
+        <div class="feature-progress" id="featureProg">
+          <div class="fp" data-step="0"><span class="bar"><i></i></span><span class="lbl">Seal at ingestion</span></div>
+          <div class="fp" data-step="1"><span class="bar"><i></i></span><span class="lbl">Travels with goods</span></div>
+          <div class="fp" data-step="2"><span class="bar"><i></i></span><span class="lbl">Real-time alerts</span></div>
+          <div class="fp" data-step="3"><span class="bar"><i></i></span><span class="lbl">Audit-ready proof</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats" id="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n"><span class="count" data-to="4200000">0</span><span class="suf">+</span></div><div class="l">Readings sealed per day</div></div>
+    <div class="stat"><div class="n"><span class="count" data-to="99.9" data-dec="1">0</span><span class="suf">%</span></div><div class="l">Chains verified intact</div></div>
+    <div class="stat"><div class="n"><span class="count" data-to="0">0</span><span class="suf"> ms</span></div><div class="l">Trust required to re-verify</div></div>
+  </div>
+</section>
+
+<!-- ===================== HORIZONTAL PINNED SOLUTIONS ===================== -->
+<section class="solutions" id="solutions">
+  <div class="wrap intro">
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow reveal"><span class="dot"></span> The system</span>
+      <h2 class="reveal">Hardware, software, and proof — <em>working together</em>.</h2>
+      <p class="desc reveal">Four layers that follow the product, not the building. Scroll sideways.</p>
+    </div>
+  </div>
+  <div class="hscroll" id="hscroll">
+    <div class="htrack" id="htrack">
+      <article class="panel">
+        <div class="ph"><div class="tagrow"><span class="tag">Hardware</span></div><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80" alt="Loggers" /></div>
+        <div class="pbody"><h3>Real-time loggers</h3><p>Wireless devices stream temperature, humidity, shock and light from anywhere on the route.</p><span class="link">Explore trackers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </article>
+      <article class="panel">
+        <div class="ph"><div class="tagrow"><span class="tag">Software</span></div><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1000&q=80" alt="Platform" /></div>
+        <div class="pbody"><h3>The FahCel platform</h3><p>Every shipment and alert in one cloud view — or piped straight into your existing systems.</p><span class="link">Platform overview <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </article>
+      <article class="panel">
+        <div class="ph"><div class="tagrow"><span class="tag">Intelligence</span></div><img src="https://images.unsplash.com/photo-1565891741441-64926e441838?w=1000&q=80" alt="Automation" /></div>
+        <div class="pbody"><h3>Smart alerts &amp; automation</h3><p>Detect risk, trigger the right workflow, and seal the evidence — automatically, the moment it happens.</p><span class="link">See intelligence <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </article>
+      <article class="panel">
+        <div class="ph"><div class="tagrow"><span class="tag">Proof</span></div><img src="https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1000&q=80" alt="Audit proof" /></div>
+        <div class="pbody"><h3>Tamper-evident proof</h3><p>A signed, replayable hash chain any auditor can verify offline — no trust in us required.</p><span class="link">How the chain works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </article>
+    </div>
+  </div>
+  <div class="htip" id="htip">drag / scroll →</div>
+</section>
+
+<!-- ===================== PARALLAX BAND ===================== -->
+<section class="band" id="band">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span> Tamper-evident by design</span>
+      <h2 class="reveal">Every record carries the <em>DNA</em> of the one before it.</h2>
+      <ul>
+        <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Linked records.</b> Each reading hashes the one before it, so altering history breaks the chain.</span></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Deterministic.</b> Anyone can recompute the proof and get the same verdict — offline.</span></li>
+        <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><span><b>One-click verify.</b> Walk the whole chain and pinpoint the first reading that was touched.</span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <div class="chip"><span class="led"></span> chain intact · 4,210 readings</div>
+      <img id="bandImg" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80" alt="Operator reviewing dashboard" />
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta" id="cta">
+  <div class="wrap">
+    <h2 class="reveal">Prove your cold chain <em>held</em>.</h2>
+    <p class="reveal">See FahCel running on a live shipment — loggers, alerts and a verifiable hash chain — in a 20-minute walkthrough.</p>
+    <div class="row reveal">
+      <a class="btn primary" href="#">Book a demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn ghost" href="FahCel Hash Chain Page.html">Explore the hash chain</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><img src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+    <div>© 2026 FahCel — Cold-chain integrity</div>
+  </div>
+</footer>
+
+<!-- ===================== MOTION ENGINE ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="fahcel-motion.js"></script>
+</body>
+</html>

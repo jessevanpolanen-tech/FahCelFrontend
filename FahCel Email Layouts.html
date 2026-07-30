@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — Email layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --green:#2E6B4E; --amber:#c88912;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#11151f;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .page{max-width:740px;margin:0 auto;padding:56px 24px 90px}
+  .pagehead{text-align:center;color:#fff;margin-bottom:48px}
+  .pagehead .eye{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9fd6e0;margin:0 0 12px}
+  .pagehead h1{font-family:var(--serif);font-weight:500;font-size:34px;letter-spacing:-.6px;margin:0 0 8px}
+  .pagehead p{color:rgba(255,255,255,.6);font-size:14.5px;margin:0;max-width:46ch;margin-inline:auto;line-height:1.55}
+
+  .emailblock{margin-bottom:54px}
+  .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .tplchip{font-family:var(--mono);font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px}
+  .subj{font-size:13px;color:rgba(255,255,255,.55)}
+  .subj b{color:rgba(255,255,255,.85);font-weight:600}
+
+  /* the email itself */
+  .email{max-width:600px;margin:0 auto;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+  .e-pre{font-size:0;line-height:0;color:transparent;height:0;overflow:hidden}
+  .e-head{background:var(--indigo);padding:26px 36px;position:relative;overflow:hidden}
+  .e-head::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 110% -40%,rgba(82,176,191,.45),transparent 60%);pointer-events:none}
+  .e-brand{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+  .e-brand img{width:28px;height:28px;border-radius:7px;background:#fff;padding:2px;object-fit:contain;display:block}
+  .e-brand .wm{font-weight:800;font-size:19px;letter-spacing:-.3px;color:#fff}
+  .e-brand .tag{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.65)}
+
+  .e-body{padding:34px 36px 30px}
+  .e-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
+  .e-h{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.12;letter-spacing:-.5px;color:var(--ink);margin:0 0 18px;text-wrap:balance}
+  .e-h em{font-style:italic;color:var(--indigo);font-weight:400}
+  .e-body p{font-size:15px;line-height:1.62;color:var(--ink-2);margin:0 0 16px}
+  .e-body p.greet{font-weight:600;color:var(--ink)}
+  .e-body .muted{color:var(--muted)}
+
+  /* numbered steps */
+  ol.steps{margin:6px 0 22px;padding:0;list-style:none;counter-reset:s}
+  ol.steps li{counter-increment:s;position:relative;padding:11px 0 11px 44px;font-size:14.5px;line-height:1.5;color:var(--ink-2);border-bottom:1px solid var(--line)}
+  ol.steps li:last-child{border-bottom:0}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:9px;width:28px;height:28px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line-2);
+    font-family:var(--mono);font-size:13px;font-weight:500;color:var(--indigo);display:flex;align-items:center;justify-content:center}
+
+  /* link list (click assets) */
+  .links{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:4px 0 24px}
+  .links a{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;transition:background .15s}
+  .links a:last-child{border-bottom:0}
+  .links a:hover{background:var(--paper)}
+  .links .ic{width:30px;height:30px;border-radius:8px;background:rgba(31,122,140,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+  .links .arr{margin-left:auto;color:var(--muted-2)}
+  .links .arr svg{width:15px;height:15px;display:block}
+
+  /* attachment chip */
+  .attach{display:flex;align-items:center;gap:13px;border:1px solid var(--line-2);border-radius:12px;padding:14px 16px;margin:4px 0 24px;background:var(--paper)}
+  .attach .doc{width:38px;height:46px;border-radius:5px;background:var(--white);border:1px solid var(--line-2);position:relative;flex-shrink:0}
+  .attach .doc::before{content:"PDF";position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--mono);font-size:8px;font-weight:700;color:var(--amber)}
+  .attach .doc::after{content:"";position:absolute;top:0;right:0;width:11px;height:11px;background:var(--line-2);clip-path:polygon(0 0,100% 100%,0 100%)}
+  .attach .an{font-size:14px;font-weight:600;color:var(--ink)}
+  .attach .as{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px}
+
+  /* CTA */
+  .cta{display:inline-flex;align-items:center;gap:9px;background:var(--indigo);color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;padding:14px 26px;border-radius:999px;transition:background .15s}
+  .cta:hover{background:var(--indigo-2)}
+  .cta svg{width:14px;height:14px}
+  .signoff{margin-top:26px;font-size:15px;color:var(--ink-2);line-height:1.5}
+  .signoff b{color:var(--ink)}
+
+  .e-foot{background:var(--paper);border-top:1px solid var(--line);padding:22px 36px;text-align:center}
+  .e-foot .fw{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--ink-2);font-size:13px;margin-bottom:8px}
+  .e-foot .fw span{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+  .e-foot p{font-family:var(--mono);font-size:10.5px;letter-spacing:.3px;color:var(--muted-2);line-height:1.7;margin:0}
+  .e-foot a{color:var(--muted);text-decoration:underline}
+
+  @media (max-width:560px){
+    .e-head,.e-body,.e-foot{padding-left:22px;padding-right:22px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pagehead">
+    <p class="eye">FahCel · Outbound</p>
+    <h1>Email layouts</h1>
+    <p>The three pipeline templates from the CRM, rendered as branded HTML emails. Sample data shown — fields merge from each lead's name, company and note.</p>
+  </div>
+
+  <!-- ============ EMAIL 1 — INTRO ============ -->
+  <div class="emailblock" data-screen-label="Email · Intro">
+    <div class="meta">
+      <span class="tplchip">Intro &amp; next steps</span>
+      <span class="subj">Subject: <b>Ingrid, your FahCel cold-chain walkthrough</b></span>
+    </div>
+    <div class="email">
+      <div class="e-pre">See a cold chain get verified — and exactly where a break would surface.</div>
+      <div class="e-head">
+        <div class="e-brand">
+          <img src="assets/fahcel-logo.jpg" alt="FahCel" />
+          <span class="wm">FahCel</span>
+          <span class="tag">Cold-chain integrity</span>
+        </div>
+      </div>
+      <div class="e-body">
+        <p class="e-eyebrow">A 30-minute walkthrough</p>
+        <h1 class="e-h">Proof of cold, <em>end to end</em>.</h1>
+        <p class="greet">Hi Ingrid,</p>
+        <p>Thanks for your interest in FahCel for <b>Nordkjøl Logistics</b>. We turn every temperature-logger reading into a tamper-evident record — so you can prove your cold chain held, from the dock to the shelf.</p>
+        <p class="muted">Here's how a walkthrough usually goes:</p>
+        <ol class="steps">
+          <li>We pull one of your real routes (or a sample) into the live tracker.</li>
+          <li>You watch a chain get verified — and see exactly where a break would surface.</li>
+          <li>We map it to your HACCP / audit requirements.</li>
+        </ol>
+        <p class="muted">A few things worth two minutes — each link is live:</p>
+        <div class="links">
+          <a href="https://fahcel.co/demo"><span class="ic">↗</span> See the live tracking demo <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a href="https://fahcel.co/sample-inspection-report.pdf"><span class="ic">↗</span> A sample signed inspection report (PDF) <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a href="https://fahcel.co/case-study/nordkjol"><span class="ic">↗</span> How Nordkjøl proved their chain end to end <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <a class="cta" href="FahCel Book a Demo.html">Book a 30-min walkthrough
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="signoff">Warm regards,<br/><b>The FahCel team</b></p>
+      </div>
+      <div class="e-foot">
+        <div class="fw"><span></span> FahCel</div>
+        <p>FahCel AS · Cold-chain integrity, Oslo &amp; Rotterdam<br/>You're receiving this because you requested a demo. <a href="#">Unsubscribe</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 2 — PROPOSAL ============ -->
+  <div class="emailblock" data-screen-label="Email · Proposal">
+    <div class="meta">
+      <span class="tplchip">Send proposal</span>
+      <span class="subj">Subject: <b>Your FahCel proposal — Nordkjøl Logistics</b></span>
+    </div>
+    <div class="email">
+      <div class="e-pre">Loggers, the verification dashboard, and inspection-ready exports.</div>
+      <div class="e-head">
+        <div class="e-brand">
+          <img src="assets/fahcel-logo.jpg" alt="FahCel" />
+          <span class="wm">FahCel</span>
+          <span class="tag">Proposal</span>
+        </div>
+      </div>
+      <div class="e-body">
+        <p class="e-eyebrow">Ready for review</p>
+        <h1 class="e-h">Your proposal is ready.</h1>
+        <p class="greet">Hi Ingrid,</p>
+        <p>Good to move this forward. Below is a proposal covering FahCel coverage for <b>Nordkjøl Logistics</b> — loggers, the verification dashboard, and inspection-ready exports.</p>
+        <div class="attach">
+          <div class="doc"></div>
+          <div>
+            <div class="an">FahCel — Proposal · Nordkjøl Logistics</div>
+            <div class="as">PDF · 4 pages · 318 KB</div>
+          </div>
+        </div>
+        <p>Once you've had a look, I can walk through any line before we set a start date.</p>
+        <a class="cta" href="https://fahcel.co/proposal">Review the proposal
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="signoff">Best,<br/><b>The FahCel team</b></p>
+      </div>
+      <div class="e-foot">
+        <div class="fw"><span></span> FahCel</div>
+        <p>FahCel AS · Cold-chain integrity, Oslo &amp; Rotterdam<br/>Sent regarding your active proposal. <a href="#">Unsubscribe</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 3 — FOLLOW-UP ============ -->
+  <div class="emailblock" data-screen-label="Email · Follow-up">
+    <div class="meta">
+      <span class="tplchip">Gentle follow-up</span>
+      <span class="subj">Subject: <b>Quick follow-up on FahCel</b></span>
+    </div>
+    <div class="email">
+      <div class="e-pre">The quickest way to be sure is to see it on your own routes.</div>
+      <div class="e-head">
+        <div class="e-brand">
+          <img src="assets/fahcel-logo.jpg" alt="FahCel" />
+          <span class="wm">FahCel</span>
+          <span class="tag">Following up</span>
+        </div>
+      </div>
+      <div class="e-body">
+        <p class="e-eyebrow">Still thinking it over?</p>
+        <h1 class="e-h">Whenever the timing <em>suits</em>.</h1>
+        <p class="greet">Hi Ingrid,</p>
+        <p>Just circling back on cold-chain proof for <b>Nordkjøl Logistics</b>.</p>
+        <p class="muted">You mentioned needing to prove chain integrity for frozen seafood exports ahead of a retail audit — happy to dig into that whenever suits.</p>
+        <p class="muted">The two things operators find most convincing, if you've a minute:</p>
+        <div class="links">
+          <a href="https://fahcel.co/sample-inspection-report.pdf"><span class="ic">↗</span> A sample signed inspection report (PDF) <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a href="https://fahcel.co/demo"><span class="ic">↗</span> The live tracking demo <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <a class="cta" href="FahCel Book a Demo.html">Grab a time that works
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="signoff">Best,<br/><b>The FahCel team</b></p>
+      </div>
+      <div class="e-foot">
+        <div class="fw"><span></span> FahCel</div>
+        <p>FahCel AS · Cold-chain integrity, Oslo &amp; Rotterdam<br/>No longer interested? <a href="#">Unsubscribe</a></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

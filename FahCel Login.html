@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FahCel — Sign in</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{--porcelain:#ffffff;--porcelain-2:#F6F7F4;--graphite:#0B1220;--slate-800:#222938;--warm-200:#e1e2dd;--warm-500:#5a6374;--amber:#c88912;--amber-deep:#8f6410;--navy:#1E2A5A;--red:#b3402c}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--porcelain-2);color:var(--graphite);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:24px}
+a{color:var(--amber-deep);text-decoration:none}
+a:hover{color:var(--graphite)}
+.card{background:var(--porcelain);border:1px solid var(--warm-200);width:100%;max-width:400px;padding:44px 40px 36px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+.brand img{width:28px;height:28px;border-radius:6px;object-fit:contain}
+.brand span{font-family:'Source Serif 4',Georgia,serif;font-weight:500;font-size:20px}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-500);margin-bottom:10px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-weight:500;font-size:30px;line-height:1.15;margin-bottom:6px}
+.sub{font-size:13px;color:var(--warm-500);margin-bottom:28px}
+label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm-500);margin-bottom:8px}
+input{width:100%;padding:12px 14px;border:1px solid var(--warm-200);background:var(--porcelain-2);font-size:14px;font-family:inherit;color:var(--graphite)}
+input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+button{margin-top:18px;width:100%;padding:13px;border:none;background:var(--graphite);color:var(--porcelain);font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:transform .18s ease,box-shadow .2s ease}
+button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(11,18,32,.16)}
+button:active{transform:translateY(0)}
+.err{display:none;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red)}
+.back{margin-top:26px;font-size:12px;color:var(--warm-500)}
+</style>
+</head>
+<body>
+<form class="card" id="loginForm">
+<div class="brand"><img src="assets/fahcel-logo.jpg" alt="FahCel" /><span>FahCel</span></div>
+<div class="kicker">Client Pipeline · Internal</div>
+<h1>Team sign-in</h1>
+<div class="sub">This dashboard is for the FahCel team only.</div>
+<label for="pw">Password</label>
+<input id="pw" type="password" autocomplete="current-password" autofocus />
+<button type="submit">Enter dashboard</button>
+<div class="err" id="err">Incorrect password — try again.</div>
+<div class="back"><a href="FahCel Landing.html">← Back to the website</a></div>
+</form>
+<script>
+const HASH='96d272c38834655813d5c1f9cb0bf8fff6d6f9512f4c44804ae68205f3cbc1bd';
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+if(sessionStorage.getItem('fahcel_auth')===HASH){location.replace(nextUrl());}
+function nextUrl(){const n=new URLSearchParams(location.search).get('next');return(n&&/^[\w .-]+\.html$/.test(n))?n:'FahCel Dashboard.html'}
+document.getElementById('loginForm').addEventListener('submit',async(e)=>{
+e.preventDefault();
+const h=await sha256(document.getElementById('pw').value);
+if(h===HASH){sessionStorage.setItem('fahcel_auth',h);location.replace(nextUrl());}
+else{document.getElementById('err').style.display='block';document.getElementById('pw').select();}
+});
+</script>
+</body>
+</html>

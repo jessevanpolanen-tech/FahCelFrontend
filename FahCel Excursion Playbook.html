@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — The Cold-Chain Excursion Playbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#52b0bf; --green:#2E6B4E; --amber:#c88912; --red:#b3402f;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  .page{background:var(--paper);color:var(--ink);font-family:var(--sans);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+  .pad{padding:64px 62px}
+  .mono{font-family:var(--mono)}
+
+  /* running foot */
+  .foot{position:absolute;left:62px;right:62px;bottom:34px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);border-top:1px solid var(--line);padding-top:12px}
+  .foot .lg{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--ink-2);letter-spacing:.4px;text-transform:none;font-size:11px}
+  .foot .lg .m{width:15px;height:15px;border-radius:4px;background:var(--indigo);display:inline-block}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);font-weight:600}
+  .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--indigo);color:#fff}
+  .cover::before{content:"";position:absolute;inset:0;background:
+     radial-gradient(680px 380px at 108% -6%,rgba(82,176,191,.4),transparent 62%),
+     radial-gradient(560px 360px at -8% 112%,rgba(46,107,78,.34),transparent 60%)}
+  .cover .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .cover .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.3px;font-size:20px}
+  .cover .brand .m{width:30px;height:30px;border-radius:8px;background:#fff}
+  .cover .eyebrow{color:var(--teal-2);margin-top:auto}
+  .cover .eyebrow .dot{background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
+  .cover h1{font-family:var(--serif);font-weight:500;font-size:60px;line-height:1.02;letter-spacing:-1.6px;margin:20px 0 0;max-width:15ch;text-wrap:balance}
+  .cover h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .cover .lede{font-size:17px;line-height:1.55;color:rgba(255,255,255,.82);max-width:46ch;margin:22px 0 0;text-wrap:pretty}
+  .cover .meta{margin-top:34px;display:flex;gap:34px;flex-wrap:wrap}
+  .cover .meta div{border-left:2px solid rgba(255,255,255,.28);padding-left:14px}
+  .cover .meta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .cover .meta .v{font-size:15px;font-weight:600;color:#fff;margin-top:3px}
+  .cover .rule{margin-top:38px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* ---------- INTERIOR SHARED ---------- */
+  h2.sec{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:14px 0 0;max-width:22ch;text-wrap:balance}
+  .dek{font-size:14.5px;line-height:1.55;color:var(--muted);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+
+  /* stat band */
+  .band{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .band div{padding:20px 22px;border-right:1px solid var(--line)}
+  .band div:last-child{border-right:0}
+  .band .n{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-1px;color:var(--indigo)}
+  .band .n em{font-style:normal;font-size:18px;color:var(--teal)}
+  .band .l{font-size:12px;line-height:1.4;color:var(--muted);margin-top:5px}
+
+  /* protocol steps */
+  .steps{margin:26px 0 0;display:flex;flex-direction:column;gap:12px}
+  .stepc{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:17px 20px 17px 17px;break-inside:avoid}
+  .stepc .num{width:52px;height:52px;border-radius:11px;background:var(--indigo);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:600}
+  .stepc .num.t{background:var(--teal)}
+  .stepc .num.g{background:var(--green)}
+  .stepc h3{font-size:16px;font-weight:700;letter-spacing:-.2px;margin:2px 0 0;color:var(--ink)}
+  .stepc p{font-size:13px;line-height:1.5;color:var(--muted);margin:5px 0 0}
+  .stepc .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:8px;display:inline-block}
+
+  /* checklist */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:26px 0 0}
+  .chk{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 22px 8px}
+  .chk h4{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--indigo);font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+  .chk h4 .p{width:22px;height:22px;border-radius:6px;background:var(--paper-2);display:grid;place-items:center;color:var(--indigo)}
+  .chk ul{list-style:none;margin:0;padding:0}
+  .chk li{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--ink-2)}
+  .chk li:last-child{border-bottom:0}
+  .chk .box{flex:0 0 auto;width:17px;height:17px;border-radius:5px;border:1.6px solid var(--line-2);margin-top:1px}
+  .chk li b{font-weight:600}
+  .chk li span{color:var(--muted);font-weight:400}
+
+  /* callout */
+  .call{margin:24px 0 0;background:var(--indigo);color:#fff;border-radius:16px;padding:26px 28px;position:relative;overflow:hidden;break-inside:avoid}
+  .call::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 110% -20%,rgba(82,176,191,.4),transparent 62%)}
+  .call>*{position:relative;z-index:1}
+  .call .k{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .call h3{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.12;letter-spacing:-.5px;margin:9px 0 0;max-width:26ch}
+  .call p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);margin:10px 0 0;max-width:58ch}
+
+  /* rule-of-thumb list */
+  .rot{margin:24px 0 0;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .rot div{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:15px 20px;border-bottom:1px solid var(--line);align-items:baseline}
+  .rot div:last-child{border-bottom:0}
+  .rot .w{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.3px}
+  .rot .w.a{color:var(--amber)}
+  .rot .w.g{color:var(--green)}
+  .rot .d{font-size:13px;line-height:1.5;color:var(--ink-2)}
+  .rot .d b{font-weight:600}
+
+  /* back cover */
+  .back{background:var(--indigo);color:#fff}
+  .back::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 400px at -6% -8%,rgba(82,176,191,.36),transparent 60%),radial-gradient(520px 340px at 110% 112%,rgba(46,107,78,.3),transparent 62%)}
+  .back .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .back .eyebrow{color:var(--teal-2)} .back .eyebrow .dot{background:var(--teal-2)}
+  .back h2{font-family:var(--serif);font-weight:500;font-size:44px;line-height:1.05;letter-spacing:-1.2px;margin:18px 0 0;max-width:16ch;text-wrap:balance}
+  .back h2 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .back .p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.82);max-width:48ch;margin:18px 0 0}
+  .back .cards{margin:34px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .back .cc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:20px 22px}
+  .back .cc .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .back .cc .v{font-size:15px;font-weight:600;margin-top:7px;line-height:1.35}
+  .back .cc .v span{color:rgba(255,255,255,.62);font-weight:400;font-size:13px}
+  .back .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:26px;border-top:1px solid rgba(255,255,255,.18)}
+  .back .cta .big{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.4px}
+  .back .cta .big span{color:#9fd6e0}
+  .back .cta .pill{background:#fff;color:var(--indigo);font-weight:700;font-size:14px;padding:14px 26px;border-radius:999px;white-space:nowrap}
+</style>
+</head>
+<body>
+<doc-page size="letter">
+
+  <!-- 1 · COVER -->
+  <section class="page cover">
+    <div class="pad">
+      <div class="brand"><span class="m"></span>FahCel</div>
+      <div class="eyebrow"><span class="dot"></span>Field Playbook · Rev 2026.1</div>
+      <h1>The Cold-Chain <em>Excursion</em> Playbook</h1>
+      <p class="lede">Six moves to defend a shipment the moment temperature breaks — and the paper trail that proves you did.</p>
+      <div class="meta">
+        <div><div class="k">For</div><div class="v">QA, logistics &amp; ops leads</div></div>
+        <div><div class="k">Read time</div><div class="v">9 minutes</div></div>
+        <div><div class="k">Pages</div><div class="v">Cover + 3</div></div>
+      </div>
+      <div class="rule"><span>fahcel.co / playbook</span><span>Proof of cold, end to end</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · PROTOCOL -->
+  <section class="page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Part one · When the alarm fires</div>
+      <h2 class="sec">An excursion isn't a loss until you decide it is.</h2>
+      <p class="dek">Most spoiled-product write-offs aren't caused by the temperature spike — they're caused by the hours of silence after it. These six moves turn a panic into a documented decision you can defend to a regulator, an auditor, or a customer.</p>
+
+      <div class="band">
+        <div><div class="n">80<em>%</em></div><div class="l">of excursion write-offs are avoidable with a same-shift decision</div></div>
+        <div><div class="n">6<em>hr</em></div><div class="l">median delay between a breach and the first logged response</div></div>
+        <div><div class="n">1<em>×</em></div><div class="l">the number of unbroken records an auditor actually wants</div></div>
+      </div>
+
+      <div class="steps">
+        <div class="stepc"><div class="num">1</div><div><h3>Freeze the record, not the panic</h3><p>The instant an alarm fires, timestamp it against the sealed log. Don't move the pallet, don't open the door — capture the reading exactly as it stands.</p><span class="tag">Owner: on-site handler · &lt; 5 min</span></div></div>
+        <div class="stepc"><div class="num t">2</div><div><h3>Pull the full temperature history</h3><p>Not just the peak. Duration and area-under-curve decide product stability far more than a single spike — export the whole interval from first load to now.</p><span class="tag">Owner: QA · pull sealed series</span></div></div>
+        <div class="stepc"><div class="num t">3</div><div><h3>Run it against the stability budget</h3><p>Compare cumulative time-out-of-range to the product's mean kinetic temperature allowance — the label limit, not a gut call. This is the yes/no gate.</p><span class="tag">Owner: QA · MKT / label spec</span></div></div>
+        <div class="stepc"><div class="num g">4</div><div><h3>Make the release decision on the record</h3><p>Release, quarantine, or reject — and write the reasoning beside the data that drove it. A decision without its evidence is a liability, not a defense.</p><span class="tag">Owner: QA lead · signed</span></div></div>
+        <div class="stepc"><div class="num g">5</div><div><h3>Notify the chain in one message</h3><p>Consignee, carrier, and receiving QA get the same disposition and the same attached record — no forwarded screenshots, no version drift.</p><span class="tag">Owner: logistics · &lt; 1 hr</span></div></div>
+        <div class="stepc"><div class="num g">6</div><div><h3>Close the loop with a root cause</h3><p>Tie the breach to a cause — dwell at dock, failed reefer, door left open — and file it so the next shipment inherits the fix, not the failure.</p><span class="tag">Owner: ops · CAPA logged</span></div></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Excursion Playbook</span><span>02 · The six-move protocol</span></div>
+  </section>
+
+  <!-- 3 · CHECKLIST + THRESHOLDS -->
+  <section class="page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Part two · Before the truck leaves</div>
+      <h2 class="sec">The pre-departure checklist that prevents most excursions.</h2>
+      <p class="dek">Tape this to the dock door. Every box checked here is an excursion that never happens — and a line item an auditor never has to chase.</p>
+
+      <div class="two">
+        <div class="chk">
+          <h4><span class="p">A</span>Load &amp; seal</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Pre-cool confirmed</b> — trailer at setpoint before the first pallet, not after.</span></li>
+            <li><span class="box"></span><span><b>Logger placed &amp; started</b> — probe in the load, not the return air.</span></li>
+            <li><span class="box"></span><span><b>Setpoint vs. label match</b> — verified against the product spec, initialed.</span></li>
+            <li><span class="box"></span><span><b>Seal + logger ID paired</b> — recorded on the manifest before doors close.</span></li>
+          </ul>
+        </div>
+        <div class="chk">
+          <h4><span class="p">B</span>Transit &amp; handoff</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Alarm thresholds live</b> — someone is on the receiving end of the alert.</span></li>
+            <li><span class="box"></span><span><b>Dwell limits set</b> — max minutes on an open dock before escalation.</span></li>
+            <li><span class="box"></span><span><b>Receiver briefed</b> — knows the disposition rule before arrival.</span></li>
+            <li><span class="box"></span><span><b>Record handoff planned</b> — one file follows the goods, custody intact.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:30px"><span class="dot"></span>Rules of thumb · read before you argue with the data</div>
+      <div class="rot">
+        <div><span class="w">REJECT-BIAS</span><span class="d"><b>A single peak tells you little.</b> Duration and cumulative exposure decide stability — always pull the full curve before disposition.</span></div>
+        <div><span class="w a">CAUTION</span><span class="d"><b>The gap is the risk.</b> A 20-minute logging gap during a breach is treated as worst-case, not as “probably fine.”</span></div>
+        <div><span class="w a">CAUTION</span><span class="d"><b>Return air ≠ product.</b> Sensor placement changes the reading by degrees — trust the probe in the load.</span></div>
+        <div><span class="w g">DEFENSIBLE</span><span class="d"><b>Decide on the shift.</b> A documented same-day disposition beats a perfect analysis that lands three days late.</span></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Excursion Playbook</span><span>03 · Checklist &amp; thresholds</span></div>
+  </section>
+
+  <!-- 4 · BACK / CTA -->
+  <section class="page back">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Where FahCel fits</div>
+      <h2>Stop rebuilding the record <em>after</em> the breach.</h2>
+      <p class="p">This playbook is the manual version. FahCel runs the same six moves automatically — a sealed, unbroken temperature record from load to handoff, so the decision and its evidence are always in one place.</p>
+
+      <div class="cards">
+        <div class="cc"><div class="k">Move 1–3</div><div class="v">Sealed hash-chained log <span>— every reading timestamped and tamper-evident from first load.</span></div></div>
+        <div class="cc"><div class="k">Move 4</div><div class="v">Disposition on the data <span>— release / quarantine / reject signed against the curve that drove it.</span></div></div>
+        <div class="cc"><div class="k">Move 5</div><div class="v">One-message handoff <span>— the same record follows the goods, custody intact.</span></div></div>
+        <div class="cc"><div class="k">Move 6</div><div class="v">Root cause on file <span>— every excursion feeds the next shipment's fix.</span></div></div>
+      </div>
+
+      <div class="cta">
+        <div class="big">See it on your lanes — <span>a 20-minute walkthrough with your own shipment data.</span></div>
+        <div class="pill">Book a demo → fahcel.co/demo</div>
+      </div>
+    </div>
+  </section>
+
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>

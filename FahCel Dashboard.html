@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>FahCel — Client Pipeline</title>
+<script>
+// Auth guard — redirect to Login unless this session is authenticated.
+(function(){
+  var HASH='96d272c38834655813d5c1f9cb0bf8fff6d6f9512f4c44804ae68205f3cbc1bd';
+  if(sessionStorage.getItem('fahcel_auth')!==HASH){
+    location.replace('FahCel Login.html?next='+encodeURIComponent(location.pathname.split('/').pop()));
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --porcelain: #ffffff;
+    --porcelain-2: #F6F7F4;
+    --graphite: #0B1220;
+    --slate-800: #222938;
+    --warm-200: #e1e2dd;
+    --warm-500: #5a6374;
+    --amber: #c88912;
+    --amber-deep: #8f6410;
+    --red: #b3402c;
+    --teal: #1f7a8c;
+    --navy: #1E2A5A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--porcelain-2);
+    color: var(--graphite);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  html { overflow-x: clip; }
+  body { min-height: 100vh; overflow-x: clip; }
+  .serif { font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  ::selection { background: var(--amber); color: var(--graphite); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--porcelain-2); }
+  ::-webkit-scrollbar-thumb { background: var(--warm-500); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--graphite); }
+
+  a, button, input, select, [role="button"] { font-family: inherit; }
+  a, button, [role="button"] { cursor: pointer; }
+  a { transition: color .2s ease; }
+
+  .ds-btn { transition: transform .18s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease; border: none; }
+  .ds-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(11,18,32,0.16); }
+  .ds-btn:active:not(:disabled) { transform: translateY(0); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--amber); outline-offset: 3px;
+  }
+
+  .card { background: var(--porcelain); border: 1px solid var(--warm-200); }
+  .stat-card { transition: box-shadow .2s ease, transform .2s ease; }
+  .stat-card:hover { box-shadow: 0 10px 30px rgba(11,18,32,0.07); }
+
+  table { border-collapse: collapse; width: 100%; }
+  thead th {
+    font-family:'JetBrains Mono', monospace; font-size: 10px; letter-spacing:0.12em;
+    text-transform: uppercase; color: var(--warm-500); text-align:left;
+    padding: 14px 16px; border-bottom: 1px solid var(--graphite); white-space: nowrap;
+  }
+  tbody td { padding: 16px; border-bottom: 1px solid var(--warm-200); font-size: 14px; vertical-align: middle; }
+  tbody tr { transition: background-color .15s ease; }
+  tbody tr:hover { background: var(--porcelain-2); }
+
+  .pill { display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; padding:5px 10px; border-radius:999px; }
+  .pill-amber { background: rgba(200,137,18,0.16); color: var(--amber-deep); }
+  .pill-teal { background: rgba(31,122,140,0.15); color: #15616f; }
+  .pill-grey { background: var(--warm-200); color: var(--warm-500); }
+
+  .seg { display:flex; border:1px solid var(--warm-200); background: var(--porcelain); }
+  .seg button { flex:1; padding:9px 14px; background:transparent; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--slate-800); transition: all .15s ease; }
+  .seg button.active { background: var(--graphite); color: var(--porcelain); }
+
+  @media (max-width: 1000px) {
+    .ds-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .ds-grid-2-main { grid-template-columns: 1fr !important; }
+    .sidebar { display: none !important; }
+    .main-pad { padding: 24px !important; }
+  }
+  @media (max-width: 560px) {
+    .ds-grid-4 { grid-template-columns: 1fr !important; }
+    .table-scroll { overflow-x: auto; }
+    table { min-width: 640px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="dashboard.jsx"></script>
+</body>
+</html>

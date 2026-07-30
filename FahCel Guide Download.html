@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — Get the Cold-Chain Excursion Playbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#52b0bf; --green:#2E6B4E; --red:#b3402f;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#0b1220;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{font-size:16px;line-height:1.6}
+  a{color:var(--indigo);text-decoration:none}
+  a:hover{color:var(--indigo-2)}
+  button{font-family:inherit}
+  ::selection{background:#d9ddf0;color:var(--indigo)}
+
+  .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(1100px 520px at 12% -8%,rgba(82,176,191,.18),transparent 60%),
+      radial-gradient(900px 480px at 108% 110%,rgba(46,107,78,.16),transparent 60%),
+      #0b1220;
+    padding:34px;}
+  .card{width:100%;max-width:1000px;background:var(--paper);border-radius:26px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;
+    box-shadow:0 50px 120px -40px rgba(0,0,0,.7);}
+
+  /* ---------- left preview rail ---------- */
+  .rail{background:var(--indigo);color:#fff;padding:40px 38px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .rail::before{content:"";position:absolute;inset:0;background:radial-gradient(560px 300px at 112% -8%,rgba(82,176,191,.42),transparent 60%),radial-gradient(440px 300px at -10% 114%,rgba(46,107,78,.32),transparent 62%)}
+  .rail>*{position:relative;z-index:1}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;font-size:18px}
+  .logo .m{width:28px;height:28px;border-radius:8px;background:#fff}
+  .rail .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2);font-weight:600;margin-top:30px}
+  .rail .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
+  .rail h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:16px 0 0;text-wrap:balance}
+  .rail h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .rail p.sub{font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.8);margin:15px 0 0;max-width:34ch;text-wrap:pretty}
+  .toc{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+  .toc li{display:flex;gap:13px;align-items:baseline;padding:11px 0;border-top:1px solid rgba(255,255,255,.14);font-size:13.5px;color:rgba(255,255,255,.9)}
+  .toc li:first-child{border-top:0}
+  .toc .n{font-family:var(--mono);font-size:11px;color:var(--teal-2);font-weight:700;flex:0 0 auto}
+  .toc li span.d{color:rgba(255,255,255,.55);font-size:12.5px}
+  .railfoot{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .railfoot .doc{width:34px;height:44px;border-radius:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);flex:0 0 auto;position:relative}
+  .railfoot .doc::after{content:"PDF";position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:8px;letter-spacing:.5px;color:var(--teal-2);font-weight:700}
+  .railfoot .doc::before{content:"";position:absolute;left:7px;right:7px;top:9px;height:2px;background:rgba(255,255,255,.3);box-shadow:0 5px 0 rgba(255,255,255,.3),0 10px 0 rgba(255,255,255,.3)}
+
+  /* ---------- right form panel ---------- */
+  .panel{padding:44px 44px 38px;display:flex;flex-direction:column;justify-content:center;min-height:560px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);font-weight:600}
+  .panel h2{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;letter-spacing:-.5px;margin:9px 0 0;color:var(--ink)}
+  .panel .lead{font-size:14px;color:var(--muted);margin:9px 0 26px;max-width:40ch;text-wrap:pretty}
+  form{display:flex;flex-direction:column;gap:15px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:block}
+  .cap{font-size:11.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:var(--muted-2);margin:0 0 7px}
+  input,select{width:100%;border:1px solid var(--line-2);background:var(--white);border-radius:11px;padding:12px 14px;font-family:var(--sans);font-size:14.5px;color:var(--ink);outline:0;transition:.15s}
+  input::placeholder{color:var(--muted-2)}
+  input:focus,select:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(30,42,90,.12)}
+  .submit{margin-top:6px;border:0;cursor:pointer;background:var(--indigo);color:#fff;font-weight:600;font-size:15px;padding:15px 20px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background .15s}
+  .submit:hover{background:var(--indigo-2)}
+  .submit:disabled{opacity:.7;cursor:default}
+  .submit svg{width:15px;height:15px}
+  .fineprint{font-size:11.5px;color:var(--muted-2);line-height:1.5;margin:12px 0 0}
+  .err{display:none;background:#fbecea;border:1px solid #e9c9c2;color:var(--red);font-size:13px;line-height:1.45;border-radius:11px;padding:12px 14px;margin-top:2px}
+
+  /* success state */
+  .done{display:none;flex-direction:column;align-items:flex-start}
+  .done.on{display:flex}
+  .form-wrap.off{display:none}
+  .check{width:56px;height:56px;border-radius:999px;background:var(--green);display:grid;place-items:center;margin-bottom:18px}
+  .check svg{width:28px;height:28px;color:#fff}
+  .done h2{margin:0}
+  .done .lead{margin:9px 0 24px}
+  .dlbtn{border:0;cursor:pointer;background:var(--indigo);color:#fff;font-weight:600;font-size:15px;padding:15px 24px;border-radius:12px;display:inline-flex;align-items:center;gap:10px;transition:background .15s;text-decoration:none}
+  .dlbtn:hover{background:var(--indigo-2);color:#fff}
+  .dlbtn svg{width:16px;height:16px}
+  .done .also{font-size:13px;color:var(--muted);margin:20px 0 0}
+  .done .also a{font-weight:600;text-decoration:underline;text-underline-offset:2px}
+  .sent-to{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+  .sent-to b{color:var(--ink-2);font-weight:600}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="card">
+    <!-- LEFT: what they're getting -->
+    <div class="rail">
+      <div class="logo"><span class="m"></span>FahCel</div>
+      <div class="eyebrow"><span class="dot"></span>Free field playbook</div>
+      <h1>The Cold-Chain <em>Excursion</em> Playbook</h1>
+      <p class="sub">Six moves to defend a shipment the moment temperature breaks — and the paper trail that proves you did.</p>
+      <ul class="toc">
+        <li><span class="n">01</span><span>The six-move protocol <span class="d">— from alarm to signed disposition</span></span></li>
+        <li><span class="n">02</span><span>Pre-departure checklist <span class="d">— the excursions that never happen</span></span></li>
+        <li><span class="n">03</span><span>Rules of thumb <span class="d">— what the data really tells you</span></span></li>
+        <li><span class="n">04</span><span>Root-cause &amp; CAPA <span class="d">— so the fix follows the shipment</span></span></li>
+      </ul>
+      <div class="railfoot"><span class="doc"></span><span>PDF · 4 pages · 9-min read<br>Rev 2026.1</span></div>
+    </div>
+
+    <!-- RIGHT: capture form + success -->
+    <div class="panel">
+      <div class="form-wrap" id="formWrap">
+        <div class="kicker">Get the guide</div>
+        <h2>Where should we send it?</h2>
+        <p class="lead">Enter your work email and the playbook opens instantly — no wait, no spam.</p>
+        <form id="dlForm" novalidate>
+          <label><div class="cap">Work email</div><input id="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
+          <div class="row">
+            <label><div class="cap">Name</div><input id="fname" type="text" autocomplete="name" placeholder="Jordan Ellis" required /></label>
+            <label><div class="cap">Company</div><input id="company" type="text" autocomplete="organization" placeholder="Acme Cold Logistics" /></label>
+          </div>
+          <label><div class="cap">Your role</div>
+            <select id="role">
+              <option value="">Select one…</option>
+              <option>QA / Quality</option>
+              <option>Logistics / Supply chain</option>
+              <option>Operations</option>
+              <option>Compliance / Regulatory</option>
+              <option>Founder / Exec</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <button class="submit" id="submitBtn" type="submit">Get the playbook
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+          </button>
+          <div class="err" id="submitErr"></div>
+          <p class="fineprint">We'll email you the PDF and occasional cold-chain notes. Unsubscribe anytime. No sharing your address, ever.</p>
+        </form>
+      </div>
+
+      <div class="done" id="done">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="kicker">You're all set</div>
+        <h2>Your playbook is ready.</h2>
+        <p class="lead">Grab it below — it opens in this tab so you can save it as a PDF. We've also sent a copy to your inbox.</p>
+        <a class="dlbtn" id="dlBtn" href="FahCel Excursion Playbook.html">Open the playbook
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h5"/></svg>
+        </a>
+        <div class="sent-to">Sent to <b id="sentEmail">you@company.com</b></div>
+        <p class="also">Ready to see it on your own lanes? <a href="FahCel Book a Demo.html">Book a 20-minute demo →</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var API_BASE = '/api'; // vercel.json rewrites /api/* to the FahCel backend
+  var form = document.getElementById('dlForm');
+  var btn = document.getElementById('submitBtn');
+  var errEl = document.getElementById('submitErr');
+  var PDF_URL = 'FahCel Excursion Playbook.html';
+  function showErr(m){ errEl.textContent=m; errEl.style.display='block'; }
+  function clearErr(){ errEl.textContent=''; errEl.style.display='none'; }
+
+  async function post(url, opts){
+    var r = await fetch(url, opts);
+    if(!r.ok || (r.headers.get('content-type')||'').indexOf('json')<0) throw new Error('HTTP '+r.status);
+    return r.json();
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearErr();
+    var email = document.getElementById('email').value.trim();
+    var name = document.getElementById('fname').value.trim();
+    var org = document.getElementById('company').value.trim();
+    var role = document.getElementById('role').value || 'Other';
+    if(!email || email.indexOf('@')<0){ showErr('⚠ Please enter a valid work email so we can send the PDF.'); return; }
+    if(!name){ showErr('⚠ Please add your name.'); return; }
+
+    var ref = 'FC-'+Math.random().toString(36).slice(2,7).toUpperCase();
+    var note = 'Downloaded the Cold-Chain Excursion Playbook (PDF lead magnet).';
+    // Tenant-scoped so FahCel + Dr. Fry never see each other's leads on the shared backend.
+    // enroll + sequenceId start the FahCel playbook-nurture sequence (separate copy from
+    // the Dr Fry founding-outreach emails) — the lead shows up as "Sequenced" on the dashboard.
+    var payload = { tenant:'fahcel', email:email, name:name, org:org, role:role, note:note, source:'fahcel-playbook-download', ref:ref, enroll:true, sequenceId:'playbook-nurture' };
+    var opts = { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) };
+
+    btn.disabled = true;
+    btn.innerHTML = 'Sending…';
+    try {
+      // Hit the backend directly first — the /api/* rewrite can sit behind Vercel
+      // Deployment Protection ("preview token required"); the absolute URL doesn't.
+      try { await post('https://dr-fry-sequencerr.vercel.app/api/capture-lead', opts); }
+      catch(err){ await post(API_BASE + '/capture-lead', opts); }
+      // Real success — mirror into the local pipeline store, then reveal + open the PDF.
+      try {
+        var lead = { name:name, org: org || '—', role:role, email:email, ts:Date.now(), status:'sequenced', ref:ref, message:note };
+        var store = JSON.parse(localStorage.getItem('fahcel_leads_v1') || '[]');
+        store.push(lead);
+        localStorage.setItem('fahcel_leads_v1', JSON.stringify(store));
+      } catch(e){}
+      document.getElementById('sentEmail').textContent = email;
+      document.getElementById('formWrap').classList.add('off');
+      document.getElementById('done').classList.add('on');
+    } catch(err){
+      showErr('⚠ We could NOT deliver your playbook — '+String(err.message||err)+'. Please try again, or email hello@fahcel.co.');
+      btn.disabled = false;
+      btn.innerHTML = 'Get the playbook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>';
+    }
+  });
+})();
+</script>
+</body>
+</html>

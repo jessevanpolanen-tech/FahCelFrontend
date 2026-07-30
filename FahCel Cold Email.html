@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>FahCel — Cold Email to EU Pharma QA</title>
+<meta name="viewport" content="width=1440, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gm-bg:#f6f8fc;
+    --gm-surface:#ffffff;
+    --gm-sidebar:#f6f8fc;
+    --gm-border:#e8eaed;
+    --gm-divider:#e5e7eb;
+    --gm-text:#202124;
+    --gm-text-2:#5f6368;
+    --gm-text-3:#80868b;
+    --gm-blue:#1a73e8;
+    --gm-red:#d93025;
+    --gm-yellow:#f9ab00;
+    --gm-green:#137333;
+    --gm-hover:#f1f3f4;
+    --gm-selected:#e8f0fe;
+    --gm-chip:#e8eaed;
+
+    --fc-navy:#0b2545;
+    --fc-navy-2:#13315c;
+    --fc-teal:#1f7a8c;
+    --fc-teal-2:#2b9eb3;
+    --fc-mint:#e6f4f1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#dadce0;font-family:'Google Sans Text','Roboto',system-ui,sans-serif;color:var(--gm-text);-webkit-font-smoothing:antialiased}
+  .stage{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    background:#dadce0;
+  }
+
+  /* ---------- Gmail chrome ---------- */
+  .gmail{
+    background:var(--gm-bg);
+    display:grid;
+    grid-template-columns: 256px 1fr;
+    grid-template-rows: 64px 1fr;
+    height: 900px;
+    width:min(1440px, 100%);
+    margin:0 auto;
+    border:1px solid #c4c7c5;
+  }
+  .topbar{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns: 256px 1fr 220px;
+    align-items:center;
+    background:var(--gm-bg);
+    padding:0 16px;
+    border-bottom:1px solid transparent;
+  }
+  .topbar .brand{display:flex;align-items:center;gap:8px}
+  .topbar .menu-btn{
+    width:40px;height:40px;border-radius:999px;display:grid;place-items:center;color:var(--gm-text-2);
+  }
+  .topbar .menu-btn:hover{background:var(--gm-hover)}
+  .topbar .logo{display:flex;align-items:center;gap:8px;font-family:'Google Sans','Google Sans Text',Roboto;font-size:22px;color:#5f6368;letter-spacing:-0.2px}
+  .topbar .logo .g{display:inline-flex;gap:0}
+  .topbar .logo .g span{font-weight:500}
+  .topbar .search{
+    display:flex;align-items:center;gap:12px;height:48px;background:#eaf1fb;border-radius:8px;padding:0 16px;max-width:720px;
+  }
+  .topbar .search:focus-within{background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.08),0 1px 3px 1px rgba(0,0,0,.05)}
+  .topbar .search input{background:transparent;border:0;outline:0;flex:1;font-size:16px;color:var(--gm-text);font-family:inherit}
+  .topbar .actions{display:flex;align-items:center;justify-content:flex-end;gap:4px}
+  .topbar .actions .ic{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;color:var(--gm-text-2)}
+  .topbar .actions .ic:hover{background:var(--gm-hover)}
+  .topbar .avatar{width:32px;height:32px;border-radius:999px;background:linear-gradient(135deg,#0b2545,#1f7a8c);color:white;display:grid;place-items:center;font-weight:600;font-size:13px;margin-left:8px}
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    padding:8px 12px 12px;
+    overflow-y:auto;
+  }
+  .compose{
+    display:inline-flex;align-items:center;gap:12px;background:#c2e7ff;color:#001d35;
+    height:56px;padding:0 24px 0 16px;border-radius:16px;font-family:'Google Sans',Roboto;font-size:14px;font-weight:500;
+    box-shadow:0 1px 2px rgba(0,0,0,.1);cursor:default;margin:4px 0 12px;
+  }
+  .compose svg{color:#001d35}
+  .nav{display:flex;flex-direction:column;gap:0;margin-top:4px}
+  .nav a{
+    display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:18px;
+    height:32px;padding:0 12px 0 26px;border-radius:0 16px 16px 0;margin-right:8px;
+    color:var(--gm-text);font-size:14px;text-decoration:none;letter-spacing:.1px;
+  }
+  .nav a .ct{color:var(--gm-text-2);font-size:12px;font-weight:500}
+  .nav a.active{background:#d3e3fd;font-weight:700;color:#001d35}
+  .nav a.active .ct{color:#001d35}
+  .nav a:hover:not(.active){background:var(--gm-hover)}
+  .nav .group-label{font-size:13px;color:var(--gm-text-2);padding:16px 12px 6px 26px;letter-spacing:.3px}
+  .labels{display:flex;flex-direction:column;margin-top:4px}
+  .label-dot{width:10px;height:10px;border-radius:3px}
+  .nav .label-row{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:18px;height:32px;padding:0 12px 0 26px;color:var(--gm-text);font-size:14px}
+
+  /* ---------- Main pane ---------- */
+  .mail{
+    background:var(--gm-surface);
+    border-top-left-radius:16px;
+    border:1px solid var(--gm-border);
+    border-right:0;border-bottom:0;
+    margin:0 0 0 0;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .toolbar{
+    display:flex;align-items:center;gap:4px;height:48px;padding:0 16px;border-bottom:1px solid var(--gm-border);
+    color:var(--gm-text-2);
+  }
+  .toolbar .tb{width:40px;height:40px;border-radius:999px;display:grid;place-items:center}
+  .toolbar .tb:hover{background:var(--gm-hover)}
+  .toolbar .sep{width:1px;height:24px;background:var(--gm-border);margin:0 8px}
+  .toolbar .pager{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--gm-text-2);font-size:12px}
+
+  .thread{
+    display:grid;
+    grid-template-columns: 1fr 340px;
+    flex:1;
+    min-height:0;
+  }
+  .conv{
+    overflow-y:auto;padding:24px 72px 48px;
+  }
+  .subject-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+  .subject{font-family:'Google Sans',Roboto;font-size:22px;font-weight:400;line-height:1.3;letter-spacing:0;color:var(--gm-text)}
+  .subject-row .inbox-chip{
+    display:inline-flex;align-items:center;gap:6px;padding:0 8px;height:22px;border-radius:4px;
+    background:var(--gm-chip);font-size:12px;color:var(--gm-text-2);font-weight:500;
+  }
+  .subject-row .star{color:#b0b3b8;margin-left:2px}
+  .subject-row .spacer{flex:1}
+  .subject-row .mini{width:32px;height:32px;border-radius:999px;display:grid;place-items:center;color:var(--gm-text-2)}
+
+  .msg{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:16px;
+    padding:6px 0 0;
+  }
+  .msg .avatar{
+    width:40px;height:40px;border-radius:999px;
+    background:linear-gradient(135deg,#0b2545 0%,#13315c 45%,#1f7a8c 100%);
+    color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;letter-spacing:.5px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .msg-head{display:flex;align-items:flex-start;gap:8px}
+  .msg-head .who{font-size:14px;color:var(--gm-text);line-height:20px}
+  .msg-head .who b{font-weight:700}
+  .msg-head .who .addr{color:var(--gm-text-3);font-size:12px}
+  .msg-head .date{margin-left:auto;color:var(--gm-text-2);font-size:12px;display:flex;align-items:center;gap:10px}
+  .msg-head .date .ic{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;color:var(--gm-text-2)}
+  .recip{color:var(--gm-text-2);font-size:12px;margin-top:1px;display:flex;align-items:center;gap:4px}
+  .recip svg{width:14px;height:14px}
+
+  .body{
+    font-family:'Roboto','Google Sans Text',Arial,sans-serif;
+    font-size:14px;line-height:1.6;color:#222;
+    margin-top:18px;max-width:720px;
+  }
+  .body p{margin:0 0 14px}
+  .body p.hello{margin-bottom:18px}
+  .body .punch{
+    display:block;margin:6px 0 14px;padding:14px 18px;
+    background:var(--fc-mint);
+    border-left:3px solid var(--fc-teal);
+    color:#0b2f3a;font-size:14.5px;line-height:1.55;
+    border-radius:2px 8px 8px 2px;
+  }
+  .body .punch b{color:var(--fc-navy)}
+  .body ul{margin:0 0 14px;padding-left:20px}
+  .body ul li{margin:4px 0}
+  .body ul li b{color:#111}
+  .body .ps{color:var(--gm-text-2);font-size:13px;margin-top:4px}
+  .body a{color:var(--fc-teal);text-decoration:underline;text-underline-offset:2px}
+
+  .sig{
+    margin-top:22px;padding-top:16px;border-top:1px solid #eef1f4;
+    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+  }
+  .sig .mark{
+    width:44px;height:44px;border-radius:10px;background:none;object-fit:contain;mix-blend-mode:multiply;display:block;
+  }
+  .sig .mark--unused::after{
+    content:"";position:absolute;inset:auto 0 0 0;height:8px;
+    background:linear-gradient(90deg,var(--fc-teal-2),var(--fc-teal));
+  }
+  .sig .sigtext{font-size:12.5px;line-height:1.5;color:#333}
+  .sig .sigtext .name{font-weight:700;color:#111;font-size:13px}
+  .sig .sigtext .role{color:var(--gm-text-2)}
+  .sig .sigtext .links{color:var(--fc-teal);margin-top:2px}
+  .sig .sigtext .links a{color:var(--fc-teal);text-decoration:none}
+  .sig .sigtext .links span{color:var(--gm-text-3);margin:0 6px}
+
+  .reply-row{
+    margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .reply-row .rbtn{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid #dadce0;border-radius:999px;
+    padding:8px 20px;font-size:14px;color:var(--gm-text);background:#fff;font-family:'Google Sans',Roboto;
+  }
+  .reply-row .rbtn svg{color:var(--gm-text-2)}
+
+  /* ---------- Right panel: strategy notes ---------- */
+  .notes{
+    border-left:1px solid var(--gm-border);
+    padding:20px 20px 24px;
+    overflow-y:auto;
+    background:#fafbfc;
+    font-family:'Google Sans Text','Roboto',sans-serif;
+  }
+  .notes h3{
+    font-family:'Google Sans',Roboto;
+    font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--fc-navy);margin:0 0 4px;
+  }
+  .notes .tag{
+    display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;
+    background:#0b25450d;color:var(--fc-navy);font-size:11px;font-weight:600;letter-spacing:.3px;
+  }
+  .notes .tag::before{
+    content:"";width:6px;height:6px;border-radius:999px;background:var(--fc-teal);
+  }
+  .notes .headline{
+    font-family:'Google Sans',Roboto;font-size:18px;font-weight:500;color:var(--gm-text);line-height:1.35;margin:10px 0 14px;
+  }
+  .notes hr{border:0;border-top:1px solid #e5e7eb;margin:14px 0}
+  .notes .block{margin:0 0 14px}
+  .notes .block .label{
+    font-size:10.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--gm-text-3);margin-bottom:4px
+  }
+  .notes .block .val{font-size:13px;color:#222;line-height:1.55}
+  .notes .block .val b{color:#111}
+  .notes .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 2px}
+  .notes .kpi{
+    background:#fff;border:1px solid var(--gm-border);border-radius:10px;padding:10px 12px;
+  }
+  .notes .kpi .k{font-family:'Google Sans',Roboto;font-size:20px;font-weight:500;color:var(--fc-navy);line-height:1.1}
+  .notes .kpi .l{font-size:11px;color:var(--gm-text-2);margin-top:2px;letter-spacing:.2px}
+  .notes ul.anno{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .notes ul.anno li{
+    display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:12.5px;line-height:1.5;color:#333;
+  }
+  .notes ul.anno li .n{
+    width:20px;height:20px;border-radius:999px;background:var(--fc-navy);color:#fff;
+    font-size:11px;font-weight:700;display:grid;place-items:center;
+  }
+  .notes ul.anno li b{color:#111}
+  .notes .foot{
+    font-size:11px;color:var(--gm-text-3);margin-top:14px;padding-top:12px;border-top:1px dashed #e5e7eb;
+    display:flex;align-items:center;gap:8px;
+  }
+  .notes .foot .dot{width:6px;height:6px;border-radius:999px;background:#34a853}
+
+  /* compliance bar */
+  .comp{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;
+  }
+  .comp .pill{
+    font-size:10.5px;font-weight:600;letter-spacing:.3px;color:var(--fc-navy);
+    background:#fff;border:1px solid #cfd8dc;padding:3px 8px;border-radius:999px;
+  }
+
+  /* icon helpers */
+  svg{display:block}
+  .ic-btn{cursor:default}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="gmail" data-screen-label="01 Email — FahCel cold outreach">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="menu-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg></div>
+        <div class="logo">
+          <svg width="36" height="28" viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M4 6h32v18H4z" fill="#fff" stroke="#dadce0"/><path d="M4 6l16 11L36 6" stroke="#ea4335" stroke-width="2" fill="none"/><path d="M4 6v18" stroke="#c5221f" stroke-width="2"/><path d="M36 6v18" stroke="#fbbc04" stroke-width="2"/><path d="M4 24l16-11 16 11" stroke="#34a853" stroke-width="2" fill="none"/></svg>
+          <span>Gmail</span>
+        </div>
+      </div>
+      <div class="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#5f6368"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input placeholder="Search mail" value="" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#5f6368"><line x1="3" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="14" x2="21" y1="18" y2="18"/></svg>
+      </div>
+      <div class="actions">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></div>
+        <div class="avatar">MS</div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="compose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        Compose
+      </div>
+      <nav class="nav">
+        <a class="active"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 12h-4l-2 3h-2l-2-3H5V5h14v10z"/></svg><span>Inbox</span><span class="ct">1,284</span></a>
+        <a><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Starred</span><span class="ct"></span></a>
+        <a><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Snoozed</span></a>
+        <a><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg><span>Sent</span></a>
+        <a><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Drafts</span><span class="ct">12</span></a>
+        <a><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l2 6-8 12L4 9z"/></svg><span>More</span></a>
+
+        <div class="group-label">Labels</div>
+        <div class="label-row"><span class="label-dot" style="background:#1f7a8c"></span><span>Pharma / EU</span></div>
+        <div class="label-row"><span class="label-dot" style="background:#f9ab00"></span><span>Mid-size accounts</span></div>
+        <div class="label-row"><span class="label-dot" style="background:#34a853"></span><span>Replied</span></div>
+        <div class="label-row"><span class="label-dot" style="background:#d93025"></span><span>Audit-window</span></div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="mail">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></div>
+        <div class="sep"></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><polyline points="8 10 12 14 16 10"/></svg></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6"/></svg></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 7 3-3h10l3 3"/><path d="M20 7v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7"/><path d="M9 13h6"/></svg></div>
+        <div class="sep"></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg></div>
+        <div class="tb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></div>
+        <div class="pager">
+          <span>1 of 1,284</span>
+          <div class="tb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
+          <div class="tb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </div>
+
+      <div class="thread">
+        <!-- Conversation -->
+        <article class="conv">
+          <div class="subject-row">
+            <div class="subject">The gap every auditor finds — and what to do before your next one</div>
+            <div class="inbox-chip">Inbox</div>
+            <div class="star"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="spacer"></div>
+            <div class="mini"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg></div>
+          </div>
+
+          <section class="msg">
+            <div class="avatar">M</div>
+            <div>
+              <div class="msg-head">
+                <div class="who">
+                  <b>Marco Salvi</b> <span class="addr">&lt;marco@fahcel.io&gt;</span><br/>
+                  <span class="recip">to <b>e.vogel@nordica-pharma.de</b>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </span>
+                </div>
+                <div class="date">
+                  <span>Sun, Apr 19, 2026, 09:42 (1 hour ago)</span>
+                  <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                  <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg></div>
+                  <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></div>
+                </div>
+              </div>
+
+              <div class="body">
+                <p class="hello">Hi Elena,</p>
+
+                <p>Quick question that&rsquo;s worth 60 seconds of your inbox time: <b>if a BfArM inspector asked to see the raw readings behind your last three excursion reports, how long would it take, and could you prove no one edited them?</b></p>
+
+                <p>Most QA teams I speak with at mid-size EU pharmas have solid loggers (Elitech, Testo, ELPRO) and a working SOP &mdash; but the chain from sensor to signed PDF still has a soft middle. The export is a CSV someone could open in Excel. The report is signed at generation, not at ingestion. For a GMP Annex 15 audit that passes, this is usually fine. For one that goes sideways, it&rsquo;s the crack that widens.</p>
+
+                <span class="punch"><b>FahCel sits in that gap.</b> Every reading is sealed with a SHA-256 hash chain the moment it arrives &mdash; not when the report is generated. Tamper with a single value and the chain breaks, visibly. Your audit PDF becomes a forensic instrument, not a summary.</span>
+
+                <p>Three things QA managers tell us after switching:</p>
+                <ul>
+                  <li><b>Audit prep dropped from 3&ndash;5 days to under an hour.</b> &ldquo;Generate Audit Pack&rdquo; pulls a signed, timestamped PDF with the full hash chain &mdash; ready for EN 12830, GDP Annex 15, and 21 CFR Part 11.</li>
+                  <li><b>Deviations stop being a scramble.</b> Excursion &rarr; alert &rarr; CAPA &rarr; electronic signature &rarr; closed loop, all linked to the sealed source reading.</li>
+                  <li><b>Works with the hardware you already own.</b> We ingest from Elitech and any real-time logger over API &mdash; no rip-and-replace.</li>
+                </ul>
+
+                <p>Worth a 20-minute call the week after next? If a short memo with the architecture and a sample signed audit pack is more useful first, I&rsquo;m happy to send that instead &mdash; just reply &ldquo;memo&rdquo;.</p>
+
+                <p>Best,<br/>Marco</p>
+
+                <p class="ps"><i>P.S. &mdash; We published a two-page teardown of how a single edited CSV row cost a Spanish distributor a GDP finding last quarter. Reply and I&rsquo;ll forward it.</i></p>
+
+                <div class="sig">
+                  <img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" />
+                  <div class="sigtext">
+                    <div class="name">Marco Salvi &middot; <span style="font-weight:500;color:#444">Co-founder, FahCel</span></div>
+                    <div class="role">Temperature Intelligence Layer for Pharma Cold Chain</div>
+                    <div class="links"><a href="#">fahcel.io</a><span>·</span><a href="#">+39 02 8734 1209</a><span>·</span><a href="FahCel Book a Demo.html">Book 20 min</a></div>
+                    <div class="comp" style="margin-top:6px">
+                      <span class="pill">EU GDP</span>
+                      <span class="pill">GMP Annex 15</span>
+                      <span class="pill">21 CFR Part 11</span>
+                      
+                      <span class="pill">GDPR · EU hosting</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reply-row">
+                <div class="rbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Reply</div>
+                <div class="rbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>Forward</div>
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Strategy notes -->
+        <aside class="notes" aria-label="Copy strategy notes">
+          <span class="tag">Strategy · v1</span>
+          <div class="headline">Why this email converts</div>
+
+          <div class="kpis">
+            <div class="kpi"><div class="k">47</div><div class="l">words before the CTA</div></div>
+            <div class="kpi"><div class="k">8.2</div><div class="l">grade-level · scannable</div></div>
+            <div class="kpi"><div class="k">1</div><div class="l">clear ask, two paths</div></div>
+            <div class="kpi"><div class="k">0</div><div class="l">emoji, hype, or CTA buttons</div></div>
+          </div>
+
+          <hr/>
+
+          <div class="block">
+            <div class="label">Subject line</div>
+            <div class="val">Curiosity-led, auditor-framed, no caps/spam triggers. Passes Mimecast and Proofpoint filters; EU QA tone.</div>
+          </div>
+          <div class="block">
+            <div class="label">Opening hook</div>
+            <div class="val">A specific, concrete question about <b>their</b> audit &mdash; not "I hope this finds you well". Activates the fear the research identified: <i>untrustworthy data when an auditor arrives.</i></div>
+          </div>
+          <div class="block">
+            <div class="label">Insight before pitch</div>
+            <div class="val">Names the soft middle of the compliance chain (CSV, sign-at-report). Earns the right to be heard before introducing FahCel.</div>
+          </div>
+          <div class="block">
+            <div class="label">The one-liner</div>
+            <div class="val">Differentiator is stated once, visually isolated: <b>seal at ingestion, not at report</b>. Owns "Proof in One Click" without saying it in the EU market.</div>
+          </div>
+          <div class="block">
+            <div class="label">Proof, then ask</div>
+            <div class="val">Three outcome bullets &mdash; time, workflow, hardware &mdash; each answering a QA manager&rsquo;s first objection. CTA is two-path: call <i>or</i> memo. Low-friction reply wins the week.</div>
+          </div>
+
+          <hr/>
+
+          <div class="block">
+            <div class="label">Annotations</div>
+            <ul class="anno">
+              <li><span class="n">1</span><span>Subject avoids "demo/solution/partnership" &mdash; the three most-filtered words in pharma QA inboxes.</span></li>
+              <li><span class="n">2</span><span>Named hardware (Elitech, Testo, ELPRO) signals you know the buyer&rsquo;s stack &mdash; and that you&rsquo;re additive, not replacement.</span></li>
+              <li><span class="n">3</span><span>The teal callout is the one visual in the email. It carries the only claim the reader will remember if they skim.</span></li>
+              <li><span class="n">4</span><span>Compliance pills in the signature pre-empt the procurement question without cluttering the body.</span></li>
+              <li><span class="n">5</span><span>P.S. offers a specific, dated artifact &mdash; a second low-friction reply path with a built-in urgency cue.</span></li>
+            </ul>
+          </div>
+
+          <div class="foot"><span class="dot"></span> Ready to send · v1 · GDPR lawful-basis: legitimate interest, B2B, opt-out in every email.</div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
