@@ -3,7 +3,73 @@
 <head>
 <meta charset="utf-8" />
 <title>FahCel — Proof of cold, end to end</title>
+<meta name="description" content="FahCel turns every logger reading into a tamper-evident record, so cold-chain teams can prove a shipment held from dock to shelf — audit-ready, end to end." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="assets/fahcel-logo.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fahcel.co/#org",
+      "name": "FahCel",
+      "url": "https://fahcel.co/",
+      "logo": "https://fahcel.co/assets/fahcel-logo.jpg",
+      "description": "Cold-chain integrity platform that seals every temperature logger reading into a tamper-evident hash chain, so teams can prove a shipment held from dock to shelf.",
+      "sameAs": []
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://fahcel.co/#product",
+      "name": "FahCel",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://fahcel.co/",
+      "publisher": { "@id": "https://fahcel.co/#org" },
+      "description": "FahCel monitors temperature, humidity, shock and light across storage, transit and last mile, then chains each reading so the history cannot be silently rewritten. Teams get live excursion alerts and one-click, audit-ready proof.",
+      "featureList": [
+        "Tamper-evident hash chain of logger readings",
+        "One-click chain verification",
+        "Real-time threshold and door-open alerts",
+        "Signed PDF export of full shipment history",
+        "Coverage across cold storage, in-transit and last mile"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://fahcel.co/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is cold-chain integrity?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cold-chain integrity is proof that a perishable product stayed within its required temperature range at every stage — storage, transit and last mile. FahCel establishes it by recording each logger reading and sealing it into a tamper-evident hash chain, so the history can be verified rather than trusted." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does a hash chain prove temperature wasn't altered?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each reading is hashed together with the hash of the reading before it, forming a linked chain. Changing any past value changes its hash, which breaks every link after it. Anyone can recompute the chain from canonical JSON and pinpoint the first reading that was touched." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does FahCel monitor?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wireless loggers report temperature, humidity, shock and light, plus GPS location and door-open events in transit. FahCel covers the full journey — cold storage, in-transit handoffs and retail last mile — and chains every reading so the record follows the product, not the building." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens when a reading breaches the threshold?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A threshold or door-open alert hits the responsible team's phone the moment a reading drifts out of range — not at the next manual check. The excursion is recorded in the chain with its timestamp, so the event is both actionable in the moment and provable afterward." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the record audit-ready?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can export a signed PDF of any shipment's full temperature history together with the chain-integrity check result. Quality leads, logistics ops and auditors work from one verifiable record, which replaces clipboards and spreadsheets and shortens sign-off." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -272,7 +338,7 @@
       <li>Coverage</li>
       <li>Compliance</li>
       <li>Pricing</li>
-      <li>Docs</li>
+      <li><a href="FahCel Excursion Playbook.html">Playbook</a></li>
     </ul>
     <div class="right">
       <a class="signin" href="#">Sign in</a>
@@ -415,7 +481,7 @@
 
         <article class="wcard b reveal d1">
           <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
-          <a class="warrow" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          <a class="warrow" href="FahCel Excursion Playbook.html" aria-label="Open the Cold-Chain Excursion Playbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
           <div class="wtags"><span class="wtag">Alerts</span><span class="wtag">Realtime</span></div>
           <h3>Catch excursions live</h3>
           <p>Threshold and door-open alerts hit your phone the moment a reading drifts — not at the next manual check.</p>
@@ -428,6 +494,56 @@
           <h3>End the finger-pointing</h3>
           <p>When a load is rejected, the chain shows exactly where and when cold was lost — and who was holding it.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <style>
+    .faq{padding:84px 0;border-top:1px solid var(--line)}
+    .faq .lead{max-width:34ch}
+    .faq .list{margin-top:38px;border-top:1px solid var(--line)}
+    .faq details{border-bottom:1px solid var(--line)}
+    .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
+      padding:24px 4px;font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.2px;color:var(--ink)}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary .pm{flex:0 0 auto;width:30px;height:30px;border-radius:99px;border:1px solid var(--line-2);
+      display:grid;place-items:center;color:var(--indigo);transition:transform .25s,background .2s,color .2s}
+    .faq details[open] summary .pm{transform:rotate(45deg);background:var(--indigo);color:#fff;border-color:var(--indigo)}
+    .faq summary .pm svg{width:15px;height:15px}
+    .faq .ans{padding:0 4px 26px;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:64ch}
+    @media (max-width:880px){.faq{padding:60px 0}.faq summary{font-size:17px}}
+  </style>
+  <section class="block faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow-pill reveal"><span class="dot"></span> FAQ</span>
+          <h2 class="reveal d1">Questions from the people who <em>sign off</em>.</h2>
+        </div>
+        <p class="desc lead reveal d2">Straight answers on how the chain works, what FahCel monitors, and how the record holds up in an audit.</p>
+      </div>
+      <div class="list reveal d1">
+        <details>
+          <summary>What is cold-chain integrity?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Cold-chain integrity is proof that a perishable product stayed within its required temperature range at every stage — storage, transit and last mile. FahCel establishes it by recording each logger reading and sealing it into a tamper-evident hash chain, so the history can be verified rather than trusted.</div>
+        </details>
+        <details>
+          <summary>How does a hash chain prove temperature wasn't altered?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Each reading is hashed together with the hash of the reading before it, forming a linked chain. Changing any past value changes its hash, which breaks every link after it. Anyone can recompute the chain from canonical JSON and pinpoint the first reading that was touched.</div>
+        </details>
+        <details>
+          <summary>What does FahCel monitor?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Wireless loggers report temperature, humidity, shock and light, plus GPS location and door-open events in transit. FahCel covers the full journey — cold storage, in-transit handoffs and retail last mile — and chains every reading so the record follows the product, not the building.</div>
+        </details>
+        <details>
+          <summary>What happens when a reading breaches the threshold?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">A threshold or door-open alert hits the responsible team's phone the moment a reading drifts out of range — not at the next manual check. The excursion is recorded in the chain with its timestamp, so the event is both actionable in the moment and provable afterward.</div>
+        </details>
+        <details>
+          <summary>Is the record audit-ready?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Yes. You can export a signed PDF of any shipment's full temperature history together with the chain-integrity check result. Quality leads, logistics ops and auditors work from one verifiable record, which replaces clipboards and spreadsheets and shortens sign-off.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -453,10 +569,10 @@
       <div class="links">
         <a href="#">Platform</a>
         <a href="#">Compliance</a>
-        <a href="#">Docs</a>
+        <a href="FahCel Excursion Playbook.html">Excursion playbook</a>
         <a href="#">Privacy</a>
       </div>
-      <div>© 2026 FahCel — Cold-chain integrity</div>
+      <div>© 2026 FahCel — Cold-chain integrity · <span style="opacity:.8">Last updated <time datetime="2026-07-14">14 July 2026</time></span></div>
     </div>
   </footer>
 
