@@ -60,7 +60,8 @@ function recordSent(c, mail) {
 // /backend holds the key and forwards to Resend. "direct" is prototype-only.
 // "mailto" opens the operator's mail client (no backend needed).
 const CFG_KEY = 'fahcel_cfg_v1';
-const CFG_DEFAULTS = { mode: 'mailto', fromName: 'FahCel', fromEmail: 'sales@mail.fahcel.co', replyTo: 'sales@fahcel.co', backendUrl: '', endpoint: '', apiKey: '' };
+const DEFAULT_SEND_ENDPOINT = `${BACKEND}/api/send`;
+const CFG_DEFAULTS = { mode: 'mailto', fromName: 'FahCel', fromEmail: 'sales@mail.fahcel.co', replyTo: 'sales@fahcel.co', backendUrl: BACKEND, endpoint: '', apiKey: '' };
 function readCfg() {
   try { return { ...CFG_DEFAULTS, ...JSON.parse(localStorage.getItem(CFG_KEY) || '{}') }; }
   catch { return { ...CFG_DEFAULTS }; }
@@ -77,7 +78,7 @@ function useCfg() {
   useEffect(() => { const fn = (c) => setCfg({ ...c }); cfgSubs.add(fn); return () => cfgSubs.delete(fn); }, []);
   return cfg;
 }
-const cfgConnected = (cfg) => (cfg.mode === 'proxy' && !!cfg.endpoint && !!cfg.fromEmail) || (cfg.mode === 'direct' && !!cfg.apiKey && !!cfg.fromEmail);
+const cfgConnected = (cfg) => (cfg.mode === 'proxy' && !!(cfg.endpoint || cfg.backendUrl || BACKEND) && !!cfg.fromEmail) || (cfg.mode === 'direct' && !!cfg.apiKey && !!cfg.fromEmail);
 
 // Shared "open the settings modal" signal so any panel can launch it.
 let _settingsOpen = false;
@@ -93,17 +94,34 @@ function fromLine(cfg) {
   return cfg.fromName ? `${cfg.fromName} <${cfg.fromEmail}>` : cfg.fromEmail;
 }
 
+function normalizeSendEndpoint(value) {
+  const endpoint = String(value || '').trim().replace(/\/$/, '');
+  if (!endpoint) return DEFAULT_SEND_ENDPOINT;
+  try {
+    const url = new URL(endpoint, window.location.origin);
+    if (url.pathname === '/' || url.pathname === '') url.pathname = '/api/send';
+    else if (url.pathname === '/api') url.pathname = '/api/send';
+    return url.toString();
+  } catch {
+    return endpoint;
+  }
+}
+
 // Deliver an email. Returns the Resend response on success, throws on failure.
 async function sendEmail(cfg, { to, subject, text }) {
   const from = fromLine(cfg);
   const replyTo = cfg.replyTo || undefined;
   if (cfg.mode === 'proxy') {
-    const endpoint = cfg.endpoint || (cfg.backendUrl ? cfg.backendUrl.replace(/\/$/, '') + '/api/send' : '');
-    if (!endpoint) throw new Error('not-configured');
-    const res = await fetch(endpoint, {
+    const configured = cfg.endpoint || cfg.backendUrl || BACKEND;
+    const endpoint = normalizeSendEndpoint(configured);
+    const options = {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ tenant: TENANT, to, from, subject, text, replyTo }),
-    });
+    };
+    let res = await fetch(endpoint, options);
+    if (res.status === 404 && endpoint !== DEFAULT_SEND_ENDPOINT) {
+      res = await fetch(DEFAULT_SEND_ENDPOINT, options);
+    }
     const txt = await res.text().catch(() => '');
     if (!res.ok) throw new Error(`Backend responded ${res.status}${txt ? ' · ' + txt.slice(0, 200) : ''}`);
     try { return JSON.parse(txt); } catch { return {}; }
