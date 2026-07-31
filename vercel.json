@@ -1,7 +1,7 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://dr-fry-sequencerr.vercel.app/api/:path*" }
+    { "source": "/api/:path*", "destination": "https://fah-cel-sequencing.vercel.app/api/:path*" }
   ],
   "routes": [
     { "src": "/", "dest": "/index.html" }
