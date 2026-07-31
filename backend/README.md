@@ -13,6 +13,7 @@ stops on reply/bounce/unsubscribe, and tracks clicks.
 |---|---|
 | `db/schema.sql` | Tables: `leads`, `enrollments`, `events`. Run once. |
 | `db/fix-leads-unique.sql` | One-time fix if capture 500s with *"no unique or exclusion constraint…"* — adds the `leads.email` unique index the upsert needs. |
+| `db/fix-tenant.sql` | One-time fix if leads save as `tenant:"drfry"` — adds / re-defaults the `tenant` column to `fahcel` and re-tags mis-tagged FahCel rows. |
 | `api/capture-lead.js` | `POST /api/capture-lead` — public website lead capture (landing + booking forms). |
 | `api/enroll.js` | `POST /api/enroll` — add a lead + start a sequence. |
 | `api/send.js` | `POST /api/send` — send one email now (dashboard Compose → Send). |

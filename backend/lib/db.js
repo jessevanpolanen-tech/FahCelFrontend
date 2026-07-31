@@ -29,8 +29,9 @@ function client() {
     process.env.SUPABASE_DB_URL;
 
   if (!connectionString) {
-    const message = 'No database URL set. Add POSTGRES_URL (Supabase Transaction-pooler string, port 6543) to the environment.';
-    throw new Error(message);
+    throw new Error(
+      'No database URL set. Add POSTGRES_URL (Supabase Transaction-pooler string, port 6543) to the environment.'
+    );
   }
 
   // `max: 1` + short idle timeout suits short-lived function invocations
@@ -52,11 +53,15 @@ export const sql = (strings, ...values) => client()(strings, ...values);
 sql.json = (v) => client().json(v);
 
 // ── Leads ──────────────────────────────────────────────────────────
-export async function upsertLead({ email, name = '', org = '', role = 'Cold outreach', phone = '', note = '' }) {
+// `tenant` keeps FahCel and Dr. Fry leads separate on the shared database.
+// It is written on INSERT only — an existing lead never switches tenant.
+export const DEFAULT_TENANT = process.env.TENANT || 'fahcel';
+
+export async function upsertLead({ email, name = '', org = '', role = 'Cold outreach', phone = '', note = '', tenant = DEFAULT_TENANT }) {
   const e = email.trim().toLowerCase();
   const rows = await sql`
-    insert into leads (email, name, org, role, phone, note)
-    values (${e}, ${name}, ${org}, ${role}, ${phone}, ${note})
+    insert into leads (email, name, org, role, phone, note, tenant)
+    values (${e}, ${name}, ${org}, ${role}, ${phone}, ${note}, ${tenant})
     on conflict (email) do update set
       name = coalesce(nullif(excluded.name, ''), leads.name),
       org  = coalesce(nullif(excluded.org, ''),  leads.org)
@@ -106,9 +111,10 @@ export async function stopEnrollmentsForEmail(email, status) {
   return result.count || 0;
 }
 
-// Delete every lead (enrollments/events cascade via FK). Returns count deleted.
-export async function deleteAllLeads() {
-  const result = await sql`delete from leads;`;
+// Delete every lead FOR ONE TENANT (enrollments/events cascade via FK).
+// Always scoped — a FahCel wipe must never touch Dr. Fry's leads.
+export async function deleteAllLeads(tenant = DEFAULT_TENANT) {
+  const result = await sql`delete from leads where tenant = ${tenant};`;
   return result.count || 0;
 }
 

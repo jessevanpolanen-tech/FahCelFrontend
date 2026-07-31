@@ -54,3 +54,8 @@ create index if not exists events_lead_idx on events (lead_id, created_at desc);
 -- targets, even on databases whose `leads` table predates the `unique` above
 -- (create table if not exists would have skipped the inline constraint).
 create unique index if not exists leads_email_key on leads (email);
+
+-- Multi-tenant: FahCel and Dr. Fry share this database; every read, wipe and
+-- capture is scoped by this tag. Added via ALTER so existing tables get it too.
+alter table leads add column if not exists tenant text not null default 'fahcel';
+create index if not exists leads_tenant_idx on leads (tenant, created_at desc);

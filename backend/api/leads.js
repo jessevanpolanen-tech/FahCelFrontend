@@ -5,7 +5,7 @@
 //
 // Node.js classic (req, res) handler — required on Vercel's Node runtime so
 // the response completes (the Web/Fetch `Response` style can hang here).
-import { sql, deleteAllLeads } from '../lib/db.js';
+import { sql, deleteAllLeads, DEFAULT_TENANT } from '../lib/db.js';
 
 export const config = { runtime: 'nodejs' };
 
@@ -28,8 +28,10 @@ export default async function handler(req, res) {
         res.status(400).json({ error: 'missing confirmation' });
         return;
       }
-      const deleted = await deleteAllLeads();
-      res.status(200).json({ ok: true, deleted });
+      // Scoped wipe — never touches the other tenant's leads.
+      const delTenant = (body.tenant || req.query?.tenant || DEFAULT_TENANT).toString().trim().toLowerCase();
+      const deleted = await deleteAllLeads(delTenant);
+      res.status(200).json({ ok: true, deleted, tenant: delTenant });
     } catch (err) {
       res.status(500).json({ error: String((err && err.message) || err) });
     }
@@ -37,9 +39,10 @@ export default async function handler(req, res) {
   }
 
   try {
+    const tenant = (req.query?.tenant || DEFAULT_TENANT).toString().trim().toLowerCase();
     const rows = await sql`
       select
-        l.id, l.email, l.name, l.org, l.role, l.created_at,
+        l.id, l.email, l.name, l.org, l.role, l.created_at, l.tenant,
         e.sequence_id, e.step_index, e.status, e.next_due_at, e.enrolled_at,
         (select count(*) from events ev where ev.lead_id = l.id and ev.type = 'clicked') as clicks,
         (select max(ev.created_at) from events ev where ev.lead_id = l.id and ev.type = 'replied') as replied_at
@@ -47,10 +50,11 @@ export default async function handler(req, res) {
       left join lateral (
         select * from enrollments en where en.lead_id = l.id order by en.enrolled_at desc limit 1
       ) e on true
+      where l.tenant = ${tenant}
       order by l.created_at desc
       limit 500;`;
 
-    res.status(200).json({ leads: rows });
+    res.status(200).json({ leads: rows, tenant });
   } catch (err) {
     // Surface the real reason instead of an opaque 500 page.
     res.status(500).json({ error: String((err && err.message) || err) });

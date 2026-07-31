@@ -4,7 +4,7 @@
 // Upserts the lead, starts the sequence, and fires step 0 on the next cron tick.
 //
 // Node.js classic (req, res) handler.
-import { upsertLead, createEnrollment, logEvent } from '../lib/db.js';
+import { upsertLead, createEnrollment, logEvent, DEFAULT_TENANT } from '../lib/db.js';
 import { getSequence, dueAtForStep } from '../lib/sequences.js';
 import { notifyNewLead } from '../lib/resend.js';
 
@@ -30,6 +30,8 @@ export default async function handler(req, res) {
     const seq = getSequence(sequenceId);
     if (!seq) { res.status(400).json({ error: 'unknown-sequence' }); return; }
 
+    const tenant = (payload.tenant || req.query?.tenant || DEFAULT_TENANT).toString().trim().toLowerCase();
+
     const lead = await upsertLead({
       email,
       name: payload.name || '',
@@ -37,12 +39,13 @@ export default async function handler(req, res) {
       role: payload.role || 'Cold outreach',
       phone: payload.phone || '',
       note: payload.note || '',
+      tenant,
     });
 
     const enrolledAt = new Date();
     const firstDueAt = dueAtForStep(enrolledAt, seq, 0);
     const enrollment = await createEnrollment({ leadId: lead.id, email, sequenceId, firstDueAt });
-    await logEvent({ leadId: lead.id, enrollmentId: enrollment.id, email, type: 'enrolled', meta: { sequenceId } });
+    await logEvent({ leadId: lead.id, enrollmentId: enrollment.id, email, type: 'enrolled', meta: { sequenceId, tenant } });
 
     // Notify the operator on a genuinely new lead (not a re-enroll of an existing one).
     if (lead._inserted) {
@@ -51,7 +54,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ ok: true, leadId: lead.id, enrollmentId: enrollment.id, sequenceId });
   } catch (err) {
-    const message = String((err && err.message) || err || 'unknown-error');
-    res.status(500).json({ error: message });
+    res.status(500).json({ error: String((err && err.message) || err) });
   }
 }

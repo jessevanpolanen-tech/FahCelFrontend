@@ -7,7 +7,7 @@
 // shouldn't get cold outreach).
 //
 // Node.js classic (req, res) handler. CORS open (*) for the website origin.
-import { upsertLead, createEnrollment, logEvent } from '../lib/db.js';
+import { upsertLead, createEnrollment, logEvent, DEFAULT_TENANT } from '../lib/db.js';
 import { SEQUENCES } from '../lib/sequences.js';
 import { notifyNewLead } from '../lib/resend.js';
 
@@ -27,6 +27,9 @@ export default async function handler(req, res) {
     const email = (body.email || '').trim().toLowerCase();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { res.status(400).json({ error: 'valid email required' }); return; }
 
+    // Tenant tag keeps FahCel and Dr. Fry leads apart on the shared database.
+    const tenant = (body.tenant || req.query?.tenant || DEFAULT_TENANT).toString().trim().toLowerCase();
+
     const lead = await upsertLead({
       email,
       name: body.name || '',
@@ -34,9 +37,10 @@ export default async function handler(req, res) {
       role: body.role || 'Website lead',
       phone: body.phone || '',
       note: body.note || '',
+      tenant,
     });
 
-    await logEvent({ leadId: lead.id, email, type: 'captured', meta: { source: body.source || 'website' } });
+    await logEvent({ leadId: lead.id, email, type: 'captured', meta: { source: body.source || 'website', tenant } });
 
     let enrollment = null;
     // Enroll when asked. Honor an explicit sequenceId so inbound playbook leads
