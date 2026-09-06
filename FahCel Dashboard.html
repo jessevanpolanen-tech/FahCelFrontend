@@ -8,8 +8,11 @@
 <script>
 // Auth guard — redirect to Login unless this session is authenticated.
 (function(){
-  var HASH='96d272c38834655813d5c1f9cb0bf8fff6d6f9512f4c44804ae68205f3cbc1bd';
+  var HASH='e7180fde45d3c91e284ada1a0aa6b92c9d406a402e676c7b9bf72caee05e6c4a';
   if(sessionStorage.getItem('fahcel_auth')!==HASH){
+    // Flag the bounce so Login drops the stale token instead of waving us
+    // straight back — a hash mismatch here used to ping-pong forever.
+    try{sessionStorage.setItem('fahcel_auth_bounce','1');}catch(e){}
     location.replace('FahCel Login.html?next='+encodeURIComponent(location.pathname.split('/').pop()));
   }
 })();

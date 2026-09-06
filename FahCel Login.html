@@ -47,7 +47,8 @@ button:active{transform:translateY(0)}
 <script>
 const HASH='e7180fde45d3c91e284ada1a0aa6b92c9d406a402e676c7b9bf72caee05e6c4a';
 async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
-if(sessionStorage.getItem('fahcel_auth')===HASH){location.replace(nextUrl());}
+if(sessionStorage.getItem('fahcel_auth_bounce')){sessionStorage.removeItem('fahcel_auth');sessionStorage.removeItem('fahcel_auth_bounce');}
+else if(sessionStorage.getItem('fahcel_auth')===HASH){location.replace(nextUrl());}
 function nextUrl(){const n=new URLSearchParams(location.search).get('next');return(n&&/^[\w .-]+\.html$/.test(n))?n:'FahCel Dashboard.html'}
 document.getElementById('loginForm').addEventListener('submit',async(e)=>{
 e.preventDefault();
