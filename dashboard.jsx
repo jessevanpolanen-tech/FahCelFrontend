@@ -13,38 +13,26 @@ const STORE_KEY = 'fahcel_leads_v1';
 const BACKEND = 'https://dr-fry-sequencerr.vercel.app';
 const TENANT = 'fahcel';
 
-// Seeded sample clients so the pipeline is populated end to end.
-// Each carries a starting stage; user edits override it via localStorage.
-const D = 86400000;
-const now = Date.now();
-const SEED = [
-  { name:'Ingrid Sundby',   org:'Nordkjøl Logistics',  role:'Quality / Compliance',  email:'ingrid@nordkjol.no',      ts: now-2*D,  status:'demo',      message:'Need to prove chain integrity for frozen seafood exports ahead of a retail audit in Q3.' },
-  { name:'Tomas Halvorsen', org:'POLARLINK',            role:'Operations / Logistics',email:'t.halvorsen@polarlink.eu', ts: now-4*D,  status:'replied',   message:'How granular is the logger data — per pallet or per container?' },
-  { name:'Maya Reyes',      org:'FreshRoute',           role:'Procurement',           email:'maya.reyes@freshroute.com',ts: now-6*D,  status:'offer',     message:'Comparing two vendors. Pricing for ~3,000 shipments/mo would help.' },
-  { name:'Dr. Anya Vørma',  org:'Vørma Foods',          role:'Founder / Exec',        email:'anya@vorma.fo',           ts: now-9*D,  status:'won',       message:'' },
-  { name:'Lukas Brandt',    org:'ARCTIC 9',             role:'Operations / Logistics',email:'lukas@arctic9.de',        ts: now-11*D, status:'engaged',   message:'Saw the FamilyMart-style demo, want to see it on our routes.' },
-  { name:'Sofia Marchetti', org:'Meridian Cold',        role:'Quality / Compliance',  email:'s.marchetti@meridiancold.it', ts: now-13*D, status:'sequenced', message:'' },
-  { name:'Erik Johansson',  org:'Boreal Seafood',       role:'Retail / Last-mile',    email:'erik@borealseafood.se',   ts: now-3*D,  status:'new',       message:'Inbound from the website — tracking a lost-cold dispute with a retailer.' },
-  { name:'Priya Nair',      org:'ColdSpan Pharma',      role:'Quality / Compliance',  email:'priya.nair@coldspan.com', ts: now-16*D, status:'lost',      message:'Went with an incumbent this cycle — revisit next year.' },
-  { name:'Jonas Vik',       org:'FjordFresh',           role:'Founder / Exec',        email:'jonas@fjordfresh.no',     ts: now-1*D,  status:'new',       message:'' },
-];
 
 const lc = (v) => String(v || '').trim().toLowerCase();
 const toMs = (v) => { if (!v) return 0; const t = new Date(v).getTime(); return Number.isFinite(t) ? t : 0; };
 
-// Leads = seeded samples + anything captured locally + anything the backend
-// knows that we've never seen here (public-page captures land straight in
-// Postgres, so without this last group they'd never reach the pipeline).
+// Leads = anything captured locally + anything the backend knows that we've
+// never seen here (public-page captures land straight in Postgres, so without
+// this last group they'd never reach the pipeline).
+//
+// No sample data. The pipeline shows real leads only, so a wipe in Postgres is
+// actually visible here — seeded rows used to render regardless of the backend,
+// and any real lead sharing a seeded address was dropped by the dedupe below.
 function readLeads() {
   let stored = [];
   try { stored = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch {}
-  const seed = SEED.map((s) => ({ ...s, source:'seed' }));
   const real = stored.map((s) => ({ ...s, source:'live' }));
-  const known = new Set([...seed, ...real].map((c) => lc(c.email)));
+  const known = new Set(real.map((c) => lc(c.email)));
   const remote = Object.values(readBackendLeadState())
     .filter((r) => r && r.email && !known.has(lc(r.email)))
     .map(backendContact);
-  return [...seed, ...real, ...remote].sort((a,b) => b.ts - a.ts);
+  return [...real, ...remote].sort((a,b) => b.ts - a.ts);
 }
 
 // A backend-only lead rendered as a pipeline contact. `ts` comes from the
@@ -555,7 +543,7 @@ function useStatusMap() {
   }, []);
   return map;
 }
-// Falls back to the lead's seeded stage, then 'new'.
+// Falls back to the lead's own stage, then 'new'.
 const statusOf = (map, c) => (map[keyFor(c)] && map[keyFor(c)].status) || c.status || 'new';
 const flagsOf  = (map, c) => (map[keyFor(c)] && map[keyFor(c)].flags) || {};
 
