@@ -29,15 +29,42 @@ const SEED = [
   { name:'Jonas Vik',       org:'FjordFresh',           role:'Founder / Exec',        email:'jonas@fjordfresh.no',     ts: now-1*D,  status:'new',       message:'' },
 ];
 
+const lc = (v) => String(v || '').trim().toLowerCase();
+const toMs = (v) => { if (!v) return 0; const t = new Date(v).getTime(); return Number.isFinite(t) ? t : 0; };
+
+// Leads = seeded samples + anything captured locally + anything the backend
+// knows that we've never seen here (public-page captures land straight in
+// Postgres, so without this last group they'd never reach the pipeline).
 function readLeads() {
   let stored = [];
   try { stored = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch {}
   const seed = SEED.map((s) => ({ ...s, source:'seed' }));
   const real = stored.map((s) => ({ ...s, source:'live' }));
-  return [...seed, ...real].sort((a,b) => b.ts - a.ts);
+  const known = new Set([...seed, ...real].map((c) => lc(c.email)));
+  const remote = Object.values(readBackendLeadState())
+    .filter((r) => r && r.email && !known.has(lc(r.email)))
+    .map(backendContact);
+  return [...seed, ...real, ...remote].sort((a,b) => b.ts - a.ts);
 }
 
-// Sent-history store — records when you last emailed each lead.
+// A backend-only lead rendered as a pipeline contact. `ts` comes from the
+// backend's created_at so keyFor() stays stable across reloads — derive it
+// from anything volatile and the per-lead status map detaches every refresh.
+function backendContact(r) {
+  return {
+    name: r.name || r.email,
+    org: r.org || '—',
+    role: r.role || 'Website lead',
+    email: r.email,
+    ts: r.createdAt || 0,
+    status: 'new',
+    message: '',
+    source: 'backend',
+  };
+}
+
+// Sent-history store — records when you last emailed each lead, plus a
+// per-message log so the compose panel can show a real history.
 const SENT_KEY = 'fahcel_sent_v1';
 const keyFor = (c) => `${c.email}|${c.ts}`;
 function readSent() {
@@ -47,9 +74,183 @@ function recordSent(c, mail) {
   const all = readSent();
   const k = keyFor(c);
   const prev = all[k] || { count: 0 };
-  all[k] = { at: Date.now(), count: (prev.count || 0) + 1, subject: (mail && mail.subject) || prev.subject || '', template: (mail && mail.template) || prev.template || '' };
+  const item = {
+    at: Date.now(),
+    subject: (mail && mail.subject) || '',
+    template: (mail && mail.template) || '',
+    // Resend's message id, when the proxy handed one back. It's what lets the
+    // backend copy of this same send be recognised as a duplicate later.
+    resendId: (mail && mail.resendId) || '',
+  };
+  const items = [...(prev.items || []), item].slice(-50);
+  all[k] = { at: item.at, count: (prev.count || 0) + 1, subject: item.subject || prev.subject || '', template: item.template || prev.template || '', items };
   try { localStorage.setItem(SENT_KEY, JSON.stringify(all)); } catch {}
   return all;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// Backend lead state — a local mirror of what the sequencer knows
+// ─────────────────────────────────────────────────────────────────
+// Keyed by lowercased email. Persisted so the dashboard still renders leads,
+// history and status chips when the backend is slow or unreachable, and so a
+// reload doesn't blank the pipeline while the first poll is in flight.
+const BACKEND_KEY = 'fahcel_backend_v1';
+function readBackendLeadState() {
+  try { const m = JSON.parse(localStorage.getItem(BACKEND_KEY) || '{}'); return (m && typeof m === 'object') ? m : {}; }
+  catch { return {}; }
+}
+const backendSubs = new Set();
+function publishBackendLeadState(map) {
+  try { localStorage.setItem(BACKEND_KEY, JSON.stringify(map)); } catch {}
+  backendSubs.forEach((fn) => fn(map));
+}
+function useBackendLeadState() {
+  const [map, setMap] = useState(readBackendLeadState);
+  useEffect(() => { const fn = (m) => setMap({ ...m }); backendSubs.add(fn); return () => backendSubs.delete(fn); }, []);
+  return map;
+}
+
+// Per-message status — the furthest point a single email reached.
+// complained > bounced > clicked > opened > delivered > sent.
+// A bounce or complaint always wins, even if a delivered/opened arrived first.
+function deriveMsgStatus(at) {
+  if (at.complained) return 'complained';
+  if (at.bounced) return 'bounced';
+  if (at.clicked) return 'clicked';
+  if (at.opened) return 'opened';
+  if (at.delivered) return 'delivered';
+  return 'sent';
+}
+const MSG_RANK = { sent:0, delivered:1, opened:2, clicked:3, bounced:4, complained:5 };
+
+function normalizeSentEvent(e) {
+  const at = {
+    sent: toMs(e.created_at),
+    delivered: toMs(e.delivered_at),
+    opened: toMs(e.opened_at),
+    clicked: toMs(e.clicked_at),
+    bounced: toMs(e.bounced_at),
+    complained: toMs(e.complained_at),
+  };
+  return {
+    resendId: e.resend_id || '',
+    subject: e.subject || '',
+    body: e.body || '',
+    step: e.step || '',
+    source: e.source || 'sequence',
+    createdAt: at.sent,
+    at,
+    // Trust the backend's own verdict when it ships one; older deployments
+    // send the timestamps without it, so derive from those instead.
+    status: e.status || deriveMsgStatus(at),
+  };
+}
+
+// The per-lead rollup. Always present in the contract, absent on backends that
+// predate it — derive it from the per-message timestamps in that case so the
+// row-level counters work either way.
+function normalizeEngagement(raw, events) {
+  if (raw && typeof raw === 'object') {
+    return {
+      delivered: Number(raw.delivered) || 0,
+      opened: Number(raw.opened) || 0,
+      clicked: Number(raw.clicked) || 0,
+      bounced: !!raw.bounced,
+      complained: !!raw.complained,
+      unsubscribed: !!raw.unsubscribed,
+      lastEventAt: toMs(raw.last_event_at),
+    };
+  }
+  const e = { delivered:0, opened:0, clicked:0, bounced:false, complained:false, unsubscribed:false, lastEventAt:0 };
+  (events || []).forEach((m) => {
+    if (m.at.delivered) e.delivered++;
+    if (m.at.opened) e.opened++;
+    if (m.at.clicked) e.clicked++;
+    if (m.at.bounced) e.bounced = true;
+    if (m.at.complained) e.complained = true;
+    Object.values(m.at).forEach((t) => { if (t > e.lastEventAt) e.lastEventAt = t; });
+  });
+  return e;
+}
+
+function normalizeBackendRow(r) {
+  const events = (r.sent_events || []).map(normalizeSentEvent).sort((a,b) => b.createdAt - a.createdAt);
+  return {
+    id: r.id || '',
+    email: lc(r.email),
+    name: r.name || '',
+    org: r.org || '',
+    role: r.role || '',
+    createdAt: toMs(r.created_at),
+    sequenceId: r.sequence_id || null,
+    stepIndex: r.step_index == null ? null : Number(r.step_index),
+    status: r.status || null,
+    nextDueAt: r.next_due_at || null,
+    enrolledAt: r.enrolled_at || null,
+    // The live backend returns this as a string; the contract says INT.
+    clicks: Number(r.clicks) || 0,
+    repliedAt: r.replied_at || null,
+    engagement: normalizeEngagement(r.engagement, events),
+    sentEvents: events,
+  };
+}
+
+// Status only ever advances, so merging a refreshed row over a locally
+// tail-updated one is a max/OR per field. That keeps events applied seconds ago
+// from being wiped by a full refresh whose snapshot predates them.
+function mergeMsg(prev, next) {
+  if (!prev) return next;
+  const at = { ...prev.at };
+  Object.keys(next.at).forEach((k) => { if (next.at[k] && next.at[k] > (at[k] || 0)) at[k] = next.at[k]; });
+  const merged = { ...prev, ...next, at };
+  const a = MSG_RANK[prev.status] || 0, b = MSG_RANK[next.status] || 0;
+  merged.status = deriveMsgStatus(at);
+  if (MSG_RANK[merged.status] < Math.max(a, b)) merged.status = a >= b ? prev.status : next.status;
+  return merged;
+}
+function mergeRow(prev, next) {
+  if (!prev) return next;
+  const byId = new Map();
+  const loose = [];
+  prev.sentEvents.forEach((m) => { if (m.resendId) byId.set(m.resendId, m); else loose.push(m); });
+  next.sentEvents.forEach((m) => {
+    if (m.resendId) byId.set(m.resendId, mergeMsg(byId.get(m.resendId), m));
+    else loose.push(m);
+  });
+  const seen = new Set();
+  const legacy = loose.filter((m) => {
+    const k = `${m.subject}|${m.createdAt}`;
+    if (seen.has(k)) return false; seen.add(k); return true;
+  });
+  const pe = prev.engagement, ne = next.engagement;
+  return {
+    ...prev, ...next,
+    engagement: {
+      delivered: Math.max(pe.delivered, ne.delivered),
+      opened: Math.max(pe.opened, ne.opened),
+      clicked: Math.max(pe.clicked, ne.clicked),
+      bounced: pe.bounced || ne.bounced,
+      complained: pe.complained || ne.complained,
+      unsubscribed: pe.unsubscribed || ne.unsubscribed,
+      lastEventAt: Math.max(pe.lastEventAt, ne.lastEventAt),
+    },
+    repliedAt: next.repliedAt || prev.repliedAt,
+    sentEvents: [...byId.values(), ...legacy].sort((a,b) => b.createdAt - a.createdAt),
+  };
+}
+
+// Full refresh from GET /api/leads. Rows absent from the response are dropped,
+// so a backend-side wipe actually clears the mirror.
+function writeBackendLeadState(rows) {
+  const prev = readBackendLeadState();
+  const next = {};
+  (rows || []).forEach((r) => {
+    const row = normalizeBackendRow(r);
+    if (!row.email) return;
+    next[row.email] = mergeRow(prev[row.email], row);
+  });
+  publishBackendLeadState(next);
+  return next;
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -79,6 +280,25 @@ function useCfg() {
   return cfg;
 }
 const cfgConnected = (cfg) => (cfg.mode === 'proxy' && !!(cfg.endpoint || cfg.backendUrl || BACKEND) && !!cfg.fromEmail) || (cfg.mode === 'direct' && !!cfg.apiKey && !!cfg.fromEmail);
+
+// ── One resolver for every backend call ───────────────────────────
+// A Settings override wins; otherwise the known sequencer host. We deliberately
+// do NOT route through the same-origin /api/* rewrite: vercel.json still points
+// it at an older deployment that predates sent_events, so using it here would
+// silently drop email history. The backend answers with
+// Access-Control-Allow-Origin: *, so calling it cross-origin is fine — and it
+// works identically from file:// during local editing.
+function backendBase(cfg) {
+  const base = String((cfg && cfg.backendUrl) || '').trim().replace(/\/$/, '');
+  return base || BACKEND;
+}
+// Every read is tenant-scoped — FahCel and Dr. Fry share one database.
+function apiUrl(cfg, path, params) {
+  const url = new URL(backendBase(cfg) + path);
+  url.searchParams.set('tenant', TENANT);
+  Object.entries(params || {}).forEach(([k, v]) => { if (v != null && v !== '') url.searchParams.set(k, v); });
+  return url.toString();
+}
 
 // Shared "open the settings modal" signal so any panel can launch it.
 let _settingsOpen = false;
@@ -140,41 +360,151 @@ async function sendEmail(cfg, { to, subject, text }) {
   throw new Error('not-configured');
 }
 
-// Lift live reply / sequence state from the backend into the local pipeline.
-// Match by email; promote New→Sequenced→Replied when the backend is ahead,
-// never downgrading a lead moved further along (demo / offer / won / lost).
-async function syncServerState(leads) {
-  let rows = [];
-  try {
-    const res = await fetch(`${BACKEND}/api/leads?tenant=${TENANT}`);
-    if (!res.ok) return;
-    const data = await res.json().catch(() => ({}));
-    rows = data.leads || [];
-  } catch { return; }
-  if (!rows.length) return;
-  const byEmail = {};
-  rows.forEach((r) => { if (r.email) byEmail[String(r.email).toLowerCase()] = r; });
+// Lift live reply / sequence / engagement state from the backend into the local
+// pipeline. Match by email; promote New→Sequenced→Clicked→Replied when the
+// backend is ahead, never downgrading a lead an operator moved further along
+// (demo / offer / won / lost). Backend suppression is mirrored onto the local
+// flags so a bounced address can't be mailed again from Compose.
+function promoteFromBackend(leads, byEmail) {
   const map = readStatusMap();
+  const patches = {};
   (leads || []).forEach((c) => {
-    const r = byEmail[String(c.email || '').toLowerCase()];
+    const r = byEmail[lc(c.email)];
     if (!r) return;
     const k = keyFor(c);
     const cur = (map[k] && map[k].status) || c.status || 'new';
-    const replied = !!(r.replied_at || r.status === 'replied');
+    const eng = r.engagement || {};
+    const patch = {};
+
     let next = cur;
-    if (replied && STAGE_INDEX[cur] < STAGE_INDEX['replied']) next = 'replied';
-    else if (r.status === 'active' && STAGE_INDEX[cur] < STAGE_INDEX['sequenced']) next = 'sequenced';
-    if (next !== cur) writeStatus(k, { status: next });
+    if (r.repliedAt || r.status === 'replied') {
+      if (STAGE_INDEX[cur] < STAGE_INDEX['replied']) next = 'replied';
+    } else if ((eng.clicked || 0) > 0 || (r.clicks || 0) > 0) {
+      if (STAGE_INDEX[cur] < STAGE_INDEX['engaged']) next = 'engaged';
+    } else if (r.status === 'active') {
+      if (STAGE_INDEX[cur] < STAGE_INDEX['sequenced']) next = 'sequenced';
+    }
+    if (next !== cur) patch.status = next;
+
+    const flags = (map[k] && map[k].flags) || {};
+    const bounced = !!(eng.bounced || eng.complained);
+    const unsub = !!eng.unsubscribed;
+    if ((bounced && !flags.bounced) || (unsub && !flags.unsub)) {
+      patch.flags = { ...flags, bounced: flags.bounced || bounced, unsub: flags.unsub || unsub };
+    }
+    if (Object.keys(patch).length) patches[k] = patch;
   });
+  writeStatusBulk(patches);
+}
+
+// Full reconciliation pass. Also the healer for the tail below: if a tail
+// request is lost, the next refresh brings the state back in line.
+async function syncServerState(leads) {
+  let rows = [];
+  let cursor = null;
+  try {
+    const res = await fetch(apiUrl(readCfg(), '/api/leads'));
+    if (!res.ok) return null;
+    const data = await res.json().catch(() => ({}));
+    rows = data.leads || [];
+    cursor = data.cursor != null ? String(data.cursor) : null;
+  } catch { return null; }
+  const byEmail = writeBackendLeadState(rows);
+  promoteFromBackend((leads && leads.length) ? leads : readLeads(), byEmail);
+  return cursor;
+}
+
+// ── Event tail — GET /api/events/since ────────────────────────────
+// Cursor-based, so near-real-time costs one small request every few seconds
+// instead of a full table read. Starting with no cursor deliberately skips all
+// history and begins tailing from "now"; /api/leads supplies the backlog.
+function applyTailEvents(events) {
+  const map = { ...readBackendLeadState() };
+  let touched = false;
+
+  (events || []).forEach((ev) => {
+    const email = lc(ev.email);
+    if (!email) return;
+    // An event for a lead we've never seen (a fresh public-site capture):
+    // stub it in so it surfaces immediately. The next full refresh fills in
+    // name / org / role.
+    let row = map[email];
+    if (!row) {
+      row = normalizeBackendRow({ id: ev.lead_id, email, created_at: ev.created_at, role: 'Website lead' });
+    } else {
+      row = { ...row, engagement: { ...row.engagement }, sentEvents: row.sentEvents.slice() };
+    }
+
+    const at = toMs(ev.created_at);
+    const type = String(ev.type || '');
+    const eng = row.engagement;
+
+    if (type === 'sent') {
+      const exists = ev.resend_id && row.sentEvents.some((m) => m.resendId === ev.resend_id);
+      if (!exists) {
+        row.sentEvents = [normalizeSentEvent({
+          resend_id: ev.resend_id || null,
+          subject: (ev.meta && ev.meta.subject) || '',
+          body: (ev.meta && ev.meta.body) || '',
+          step: (ev.meta && ev.meta.step) || '',
+          source: (ev.meta && ev.meta.source) || 'sequence',
+          created_at: ev.created_at,
+        }), ...row.sentEvents];
+      }
+    } else if (type === 'delivered' || type === 'opened' || type === 'clicked' || type === 'bounced' || type === 'complained') {
+      if (type === 'delivered') eng.delivered++;
+      if (type === 'opened') eng.opened++;
+      if (type === 'clicked') { eng.clicked++; row.clicks = (row.clicks || 0) + 1; }
+      if (type === 'bounced') eng.bounced = true;
+      if (type === 'complained') eng.complained = true;
+      // Correlate to the message by Resend id — that's the only thing tying a
+      // webhook back to the send it belongs to.
+      row.sentEvents = row.sentEvents.map((m) => {
+        if (!ev.resend_id || m.resendId !== ev.resend_id) return m;
+        const nat = { ...m.at, [type]: at || Date.now() };
+        return { ...m, at: nat, status: deriveMsgStatus(nat) };
+      });
+    } else if (type === 'replied') {
+      row.repliedAt = ev.created_at;
+    } else if (type === 'unsubscribed') {
+      eng.unsubscribed = true;
+    } else {
+      return; // 'enrolled' and friends carry no display state
+    }
+
+    if (at > (eng.lastEventAt || 0)) eng.lastEventAt = at;
+    map[email] = row;
+    touched = true;
+  });
+
+  if (touched) {
+    publishBackendLeadState(map);
+    promoteFromBackend(readLeads(), map);
+  }
+  return touched;
+}
+
+// Resolves to the next cursor, or { unsupported:true } on a backend that
+// hasn't shipped the endpoint yet. Throws on a real failure so the caller can
+// count it toward the backoff.
+async function fetchEventTail(cursor) {
+  const res = await fetch(apiUrl(readCfg(), '/api/events/since', { cursor: cursor || '', limit: 200 }));
+  if (res.status === 404) return { unsupported: true };
+  if (!res.ok) throw new Error('tail ' + res.status);
+  const data = await res.json().catch(() => ({}));
+  // No cursor yet = the priming call. Take its cursor, discard any payload.
+  if (cursor) applyTailEvents(data.events || []);
+  return { cursor: data.cursor != null ? String(data.cursor) : cursor };
 }
 
 // Wipe every FahCel lead on the shared backend. Tenant-scoped — other tenants untouched.
 async function deleteAllServerLeads() {
-  const res = await fetch(`${BACKEND}/api/leads?tenant=${TENANT}`, {
+  const res = await fetch(apiUrl(readCfg(), '/api/leads'), {
     method: 'DELETE', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ confirm: 'DELETE_ALL_LEADS' }),
+    body: JSON.stringify({ confirm: 'DELETE_ALL_LEADS', tenant: TENANT }),
   });
   if (!res.ok) throw new Error('Backend responded ' + res.status);
+  publishBackendLeadState({});
   return res.json().catch(() => ({}));
 }
 
@@ -203,6 +533,16 @@ const statusSubs = new Set();
 function writeStatus(k, patch) {
   const all = readStatusMap();
   all[k] = { ...(all[k] || {}), ...patch };
+  try { localStorage.setItem(STATUS_KEY, JSON.stringify(all)); } catch {}
+  statusSubs.forEach((fn) => fn(all));
+}
+// One write + one notify for a whole sync pass — a per-lead writeStatus would
+// re-render the table once per promoted lead.
+function writeStatusBulk(patches) {
+  const keys = Object.keys(patches || {});
+  if (!keys.length) return;
+  const all = readStatusMap();
+  keys.forEach((k) => { all[k] = { ...(all[k] || {}), ...patches[k] }; });
   try { localStorage.setItem(STATUS_KEY, JSON.stringify(all)); } catch {}
   statusSubs.forEach((fn) => fn(all));
 }
@@ -239,6 +579,7 @@ function toggleClick(map, c, assetId) {
 }
 
 function timeAgo(ts) {
+  if (!ts) return '—';
   const d = Math.floor((Date.now()-ts)/86400000);
   if (d <= 0) return 'today';
   if (d === 1) return '1 day ago';
@@ -406,15 +747,132 @@ function FlagPill({ kind }) {
   return <span className="pill" style={{ background:'transparent', color:f.c, border:`1px solid ${f.c}` }}>{f.label}</span>;
 }
 
-function StatusCell({ map, c }) {
+// ── Per-email delivery status ─────────────────────────────────────
+// Reuses the existing .pill classes; bounced / complained get the outlined
+// red treatment FlagPill already uses for suppression.
+const MSG_STATUS_META = {
+  sent:       { label:'Sent',       cls:'pill-grey' },
+  delivered:  { label:'Delivered',  cls:'pill-grey' },
+  opened:     { label:'Opened',     cls:'pill-teal' },
+  clicked:    { label:'Clicked',    cls:'pill-amber' },
+  bounced:    { label:'Bounced',    red:true },
+  complained: { label:'Complained', red:true },
+};
+
+function MsgStatusChip({ status }) {
+  const m = MSG_STATUS_META[status] || MSG_STATUS_META.sent;
+  if (m.red) return <span className="pill" style={{ background:'transparent', color:'var(--red)', border:'1px solid var(--red)' }}>{m.label}</span>;
+  return <span className={`pill ${m.cls}`}>{m.label}</span>;
+}
+
+// When the furthest status was reached — shown next to the send time.
+function statusAt(msg) {
+  return (msg.at && msg.at[msg.status]) || 0;
+}
+function clockOf(ts) {
+  if (!ts) return '';
+  try { return new Date(ts).toLocaleString(undefined, { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+  catch { return ''; }
+}
+
+// The backend's copy of a send and the local record of the same send are the
+// same email. Prefer the backend one — it's the copy carrying live status.
+// Match on Resend id when we have it, else subject within a 60s window.
+function mergeHistory(backendEvents, localItems) {
+  const out = (backendEvents || []).map((m) => ({ ...m, origin:'backend' }));
+  const seenIds = new Set(out.map((m) => m.resendId).filter(Boolean));
+  (localItems || []).forEach((l) => {
+    const at = l.at || 0;
+    if (l.resendId && seenIds.has(l.resendId)) return;
+    const dup = out.some((m) => m.subject && m.subject === l.subject && Math.abs(m.createdAt - at) <= 60000);
+    if (dup) return;
+    out.push({
+      resendId: l.resendId || '', subject: l.subject || '', body: '',
+      step: l.template || '', source: 'manual', createdAt: at,
+      at: { sent: at }, status: 'sent', origin: 'local',
+    });
+  });
+  return out.sort((a,b) => b.createdAt - a.createdAt);
+}
+
+// Expandable per-email history for one lead.
+function SentLog({ history }) {
+  const [open, setOpen] = useState(null);
+  if (!history.length) return null;
+  return (
+    <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
+      {history.map((m, i) => {
+        const k = m.resendId || `${m.subject}|${m.createdAt}|${i}`;
+        const isOpen = open === k;
+        const reached = statusAt(m);
+        return (
+          <div key={k} style={{ border:'1px solid var(--warm-200)', background:'var(--porcelain)' }}>
+            <button onClick={() => setOpen(isOpen ? null : k)} style={{
+              width:'100%', display:'flex', alignItems:'center', gap:10, flexWrap:'wrap',
+              padding:'10px 13px', background:'transparent', border:'none', textAlign:'left',
+            }}>
+              <MsgStatusChip status={m.status} />
+              <span style={{ fontSize:13, color:'var(--graphite)', flex:1, minWidth:120 }}>{m.subject || '(no subject)'}</span>
+              <span className="mono" style={{ fontSize:10, color:'var(--warm-500)' }}>
+                {clockOf(m.createdAt)}
+                {/* Only worth a second stamp when it reads differently — most
+                    deliveries land in the same minute as the send. */}
+                {reached && clockOf(reached) !== clockOf(m.createdAt) ? ` → ${clockOf(reached)}` : ''}
+              </span>
+              <span className="mono" style={{ fontSize:10, color:'var(--warm-500)' }}>{isOpen ? '▾' : '▸'}</span>
+            </button>
+            {isOpen && (
+              <div style={{ borderTop:'1px solid var(--warm-200)', padding:'12px 13px' }}>
+                <div className="mono" style={{ fontSize:10, color:'var(--warm-500)', marginBottom:8, display:'flex', gap:14, flexWrap:'wrap' }}>
+                  <span>{m.source === 'manual' ? 'MANUAL SEND' : 'SEQUENCE'}{m.step ? ` · ${m.step}` : ''}</span>
+                  {m.origin === 'local' && <span>LOCAL RECORD · awaiting backend</span>}
+                </div>
+                <div style={{ display:'flex', gap:12, flexWrap:'wrap', marginBottom: m.body ? 12 : 0 }}>
+                  {['sent','delivered','opened','clicked','bounced','complained']
+                    .filter((t) => m.at && m.at[t])
+                    .map((t) => (
+                      <span key={t} className="mono" style={{ fontSize:10, color:'var(--warm-500)' }}>
+                        {(MSG_STATUS_META[t] || {}).label}: <b style={{ color:'var(--slate-800)' }}>{clockOf(m.at[t])}</b>
+                      </span>
+                    ))}
+                </div>
+                {m.body && <div style={{ fontSize:12, lineHeight:1.55, color:'var(--slate-800)', whiteSpace:'pre-wrap', maxHeight:220, overflowY:'auto' }}>{m.body}</div>}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// Collapsed row summary — the latest message's status, not just a count.
+function SentPreview({ history }) {
+  if (!history.length) return null;
+  const latest = history[0];
+  return (
+    <span style={{ display:'inline-flex', alignItems:'center', gap:6 }}>
+      <MsgStatusChip status={latest.status} />
+      {history.length > 1 && <span className="mono" style={{ fontSize:10, color:'var(--warm-500)' }}>×{history.length}</span>}
+    </span>
+  );
+}
+
+function StatusCell({ map, c, row }) {
   const f = flagsOf(map, c);
-  const n = clickCount(map, c);
+  const eng = (row && row.engagement) || {};
+  // Real link clicks recorded by the backend win over the manual prototype
+  // toggles; fall back to those when the backend knows nothing yet.
+  const clicked = eng.clicked || row && row.clicks || 0;
+  const n = clicked || clickCount(map, c);
+  const opened = eng.opened || 0;
   return (
     <div style={{ display:'flex', alignItems:'center', gap:6, flexWrap:'wrap' }}>
       <StatusPill id={statusOf(map, c)} />
+      {opened > 0 && <span className="pill pill-teal">👁 {opened} open{opened>1?'s':''}</span>}
       {n > 0 && <span className="pill" style={{ background:'rgba(200,137,18,0.16)', color:'var(--amber-deep)' }}>↗ {n} click{n>1?'s':''}</span>}
-      {f.bounced && <FlagPill kind="bounced" />}
-      {f.unsub && <FlagPill kind="unsub" />}
+      {(f.bounced || eng.bounced || eng.complained) && <FlagPill kind="bounced" />}
+      {(f.unsub || eng.unsubscribed) && <FlagPill kind="unsub" />}
     </div>
   );
 }
@@ -479,7 +937,7 @@ The FahCel team`
   },
 ];
 
-function ComposePanel({ c, sent, onSent }) {
+function ComposePanel({ c, sent, onSent, row, history }) {
   const templates = TEMPLATES;
   const [tplId, setTplId] = useState(templates[0].id);
   const tpl = templates.find((t) => t.id === tplId) || templates[0];
@@ -509,7 +967,7 @@ function ComposePanel({ c, sent, onSent }) {
       setSending(true);
       try {
         const r = await sendEmail(cfg, { to: c.email, subject, text: body });
-        onSent(c, { subject, template: tpl.label });
+        onSent(c, { subject, template: tpl.label, resendId: (r && r.id) || '' });
         setJustSent(true);
         setTimeout(() => setJustSent(false), 2600);
       } catch (e) {
@@ -539,8 +997,13 @@ function ComposePanel({ c, sent, onSent }) {
         <div className="mono" style={{ fontSize:10, letterSpacing:'0.14em', color:'var(--warm-500)' }}>
           COMPOSE → {c.email}
         </div>
-        {sentInfo
-          ? <span className="pill pill-teal">Last sent {timeAgo(sentInfo.at)} · ×{sentInfo.count}</span>
+        {(history && history.length)
+          ? <span style={{ display:'inline-flex', alignItems:'center', gap:8 }}>
+              <MsgStatusChip status={history[0].status} />
+              <span className="mono" style={{ fontSize:10, color:'var(--warm-500)' }}>
+                LAST SENT {timeAgo(history[0].createdAt).toUpperCase()} · ×{history.length}
+              </span>
+            </span>
           : <span className="pill pill-grey">Not contacted yet</span>}
       </div>
 
@@ -606,6 +1069,19 @@ function ComposePanel({ c, sent, onSent }) {
         </div>
       </div>
 
+      {/* Email history — live delivery status per message */}
+      {history && history.length > 0 && (
+        <div style={{ marginBottom:20, paddingBottom:20, borderBottom:'1px solid var(--warm-200)' }}>
+          <label style={{ ...labelStyle, marginBottom:9 }}>
+            Email history
+            <span style={{ textTransform:'none', letterSpacing:0, color:'var(--warm-500)', marginLeft:8 }}>
+              status updates live — no reload needed
+            </span>
+          </label>
+          <SentLog history={history} />
+        </div>
+      )}
+
       {/* Their submitted note, quoted for reference */}
       {c.message && (
         <div style={{ borderLeft:'2px solid var(--warm-200)', paddingLeft:14, marginBottom:20 }}>
@@ -664,6 +1140,7 @@ function RecentTable({ leads, title, compose }) {
   const [openKey, setOpenKey] = useState(null);
   const [sent, setSent] = useState(() => readSent());
   const map = useStatusMap();
+  const backend = useBackendLeadState();
   const onSent = (c, mail) => setSent(recordSent(c, mail));
   const cols = compose ? 5 : 4;
   return (
@@ -688,6 +1165,8 @@ function RecentTable({ leads, title, compose }) {
             const k = keyFor(c);
             const isOpen = openKey === k;
             const sentInfo = sent[k];
+            const row = backend[lc(c.email)];
+            const history = mergeHistory(row && row.sentEvents, sentInfo && sentInfo.items);
             return (
               <React.Fragment key={k+i}>
                 <tr style={ compose ? { cursor:'pointer', background: isOpen ? 'var(--porcelain-2)' : 'transparent' } : undefined }
@@ -698,12 +1177,12 @@ function RecentTable({ leads, title, compose }) {
                   </td>
                   <td><RolePill role={c.role}/></td>
                   <td className="mono" style={{ fontSize:12, color:'var(--warm-500)' }}>{timeAgo(c.ts)}</td>
-                  <td><StatusCell map={map} c={c} /></td>
+                  <td><StatusCell map={map} c={c} row={row} /></td>
                   {compose && (
                     <td style={{ textAlign:'right', whiteSpace:'nowrap' }}>
                       <span className="mono" style={{ fontSize:13, fontWeight:600, color: isOpen ? 'var(--amber-deep)' : 'var(--graphite)', display:'inline-flex', alignItems:'center', gap:7 }}>
-                        {sentInfo && !isOpen && <span style={{ width:6, height:6, borderRadius:'50%', background:'var(--teal)' }}/>}
-                        {isOpen ? 'Close ✕' : (sentInfo ? 'Resend ✎' : 'Compose ✎')}
+                        {!isOpen && <SentPreview history={history} />}
+                        {isOpen ? 'Close ✕' : (history.length ? 'Resend ✎' : 'Compose ✎')}
                       </span>
                     </td>
                   )}
@@ -712,7 +1191,7 @@ function RecentTable({ leads, title, compose }) {
                   <tr>
                     <td colSpan={cols} style={{ padding:0 }}>
                       <div style={{ padding:'4px 24px 22px' }}>
-                        <ComposePanel c={c} sent={sent} onSent={onSent} />
+                        <ComposePanel c={c} sent={sent} onSent={onSent} row={row} history={history} />
                       </div>
                     </td>
                   </tr>
@@ -815,14 +1294,14 @@ function SettingsModal() {
           <button onClick={() => setSettingsOpen(false)} className="mono" style={{ fontSize:13, color:'var(--warm-500)', background:'transparent', border:'none', padding:4 }}>Close ✕</button>
         </div>
         <p style={{ fontSize:13, lineHeight:1.6, color:'var(--slate-800)', marginBottom:22, maxWidth:520 }}>
-          Send outbound mail and run automatic sequences through the deployed FahCel sequencer. Paste its URL below — the dashboard then sends via the backend and polls it for live reply / sequence status.
+          The dashboard is already wired to the FahCel sequencer — leads, email history and live delivery status sync on their own, on any browser, with nothing to configure. The field below is only for pointing this dashboard at a different backend.
         </p>
 
         <div style={{ marginBottom:18 }}>
           <label style={label}>Sequencing backend URL</label>
           <input value={draft.backendUrl} onChange={set('backendUrl')} placeholder="https://your-fahcel-backend.vercel.app" style={input} />
           <div className="mono" style={{ fontSize:11, color:'var(--warm-500)', lineHeight:1.5, marginTop:9 }}>
-            Deploy the <b style={{ color:'var(--slate-800)' }}>/backend</b> package, paste its URL here. Live pipeline status (Sequenced / Replied) is polled from <b style={{ color:'var(--slate-800)' }}>GET /api/leads</b>. Leave blank to keep the pipeline local-only.
+            Optional override. Leave blank to use the deployed sequencer at <b style={{ color:'var(--slate-800)' }}>{BACKEND}</b> — reconciled from <b style={{ color:'var(--slate-800)' }}>GET /api/leads</b> every 45s and tailed from <b style={{ color:'var(--slate-800)' }}>GET /api/events/since</b> every 8s.
           </div>
         </div>
 
@@ -918,21 +1397,76 @@ function App() {
   const cfg = useCfg();
 
   useEffect(()=>{
-    const onFocus = ()=> setLeads(readLeads());
-    window.addEventListener('focus', onFocus);
-    window.addEventListener('storage', onFocus);
-    return ()=>{ window.removeEventListener('focus', onFocus); window.removeEventListener('storage', onFocus); };
+    const reload = ()=> setLeads(readLeads());
+    window.addEventListener('focus', reload);
+    window.addEventListener('storage', reload);
+    // Backend-only leads enter the pipeline through readLeads(), so a change to
+    // the mirror has to re-derive the list.
+    backendSubs.add(reload);
+    return ()=>{
+      window.removeEventListener('focus', reload);
+      window.removeEventListener('storage', reload);
+      backendSubs.delete(reload);
+    };
   }, []);
 
-  // Poll the backend for reply / sequence state and reflect it in the pipeline.
+  // Live status. A full /api/leads reconciliation every 45s, plus a cheap
+  // cursor tail every 8s — the tail is what moves a chip within seconds, the
+  // full poll is the healer when a tail request is lost.
+  const base = backendBase(cfg);
   useEffect(()=>{
-    let alive = true;
-    const run = ()=> { if (alive) syncServerState(readLeads()); };
-    run();
-    const iv = setInterval(run, 45000);
-    window.addEventListener('focus', run);
-    return ()=>{ alive = false; clearInterval(iv); window.removeEventListener('focus', run); };
-  }, []);
+    let alive = true, tailOn = true, cursor = null, fails = 0, tailTimer = null;
+    const hidden = ()=> typeof document !== 'undefined' && document.visibilityState === 'hidden';
+
+    // Nothing here may reject: an unreachable backend must leave the dashboard
+    // rendering from localStorage with a clean console.
+    const full = async ()=>{
+      if (!alive) return;
+      try {
+        const c = await syncServerState(readLeads());
+        if (alive && c && !cursor) cursor = c;
+      } catch {}
+    };
+
+    const schedule = (ms)=>{
+      clearTimeout(tailTimer);
+      if (!alive || !tailOn) return;
+      tailTimer = setTimeout(tail, ms);
+    };
+
+    const tail = async ()=>{
+      if (!alive || !tailOn) return;
+      // Paused while the tab is hidden; the wake handler fires one immediately.
+      if (hidden()) { schedule(8000); return; }
+      try {
+        const r = await fetchEventTail(cursor);
+        if (!alive) return;
+        if (r.unsupported) { tailOn = false; return; }  // endpoint not deployed
+        cursor = r.cursor;
+        fails = 0;
+        schedule(8000);
+      } catch {
+        if (!alive) return;
+        fails++;
+        schedule(fails >= 3 ? 30000 : 8000);
+      }
+    };
+
+    full();
+    const fullIv = setInterval(full, 45000);
+    schedule(0);
+
+    const onWake = ()=>{ if (!hidden()) { full(); schedule(0); } };
+    window.addEventListener('focus', onWake);
+    document.addEventListener('visibilitychange', onWake);
+    return ()=>{
+      alive = false;
+      clearInterval(fullIv);
+      clearTimeout(tailTimer);
+      window.removeEventListener('focus', onWake);
+      document.removeEventListener('visibilitychange', onWake);
+    };
+  }, [base]);
 
   const totals = useMemo(()=>{
     const monthAgo = Date.now() - 30*86400000;

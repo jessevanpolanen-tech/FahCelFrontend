@@ -1,0 +1,5 @@
+# Design reference material — 53MB of mp4s and screenshots that no served page
+# links to. Uploading them aborts the deploy. Files stay in the repo.
+uploads
+scraps
+.DS_Store
