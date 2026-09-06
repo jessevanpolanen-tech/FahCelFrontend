@@ -503,7 +503,7 @@
   document.getElementById('btnPrint').addEventListener('click',function(){window.print();});
   document.getElementById('btnMail').addEventListener('click',function(){
     var o=collect();var subj='FahCel Pilot Evaluation — '+(o.company||'submission');
-    window.location.href='mailto:pilots@fahcel.co?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(mailBody());
+    window.location.href='mailto:pilots@fahcel.eu?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(mailBody());
   });
 
   var thanks=document.getElementById('thanks');

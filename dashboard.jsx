@@ -250,7 +250,7 @@ function writeBackendLeadState(rows) {
 // "mailto" opens the operator's mail client (no backend needed).
 const CFG_KEY = 'fahcel_cfg_v1';
 const DEFAULT_SEND_ENDPOINT = `${BACKEND}/api/send`;
-const CFG_DEFAULTS = { mode: 'mailto', fromName: 'FahCel', fromEmail: 'sales@mail.fahcel.co', replyTo: 'sales@fahcel.co', backendUrl: BACKEND, endpoint: '', apiKey: '' };
+const CFG_DEFAULTS = { mode: 'mailto', fromName: 'FahCel', fromEmail: 'sales@fahcel.eu', replyTo: 'sales@fahcel.eu', backendUrl: BACKEND, endpoint: '', apiKey: '' };
 function readCfg() {
   try { return { ...CFG_DEFAULTS, ...JSON.parse(localStorage.getItem(CFG_KEY) || '{}') }; }
   catch { return { ...CFG_DEFAULTS }; }
@@ -550,9 +550,9 @@ const flagsOf  = (map, c) => (map[keyFor(c)] && map[keyFor(c)].flags) || {};
 // Click-through is the qualification trigger — a real human action.
 // Every outbound email carries a live reason to click; a click promotes the lead to Clicked.
 const CLICK_ASSETS = [
-  { id:'demo',      label:'Live tracking demo',          url:'https://fahcel.co/demo' },
-  { id:'audit',     label:'Sample inspection report (PDF)', url:'https://fahcel.co/sample-inspection-report.pdf' },
-  { id:'casestudy', label:'Nordkjøl case study',         url:'https://fahcel.co/case-study/nordkjol' },
+  { id:'demo',      label:'Live tracking demo',          url:'https://fahcel.eu/demo' },
+  { id:'audit',     label:'Sample inspection report (PDF)', url:'https://fahcel.eu/sample-inspection-report.pdf' },
+  { id:'casestudy', label:'Nordkjøl case study',         url:'https://fahcel.eu/case-study/nordkjol' },
 ];
 const CLICK_BY_ID = Object.fromEntries(CLICK_ASSETS.map((a) => [a.id, a]));
 const STAGE_INDEX = Object.fromEntries(STATUSES.map((s, i) => [s.id, i]));
@@ -1308,7 +1308,7 @@ function SettingsModal() {
             </div>
             <div>
               <label style={label}>From email · verified subdomain</label>
-              <input value={draft.fromEmail} onChange={set('fromEmail')} placeholder="sales@mail.fahcel.co" style={input} />
+              <input value={draft.fromEmail} onChange={set('fromEmail')} placeholder="sales@fahcel.eu" style={input} />
             </div>
           </div>
         )}
@@ -1316,9 +1316,9 @@ function SettingsModal() {
         {draft.mode !== 'mailto' && (
           <div style={{ marginBottom:18 }}>
             <label style={label}>Reply-To · your real inbox</label>
-            <input value={draft.replyTo} onChange={set('replyTo')} placeholder="sales@fahcel.co" style={input} />
+            <input value={draft.replyTo} onChange={set('replyTo')} placeholder="sales@fahcel.eu" style={input} />
             <div className="mono" style={{ fontSize:11, color:'var(--warm-500)', lineHeight:1.5, marginTop:9 }}>
-              Send from your <b style={{ color:'var(--slate-800)' }}>sending subdomain</b> to protect domain reputation; replies land in <b style={{ color:'var(--slate-800)' }}>{draft.replyTo || 'sales@fahcel.co'}</b>.
+              Send from your <b style={{ color:'var(--slate-800)' }}>sending subdomain</b> to protect domain reputation; replies land in <b style={{ color:'var(--slate-800)' }}>{draft.replyTo || 'sales@fahcel.eu'}</b>.
             </div>
           </div>
         )}
