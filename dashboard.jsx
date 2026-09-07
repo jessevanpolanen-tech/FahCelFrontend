@@ -552,12 +552,12 @@ const flagsOf  = (map, c) => (map[keyFor(c)] && map[keyFor(c)].flags) || {};
 const CLICK_ASSETS = [
   { id:'demo',      label:'Live tracking demo',          url:'https://fahcel.eu/demo' },
   { id:'audit',     label:'Sample inspection report (PDF)', url:'https://fahcel.eu/sample-inspection-report.pdf' },
-  { id:'casestudy', label:'Nordkjøl case study',         url:'https://fahcel.eu/case-study/nordkjol' },
 ];
 const CLICK_BY_ID = Object.fromEntries(CLICK_ASSETS.map((a) => [a.id, a]));
 const STAGE_INDEX = Object.fromEntries(STATUSES.map((s, i) => [s.id, i]));
 const clicksOf   = (map, c) => (map[keyFor(c)] && map[keyFor(c)].clicks) || {};
-const clickCount = (map, c) => Object.values(clicksOf(map, c)).filter(Boolean).length;
+// Count only assets we still offer — a retired asset can linger in a stored toggle map.
+const clickCount = (map, c) => CLICK_ASSETS.filter((a) => clicksOf(map, c)[a.id]).length;
 function toggleClick(map, c, assetId) {
   const cur = clicksOf(map, c);
   const next = { ...cur, [assetId]: !cur[assetId] };
@@ -884,7 +884,6 @@ Here's how a ${CRM.demoLength} walkthrough usually goes:
 ${c.message ? `On what you shared:\n"${c.message}"\n\nI'd love to pick that up properly — ` : ''}A few things worth two minutes — each link is live:
 • See the live tracking demo: ${CLICK_BY_ID.demo.url}
 • A sample signed inspection report (PDF): ${CLICK_BY_ID.audit.url}
-• How Nordkjøl proved their chain end to end: ${CLICK_BY_ID.casestudy.url}
 
 When's a good time for a short call?
 
