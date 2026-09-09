@@ -17,13 +17,27 @@ section. Known false references: `Dashboard.html`, `investor.jsx`,
 
 | Path | What it is |
 |---|---|
-| `FahCel Landing.html` | Public landing page |
+| `index.html` | Public landing page — served at `/`. Was `FahCel Landing.html`. |
+| `hash-chain.html`, `cold-chain-excursion-playbook.html` | Public content pages, the two indexable ranking assets |
+| `book-a-demo.html`, `playbook-download.html` | Public lead capture → `POST /api/capture-lead` |
 | `FahCel Dashboard.html` | Operator CRM shell — CSS + design tokens + React/Babel CDN tags |
 | `dashboard.jsx` | The whole dashboard (~1300 lines, in-browser Babel, **no build step**) |
-| `FahCel Book a Demo.html`, `FahCel Guide Download.html` | Public lead capture → `POST /api/capture-lead` |
 | `FahCel Login.html` | `sessionStorage` auth gate; the dashboard redirects here. Do not touch. |
-| `index.html` | Meta-refresh redirect to the landing page |
-| `vercel.json` | `/api/*` rewrite + `/` route |
+| `robots.txt`, `sitemap.xml` | Hand-maintained. Add a page → add it to `sitemap.xml`. |
+| `vercel.json` | `cleanUrls` + `/api/*` rewrite + 301s from the old `%20` URLs |
+
+### URLs
+
+Public pages are lowercase-hyphenated and served extensionless (`cleanUrls: true`):
+`/`, `/hash-chain`, `/cold-chain-excursion-playbook`, `/playbook-download`,
+`/book-a-demo`, plus short aliases `/demo` and `/playbook`. Every pre-2026-09-09
+`/FahCel%20*.html` URL 301s to its clean equivalent — **keep those redirects**,
+they carry whatever link equity the spaced URLs earned.
+
+Anything still named `FahCel *.html` is internal collateral (email templates,
+motion study, pilot deck, dashboard, login): `noindex` in the page head and
+`Disallow: /FahCel` in `robots.txt`. Give a new *public* page a clean slug so
+that prefix rule keeps working.
 
 There is **no** `package.json`, bundler, test runner, or lint config. `dashboard.jsx`
 is served raw and transpiled in the browser by `@babel/standalone`. That means:
@@ -52,17 +66,14 @@ As of **2026-09-06** the two are byte-identical on `/api/leads` and 404 alike on
 `/api/events/since` — they're aliases onto the same build, so switching hosts
 changes nothing. The distinction still matters if they diverge again.
 
-`vercel.json` still rewrites `/api/*` → the **stale** host. So the dashboard
-deliberately does **not** route through the same-origin `/api/*` rewrite — doing
-so would silently drop all email history. `backendBase()` returns the explicit
-host instead. The backend sends `Access-Control-Allow-Origin: *`, so
-cross-origin is fine, and it also works from `file://`.
+`vercel.json` rewrote `/api/*` → the **stale** host until 2026-09-09; it now
+points at `dr-fry-sequencerr`. `backendBase()` still returns the explicit host
+rather than same-origin — that is now belt-and-braces rather than a workaround,
+and it is what keeps the dashboard working from `file://`. The backend sends
+`Access-Control-Allow-Origin: *`, so cross-origin is fine either way.
 
 The public capture pages hit `/api/capture-lead` with a hardcoded
 `dr-fry-sequencerr` fallback, which is why lead capture still works.
-
-**If you fix the `vercel.json` rewrite target**, `backendBase()` can be
-simplified to prefer same-origin.
 
 ### Endpoints
 

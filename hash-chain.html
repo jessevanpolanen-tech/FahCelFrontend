@@ -2,8 +2,74 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>FahCel — Reading-level Hash Chain</title>
+<title>How a Hash Chain Proves Cold-Chain Data | FahCel</title>
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
 <meta name="viewport" content="width=1440, initial-scale=1" />
+<meta name="description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
+<link rel="canonical" href="https://www.fahcel.eu/hash-chain" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="FahCel" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://www.fahcel.eu/hash-chain" />
+<meta property="og:title" content="How a Hash Chain Proves Cold-Chain Data | FahCel" />
+<meta property="og:description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
+<meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="A warehouse lead checking cold-storage temperature readings on a tablet" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How a Hash Chain Proves Cold-Chain Data | FahCel" />
+<meta name="twitter:description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
+<meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://www.fahcel.eu/hash-chain#article",
+  "headline": "Every reading is cryptographically sealed at the moment it arrives",
+  "description": "How FahCel chains each temperature logger reading to the hash of the one before it, so any alteration to a shipment's history breaks every link after it and can be pinpointed.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.fahcel.eu/hash-chain"
+  },
+  "url": "https://www.fahcel.eu/hash-chain",
+  "image": "https://www.fahcel.eu/assets/hash-chain-verify.jpg",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://www.fahcel.eu/#org",
+    "name": "FahCel",
+    "url": "https://www.fahcel.eu/",
+    "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.fahcel.eu/#org",
+    "name": "FahCel",
+    "url": "https://www.fahcel.eu/",
+    "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Cold chain integrity"
+    },
+    {
+      "@type": "Thing",
+      "name": "Hash chain"
+    },
+    {
+      "@type": "Thing",
+      "name": "Tamper-evident logging"
+    }
+  ],
+  "isPartOf": {
+    "@type": "SoftwareApplication",
+    "@id": "https://www.fahcel.eu/#product",
+    "name": "FahCel"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -403,7 +469,7 @@
 <body style="background-color: rgb(217, 221, 207)">
 
 <nav class="top" data-screen-label="01 Hash Chain page">
-  <div class="logo"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+  <a class="logo" href="/" style="text-decoration:none;color:inherit"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
   <ul>
     <li>Platform</li>
     <li>Data Integrity</li>
@@ -411,7 +477,7 @@
     <li>Customers</li>
     <li>Pricing</li>
   </ul>
-  <a href="#" class="cta">Schedule a QA demo</a>
+  <a href="/book-a-demo" class="cta">Schedule a QA demo</a>
 </nav>
 
 <!-- ===================== HERO ===================== -->
@@ -688,10 +754,10 @@
       <h2>Watch the chain hold — or break. <em>Live.</em></h2>
       <p>In a 20-minute QA demo, we'll seal a stream of temperature readings at ingestion, run verifyChain in front of you, then tamper with a single reading and show you exactly where the chain catches it. No slideware — the actual system, the actual hashes.</p>
       <div class="actions">
-        <a class="btn primary" href="#">Schedule a QA demo
+        <a class="btn primary" href="/book-a-demo">Schedule a QA demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a class="btn ghost" href="#">Read the integrity whitepaper</a>
+        <a class="btn ghost" href="/cold-chain-excursion-playbook">Read the excursion playbook</a>
       </div>
     </div>
     <div class="cta-card">
