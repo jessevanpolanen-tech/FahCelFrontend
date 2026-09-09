@@ -1,9 +1,76 @@
 {
-  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://fah-cel-sequencing.vercel.app/api/:path*" }
+    {
+      "source": "/api/:path*",
+      "destination": "https://dr-fry-sequencerr.vercel.app/api/:path*"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/assets/fahcel-logo.jpg"
+    }
   ],
-  "routes": [
-    { "src": "/", "dest": "/index.html" }
+  "redirects": [
+    {
+      "source": "/demo",
+      "destination": "/book-a-demo",
+      "permanent": true
+    },
+    {
+      "source": "/playbook",
+      "destination": "/cold-chain-excursion-playbook",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel Landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel%20Landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel Book a Demo.html",
+      "destination": "/book-a-demo",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel%20Book%20a%20Demo.html",
+      "destination": "/book-a-demo",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel Guide Download.html",
+      "destination": "/playbook-download",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel%20Guide%20Download.html",
+      "destination": "/playbook-download",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel Excursion Playbook.html",
+      "destination": "/cold-chain-excursion-playbook",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel%20Excursion%20Playbook.html",
+      "destination": "/cold-chain-excursion-playbook",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel Hash Chain Page.html",
+      "destination": "/hash-chain",
+      "permanent": true
+    },
+    {
+      "source": "/FahCel%20Hash%20Chain%20Page.html",
+      "destination": "/hash-chain",
+      "permanent": true
+    }
   ]
 }

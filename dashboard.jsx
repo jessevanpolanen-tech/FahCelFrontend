@@ -587,7 +587,7 @@ function Sidebar({ active, setActive }) {
   ];
   return (
     <aside className="sidebar" style={{ width: 240, borderRight:'1px solid var(--warm-200)', background:'var(--porcelain)', display:'flex', flexDirection:'column', position:'sticky', top:0, height:'100vh' }}>
-      <a href="FahCel Landing.html" style={{ display:'flex', alignItems:'center', gap:10, padding:'20px 24px', textDecoration:'none', color:'var(--graphite)', borderBottom:'1px solid var(--warm-200)' }}>
+      <a href="/" style={{ display:'flex', alignItems:'center', gap:10, padding:'20px 24px', textDecoration:'none', color:'var(--graphite)', borderBottom:'1px solid var(--warm-200)' }}>
         <img src="assets/fahcel-logo.jpg" alt="FahCel" style={{ width:26, height:26, borderRadius:6, objectFit:'contain' }} />
         <span className="serif" style={{ fontSize:19 }}>FahCel</span>
       </a>
@@ -605,7 +605,7 @@ function Sidebar({ active, setActive }) {
         ))}
       </nav>
       <div style={{ marginTop:'auto', padding:24, borderTop:'1px solid var(--warm-200)' }}>
-        <a href="FahCel Landing.html" className="ds-btn" style={{ display:'block', textAlign:'center', background:'var(--amber)', color:'var(--graphite)', padding:'12px', fontSize:12, fontWeight:600, letterSpacing:'0.05em', textDecoration:'none' }}>VIEW PUBLIC PAGE →</a>
+        <a href="/" className="ds-btn" style={{ display:'block', textAlign:'center', background:'var(--amber)', color:'var(--graphite)', padding:'12px', fontSize:12, fontWeight:600, letterSpacing:'0.05em', textDecoration:'none' }}>VIEW PUBLIC PAGE →</a>
       </div>
     </aside>
   );

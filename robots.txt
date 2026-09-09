@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Operator tooling and internal sales collateral. doc-page.js / support.js stay
+# crawlable — the playbook and hash-chain pages render through them.
+Disallow: /FahCel
+Disallow: /Canvas.dc.html
+Disallow: /tweaks-panel.jsx
+
+Sitemap: https://www.fahcel.eu/sitemap.xml
