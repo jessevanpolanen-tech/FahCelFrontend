@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--
+  ============================================================================
+  PRE-LAUNCH CHECKLIST — /usb-logger
+  ============================================================================
+  This page ships with PLACEHOLDER hardware figures. Every one of them is
+  wrapped in <span class="tbd"> and renders with an amber dashed underline, so
+  an unverified number cannot reach a customer unnoticed.
+
+  Before publishing:
+    [ ] Replace every .tbd value against the real datasheet (search: class="tbd")
+    [ ] Confirm the sample-pack commercial terms (free? paid? quantity?)
+    [ ] Confirm certifications — these are regulated claims, do not guess
+    [ ] Delete the .draftbar element and its CSS block
+    [ ] Flip <meta name="robots"> from noindex,nofollow to index,follow
+    [ ] Uncomment the /usb-logger entry in sitemap.xml
+    [ ] Add price + availability to the Product JSON-LD "offers" block
+    [ ] Swap the hero image for a real photo of the logger
+
+  The page stays noindex until the specs are real. Publishing unverified
+  technical claims on a site that sells into GDP / Part 11 buyers is the one
+  mistake worth a redeploy to avoid.
+  ============================================================================
+-->
+<meta charset="utf-8" />
+<title>USB Temperature Logger With Tamper-Evident Proof | FahCel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Single-use USB temperature logger that ships with the pallet. Plug it into any laptop for a signed report — every reading sealed in a verifiable hash chain." />
+<link rel="canonical" href="https://www.fahcel.eu/usb-logger" />
+<!-- TODO(pre-launch): flip to index,follow once every .tbd spec is verified. -->
+<meta name="robots" content="noindex,nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="FahCel" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:url" content="https://www.fahcel.eu/usb-logger" />
+<meta property="og:title" content="USB Temperature Logger With Tamper-Evident Proof | FahCel" />
+<meta property="og:description" content="Single-use USB temperature logger that ships with the pallet. Plug it into any laptop for a signed report — every reading sealed in a verifiable hash chain." />
+<meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="A warehouse lead checking cold-storage temperature readings on a tablet" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="USB Temperature Logger With Tamper-Evident Proof | FahCel" />
+<meta name="twitter:description" content="Single-use USB temperature logger that ships with the pallet. Plug it into any laptop for a signed report — every reading sealed in a verifiable hash chain." />
+<meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
+<!-- NOTE(pre-launch): the Product node below has no "offers" block on purpose.
+     Add price, priceCurrency and availability once commercial terms are set — a
+     fabricated price in structured data is both a rich-result penalty and a
+     trust problem. JSON-LD takes no comments, hence this note living out here. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.fahcel.eu/#org",
+      "name": "FahCel",
+      "url": "https://www.fahcel.eu/",
+      "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fahcel.eu/usb-logger#page",
+      "url": "https://www.fahcel.eu/usb-logger",
+      "name": "USB Temperature Logger With Tamper-Evident Proof",
+      "description": "Single-use USB temperature logger that ships with the pallet. Plug it into any laptop for a signed report — every reading sealed in a verifiable hash chain.",
+      "inLanguage": "en-GB",
+      "dateModified": "2026-09-20",
+      "isPartOf": { "@id": "https://www.fahcel.eu/#website" },
+      "publisher": { "@id": "https://www.fahcel.eu/#org" },
+      "about": { "@id": "https://www.fahcel.eu/usb-logger#product" }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://www.fahcel.eu/usb-logger#product",
+      "name": "FahCel Single-Use USB Temperature Logger",
+      "category": "Temperature data logger",
+      "brand": { "@id": "https://www.fahcel.eu/#org" },
+      "description": "A single-use USB temperature data logger that travels with a shipment. The receiver plugs it into any USB port and a temperature report opens with no software, driver or account. Every reading is sealed into a tamper-evident hash chain so the record can be independently verified.",
+      "url": "https://www.fahcel.eu/usb-logger"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.fahcel.eu/usb-logger#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need the FahCel platform to use the USB logger?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The logger writes a complete temperature report on its own, and the chain verification runs in a browser without an account. The platform matters when you want live alerts in transit and every lane in one place, not for reading a single logger." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the person receiving the shipment have to install?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nothing. The logger mounts as a standard USB drive and the report is already on it. It works on a locked-down dock laptop with no internet connection, no driver and no admin rights." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from the USB loggers we already buy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each reading is hashed as it is written and chained to the one before it, so the report carries its own proof. A plain logger gives you a PDF, which is a file anyone can edit. This gives you a PDF plus a check that your customer, your auditor or your insurer can run themselves." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we use it on lanes we do not control?",
+          "acceptedAnswer": { "@type": "Answer", "text": "That is what it is built for. It travels with the goods through third-party carriers and forwarders, and nobody in the chain needs an account, a gateway or a mobile signal. The record follows the product rather than the building." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a USB logger alert anyone during transit?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, and that is the honest trade-off. A USB logger is read on arrival, so it proves what happened rather than warning you while it happens. When a lane needs someone woken up mid-excursion, that is a job for the wireless loggers on the FahCel platform." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if the logger is never plugged in?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The readings stay in memory until someone reads the device, so the record is not lost. Every pack ships with a plug-in instruction card addressed to the receiving bay so the step does not get skipped." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F4;
+    --paper-2:#ecedea;
+    --white:#ffffff;
+    --ink:#0B1220;
+    --ink-2:#222938;
+    --muted:#5a6374;
+    --muted-2:#8a93a5;
+    --line:#e1e2dd;
+    --line-2:#d3d5cd;
+    --indigo:#1E2A5A;
+    --indigo-2:#2a3a79;
+    --teal:#1f7a8c;
+    --green:#2E6B4E;
+    --amber:#c88912;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{font-size:16px;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:#d9ddf0;color:var(--indigo)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+
+  /* ---------- DRAFT BANNER — delete this block and the .draftbar element before launch ---------- */
+  .draftbar{
+    position:relative;z-index:40;background:#fbe9c0;border-bottom:1px solid #e8cf92;color:#6b4a05;
+    font-size:13px;line-height:1.5;padding:11px 40px;display:flex;gap:10px;align-items:flex-start;
+  }
+  .draftbar b{font-weight:700}
+  .draftbar svg{width:16px;height:16px;flex:0 0 auto;margin-top:2px;color:var(--amber)}
+
+  /* placeholder specs — visible on purpose, so nothing unverified ships quietly */
+  .tbd{
+    background:#fdf4e0;border-bottom:1.5px dashed var(--amber);color:#7a5406;
+    padding:0 3px;border-radius:3px;font-style:normal;cursor:help;
+  }
+
+  /* ---------- Nav ---------- */
+  nav.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px;border-bottom:1px solid var(--line);
+    background:rgba(246,247,244,.85);backdrop-filter:saturate(140%) blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px}
+  .logo .mark{width:30px;height:30px;border-radius:0;background:none;object-fit:contain;mix-blend-mode:multiply;display:block}
+  nav.top ul{display:flex;gap:30px;list-style:none;padding:0;margin:0;font-size:14px;color:var(--ink-2)}
+  nav.top li a:hover{color:var(--indigo)}
+  nav.top li.here{color:var(--indigo);font-weight:600}
+  nav.top .cta{background:var(--indigo);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.1px}
+  nav.top .cta:hover{background:var(--indigo-2)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:66px 0 54px;border-bottom:1px solid var(--line);background:var(--white)}
+  .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--paper);color:var(--indigo);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+  .eyebrow-pill .dot{width:6px;height:6px;border-radius:999px;background:var(--teal)}
+  .hero h1{
+    font-family:var(--serif);font-weight:500;font-size:clamp(38px,5vw,64px);line-height:1.04;letter-spacing:-1.4px;
+    margin:20px 0 18px;color:var(--ink);max-width:19ch;text-wrap:balance;
+  }
+  .hero h1 em{font-style:italic;color:var(--indigo);font-weight:400}
+  .hero .lede{font-size:clamp(16px,1.5vw,18.5px);line-height:1.58;color:var(--muted);max-width:52ch;margin:0 0 30px;text-wrap:pretty}
+  .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;border:1px solid transparent;cursor:pointer}
+  .btn.primary{background:var(--indigo);color:#fff}
+  .btn.primary:hover{background:var(--indigo-2)}
+  .btn.ghost{background:transparent;color:var(--ink-2);border-color:var(--line-2)}
+  .btn.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
+  .btn svg{width:15px;height:15px}
+
+  .hero .shot{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 70px -40px rgba(11,18,32,.4);background:var(--paper-2)}
+  .hero .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero .chip{
+    position:absolute;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);color:var(--ink);
+    padding:8px 12px;border-radius:10px;box-shadow:0 10px 30px -12px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px;
+  }
+  .hero .chip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.18)}
+  .hero .chip.c1{top:16px;left:16px}
+  .hero .chip.c2{bottom:16px;right:16px;color:var(--green)}
+
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:42px;border-top:1px solid var(--line);padding-top:26px}
+  .meta > div{padding-right:22px}
+  .meta .k{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-2);margin-bottom:7px}
+  .meta .v{font-size:16px;font-weight:600;color:var(--ink);line-height:1.35}
+  .meta .v small{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:3px}
+
+  /* ---------- Section scaffolding ---------- */
+  section.block{padding:84px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:42px;flex-wrap:wrap}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.08;letter-spacing:-1px;margin:18px 0 0;color:var(--ink);max-width:17ch;text-wrap:balance}
+  h2 em{color:var(--indigo);font-style:italic;font-weight:400}
+  .sec-head .desc{font-size:15.5px;line-height:1.6;color:var(--muted);max-width:38ch;padding-bottom:6px}
+
+  /* ---------- Problem cards ---------- */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .wcard{position:relative;border-radius:18px;padding:26px 24px 24px;min-height:228px;display:flex;flex-direction:column;border:1px solid transparent;overflow:hidden}
+  .wcard.a{background:#eef2f7;border-color:#dfe6ef}
+  .wcard.b{background:#f1efe8;border-color:#e6e2d6}
+  .wcard.c{background:#e9f0ee;border-color:#d8e5e0}
+  .wicon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--white);box-shadow:0 8px 20px -10px rgba(11,18,32,.3);margin-bottom:auto}
+  .wicon svg{width:24px;height:24px;color:var(--indigo)}
+  .wtags{display:flex;gap:7px;margin:20px 0 12px}
+  .wtag{padding:4px 11px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(255,255,255,.7);color:var(--ink-2);border:1px solid rgba(11,18,32,.08)}
+  .wcard h3{font-family:var(--serif);font-weight:600;font-size:18.5px;letter-spacing:-.2px;margin:0 0 6px;color:var(--ink)}
+  .wcard p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+
+  /* ---------- How it works band ---------- */
+  .band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .band .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
+  .band .media{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 70px -40px rgba(11,18,32,.4)}
+  .band .media img{width:100%;height:100%;object-fit:cover;display:block}
+  .band h2{margin-top:18px}
+  .chainlist{list-style:none;padding:0;margin:30px 0 30px;display:flex;flex-direction:column;gap:0}
+  .chainlist li{position:relative;display:flex;gap:18px;padding:0 0 26px}
+  .chainlist li:last-child{padding-bottom:0}
+  .chainlist .node{position:relative;flex:0 0 auto;width:38px;display:flex;justify-content:center}
+  .chainlist .node .dot{width:38px;height:38px;border-radius:11px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;z-index:2;box-shadow:0 8px 18px -10px rgba(11,18,32,.3)}
+  .chainlist .node .dot svg{width:18px;height:18px;color:var(--green)}
+  .chainlist .node .dot b{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo)}
+  .chainlist li:not(:last-child) .node::after{content:"";position:absolute;top:38px;bottom:-26px;left:50%;width:2px;transform:translateX(-50%);
+    background:repeating-linear-gradient(180deg,var(--line-2) 0 5px,transparent 5px 10px)}
+  .chainlist .txt{padding-top:7px}
+  .chainlist .txt b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;margin-bottom:2px}
+  .chainlist .txt span{font-size:14.5px;color:var(--muted);line-height:1.55}
+  .linkbtn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;color:var(--indigo);border-bottom:1.5px solid transparent;padding-bottom:2px;transition:border-color .15s}
+  .linkbtn:hover{border-color:var(--indigo)}
+  .linkbtn svg{width:15px;height:15px;transition:transform .2s}
+  .linkbtn:hover svg{transform:translateX(3px)}
+
+  /* ---------- Comparison ---------- */
+  .compare{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .compare th,.compare td{text-align:left;padding:17px 22px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;vertical-align:top}
+  .compare thead th{background:var(--paper-2);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-2);font-weight:700;font-family:var(--mono)}
+  .compare tbody th{font-weight:600;color:var(--ink);width:24%}
+  .compare td{color:var(--muted)}
+  .compare td.on{color:var(--ink-2)}
+  .compare tr:last-child th,.compare tr:last-child td{border-bottom:0}
+  .compare .pick{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);font-weight:700}
+  .compare .pick .d{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+
+  /* ---------- Spec table ---------- */
+  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
+  .specs .row{display:flex;justify-content:space-between;gap:24px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .specs dt{font-size:14.5px;color:var(--muted);font-weight:500}
+  .specs dd{margin:0;font-size:14.5px;color:var(--ink);font-weight:600;text-align:right;font-family:var(--mono)}
+
+  /* ---------- Order form ---------- */
+  .order{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
+  .order::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 85% -10%,rgba(82,176,191,.38),transparent 60%)}
+  .order .wrap{position:relative;z-index:1}
+  .order .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .order .eyebrow-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
+  .order h2{color:#fff}
+  .order h2 em{color:#9fd6e0}
+  .order .lead{color:rgba(255,255,255,.82);font-size:16px;max-width:44ch;margin:18px 0 26px}
+  .order .tbd{background:rgba(255,255,255,.14);border-bottom-color:#f0c76a;color:#ffe6ad}
+  .incl{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px}
+  .incl li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(255,255,255,.88);line-height:1.5}
+  .incl svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px;color:#9fd6e0}
+
+  .formcard{background:var(--white);border-radius:20px;padding:30px 30px 26px;box-shadow:0 40px 80px -40px rgba(0,0,0,.6);color:var(--ink)}
+  .formcard .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);font-weight:700}
+  .formcard h3{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.4px;margin:10px 0 6px}
+  .formcard .sub{font-size:14px;color:var(--muted);margin:0 0 22px;line-height:1.55}
+  .formcard label{display:block;margin-bottom:14px}
+  .cap{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+  .formcard input,.formcard select,.formcard textarea{
+    width:100%;border:1px solid var(--line-2);background:var(--paper);border-radius:10px;
+    padding:12px 14px;font-family:var(--sans);font-size:14.5px;color:var(--ink);outline:0;transition:border-color .15s,background .15s;
+  }
+  .formcard textarea{resize:vertical;min-height:74px;line-height:1.5}
+  .formcard input:focus,.formcard select:focus,.formcard textarea:focus{border-color:var(--indigo);background:var(--white)}
+  .formcard input::placeholder,.formcard textarea::placeholder{color:var(--muted-2)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{
+    width:100%;border:0;cursor:pointer;background:var(--indigo);color:#fff;font-family:var(--sans);font-weight:600;font-size:15px;
+    padding:15px 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:6px;transition:background .15s;
+  }
+  .submit:hover{background:var(--indigo-2)}
+  .submit:disabled{opacity:.6;cursor:default}
+  .submit svg{width:15px;height:15px}
+  .err{display:none;margin-top:12px;font-size:13.5px;color:#a3282a;background:#fdeceb;border:1px solid #f6cfcd;border-radius:9px;padding:10px 12px;line-height:1.5}
+  .fineprint{font-size:12px;color:var(--muted-2);margin:14px 0 0;line-height:1.55}
+  .formcard.off{display:none}
+  .done{display:none;text-align:center;padding:16px 8px 10px}
+  .done.on{display:block}
+  .done .check{width:54px;height:54px;border-radius:99px;background:#e9f0ee;display:grid;place-items:center;margin:0 auto 18px;color:var(--green)}
+  .done .check svg{width:26px;height:26px}
+  .done h3{font-family:var(--serif);font-weight:600;font-size:24px;margin:10px 0 8px}
+  .done p{font-size:14.5px;color:var(--muted);line-height:1.6;margin:0 auto 18px;max-width:38ch}
+  .done .also{font-size:13.5px;color:var(--muted)}
+  .done .also a{color:var(--indigo);font-weight:600;border-bottom:1.5px solid rgba(30,42,90,.3)}
+
+  /* ---------- FAQ ---------- */
+  .faq{border-top:1px solid var(--line)}
+  .faq .list{margin-top:38px;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:24px 4px;font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.2px;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:0 0 auto;width:30px;height:30px;border-radius:99px;border:1px solid var(--line-2);
+    display:grid;place-items:center;color:var(--indigo);transition:transform .25s,background .2s,color .2s}
+  .faq details[open] summary .pm{transform:rotate(45deg);background:var(--indigo);color:#fff;border-color:var(--indigo)}
+  .faq summary .pm svg{width:15px;height:15px}
+  .faq .ans{padding:0 4px 26px;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:66ch}
+  .faq .ans a{color:var(--indigo);font-weight:600;border-bottom:1.5px solid rgba(30,42,90,.28)}
+
+  /* ---------- Final CTA + footer ---------- */
+  .cta-final{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
+  .cta-final::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 80% -10%,rgba(82,176,191,.4),transparent 60%)}
+  .cryptochain{
+    position:absolute;left:50%;top:50%;width:150%;z-index:0;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(9.5deg);opacity:.5;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+            mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  }
+  .cryptochain .track{display:flex;align-items:center;width:max-content;font-family:var(--mono);animation:chainFlow 40s linear infinite}
+  .cryptochain .blk{display:flex;align-items:center;flex:0 0 auto}
+  .cryptochain .cube{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:1px solid rgba(255,255,255,.16);border-radius:7px;white-space:nowrap}
+  .cryptochain .cube b{font-size:11px;letter-spacing:.4px;color:rgba(255,255,255,.6);font-weight:500}
+  .cryptochain .cube span{font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.36)}
+  .cryptochain .lnk{width:38px;height:1px;background:rgba(255,255,255,.24);position:relative;flex:0 0 auto}
+  .cryptochain .lnk::after{content:"";position:absolute;right:-1px;top:-2px;width:4px;height:4px;border-right:1px solid rgba(255,255,255,.32);border-top:1px solid rgba(255,255,255,.32);transform:rotate(45deg)}
+  @keyframes chainFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.cryptochain .track{animation:none}}
+  .cta-final .wrap{position:relative;z-index:1;padding:92px 40px;text-align:center}
+  .cta-final h2{color:#fff;max-width:20ch;margin:0 auto}
+  .cta-final h2 em{color:#9fd6e0}
+  .cta-final p{color:rgba(255,255,255,.8);font-size:17px;max-width:48ch;margin:18px auto 32px}
+  .cta-final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cta-final .btn.primary{background:#fff;color:var(--indigo)}
+  .cta-final .btn.primary:hover{background:#eef0ff}
+  .cta-final .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+  .cta-final .btn.ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+
+  footer.site{background:#0b1220;color:rgba(255,255,255,.6);font-size:13px}
+  footer.site .wrap{padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer.site .logo{color:#fff}
+  footer.site .logo .mark{mix-blend-mode:normal;background:#fff;border-radius:8px;padding:2px}
+  footer.site .links{display:flex;gap:24px}
+  footer.site .links a:hover{color:#fff}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+  .reveal.d3{transition-delay:.24s}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:980px){
+    nav.top ul{display:none}
+    .hero .grid,.band .grid,.order .grid{grid-template-columns:1fr;gap:38px}
+    .hero .shot{order:-1;aspect-ratio:16/10}
+    .band .media{order:-1;aspect-ratio:4/3}
+    .meta{grid-template-columns:repeat(2,1fr);gap:22px 0}
+    .cards3{grid-template-columns:1fr}
+    .specs{grid-template-columns:1fr;gap:0}
+    section.block{padding:60px 0}
+    .wrap{padding:0 22px}
+    .draftbar{padding:11px 22px}
+    nav.top{padding:18px 22px}
+    .compare th,.compare td{padding:14px 15px;font-size:13.5px}
+    .compare tbody th{width:32%}
+  }
+  @media (max-width:560px){
+    .frow{grid-template-columns:1fr}
+    .cta-final .wrap{padding:66px 22px}
+  }
+</style>
+</head>
+<body>
+
+<!-- DRAFT BANNER — delete this element (and the .draftbar CSS) before launch. -->
+<div class="draftbar" id="draftbar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+  <div><b>Internal draft — not published.</b> Every figure with an amber dashed underline is a placeholder awaiting the datasheet. Verify each one, then delete this banner and set the page to <code>index,follow</code>. The pre-launch checklist is at the top of the file.</div>
+</div>
+
+<nav class="top" data-screen-label="USB Logger page">
+  <a class="logo" href="/"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
+  <ul>
+    <li class="here">USB logger</li>
+    <li><a href="/hash-chain">Data integrity</a></li>
+    <li><a href="/cold-chain-excursion-playbook">Playbook</a></li>
+    <li><a href="#specs">Specs</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#order" class="cta">Order a sample pack</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="eyebrow-pill"><span class="dot"></span> Hardware · Single-use USB logger</span>
+        <h1>Any logger gives you a PDF. This one gives you <em>proof</em>.</h1>
+        <p class="lede">FahCel's single-use USB logger rides with the shipment. Your receiver plugs it into any laptop — no app, no account, no signal — and the temperature report is already there. Every reading in it is sealed into a hash chain, so the record can be verified instead of taken on trust.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#order">Order a sample pack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn ghost" href="/hash-chain">See how verification works</a>
+        </div>
+      </div>
+
+      <!-- TODO(pre-launch): replace with a real photograph of the logger. -->
+      <div class="shot">
+        <div class="chip c1"><span class="led"></span> recording · <span class="tbd" title="Placeholder — confirm against datasheet">1,440 readings</span></div>
+        <div class="chip c2">verifyChain() → valid: true</div>
+        <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1400&q=80" alt="A single-use USB temperature logger packed alongside cartons in a cold-chain shipment" loading="eager" decoding="async" />
+      </div>
+    </div>
+
+    <div class="meta">
+      <div>
+        <div class="k">Form factor</div>
+        <div class="v">Single-use USB <small>One trip · no return logistics</small></div>
+      </div>
+      <div>
+        <div class="k">Range</div>
+        <div class="v"><span class="tbd" title="Placeholder — confirm against datasheet">−30 °C → +70 °C</span> <small><span class="tbd" title="Placeholder — confirm against datasheet">±0.5 °C accuracy</span></small></div>
+      </div>
+      <div>
+        <div class="k">Duration</div>
+        <div class="v"><span class="tbd" title="Placeholder — confirm against datasheet">Up to 90 days</span> <small><span class="tbd" title="Placeholder — confirm against datasheet">at a 10-minute interval</span></small></div>
+      </div>
+      <div>
+        <div class="k">Integrity</div>
+        <div class="v">SHA-256 chain <small>Verifiable without FahCel</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> The gap</span>
+        <h2 class="reveal d1">A temperature report is only as good as the <em>file</em> it lives in.</h2>
+      </div>
+      <p class="desc reveal d2">Most single-use loggers end the same way — a PDF on somebody's desktop. That holds up fine until the load is questioned. Then it doesn't.</p>
+    </div>
+
+    <div class="cards3">
+      <article class="wcard a reveal">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l6-6"/></svg></div>
+        <div class="wtags"><span class="wtag">Integrity</span><span class="wtag">Disputes</span></div>
+        <h3>A PDF is just a file</h3>
+        <p>The document that clears your shipment can be opened, edited and re-saved like any other. Nothing inside it says that happened.</p>
+      </article>
+
+      <article class="wcard b reveal d1">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7L12 19"/></svg></div>
+        <div class="wtags"><span class="wtag">Custody</span><span class="wtag">Handoffs</span></div>
+        <h3>The custody trail has holes</h3>
+        <p>A logger passed between carrier, forwarder and receiver carries no record of who held it or when. Your evidence starts at the plug-in, not the dock.</p>
+      </article>
+
+      <article class="wcard c reveal d2">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="wtags"><span class="wtag">Audit</span><span class="wtag">Trust</span></div>
+        <h3>Nobody can check it but you</h3>
+        <p>Your customer's QA team can read the report. They can't confirm it's the one that came off the logger — so they're trusting you, not the data.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="band block">
+  <div class="wrap">
+    <div class="grid">
+      <div class="media reveal">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1400&q=80" alt="Cold storage aisle where a shipment is packed with its logger before departure" loading="lazy" decoding="async" />
+      </div>
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> Four steps, no setup</span>
+        <h2 class="reveal d1">Peel, ship, plug in, <em>verify</em>.</h2>
+        <ul class="chainlist">
+          <li class="reveal d1">
+            <div class="node"><span class="dot"><b>01</b></span></div>
+            <div class="txt"><b>Peel and start.</b> <span>Pull the tab and the logger begins recording on its configured interval. No phone, no pairing, no software to install on your side.</span></div>
+          </li>
+          <li class="reveal d1">
+            <div class="node"><span class="dot"><b>02</b></span></div>
+            <div class="txt"><b>Ship it with the goods.</b> <span>Drop it in the carton or strap it to the pallet. It records through every handoff, in any carrier's truck, with no connectivity of its own.</span></div>
+          </li>
+          <li class="reveal d2">
+            <div class="node"><span class="dot"><b>03</b></span></div>
+            <div class="txt"><b>Plug it into any laptop.</b> <span>It mounts as a standard USB drive and the report is already on it — no driver, no download, no account for the person at the receiving bay.</span></div>
+          </li>
+          <li class="reveal d3">
+            <div class="node"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+            <div class="txt"><b>Verify the chain.</b> <span>Drop the file into FahCel's verifier. It recomputes every hash and confirms the readings are the ones the logger wrote — or pinpoints the first one that changed.</span></div>
+          </li>
+        </ul>
+        <a class="linkbtn reveal d3" href="/hash-chain">See how the hash chain works
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHERE IT FITS ===================== -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> Where it fits</span>
+        <h2 class="reveal d1">Not a replacement for wireless. A <em>different job</em>.</h2>
+      </div>
+      <p class="desc reveal d2">A USB logger proves what happened. Wireless tells you while it's happening. Most teams run both — here's the honest split.</p>
+    </div>
+
+    <div class="reveal d1">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Single-use USB logger</th>
+            <th scope="col">FahCel wireless platform</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Best for</th>
+            <td class="on">One-off lanes, third-party carriers and shipments you don't control end to end.</td>
+            <td class="on">Lanes and sites you run continuously, where you want eyes on them.</td>
+          </tr>
+          <tr>
+            <th scope="row">Setup</th>
+            <td class="on">None. Peel and ship.</td>
+            <td>Gateways and account configuration, once.</td>
+          </tr>
+          <tr>
+            <th scope="row">Alerts in transit</th>
+            <td>None — the record is read on arrival.</td>
+            <td class="on">Live threshold and door-open alerts to the responsible team's phone.</td>
+          </tr>
+          <tr>
+            <th scope="row">What the receiver needs</th>
+            <td class="on">A USB port.</td>
+            <td class="on">Nothing — you're already watching it centrally.</td>
+          </tr>
+          <tr>
+            <th scope="row">The record</th>
+            <td class="on"><span class="pick"><span class="d"></span> Sealed hash chain</span></td>
+            <td class="on"><span class="pick"><span class="d"></span> Sealed hash chain</span></td>
+          </tr>
+          <tr>
+            <th scope="row">After the trip</th>
+            <td>Recycle it. <span class="tbd" title="Placeholder — confirm disposal and take-back terms">Take-back scheme available</span>.</td>
+            <td>The logger keeps running on the next load.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SPECS ===================== -->
+<section class="block band" id="specs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> Specifications</span>
+        <h2 class="reveal d1">The numbers your QA team will <em>ask for</em>.</h2>
+      </div>
+      <p class="desc reveal d2">Every figure below is drawn from the device datasheet. Amber entries are awaiting final confirmation before this page goes live.</p>
+    </div>
+
+    <!-- TODO(pre-launch): every .tbd below needs a datasheet-confirmed value. -->
+    <div class="specs reveal d1">
+      <div class="row"><dt>Measurement range</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">−30 °C to +70 °C</span></dd></div>
+      <div class="row"><dt>Accuracy</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">±0.5 °C (−20 to +40 °C)</span></dd></div>
+      <div class="row"><dt>Resolution</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">0.1 °C</span></dd></div>
+      <div class="row"><dt>Recording interval</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">1 min – 2 hr, set at order</span></dd></div>
+      <div class="row"><dt>Memory</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">16,000 readings</span></dd></div>
+      <div class="row"><dt>Battery life</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">90 days from start</span></dd></div>
+      <div class="row"><dt>Start mode</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">Pull-tab, single-press</span></dd></div>
+      <div class="row"><dt>Report format</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">PDF + CSV on the device</span></dd></div>
+      <div class="row"><dt>Integrity</dt><dd>SHA-256 chain per reading</dd></div>
+      <div class="row"><dt>Interface</dt><dd>USB-A, mass storage</dd></div>
+      <div class="row"><dt>Housing</dt><dd><span class="tbd" title="Placeholder — confirm against datasheet">IP54, 86 × 26 × 8 mm</span></dd></div>
+      <div class="row"><dt>Certification</dt><dd><span class="tbd" title="Placeholder — regulated claim, confirm before publishing">CE, RoHS, calibration cert</span></dd></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORDER ===================== -->
+<section class="block order" id="order">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="eyebrow-pill"><span class="dot"></span> Sample pack</span>
+        <h2>Put five on a lane you <em>already run</em>.</h2>
+        <p class="lead">Tell us the lane and we'll send a sample pack — <span class="tbd" title="Placeholder — confirm commercial terms">no charge, no commitment</span>. Ship as normal, plug them in on arrival, and we'll walk the reports with you when they land.</p>
+        <ul class="incl">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><span class="tbd" title="Placeholder — confirm pack contents">Five loggers</span>, pre-configured to your interval and threshold</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Plug-in instruction cards addressed to the receiving bay</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>A verification walkthrough on your own report, not a demo shipment</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Per-shipment pricing for the lane, once you've seen it work</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="formcard" id="formWrap">
+          <div class="kicker">Order a sample pack</div>
+          <h3>Where should we send them?</h3>
+          <p class="sub">Two minutes. We'll confirm the shipping address by email — no need to dig it out now.</p>
+          <form id="sampleForm" novalidate>
+            <label><div class="cap">Work email</div><input id="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
+            <div class="frow">
+              <label><div class="cap">Name</div><input id="fname" type="text" autocomplete="name" placeholder="Jordan Ellis" required /></label>
+              <label><div class="cap">Company</div><input id="company" type="text" autocomplete="organization" placeholder="Your company" /></label>
+            </div>
+            <div class="frow">
+              <label><div class="cap">Your role</div>
+                <select id="role">
+                  <option value="">Select one…</option>
+                  <option>QA / Quality</option>
+                  <option>Logistics / Supply chain</option>
+                  <option>Operations</option>
+                  <option>Compliance / Regulatory</option>
+                  <option>Procurement</option>
+                  <option>Founder / Exec</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label><div class="cap">Shipments / month</div>
+                <select id="volume">
+                  <option value="">Select one…</option>
+                  <option>Under 10</option>
+                  <option>10 – 50</option>
+                  <option>50 – 250</option>
+                  <option>250+</option>
+                </select>
+              </label>
+            </div>
+            <label><div class="cap">The lane you'd test</div>
+              <textarea id="lane" placeholder="e.g. Rotterdam → Milan, 2–8 °C pharma, road, third-party carrier"></textarea>
+            </label>
+            <button class="submit" id="submitBtn" type="submit">Order the sample pack
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <div class="err" id="submitErr"></div>
+            <p class="fineprint">We'll only use your address to arrange the sample pack and follow up on the result. No list, no sharing, unsubscribe in one click.</p>
+          </form>
+        </div>
+
+        <div class="formcard done" id="done">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div class="kicker">Request received</div>
+          <h3>We're on it.</h3>
+          <p>Jesse will email <b id="sentEmail">you@company.com</b> within one working day to confirm the shipping address and set the recording interval for your lane.</p>
+          <p class="also">While you wait — <a href="/hash-chain">see how the chain verification works →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="block faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> FAQ</span>
+        <h2 class="reveal d1">The questions buyers actually <em>ask us</em>.</h2>
+      </div>
+      <p class="desc lead reveal d2">Straight answers on what the logger does, what it doesn't, and what your receiver has to do.</p>
+    </div>
+    <div class="list reveal d1">
+      <details>
+        <summary>Do I need the FahCel platform to use the USB logger?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">No. The logger writes a complete temperature report on its own, and the chain verification runs in a browser without an account. The platform matters when you want live alerts in transit and every lane in one place — not for reading a single logger.</div>
+      </details>
+      <details>
+        <summary>What does the person receiving the shipment have to install?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Nothing. The logger mounts as a standard USB drive and the report is already on it. It works on a locked-down dock laptop with no internet connection, no driver and no admin rights — which is usually the difference between a logger that gets read and one that ends up in a drawer.</div>
+      </details>
+      <details>
+        <summary>How is this different from the USB loggers we already buy?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Each reading is hashed as it's written and chained to the one before it, so the report carries its own proof. A plain logger gives you a PDF, which is a file anyone can edit. This gives you a PDF plus a check that your customer, your auditor or your insurer can run themselves — see <a href="/hash-chain">how the hash chain works</a>.</div>
+      </details>
+      <details>
+        <summary>Can we use it on lanes we don't control?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">That's what it's built for. It travels with the goods through third-party carriers and forwarders, and nobody in the chain needs an account, a gateway or a mobile signal. The record follows the product rather than the building.</div>
+      </details>
+      <details>
+        <summary>Does a USB logger alert anyone during transit?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">No, and that's the honest trade-off. A USB logger is read on arrival, so it proves what happened rather than warning you while it happens. When a lane needs someone woken up mid-excursion, that's a job for the wireless loggers on the FahCel platform — and the <a href="/cold-chain-excursion-playbook">excursion playbook</a> covers what to do in that first hour.</div>
+      </details>
+      <details>
+        <summary>What happens if the logger is never plugged in?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">The readings stay in memory until someone reads the device, so the record isn't lost. Every pack ships with a plug-in instruction card addressed to the receiving bay so the step doesn't get skipped.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="cta-final">
+  <div class="cryptochain" aria-hidden="true"><div class="track" id="cryptoTrack"></div></div>
+  <div class="wrap">
+    <h2 class="reveal">Ship the next one with <em>proof</em> in the box.</h2>
+    <p class="reveal d1">Put a sample pack on a lane you already run, and see what a verifiable report looks like when it lands.</p>
+    <div class="row reveal d2">
+      <a class="btn primary" href="#order">Order a sample pack
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn ghost" href="/book-a-demo">Book a 20-minute demo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <a class="logo" href="/"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
+    <div class="links">
+      <a href="/usb-logger">USB logger</a>
+      <a href="/hash-chain">Data integrity</a>
+      <a href="/cold-chain-excursion-playbook">Excursion playbook</a>
+      <a href="/book-a-demo">Book a demo</a>
+    </div>
+    <div>© 2026 FahCel — Cold-chain integrity · <span style="opacity:.8">Last updated <time datetime="2026-09-20">20 September 2026</time></span></div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal — same observer the other public pages use
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // decorative flowing cryptochain
+  (function(){
+    var track=document.getElementById('cryptoTrack');
+    if(!track) return;
+    var hashes=['a17b…39fc','7d22…8e01','b91c…4a20','03fe…6a15','52dd…ee39','e4a6…1123','c4f0…91ae','2f6d…d8b3'];
+    var set=function(){ return hashes.map(function(hx){
+      return '<div class="blk"><div class="cube"><b>'+hx+'</b><span>record_hash</span></div><div class="lnk"></div></div>';
+    }).join(''); };
+    track.innerHTML=set()+set();
+  })();
+
+  // ---------- sample pack capture ----------
+  (function(){
+    var API_BASE = '/api'; // vercel.json rewrites /api/* to the FahCel backend
+    var form = document.getElementById('sampleForm');
+    var btn = document.getElementById('submitBtn');
+    var errEl = document.getElementById('submitErr');
+    var BTN_LABEL = btn.innerHTML;
+
+    function showErr(m){ errEl.textContent=m; errEl.style.display='block'; }
+    function clearErr(){ errEl.textContent=''; errEl.style.display='none'; }
+
+    async function post(url, opts){
+      var r = await fetch(url, opts);
+      if(!r.ok || (r.headers.get('content-type')||'').indexOf('json')<0) throw new Error('HTTP '+r.status);
+      return r.json();
+    }
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      clearErr();
+      var email = document.getElementById('email').value.trim();
+      var name = document.getElementById('fname').value.trim();
+      var org = document.getElementById('company').value.trim();
+      var role = document.getElementById('role').value || 'Other';
+      var volume = document.getElementById('volume').value || 'not given';
+      var lane = document.getElementById('lane').value.trim();
+      if(!email || email.indexOf('@')<0){ showErr('⚠ Please enter a valid work email so we can confirm the shipping address.'); return; }
+      if(!name){ showErr('⚠ Please add your name.'); return; }
+
+      var ref = 'FC-'+Math.random().toString(36).slice(2,7).toUpperCase();
+      var note = 'USB logger sample pack request. Lane: ' + (lane || 'not given') + '. Volume: ' + volume + '.';
+
+      // Tenant-scoped so FahCel and Dr. Fry never see each other's leads on the shared backend.
+      //
+      // Deliberately NO enroll/sequenceId: capture-lead only enrolls when one is sent, and
+      // an unknown sequenceId falls back to `<tenant>-founding` — FahCel's COLD pitch, wrong
+      // for someone who asked us for hardware. A sample-pack request needs a human to ship a
+      // box, which the backend's notifyNewLead already triggers on capture. Add a real
+      // 'fahcel-usb-sample' sequence to lib/sequences.js before enrolling anyone here.
+      var payload = { tenant:'fahcel', email:email, name:name, org:org, role:role, note:note, source:'fahcel-usb-logger-sample', ref:ref };
+      var opts = { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) };
+
+      btn.disabled = true;
+      btn.innerHTML = 'Sending…';
+      try {
+        // Hit the backend directly first — the /api/* rewrite can sit behind Vercel
+        // Deployment Protection ("preview token required"); the absolute URL doesn't.
+        try { await post('https://dr-fry-sequencerr.vercel.app/api/capture-lead', opts); }
+        catch(err){ await post(API_BASE + '/capture-lead', opts); }
+        // Real success — mirror into the local pipeline store so the lead shows on the dashboard.
+        try {
+          var lead = { name:name, org: org || '—', role:role, email:email, ts:Date.now(), status:'new', ref:ref, message:note };
+          var store = JSON.parse(localStorage.getItem('fahcel_leads_v1') || '[]');
+          store.push(lead);
+          localStorage.setItem('fahcel_leads_v1', JSON.stringify(store));
+        } catch(e){}
+        document.getElementById('sentEmail').textContent = email;
+        document.getElementById('formWrap').classList.add('off');
+        document.getElementById('done').classList.add('on');
+      } catch(err){
+        showErr('⚠ We could NOT send your request — '+String(err.message||err)+'. Please try again, or email hello@fahcel.eu.');
+        btn.disabled = false;
+        btn.innerHTML = BTN_LABEL;
+      }
+    });
+  })();
+</script>
+</body>
+</html>

@@ -3,3 +3,9 @@
 uploads
 scraps
 .DS_Store
+# Internal material that must never be served publicly. `vercel --prod` uploads
+# the working tree, untracked files included.
+haccp-pro
+plans
+CLAUDE.md
+.claude
