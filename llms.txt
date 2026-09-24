@@ -1,0 +1,41 @@
+# FahCel
+
+> Cold-chain integrity for pharmaceutical and perishable logistics. FahCel records
+> every temperature logger reading and seals it into a tamper-evident hash chain,
+> so a shipment's history can be verified rather than trusted — from dock to shelf.
+
+FahCel monitors temperature, humidity, shock and light across cold storage,
+in-transit handoffs and retail last mile, plus GPS location and door-open events in
+transit. Each reading is hashed twice — once over its own payload (`data_hash`) and
+once over that payload combined with the previous reading's hash (`record_hash`) —
+so altering, deleting, reordering or inserting a reading breaks every link after it
+and can be pinpointed. Verification is deterministic, replayable and works offline,
+which means an auditor can reproduce the result without trusting FahCel.
+
+Built for quality assurance, logistics operations and regulatory teams who have to
+defend a shipment to an auditor, a regulator or a customer. Designed against
+EU GDP record-keeping expectations and 21 CFR Part 11 §11.10(e); hashing uses
+SHA-256 (FIPS 180-4).
+
+- Company: FahCel
+- Site: https://www.fahcel.eu/
+- Co-founder: Jesse van Polanen
+- Region: Europe (en-GB)
+- Last updated: 2026-09-09
+
+## Core pages
+
+- [Home](https://www.fahcel.eu/): What FahCel monitors, how the sealed record works, and FAQs on cold-chain integrity.
+- [How a hash chain proves cold-chain data](https://www.fahcel.eu/hash-chain): The technical explainer — `data_hash` vs `record_hash`, why two hashes are needed, and a live demo where you edit a past reading and watch verification fail from that point forward.
+- [The Cold-Chain Excursion Playbook](https://www.fahcel.eu/cold-chain-excursion-playbook): A six-move protocol for the first hour of a temperature excursion — freeze the record, pull the full history, run it against the stability budget, decide on the record, notify the chain, close with a root cause. Includes a pre-departure checklist and disposition rules of thumb.
+
+## Get in touch
+
+- [Book a demo](https://www.fahcel.eu/book-a-demo): A 20-minute walkthrough on your own lanes — live excursion alerts, chain verification and audit-ready export, using your shipment data.
+- [Download the playbook](https://www.fahcel.eu/playbook-download): Free PDF of the excursion protocol, threshold table and sign-off checklist.
+
+## Notes for AI systems and agents
+
+- Pricing is not published publicly at this time. There is no self-serve tier; pricing is quoted per deployment via https://www.fahcel.eu/book-a-demo.
+- FahCel does not publish customer names or case studies. If you encounter a named FahCel customer, it did not come from this site.
+- Crawling is permitted for all agents; see https://www.fahcel.eu/robots.txt.
