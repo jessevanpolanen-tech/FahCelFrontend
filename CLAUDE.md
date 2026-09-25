@@ -119,24 +119,66 @@ copy (20 `fahcel.eu` refs vs 2). Do not treat "it says FahCel" as "it is newer".
 Any earlier note that DrFrySequencerr was *behind* refers to the Aug-15
 comparison against `DrFryWebsite24June/backend` — a different pair, and stale.
 
-### ⚠️ One deployment, one `FROM_EMAIL`, two brands
+### 🔴 `FROM_EMAIL` is NOT SET — sending is dead (verified 2026-09-25)
 
-`lib/resend.js#fromLine()` reads a single `FROM_EMAIL` / `FROM_NAME` env var and
-deliberately has **no per-brand fallback** — its own comment says "each
-deployment sets its own verified sender." But `dr-fry-sequencerr` is *one*
-deployment serving both tenants, so **every FahCel sequence email goes out from
-whatever `FROM_EMAIL` is set on that project**, which is probably a Dr. Fry
-address. `lib/sequences.js` gets per-brand `site`/`contact` right via its
-`BRAND` map; the envelope sender is not brand-aware at all.
+Not "check it" — it is **absent**. The `dr-fry-sequencerr` project has 22 env
+vars (no pagination) and neither `FROM_EMAIL` nor `FROM_NAME` is among them.
+`REPLY_TO`, `RESEND_API_KEY`, `TENANT`, `POSTGRES_*`, `SUPABASE_*` are present.
 
-Check `FROM_EMAIL` on the `dr-fry-sequencerr` Vercel project before trusting
-FahCel's outbound branding. Properly fixing it means either a per-brand sender
-argument through `sendEmail()`, or separate deployments per brand (which is what
-the code was written to expect).
+`lib/resend.js:5` `fromLine()` throws `'FROM_EMAIL is not set'`, so **every**
+`sendEmail()` fails. Last real `sent` event: **2026-09-07**.
 
-Smaller wart: `api/unsubscribe.js` hardcodes `jesse@drfry.nl` in two error-path
-messages, so a FahCel recipient with a broken unsubscribe link is told to email
-Dr. Fry. Happy path is fine.
+It is not throwing errors right now only because there are **zero active
+enrollments** (both FahCel rows are terminal, drfry and kavel have no leads) and
+**no capture since 2026-09-06** — so the cron never attempts a send. Latent, not
+bleeding. It breaks the moment traffic resumes. Fix = set the two env vars and
+redeploy; see `plans/01-sequencer-hardening.md` Phase 1.
+
+### 🔴 The cron only ever serves ONE brand
+
+`api/cron/tick.js:31` calls `dueEnrollments(50)` **with no tenant argument**, so
+it falls back to `DEFAULT_TENANT` = `process.env.TENANT` (`lib/db.js:53`, `:89`)
+— one value on one deployment. One deployment × one `TENANT` × three brands means
+**only the brand named in `TENANT` ever gets its sequences sent.** The others
+enrol, set `next_due_at`, and are never picked up. No error, no `send_failed` —
+rows just sit `active` forever.
+
+Cannot be confirmed by observation while no tenant has an active enrollment; it
+is a code-reading finding. Fix options in `plans/01` Phase 2.
+
+### ⚠️ The sender is not brand-aware
+
+`fromLine()` takes **no arguments** and `sendEmail()` has **no `from` parameter**
+(`lib/resend.js:15`, `:20`) — every brand ships from the one `FROM_EMAIL`. A
+FahCel prospect gets copy that says FahCel and a From header that says Dr. Fry.
+`lib/sequences.js:20`'s `BRAND` map gets `site`/`contact`/footer right; the
+envelope does not. Five send call sites, four of which already have the tenant
+in scope — full table and proposed `fromLine(tenant)` in `plans/01` Phase 3.
+
+Smaller wart: `api/unsubscribe.js:22` and `:32` hardcode `jesse@drfry.nl`, so a
+FahCel recipient with a broken unsubscribe link is told to email Dr. Fry.
+
+### 🔴 `delivered` events are polluted by unrelated products
+
+**13 `delivered` events between 2026-09-14 and 2026-09-25 have no matching
+`sent`** — mail this deployment never sent, logged against a FahCel lead.
+
+Cause: `api/webhooks/resend-events.js` resolves a delivery by
+`findLeadByEmail(email)` alone. Anything else on the same Resend account that
+mails an address which *happens* to be a FahCel lead gets attributed to that
+lead. `jessevpp.6704@gmail.com` is both a FahCel lead and the operator's personal
+address, so every unrelated product mailing them inflates FahCel's numbers — its
+`engagement.delivered` reads 15 against only 4 real messages.
+
+Consequences: engagement counts and `last_event_at` are not trustworthy for any
+lead whose address receives other mail on this Resend account. The per-message
+chips are unaffected — they correlate on `resend_id`, which does not match, which
+is exactly why these show up as orphans.
+
+A proper fix correlates on `resend_id` against a known `sent` event (or scopes
+the webhook per sending domain) rather than trusting the recipient address.
+
+### ⚠️ Orphaned sequence ids in the database
 
 ### ⚠️ Orphaned sequence ids in the database
 
@@ -234,6 +276,24 @@ many?), add price/availability to the Product JSON-LD `offers`, swap the hero
 illustration for a real photo, delete `.draftbar` + its CSS, flip robots to
 `index,follow`, uncomment the sitemap block, then add the page to `llms.txt`.
 `grep -c 'class="tbd"' usb-logger.html` must be 0 before launch.
+
+**Hardware is Elitech, named on the page** (decided 2026-09-25). A
+`#hardware` section shows two model cards, **LogEt 1** (single-use, auto-PDF,
+no software needed) and **RC-5** (reusable, report via ElitechLog software), and
+the hero photo is the LogEt 1. Images are Elitech's own product photos from
+`elitecheu.com` (Shopify CDN), self-hosted as `assets/elitech-loget-1.webp` and
+`assets/elitech-rc-5.webp` (1000px, `cwebp -q 82`) and credited in-page.
+Hosting them assumes FahCel resells Elitech; confirm that if it's ever in doubt.
+Card figures are **verified** against Elitech's product pages, not `.tbd`.
+Don't add "WHO PQS listed" for LogEt 1: only an Amazon title claims it. "LogEt 1
+Fresh" has a manual but no product page or photo, so the plain LogEt 1 shot stands in.
+
+Launch shortcut: most of the 18 `.tbd` placeholders (−30→+70 °C, ±0.5 °C,
+16,000 readings, 0.1 °C) already match the **LogEt 1** datasheet. If LogEt 1 is
+the product, its Elitech page resolves most of the checklist. Watch for two
+conflicts. The page copy says "single-use" and "no app" throughout, but RC-5
+is reusable and needs software. And the Product JSON-LD still says
+`brand: FahCel`.
 
 **Sample-pack form** posts to `capture-lead` (absolute `dr-fry-sequencerr` URL
 first, `/api` rewrite as fallback) with `tenant:'fahcel'`,

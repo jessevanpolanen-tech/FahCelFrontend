@@ -17,7 +17,7 @@
     [ ] Flip <meta name="robots"> from noindex,nofollow to index,follow
     [ ] Uncomment the /usb-logger entry in sitemap.xml
     [ ] Add price + availability to the Product JSON-LD "offers" block
-    [ ] Swap the hero image for a real photo of the logger
+    [x] Swap the hero image for a real photo of the logger (Elitech LogEt 1, 2026-09-25)
 
   The page stays noindex until the specs are real. Publishing unverified
   technical claims on a site that sells into GDP / Part 11 buyers is the one
@@ -79,6 +79,7 @@
       "name": "FahCel Single-Use USB Temperature Logger",
       "category": "Temperature data logger",
       "brand": { "@id": "https://www.fahcel.eu/#org" },
+      "image": "https://www.fahcel.eu/assets/elitech-loget-1.webp",
       "description": "A single-use USB temperature data logger that travels with a shipment. The receiver plugs it into any USB port and a temperature report opens with no software, driver or account. Every reading is sealed into a tamper-evident hash chain so the record can be independently verified.",
       "url": "https://www.fahcel.eu/usb-logger"
     },
@@ -210,6 +211,9 @@
   .hero .chip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.18)}
   .hero .chip.c1{top:16px;left:16px}
   .hero .chip.c2{bottom:16px;right:16px;color:var(--green)}
+  /* manufacturer cutouts sit on white — contain, never crop the device */
+  .hero .shot.product{background:var(--white)}
+  .hero .shot.product img{object-fit:contain;padding:3% 6%;box-sizing:border-box}
 
   .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:42px;border-top:1px solid var(--line);padding-top:26px}
   .meta > div{padding-right:22px}
@@ -374,6 +378,19 @@
   footer.site .links a:hover{color:#fff}
 
   /* ---------- Reveal ---------- */
+  /* hardware models */
+  .models{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .model{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+  .model .ph{aspect-ratio:4/3;background:var(--white);border-bottom:1px solid var(--line)}
+  .model .ph img{width:100%;height:100%;object-fit:contain;padding:7%;box-sizing:border-box;display:block}
+  .model .body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .model .wtag{align-self:flex-start;background:var(--paper)}
+  .model h3{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.3px;margin:4px 0 0;color:var(--ink)}
+  .model p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0}
+  .model .facts{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.3px;color:var(--ink-2);line-height:1.7}
+  .models-note{margin:22px 0 0;font-size:13px;color:var(--muted-2)}
+  @media (max-width:980px){.models{grid-template-columns:1fr}}
+
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.08s}
@@ -438,11 +455,11 @@
         </div>
       </div>
 
-      <!-- TODO(pre-launch): replace with a real photograph of the logger. -->
-      <div class="shot">
+      <!-- Elitech's product photo, self-hosted. An in-situ photo on a real pallet would sell harder. -->
+      <div class="shot product">
         <div class="chip c1"><span class="led"></span> recording · <span class="tbd" title="Placeholder — confirm against datasheet">1,440 readings</span></div>
         <div class="chip c2">verifyChain() → valid: true</div>
-        <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1400&q=80" alt="A single-use USB temperature logger packed alongside cartons in a cold-chain shipment" loading="eager" decoding="async" />
+        <img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1 single-use USB temperature logger with its LCD display and built-in USB connector" loading="eager" decoding="async" />
       </div>
     </div>
 
@@ -536,6 +553,43 @@
         </a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== HARDWARE ===================== -->
+<section class="block" id="hardware">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> The hardware</span>
+        <h2 class="reveal d1">Two Elitech loggers. One <em>sealed record</em>.</h2>
+      </div>
+      <p class="desc reveal d2">We ship proven Elitech hardware rather than building our own. Pick by how the logger travels — once, or on repeat.</p>
+    </div>
+
+    <!-- Figures below are from Elitech's own product pages (elitecheu.com, checked 2026-09-25), not placeholders.
+         Don't add "WHO PQS listed" without a PQS catalogue reference: only an Amazon title claims it. -->
+    <div class="models">
+      <article class="model reveal d1">
+        <div class="ph"><img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1 single-use USB temperature logger" loading="lazy" decoding="async" /></div>
+        <div class="body">
+          <span class="wtag">Single-use</span>
+          <h3>Elitech LogEt 1</h3>
+          <p>Rides one shipment and stays with the receiver. Plugging it in opens the PDF report straight off the device — nothing to install on the receiving end.</p>
+          <div class="facts">16,000 readings · −30 °C to +70 °C · ±0.5 °C (−20 to +40 °C) · IP67 · EN 12830</div>
+        </div>
+      </article>
+      <article class="model reveal d2">
+        <div class="ph"><img src="/assets/elitech-rc-5.webp" width="1000" height="1000" alt="Elitech RC-5 reusable USB temperature logger with LCD display and start and stop buttons" loading="lazy" decoding="async" /></div>
+        <div class="body">
+          <span class="wtag">Reusable</span>
+          <h3>Elitech RC-5</h3>
+          <p>For fridges, cabinets and lanes you run on repeat. The report is pulled with Elitech's free ElitechLog software, then the logger restarts for the next load.</p>
+          <div class="facts">32,000 readings · −30 °C to +70 °C · ±0.5 °C (−20 to +40 °C) · IP67 · CR2032 battery</div>
+        </div>
+      </article>
+    </div>
+    <p class="models-note reveal">Both feed the same FahCel hash chain — the logger records, FahCel makes the record verifiable. Product photos: Elitech.</p>
   </div>
 </section>
 
