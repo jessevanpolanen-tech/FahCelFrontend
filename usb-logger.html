@@ -381,14 +381,18 @@
   /* hardware models */
   .models{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
   .model{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-  .model .ph{aspect-ratio:4/3;background:var(--white);border-bottom:1px solid var(--line)}
-  .model .ph img{width:100%;height:100%;object-fit:contain;padding:7%;box-sizing:border-box;display:block}
+  /* Elitech's own spec graphics, shown uncropped — text is baked in, so never crop or pad them */
+  .model .ph{background:var(--white);border-bottom:1px solid var(--line)}
+  .model .ph img{width:100%;height:auto;display:block}
   .model .body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
   .model .wtag{align-self:flex-start;background:var(--paper)}
   .model h3{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.3px;margin:4px 0 0;color:var(--ink)}
   .model p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0}
   .model .facts{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.3px;color:var(--ink-2);line-height:1.7}
   .models-note{margin:22px 0 0;font-size:13px;color:var(--muted-2)}
+  .custom{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--white);border:1px dashed var(--line-2);border-radius:20px;padding:24px 28px}
+  .custom h3{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:-.3px;margin:0 0 6px;color:var(--ink)}
+  .custom p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0;max-width:640px}
   @media (max-width:980px){.models{grid-template-columns:1fr}}
 
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -562,34 +566,63 @@
     <div class="sec-head">
       <div>
         <span class="eyebrow-pill reveal"><span class="dot"></span> The hardware</span>
-        <h2 class="reveal d1">Two Elitech loggers. One <em>sealed record</em>.</h2>
+        <h2 class="reveal d1">Four Elitech loggers. One <em>sealed record</em>.</h2>
       </div>
-      <p class="desc reveal d2">We ship proven Elitech hardware rather than building our own. Pick by how the logger travels — once, or on repeat.</p>
+      <p class="desc reveal d2">We ship proven Elitech hardware rather than building our own. Pick by how the logger travels — once or on repeat — and whether you need the readings live in transit.</p>
     </div>
 
-    <!-- Figures below are from Elitech's own product pages (elitecheu.com, checked 2026-09-25), not placeholders.
-         Don't add "WHO PQS listed" without a PQS catalogue reference: only an Amazon title claims it. -->
+    <!-- LogEt 1 and RC-5 figures: Elitech's product pages (elitecheu.com, checked 2026-09-25).
+         RC-17 and Glog 5 figures: Elitech's own spec graphics, supplied by the operator 2026-10-02.
+         Images are those Elitech graphics, uncropped, as the operator asked. The LogEt 1 graphic is
+         Elitech's WHO PQS certificate (E006/083) — the page text deliberately makes no PQS claim of its own.
+         LogEt 260 (reusable 4G) is wanted here too; add its card once there is an image for it. -->
     <div class="models">
       <article class="model reveal d1">
-        <div class="ph"><img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1 single-use USB temperature logger" loading="lazy" decoding="async" /></div>
+        <div class="ph"><img src="/assets/elitech-loget-1-who.jpg" width="1179" height="1270" alt="Elitech LogEt 1 single-use USB temperature logger in front of its WHO PQS certificate, with FDA, FCC, CE and TÜV SÜD marks" loading="lazy" decoding="async" /></div>
         <div class="body">
-          <span class="wtag">Single-use</span>
+          <span class="wtag">Single-use · USB</span>
           <h3>Elitech LogEt 1</h3>
           <p>Rides one shipment and stays with the receiver. Plugging it in opens the PDF report straight off the device — nothing to install on the receiving end.</p>
           <div class="facts">16,000 readings · −30 °C to +70 °C · ±0.5 °C (−20 to +40 °C) · IP67 · EN 12830</div>
         </div>
       </article>
       <article class="model reveal d2">
-        <div class="ph"><img src="/assets/elitech-rc-5.webp" width="1000" height="1000" alt="Elitech RC-5 reusable USB temperature logger with LCD display and start and stop buttons" loading="lazy" decoding="async" /></div>
+        <div class="ph"><img src="/assets/elitech-rc-17.jpg" width="1179" height="1286" alt="Elitech RC-17 single-use USB temperature logger in its waterproof pouch, with its specification" loading="lazy" decoding="async" /></div>
         <div class="body">
-          <span class="wtag">Reusable</span>
+          <span class="wtag">Single-use · USB</span>
+          <h3>Elitech RC-17</h3>
+          <p>The slimmest option: an 8 mm card that slips into a carton or shipper. Plug it in and the PDF report is there — no software, no cable.</p>
+          <div class="facts">16,000 readings · −30 °C to +70 °C · up to 120 days · IP67</div>
+        </div>
+      </article>
+      <article class="model reveal d1">
+        <div class="ph"><img src="/assets/elitech-rc-5-spec.jpg" width="1179" height="1148" alt="Elitech RC-5 reusable USB temperature logger with LCD display, with its specification" loading="lazy" decoding="async" /></div>
+        <div class="body">
+          <span class="wtag">Reusable · USB</span>
           <h3>Elitech RC-5</h3>
           <p>For fridges, cabinets and lanes you run on repeat. The report is pulled with Elitech's free ElitechLog software, then the logger restarts for the next load.</p>
           <div class="facts">32,000 readings · −30 °C to +70 °C · ±0.5 °C (−20 to +40 °C) · IP67 · CR2032 battery</div>
         </div>
       </article>
+      <article class="model reveal d2">
+        <div class="ph"><img src="/assets/elitech-glog-5.webp" width="1119" height="1119" alt="Elitech Glog 5 single-use 4G temperature logger with external probe, sensing temperature, light, shock and location" loading="lazy" decoding="async" /></div>
+        <div class="body">
+          <span class="wtag">Single-use · 4G live</span>
+          <h3>Elitech Glog 5</h3>
+          <p>When you can't wait for arrival. Readings stream over 4G during transit, with light, shock and location alongside temperature — and a flight mode for air freight.</p>
+          <div class="facts">−30 °C to +70 °C internal · −200 °C to +150 °C probe · 0–52,000 lux · 0–16 g shock · LBS location</div>
+        </div>
+      </article>
     </div>
-    <p class="models-note reveal">Both feed the same FahCel hash chain — the logger records, FahCel makes the record verifiable. Product photos: Elitech.</p>
+    <p class="models-note reveal">All four feed the same FahCel hash chain — the logger records, FahCel makes the record verifiable. Product images: Elitech.</p>
+
+    <div class="custom reveal">
+      <div>
+        <h3>Your own design</h3>
+        <p>USB loggers are available in a personal design — your branding on the logger your receivers plug in. Mention it when you request a sample pack.</p>
+      </div>
+      <a class="btn ghost" href="#order">Ask about a custom design</a>
+    </div>
   </div>
 </section>
 

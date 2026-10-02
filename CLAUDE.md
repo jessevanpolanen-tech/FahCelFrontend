@@ -288,6 +288,17 @@ Card figures are **verified** against Elitech's product pages, not `.tbd`.
 Don't add "WHO PQS listed" for LogEt 1: only an Amazon title claims it. "LogEt 1
 Fresh" has a manual but no product page or photo, so the plain LogEt 1 shot stands in.
 
+**2026-10-02: four cards** — LogEt 1, RC-17, RC-5, Glog 5 — plus a "Your own
+design" callout (USB loggers available in a personal design, per the operator).
+Card images are Elitech's own spec graphics, uploaded by the operator and shown
+**uncropped, as-is by request** (`elitech-loget-1-who.jpg`, `elitech-rc-17.jpg`,
+`elitech-rc-5-spec.jpg` — a screenshot, carousel arrows included —
+`elitech-glog-5.webp`). The LogEt 1 graphic shows Elitech's WHO PQS certificate
+(E006/083); the page text still makes no PQS claim of its own. The hero keeps
+the clean `elitech-loget-1.webp`. **LogEt 260** (reusable 4G) was requested too
+but has no image yet; add its card when one arrives. The `.elitecheu.com`,
+`elitechus.com` and `cdn.shopify.com` hosts are blocked from cloud sessions.
+
 Launch shortcut: most of the 18 `.tbd` placeholders (−30→+70 °C, ±0.5 °C,
 16,000 readings, 0.1 °C) already match the **LogEt 1** datasheet. If LogEt 1 is
 the product, its Elitech page resolves most of the checklist. Watch for two
