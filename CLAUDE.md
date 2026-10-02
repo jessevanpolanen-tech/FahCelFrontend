@@ -266,6 +266,14 @@ site, at the operator's request; the old English copy is in git history. Use inf
 *je*, Dutch number format (`16.000`, `±0,5 °C`), *pdf* lower-case. The form's
 backend `note` stays English because the dashboard is English. Long compounds in the
 comparison table carry `&shy;` because Chromium on Linux does not hyphenate Dutch.
+**Motion** (motion.dev, MIT) drives its animation since 2026-10-02: hero entrance,
+section reveals, card hover lift, hero parallax, scroll progress bar. It is
+**self-hosted** at `assets/vendor/motion-13.5.1.js` (the npm UMD build, global
+`window.Motion`) because there is no build step and the cloud container cannot reach
+jsDelivr. `<html class="mo">` is set in the head only when reduced motion is off; the
+body script drops it and falls back to the plain IntersectionObserver if `Motion` is
+missing, so the page never stays invisible. To upgrade, `npm pack motion@<v>`, copy
+`dist/motion.js`, bump the filename (cache-busting) and the `<script src>`.
 **Deployed 2026-09-24 as a hidden draft**:
 reachable by URL, but `noindex,nofollow`, not linked from any page, not in
 `sitemap.xml` or `llms.txt`, and carrying an amber "Internal draft" banner.

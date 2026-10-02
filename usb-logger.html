@@ -395,6 +395,12 @@
   .custom p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0;max-width:640px}
   @media (max-width:980px){.models{grid-template-columns:1fr}}
 
+  /* Motion (motion.dev, self-hosted) drives entrances when <html class="mo"> is set.
+     These are only its start states; the inline script drops .mo if the library is missing. */
+  .mo .hero [data-enter]{opacity:0}
+  .mo .reveal{transition:none}
+  .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
+
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.08s}
@@ -426,8 +432,12 @@
     .cta-final .wrap{padding:66px 22px}
   }
 </style>
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('mo');
+</script>
 </head>
 <body>
+<div class="scrollbar" aria-hidden="true"></div>
 
 <!-- DRAFT BANNER — delete this element (and the .draftbar CSS) before launch. -->
 <div class="draftbar" id="draftbar">
@@ -452,10 +462,10 @@
   <div class="wrap">
     <div class="grid">
       <div>
-        <span class="eyebrow-pill"><span class="dot"></span> Hardware · USB-logger voor eenmalig gebruik</span>
-        <h1>Elke logger geeft je een pdf. Deze geeft je <em>bewijs</em>.</h1>
-        <p class="lede">De USB-logger voor eenmalig gebruik van FahCel reist mee met de zending. Je ontvanger steekt hem in een willekeurige laptop — geen app, geen account, geen bereik nodig — en het temperatuurrapport staat er al op. Elke meting is vastgelegd in een hashketen, zodat je het rapport kunt controleren in plaats van het op goed vertrouwen aan te nemen.</p>
-        <div class="cta-row">
+        <span class="eyebrow-pill" data-enter><span class="dot"></span> Hardware · USB-logger voor eenmalig gebruik</span>
+        <h1 data-enter>Elke logger geeft je een pdf. Deze geeft je <em>bewijs</em>.</h1>
+        <p class="lede" data-enter>De USB-logger voor eenmalig gebruik van FahCel reist mee met de zending. Je ontvanger steekt hem in een willekeurige laptop — geen app, geen account, geen bereik nodig — en het temperatuurrapport staat er al op. Elke meting is vastgelegd in een hashketen, zodat je het rapport kunt controleren in plaats van het op goed vertrouwen aan te nemen.</p>
+        <div class="cta-row" data-enter>
           <a class="btn primary" href="#order">Vraag een proefpakket aan
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -464,14 +474,14 @@
       </div>
 
       <!-- Elitech's product photo, self-hosted. An in-situ photo on a real pallet would sell harder. -->
-      <div class="shot product">
+      <div class="shot product" data-enter>
         <div class="chip c1"><span class="led"></span> registreert · <span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">1.440 metingen</span></div>
         <div class="chip c2">verifyChain() → valid: true</div>
         <img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, met lcd-scherm en ingebouwde USB-aansluiting" loading="eager" decoding="async" />
       </div>
     </div>
 
-    <div class="meta">
+    <div class="meta" data-enter>
       <div>
         <div class="k">Uitvoering</div>
         <div class="v">USB, eenmalig <small>Eén rit · geen retourlogistiek</small></div>
@@ -856,12 +866,51 @@
   </div>
 </footer>
 
+<script src="/assets/vendor/motion-13.5.1.js"></script>
 <script>
-  // scroll reveal — same observer the other public pages use
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  // Motion (motion.dev, MIT, self-hosted: no build step here and no third-party request).
+  // If it failed to load, drop .mo so the hero shows and fall back to the plain observer
+  // the other public pages use.
+  (function(){
+    var M = window.Motion, root = document.documentElement;
+    if (!M || !root.classList.contains('mo')) {
+      root.classList.remove('mo');
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+      return;
+    }
+
+    var ease = [.2,.7,.2,1];
+    // keep the d1/d2/d3 stagger the markup already declares
+    function delayOf(el){ return el.classList.contains('d3') ? .24 : el.classList.contains('d2') ? .16 : el.classList.contains('d1') ? .08 : 0; }
+
+    M.animate('.hero [data-enter]', { opacity:[0,1], y:[18,0] }, { duration:.8, delay:M.stagger(.09), ease:ease });
+    M.animate('.hero .shot', { scale:[.96,1] }, { duration:1.1, delay:.3, ease:ease });
+    document.querySelectorAll('.hero .chip').forEach(function(c, i){
+      M.animate(c, { y:[0,-6,0] }, { duration:4.5, delay:1.4 + i*1.2, repeat:Infinity, ease:'easeInOut' });
+    });
+    // the logger drifts slower than the page as the hero scrolls away
+    M.scroll(M.animate('.hero .shot img', { y:[0,36] }, { ease:'linear' }),
+      { target:document.querySelector('.hero'), offset:['start start','end start'] });
+
+    M.inView('.reveal', function(el){
+      var d = delayOf(el);
+      M.animate(el, { opacity:[0,1], y:[26,0] }, { duration:.75, delay:d, ease:ease });
+      var img = el.querySelector('.ph img') || (el.classList.contains('media') && el.querySelector('img'));
+      if (img) M.animate(img, { scale:[1.06,1] }, { duration:1.2, delay:d, ease:ease });
+      var dot = el.querySelector('.node .dot');
+      if (dot) M.animate(dot, { scale:[.6,1] }, { type:'spring', stiffness:380, damping:18, delay:d + .1 });
+    }, { amount:.12, margin:'0px 0px -8% 0px' });
+
+    M.hover('.model', function(el){
+      M.animate(el, { y:-6 }, { duration:.25, ease:ease });
+      return function(){ M.animate(el, { y:0 }, { duration:.35, ease:ease }); };
+    });
+
+    M.scroll(M.animate('.scrollbar', { scaleX:[0,1] }, { ease:'linear' }));
+  })();
 
   // decorative flowing cryptochain
   (function(){
