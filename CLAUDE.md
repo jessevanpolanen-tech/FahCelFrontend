@@ -260,7 +260,13 @@ independently and the backend has silently rolled back at least once.
 
 ## USB logger page — launch status
 
-`usb-logger.html` → `/usb-logger`. **Deployed 2026-09-24 as a hidden draft**:
+`usb-logger.html` → `/usb-logger`. **The page is in Dutch** (`lang="nl"`, `nl_NL`,
+`inLanguage: nl-NL`) since 2026-10-02, the only Dutch page on an otherwise English
+site, at the operator's request; the old English copy is in git history. Use informal
+*je*, Dutch number format (`16.000`, `±0,5 °C`), *pdf* lower-case. The form's
+backend `note` stays English because the dashboard is English. Long compounds in the
+comparison table carry `&shy;` because Chromium on Linux does not hyphenate Dutch.
+**Deployed 2026-09-24 as a hidden draft**:
 reachable by URL, but `noindex,nofollow`, not linked from any page, not in
 `sitemap.xml` or `llms.txt`, and carrying an amber "Internal draft" banner.
 
