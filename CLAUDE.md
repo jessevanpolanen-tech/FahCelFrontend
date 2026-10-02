@@ -267,7 +267,12 @@ site, at the operator's request; the old English copy is in git history. Use inf
 backend `note` stays English because the dashboard is English. Long compounds in the
 comparison table carry `&shy;` because Chromium on Linux does not hyphenate Dutch.
 **Motion** (motion.dev, MIT) drives its animation since 2026-10-02: hero entrance,
-section reveals, card hover lift, hero parallax, scroll progress bar. It is
+section reveals, card hover lift, hero parallax, scroll progress bar; plus word-by-word
+headings (`splitWords()` wraps words in `.w`, punctuation in inline `.wp` so it can't
+orphan), a counting/ticking readings chip (follows the `.tbd` number in the markup),
+self-drawing card icons and step connectors (`--draw`), cascading table/spec rows,
+3D tilt + magnetic buttons (fine pointers only), animated FAQ height, and the success
+check. `.hero .chip` needs `z-index:2` — the transformed logger image paints over it otherwise. It is
 **self-hosted** at `assets/vendor/motion-13.5.1.js` (the npm UMD build, global
 `window.Motion`) because there is no build step and the cloud container cannot reach
 jsDelivr. `<html class="mo">` is set in the head only when reduced motion is off; the

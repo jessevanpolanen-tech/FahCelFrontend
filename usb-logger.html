@@ -254,7 +254,7 @@
   .chainlist .node .dot{width:38px;height:38px;border-radius:11px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;z-index:2;box-shadow:0 8px 18px -10px rgba(11,18,32,.3)}
   .chainlist .node .dot svg{width:18px;height:18px;color:var(--green)}
   .chainlist .node .dot b{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo)}
-  .chainlist li:not(:last-child) .node::after{content:"";position:absolute;top:38px;bottom:-26px;left:50%;width:2px;transform:translateX(-50%);
+  .chainlist li:not(:last-child) .node::after{content:"";position:absolute;top:38px;bottom:-26px;left:50%;width:2px;transform:translateX(-50%) scaleY(var(--draw,1));transform-origin:top;
     background:repeating-linear-gradient(180deg,var(--line-2) 0 5px,transparent 5px 10px)}
   .chainlist .txt{padding-top:7px}
   .chainlist .txt b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;margin-bottom:2px}
@@ -399,6 +399,11 @@
      These are only its start states; the inline script drops .mo if the library is missing. */
   .mo .hero [data-enter]{opacity:0}
   .mo .reveal{transition:none}
+  .w{display:inline-block}
+  /* the logger image gets a transform (tilt, drift), which would otherwise paint it over the chips */
+  .hero .chip{z-index:2}
+  .mo .chainlist li{--draw:0}
+  .faq details.closing summary .pm{transform:none;background:transparent;color:var(--indigo);border-color:var(--line-2)}
   .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
 
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -883,31 +888,167 @@
     }
 
     var ease = [.2,.7,.2,1];
+    var spring = { type:'spring', stiffness:220, damping:24 };
+    var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
     // keep the d1/d2/d3 stagger the markup already declares
     function delayOf(el){ return el.classList.contains('d3') ? .24 : el.classList.contains('d2') ? .16 : el.classList.contains('d1') ? .08 : 0; }
 
-    M.animate('.hero [data-enter]', { opacity:[0,1], y:[18,0] }, { duration:.8, delay:M.stagger(.09), ease:ease });
+    // Wrap each word of a heading in .w so words can enter one by one. An <em> stays one unit,
+    // and a bare "." or "," gets a plain inline span (not inline-block) so it can never wrap
+    // onto a line of its own; it only fades.
+    function splitWords(el){
+      (function walk(node){
+        [].slice.call(node.childNodes).forEach(function(n){
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function(t){
+              if (!t) return;
+              if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+              var w = document.createElement('span');
+              w.className = /^[.,;:!?…]+$/.test(t) ? 'wp' : 'w';
+              w.textContent = t; frag.appendChild(w);
+            });
+            node.replaceChild(frag, n);
+          } else if (n.nodeType === 1) {
+            if (n.tagName === 'EM') n.classList.add('w'); else walk(n);
+          }
+        });
+      })(el);
+      var words = el.querySelectorAll('.w, .wp');
+      [].forEach.call(words, function(w){ w.style.opacity = 0; });
+      return words;
+    }
+    function wordsIn(words, startDelay){
+      return M.animate(words, { opacity:[0,1], y:['0.45em',0], filter:['blur(6px)','blur(0px)'] },
+        { duration:.7, delay:M.stagger(.05, { startDelay:startDelay }), ease:ease });
+    }
+
+    // ---- hero
+    var h1 = document.querySelector('.hero h1'), h1Words = splitWords(h1);
+    h1.style.opacity = 1;
+    wordsIn(h1Words, .12);
+    M.animate('.hero [data-enter]:not(h1)', { opacity:[0,1], y:[18,0] }, { duration:.8, delay:M.stagger(.1, { startDelay:.05 }), ease:ease });
     M.animate('.hero .shot', { scale:[.96,1] }, { duration:1.1, delay:.3, ease:ease });
     document.querySelectorAll('.hero .chip').forEach(function(c, i){
       M.animate(c, { y:[0,-6,0] }, { duration:4.5, delay:1.4 + i*1.2, repeat:Infinity, ease:'easeInOut' });
     });
+    M.animate('.hero .chip .led', { boxShadow:['0 0 0 0 rgba(46,107,78,.45)','0 0 0 9px rgba(46,107,78,0)'] }, { duration:1.6, repeat:Infinity, ease:'easeOut' });
+    M.animate('.hero .shot img', { rotate:[-1.2,1.2,-1.2] }, { duration:7, repeat:Infinity, ease:'easeInOut' });
     // the logger drifts slower than the page as the hero scrolls away
     M.scroll(M.animate('.hero .shot img', { y:[0,36] }, { ease:'linear' }),
       { target:document.querySelector('.hero'), offset:['start start','end start'] });
 
+    // "registreert · 1.440 metingen" counts up, then keeps recording. The figure is a
+    // placeholder (.tbd) — the count follows whatever number the markup carries.
+    var count = document.querySelector('.hero .chip.c1 .tbd');
+    if (count) {
+      var target = parseInt(count.textContent.replace(/\D/g,''), 10) || 0;
+      var label = count.textContent.replace(/^[\d.,\s]+/, '');
+      var show = function(v){ count.textContent = Math.round(v).toLocaleString('nl-NL') + ' ' + label; };
+      M.animate(0, target, { duration:1.8, delay:.8, ease:ease, onUpdate:show }).then(function(){
+        setInterval(function(){ if (!document.hidden) show(++target); }, 3000);
+      });
+    }
+
+    // ---- headings outside the hero: word by word once in view
+    var headWords = new Map();
+    document.querySelectorAll('h2').forEach(function(h){ headWords.set(h, splitWords(h)); });
+    document.querySelectorAll('h2:not(.reveal)').forEach(function(h){
+      M.inView(h, function(){ wordsIn(headWords.get(h), 0); }, { amount:.3 });
+    });
+
+    // ---- section reveals
     M.inView('.reveal', function(el){
       var d = delayOf(el);
+      if (headWords.has(el)) {
+        el.style.opacity = 1; el.style.transform = 'none';
+        wordsIn(headWords.get(el), d);
+        return;
+      }
       M.animate(el, { opacity:[0,1], y:[26,0] }, { duration:.75, delay:d, ease:ease });
+
       var img = el.querySelector('.ph img') || (el.classList.contains('media') && el.querySelector('img'));
       if (img) M.animate(img, { scale:[1.06,1] }, { duration:1.2, delay:d, ease:ease });
-      var dot = el.querySelector('.node .dot');
-      if (dot) M.animate(dot, { scale:[.6,1] }, { type:'spring', stiffness:380, damping:18, delay:d + .1 });
-    }, { amount:.12, margin:'0px 0px -8% 0px' });
 
+      // problem-card icons draw themselves
+      var paths = el.querySelectorAll('.wicon svg path');
+      if (paths.length) M.animate(paths, { pathLength:[0,1], opacity:[0,1] }, { duration:1.1, delay:M.stagger(.15, { startDelay:d + .25 }), ease:'easeInOut' });
+
+      // step marker pops, then the dashed connector to the next step draws down
+      var dot = el.querySelector('.node .dot');
+      if (dot) {
+        M.animate(dot, { scale:[.6,1] }, { type:'spring', stiffness:380, damping:18, delay:d + .1 });
+        M.animate(el, { '--draw':[0,1] }, { duration:.7, delay:d + .35, ease:ease });
+      }
+
+      // table and spec rows cascade
+      var rows = el.querySelectorAll('.compare tbody tr, .specs .row');
+      [].forEach.call(rows, function(r, i){
+        M.animate(r.children, { opacity:[0,1], y:[10,0] }, { duration:.5, delay:d + .15 + i*.07, ease:ease });
+      });
+    }, { amount:.12, margin:'0px 0px -8% 0px' });
+    M.animate('.compare .pick .d', { scale:[1,1.7,1], opacity:[1,.5,1] }, { duration:2.2, repeat:Infinity, ease:'easeInOut' });
+
+    // ---- pointer: cards lift and tilt, primary buttons pull toward the cursor
     M.hover('.model', function(el){
       M.animate(el, { y:-6 }, { duration:.25, ease:ease });
       return function(){ M.animate(el, { y:0 }, { duration:.35, ease:ease }); };
     });
+    if (finePointer) {
+      document.querySelectorAll('.model, .hero .shot, .wcard').forEach(function(el){
+        var max = el.classList.contains('shot') ? 6 : 5;
+        M.animate(el, { transformPerspective:1000 }, { duration:0 });
+        el.addEventListener('pointermove', function(e){
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+          M.animate(el, { rotateY:px * max, rotateX:-py * max }, spring);
+        });
+        el.addEventListener('pointerleave', function(){ M.animate(el, { rotateX:0, rotateY:0 }, spring); });
+      });
+      document.querySelectorAll('.btn.primary, nav.top .cta, .submit').forEach(function(el){
+        el.addEventListener('pointermove', function(e){
+          var r = el.getBoundingClientRect();
+          M.animate(el, { x:(e.clientX - r.left - r.width/2) * .22, y:(e.clientY - r.top - r.height/2) * .3 }, { type:'spring', stiffness:300, damping:20 });
+        });
+        el.addEventListener('pointerleave', function(){ M.animate(el, { x:0, y:0 }, { type:'spring', stiffness:300, damping:15 }); });
+      });
+    }
+    M.press('.btn, nav.top .cta, .submit', function(el){
+      M.animate(el, { scale:.95 }, { duration:.12 });
+      return function(){ M.animate(el, { scale:1 }, { type:'spring', stiffness:500, damping:18 }); };
+    });
+
+    // ---- FAQ: height animates open and closed instead of snapping
+    document.querySelectorAll('.faq details').forEach(function(d){
+      var ans = d.querySelector('.ans'), clip = document.createElement('div'), busy = false;
+      clip.style.overflow = 'hidden';
+      ans.parentNode.insertBefore(clip, ans); clip.appendChild(ans);
+      d.querySelector('summary').addEventListener('click', function(e){
+        e.preventDefault();
+        if (busy) return;
+        busy = true;
+        if (!d.open) {
+          d.open = true;
+          M.animate(ans, { opacity:[0,1], y:[-8,0] }, { duration:.35, delay:.05, ease:ease });
+          M.animate(clip, { height:[0, clip.scrollHeight] }, { duration:.42, ease:ease }).then(function(){ clip.style.height = 'auto'; busy = false; });
+        } else {
+          d.classList.add('closing');
+          M.animate(ans, { opacity:0 }, { duration:.2 });
+          M.animate(clip, { height:[clip.offsetHeight, 0] }, { duration:.32, ease:ease }).then(function(){
+            d.open = false; d.classList.remove('closing'); clip.style.height = ''; busy = false;
+          });
+        }
+      });
+    });
+
+    // ---- sample-pack success: the check pops and draws
+    var done = document.getElementById('done');
+    if (done) new MutationObserver(function(){
+      if (!done.classList.contains('on')) return;
+      M.animate(done.querySelector('.check'), { scale:[0,1], rotate:[-90,0] }, { type:'spring', stiffness:260, damping:14 });
+      M.animate(done.querySelectorAll('.check path'), { pathLength:[0,1] }, { duration:.5, delay:.25, ease:'easeOut' });
+      M.animate(done.querySelectorAll(':scope > :not(.check)'), { opacity:[0,1], y:[12,0] }, { duration:.5, delay:M.stagger(.08, { startDelay:.2 }), ease:ease });
+    }).observe(done, { attributes:true, attributeFilter:['class'] });
 
     M.scroll(M.animate('.scrollbar', { scaleX:[0,1] }, { ease:'linear' }));
   })();
