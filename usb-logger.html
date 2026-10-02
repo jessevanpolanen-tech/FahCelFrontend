@@ -89,8 +89,8 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Heb ik het FahCel-platform nodig om de USB-logger te gebruiken?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nee. De logger maakt zelf een volledig temperatuurrapport, en de verificatie van de keten draait in een browser zonder account. Het platform wordt pas relevant als je live meldingen tijdens transport wilt en al je routes op één plek, niet om één logger uit te lezen." }
+          "name": "Hebben we naast de logger nog iets anders nodig?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nee. De logger maakt zelf het temperatuurrapport, en de verificatie van de keten draait gewoon in een browser, zonder account of installatie. Alleen voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software." }
         },
         {
           "@type": "Question",
@@ -109,8 +109,13 @@
         },
         {
           "@type": "Question",
-          "name": "Geeft een USB-logger tijdens transport een melding?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nee, en dat is de eerlijke afweging. Een USB-logger wordt bij aankomst uitgelezen: hij bewijst wat er is gebeurd, maar waarschuwt je niet terwijl het gebeurt. Moet er bij een temperatuurexcursie direct iemand worden gealarmeerd, dan is dat werk voor de draadloze loggers op het FahCel-platform." }
+          "name": "Welke logger past bij onze zendingen?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je." }
+        },
+        {
+          "@type": "Question",
+          "name": "Kunnen we de loggers in onze eigen huisstijl krijgen?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ja. USB-loggers zijn ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket, dan bespreken we de mogelijkheden." }
         },
         {
           "@type": "Question",
@@ -202,6 +207,9 @@
   .btn.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
   .btn svg{width:15px;height:15px}
 
+  .ticks{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin:22px 0 0;padding:0;font-size:13.5px;font-weight:500;color:var(--ink-2)}
+  .ticks li{display:flex;align-items:center;gap:7px}
+  .ticks li::before{content:"";width:16px;height:16px;flex:0 0 auto;border-radius:99px;background:#e9f0ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e6b4e' stroke-width='3.2'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat}
   .hero .shot{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 70px -40px rgba(11,18,32,.4);background:var(--paper-2)}
   .hero .shot img{width:100%;height:100%;object-fit:cover;display:block}
   .hero .chip{
@@ -430,7 +438,7 @@
   }
   @media (max-width:560px){
     .frow{grid-template-columns:1fr}
-    /* Dutch compounds ("Draadloos FahCel-platform", "hashketen") are wider than a phone column */
+    /* Dutch compounds ("standaardbehuizing", "hashketen") are wider than a phone column */
     .compare{table-layout:fixed}
     .compare th,.compare td{padding:12px 10px;hyphens:manual;overflow-wrap:break-word}
     .compare thead th{letter-spacing:.4px}
@@ -476,6 +484,12 @@
           </a>
           <a class="btn ghost" href="/hash-chain">Zo werkt de verificatie</a>
         </div>
+        <ul class="ticks" data-enter>
+          <li>Geen software</li>
+          <li>Geen account</li>
+          <li>Werkt op elke laptop</li>
+          <li>Ook in je eigen ontwerp</li>
+        </ul>
       </div>
 
       <!-- Elitech's product photo, self-hosted. An in-situ photo on a real pallet would sell harder. -->
@@ -645,15 +659,49 @@
   </div>
 </section>
 
-<!-- ===================== WHERE IT FITS ===================== -->
+<!-- ===================== USE CASES ===================== -->
+<section class="block band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> Gemaakt voor</span>
+        <h2 class="reveal d1">Voor elke zending die <em>koel</em> moet blijven.</h2>
+      </div>
+      <p class="desc reveal d2">Of je nu geneesmiddelen, verse producten of andermans lading vervoert: de logger reist mee en het bewijs komt mee aan.</p>
+    </div>
+
+    <div class="cards3">
+      <article class="wcard a reveal">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 20.5l10-10a4.95 4.95 0 00-7-7l-10 10a4.95 4.95 0 007 7z"/><path d="M8.5 8.5l7 7"/></svg></div>
+        <div class="wtags"><span class="wtag">2–8 °C</span><span class="wtag">Vaccins</span></div>
+        <h3>Farma &amp; apotheek</h3>
+        <p>Geneesmiddelen en vaccins die binnen hun bereik moeten blijven. Elke zending krijgt een rapport dat je klant zelf kan controleren.</p>
+      </article>
+      <article class="wcard b reveal d1">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+        <div class="wtags"><span class="wtag">Gekoeld</span><span class="wtag">Diepvries</span></div>
+        <h3>Voeding &amp; vers</h3>
+        <p>Gekoelde en diepgevroren producten, van producent tot winkel. Het temperatuurbewijs zit gewoon in de doos.</p>
+      </article>
+      <article class="wcard c reveal d2">
+        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><path d="M5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path d="M18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div>
+        <div class="wtags"><span class="wtag">Vervoerders</span><span class="wtag">3PL</span></div>
+        <h3>Logistiek &amp; expeditie</h3>
+        <p>Bied je klanten meer dan een pdf: aantoonbaar correct vervoer, per zending, zonder extra systemen bij de ontvanger.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE DIFFERENCE ===================== -->
 <section class="block">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Waar hij thuishoort</span>
-        <h2 class="reveal d1">Geen vervanging voor draadloos. Een <em>andere taak</em>.</h2>
+        <span class="eyebrow-pill reveal"><span class="dot"></span> Het verschil</span>
+        <h2 class="reveal d1">Elke logger meet. Alleen deze <em>bewijst</em>.</h2>
       </div>
-      <p class="desc reveal d2">Een USB-logger bewijst wat er is gebeurd. Draadloos laat je het zien terwijl het gebeurt. De meeste teams gebruiken beide — dit is de eerlijke verdeling.</p>
+      <p class="desc reveal d2">Op papier lijken USB-loggers op elkaar. Het verschil merk je zodra een klant, auditor of verzekeraar om bewijs vraagt.</p>
     </div>
 
     <div class="reveal d1">
@@ -661,40 +709,40 @@
         <thead>
           <tr>
             <th scope="col">&nbsp;</th>
-            <th scope="col">USB-logger voor eenmalig gebruik</th>
-            <th scope="col">Draadloos FahCel-platform</th>
+            <th scope="col">Gewone USB-logger</th>
+            <th scope="col">FahCel USB-logger</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Het meest geschikt voor</th>
-            <td class="on">Eenmalige routes, externe vervoerders en zendingen die je niet van begin tot eind zelf in de hand hebt.</td>
-            <td class="on">Routes en locaties die je continu bedient en voortdurend in de gaten wilt houden.</td>
+            <th scope="row">Het rapport</th>
+            <td>Een pdf die iedereen kan openen, aanpassen en opnieuw opslaan.</td>
+            <td class="on">Een pdf waarvan elke meting is verzegeld in een hashketen.</td>
           </tr>
           <tr>
-            <th scope="row">Installatie</th>
-            <td class="on">Geen. Lostrekken en verzenden.</td>
-            <td>Eenmalig gateways plaatsen en het account inrichten.</td>
+            <th scope="row">Bij een geschil</th>
+            <td>Jouw woord tegen dat van de ander.</td>
+            <td class="on">Je klant controleert het rapport zelf, in een browser.</td>
           </tr>
           <tr>
-            <th scope="row">Meldingen tijdens transport</th>
-            <td>Geen — de registratie wordt bij aankomst uitgelezen.</td>
-            <td class="on">Live meldingen bij grens&shy;over&shy;schrijdingen en geopende deuren, direct op de telefoon van het verant&shy;woordelijke team.</td>
-          </tr>
-          <tr>
-            <th scope="row">Wat de ontvanger nodig heeft</th>
-            <td class="on">Een USB-poort.</td>
-            <td class="on">Niets — jij houdt het al centraal in de gaten.</td>
+            <th scope="row">Bij een audit</th>
+            <td>Je levert een bestand aan en hoopt dat het volstaat.</td>
+            <td class="on">Je levert bewijs dat de auditor zelf kan nagaan.</td>
           </tr>
           <tr>
             <th scope="row">De registratie</th>
-            <td class="on"><span class="pick"><span class="d"></span> Verzegelde hashketen</span></td>
+            <td>Losse metingen.</td>
             <td class="on"><span class="pick"><span class="d"></span> Verzegelde hashketen</span></td>
           </tr>
           <tr>
+            <th scope="row">Uitstraling</th>
+            <td>De standaardbehuizing van de fabrikant.</td>
+            <td class="on">Ook verkrijgbaar in jouw eigen huisstijl.</td>
+          </tr>
+          <tr>
             <th scope="row">Na de rit</th>
-            <td>Recyclen. <span class="tbd" title="Tijdelijke waarde — voorwaarden voor afvoer en terugname bevestigen">Terugname&shy;regeling beschikbaar</span>.</td>
-            <td>De logger draait gewoon door bij de volgende lading.</td>
+            <td>Weggooien.</td>
+            <td class="on">Recyclen. <span class="tbd" title="Tijdelijke waarde — voorwaarden voor afvoer en terugname bevestigen">Terugname&shy;regeling beschikbaar</span>.</td>
           </tr>
         </tbody>
       </table>
@@ -816,8 +864,8 @@
     </div>
     <div class="list reveal d1">
       <details>
-        <summary>Heb ik het FahCel-platform nodig om de USB-logger te gebruiken?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Nee. De logger maakt zelf een volledig temperatuurrapport, en de verificatie van de keten draait in een browser zonder account. Het platform wordt pas relevant als je live meldingen tijdens transport wilt en al je routes op één plek — niet om één logger uit te lezen.</div>
+        <summary>Hebben we naast de logger nog iets anders nodig?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Nee. De logger maakt zelf het temperatuurrapport, en de verificatie van de keten draait gewoon in een browser, zonder account of installatie. Alleen voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software.</div>
       </details>
       <details>
         <summary>Wat moet de ontvanger van de zending installeren?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -832,8 +880,12 @@
         <div class="ans">Daar is hij juist voor gemaakt. Hij reist met de goederen mee via externe vervoerders en expediteurs, en niemand in de keten heeft een account, een gateway of mobiel bereik nodig. De registratie volgt het product, niet het gebouw.</div>
       </details>
       <details>
-        <summary>Geeft een USB-logger tijdens transport een melding?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Nee, en dat is de eerlijke afweging. Een USB-logger wordt bij aankomst uitgelezen: hij bewijst wat er is gebeurd, maar waarschuwt je niet terwijl het gebeurt. Moet er bij een temperatuurexcursie direct iemand worden gealarmeerd, dan is dat werk voor de draadloze loggers op het FahCel-platform — en het <a href="/cold-chain-excursion-playbook">draaiboek voor temperatuurexcursies</a> (Engelstalig) beschrijft wat je in dat eerste uur doet.</div>
+        <summary>Welke logger past bij onze zendingen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je.</div>
+      </details>
+      <details>
+        <summary>Kunnen we de loggers in onze eigen huisstijl krijgen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Ja. USB-loggers zijn ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket, dan bespreken we de mogelijkheden.</div>
       </details>
       <details>
         <summary>Wat gebeurt er als niemand de logger uitleest?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>

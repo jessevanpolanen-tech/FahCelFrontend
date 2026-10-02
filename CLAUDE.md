@@ -266,6 +266,12 @@ site, at the operator's request; the old English copy is in git history. Use inf
 *je*, Dutch number format (`16.000`, `±0,5 °C`), *pdf* lower-case. The form's
 backend `note` stays English because the dashboard is English. Long compounds in the
 comparison table carry `&shy;` because Chromium on Linux does not hyphenate Dutch.
+**It is a pure sales page for the USB loggers** (operator's call, 2026-10-02). Never
+compare USB unfavourably with real-time/wireless monitoring or upsell the FahCel
+platform here: no "honest trade-off", no "USB can't alert". The comparison table
+sells against *plain* USB loggers instead. The Glog 5's live 4G stays as a selling
+point of that model, not as a USB weakness. Selling claims must still be true: e.g.
+the RC-5 needs ElitechLog software, so don't write "no software" about it.
 **Motion** (motion.dev, MIT) drives its animation since 2026-10-02: hero entrance,
 section reveals, card hover lift, hero parallax, scroll progress bar; plus word-by-word
 headings (`splitWords()` wraps words in `.w`, punctuation in inline `.wp` so it can't
