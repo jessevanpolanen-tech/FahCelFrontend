@@ -278,7 +278,12 @@ headings (`splitWords()` wraps words in `.w`, punctuation in inline `.wp` so it 
 orphan), a counting/ticking readings chip (follows the `.tbd` number in the markup),
 self-drawing card icons and step connectors (`--draw`), cascading table/spec rows,
 3D tilt + magnetic buttons (fine pointers only), animated FAQ height, and the success
-check. `.hero .chip` needs `z-index:2` — the transformed logger image paints over it otherwise. It is
+check. The final CTA is a CSS-3D scene (no library): `.floor` is a black-line grid tilted back
+(`rotateX(64deg)`, `perspective:640px`), the `record_hash` chain lies on it as a road, and a
+reefer van built from `box()` faces (in the scene IIFE) drives over it on a rAF loop that adds
+`.hit` to each block it covers. Never put mask/opacity/overflow on `.floor`, `.van` or `.bx`;
+they flatten `preserve-3d`. The loop pauses off-screen; reduced motion parks the van mid-road.
+`.hero .chip` needs `z-index:2` — the transformed logger image paints over it otherwise. It is
 **self-hosted** at `assets/vendor/motion-13.5.1.js` (the npm UMD build, global
 `window.Motion`) because there is no build step and the cloud container cannot reach
 jsDelivr. `<html class="mo">` is set in the head only when reduced motion is off; the
