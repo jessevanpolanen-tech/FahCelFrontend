@@ -363,6 +363,20 @@
   .faq details.closing summary .pm{transform:none;background:transparent;color:var(--indigo);border-color:var(--line-2)}
   .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
 
+  /* sealed-at-ingestion stage: canvas scene ported from the Claude Design hero component */
+  /* same gradient the canvas paints, so there is no seam beside the 1280px stage */
+  .sealed{background:linear-gradient(180deg,#22305f,#18234a);padding:0}
+  .sealed .stage{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;overflow:hidden}
+  .sealed canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .sealed .eb{position:absolute;left:5.4%;top:8.6%;display:flex;align-items:center;gap:11px;margin:0}
+  .sealed .eb .dot{width:7px;height:7px;border-radius:50%;background:#F2B84B;box-shadow:0 0 0 4px rgba(242,184,75,.18)}
+  .sealed .eb span:last-child{font-weight:600;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);opacity:.72}
+  .sealed .tl{position:absolute;left:5.4%;bottom:9%;max-width:60%;margin:0;font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(21px,2.9vw,38px);line-height:1.12;color:var(--paper);letter-spacing:-.01em;text-wrap:pretty}
+  .sealed .tl span{opacity:.62}
+  /* the canvas switches to a square 680 frame: two linked cards, text still legible */
+  @media (max-width:700px){.sealed .stage{aspect-ratio:1/1}.sealed .tl{max-width:88%}}
+
   @media (max-width:880px){
     nav.top ul{display:none}
     .cards3{grid-template-columns:1fr}
@@ -479,6 +493,15 @@
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- sealed at ingestion: live hash-chain scene -->
+  <section class="sealed" aria-label="Readings sealed at ingestion">
+    <div class="stage">
+      <canvas id="sealCanvas" role="img" aria-label="A sensor emits temperature readings; each becomes a record whose SHA-256 hash is sealed on arrival, verified, and linked to the record before it."></canvas>
+      <p class="eb reveal"><span class="dot"></span><span>Hash-chained integrity</span></p>
+      <p class="tl reveal d2">Sealed at ingestion.<br><span>Not after the fact.</span></p>
     </div>
   </section>
 
@@ -790,6 +813,245 @@
     });
 
     M.scroll(M.animate('.scrollbar', { scaleX:[0,1] }, { ease:'linear' }));
+  })();
+
+  // Sealed-at-ingestion scene, ported from a Claude Design component (the bundle carried a
+  // 69KB design runtime plus React to host one canvas). A reading leaves the sensor, its
+  // SHA-256 types out under an amber seal, it turns green once verified, and links back to
+  // the record before it. Pure canvas; no library. Paused off-screen and in hidden tabs.
+  (function(){
+    var canvas = document.getElementById('sealCanvas');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var narrow = matchMedia('(max-width:700px)');
+
+    var NAVY = '#1E2A5A', AMBER = '#F2B84B', GREEN = '#2E6B4E', CREAM = '#F6F7F4', NAVY_D = '#16203f';
+    var SANS = 'Inter, system-ui, sans-serif', MONO = "'JetBrains Mono', ui-monospace, monospace";
+    function clamp(x, a, b){ a = a === undefined ? 0 : a; b = b === undefined ? 1 : b; return Math.max(a, Math.min(b, x)); }
+    function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
+    function easeInOut(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
+    function h2r(h){ h = h.replace('#',''); return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)]; }
+    function lerp(a, b, t){ return a + (b - a) * t; }
+    function mix(c1, c2, t){ var a = h2r(c1), b = h2r(c2); return 'rgb(' + Math.round(lerp(a[0],b[0],t)) + ',' + Math.round(lerp(a[1],b[1],t)) + ',' + Math.round(lerp(a[2],b[2],t)) + ')'; }
+    function rgba(hex, a){ var c = h2r(hex); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+    function spacing(v){ if ('letterSpacing' in ctx) ctx.letterSpacing = v; }
+
+    var readings = [
+      { temp:'4.2', ts:'08:14:02', hash:'a3f9…e21b' },
+      { temp:'5.1', ts:'08:14:16', hash:'7c1d…9f04' },
+      { temp:'3.8', ts:'08:14:30', hash:'e58a…b3c7' },
+      { temp:'4.6', ts:'08:14:44', hash:'1b6e…44da' },
+      { temp:'4.0', ts:'08:14:58', hash:'9d20…af85' }
+    ];
+    var L = readings.length, beat = 1.4, pitch = 255, entryX = 232, cardW = 192, cardH = 118, headH = 78;
+    var footTop = -cardH/2 + headH;
+    var W, H, cy, linkY;
+
+    function size(){
+      W = narrow.matches ? 680 : 1280;
+      H = narrow.matches ? 680 : 720;
+      cy = narrow.matches ? 300 : 304;
+      linkY = cy + footTop + (cardH - headH) / 2;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function roundRect(x, y, w, h, r){
+      if (typeof r === 'number') r = { tl:r, tr:r, br:r, bl:r };
+      ctx.beginPath();
+      ctx.moveTo(x + r.tl, y);
+      ctx.lineTo(x + w - r.tr, y); ctx.arcTo(x + w, y, x + w, y + r.tr, r.tr);
+      ctx.lineTo(x + w, y + h - r.br); ctx.arcTo(x + w, y + h, x + w - r.br, y + h, r.br);
+      ctx.lineTo(x + r.bl, y + h); ctx.arcTo(x, y + h, x, y + h - r.bl, r.bl);
+      ctx.lineTo(x, y + r.tl); ctx.arcTo(x, y, x + r.tl, y, r.tl);
+      ctx.closePath();
+    }
+    function drawLock(x, y, s, color){
+      ctx.save();
+      ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(x, y - s*.28, s*.34, Math.PI, 0); ctx.stroke();
+      roundRect(x - s*.5, y - s*.06, s, s*.62, 2.2); ctx.fill();
+      ctx.restore();
+    }
+    function drawCheck(x, y, s, color){
+      ctx.save();
+      ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(x - s*.42, y + s*.02); ctx.lineTo(x - s*.08, y + s*.34); ctx.lineTo(x + s*.46, y - s*.34); ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawSensor(f){
+      var emitP = f - Math.floor(f), sx = 108, sy = cy, mouthX = sx + 34, mouthY = sy - 6, i;
+      for (i = 0; i < 2; i++) {
+        var p = clamp(emitP + i*.5) % 1;
+        ctx.beginPath(); ctx.arc(mouthX, mouthY, 6 + p*40, 0, Math.PI*2);
+        ctx.strokeStyle = rgba(AMBER, (1 - p) * .5); ctx.lineWidth = 2; ctx.stroke();
+      }
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 10;
+      roundRect(sx - 34, sy - 46, 68, 92, 14); ctx.fillStyle = CREAM; ctx.fill();
+      ctx.restore();
+      roundRect(sx - 22, sy - 34, 44, 30, 5); ctx.fillStyle = NAVY; ctx.fill();
+      // mini waveform on the logger's screen
+      ctx.strokeStyle = rgba(AMBER, .9); ctx.lineWidth = 1.6; ctx.lineCap = 'round';
+      ctx.beginPath();
+      var bx = sx - 17, bw = 34;
+      for (i = 0; i <= 20; i++) {
+        var t = i / 20, yy = sy - 19 + Math.sin((t*6 + f*4) * Math.PI) * 5.5 * (.5 + .5*Math.sin(t*Math.PI));
+        i === 0 ? ctx.moveTo(bx + bw*t, yy) : ctx.lineTo(bx + bw*t, yy);
+      }
+      ctx.stroke();
+      // LED blinks on each new reading
+      var ledOn = clamp(1 - emitP / .25);
+      ctx.beginPath(); ctx.arc(sx, sy + 20, 5, 0, Math.PI*2); ctx.fillStyle = mix('#3a4a7a', AMBER, ledOn); ctx.fill();
+      if (ledOn > .05) { ctx.beginPath(); ctx.arc(sx, sy + 20, 5, 0, Math.PI*2); ctx.strokeStyle = rgba(AMBER, ledOn*.5); ctx.lineWidth = 4; ctx.stroke(); }
+      ctx.font = '600 10px ' + SANS; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+      spacing('2px'); ctx.fillStyle = rgba(CREAM, .55); ctx.fillText('SENSOR', sx, sy + 60); spacing('0px');
+    }
+
+    // the link belongs to the new (left) block and points at the older block it references
+    function drawLink(xNew, xOld, lifeNew, greenNew){
+      var x0 = xNew + cardW/2, x1 = xOld - cardW/2;
+      var prog = easeInOut(clamp((lifeNew - .42) / .42));
+      if (prog <= 0) return;
+      var xe = x0 + (x1 - x0) * prog, col = mix(AMBER, GREEN, easeInOut(greenNew));
+      ctx.save();
+      ctx.strokeStyle = rgba(col, .9); ctx.lineWidth = 2; ctx.setLineDash([5, 4]);
+      ctx.beginPath(); ctx.moveTo(x0, linkY); ctx.lineTo(xe, linkY); ctx.stroke();
+      ctx.setLineDash([]);
+      if (prog > .15) {
+        var nodeX = x0 + 10;
+        ctx.strokeStyle = col; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.ellipse(nodeX, linkY, 6, 3.4, 0, 0, Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(nodeX + 8, linkY, 6, 3.4, 0, 0, Math.PI*2); ctx.stroke();
+      }
+      if (prog > .92) {
+        ctx.fillStyle = col;
+        ctx.beginPath(); ctx.moveTo(x1, linkY); ctx.lineTo(x1 - 7, linkY - 4.5); ctx.lineTo(x1 - 7, linkY + 4.5); ctx.closePath(); ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function drawCard(x, life, data){
+      var green = clamp((life - .95) / .6), gE = easeInOut(green), accent = mix(AMBER, GREEN, gE);
+      var scale = lerp(.74, 1, easeOut(clamp(life / .18))), sealP = clamp(life / .4);
+      ctx.save();
+      ctx.globalAlpha = clamp(life / .14);
+      ctx.translate(x, cy); ctx.scale(scale, scale);
+
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,.32)'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12;
+      roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.fillStyle = CREAM; ctx.fill();
+      ctx.restore();
+      roundRect(-cardW/2, footTop, cardW, cardH/2 - footTop, { tl:0, tr:0, br:15, bl:15 }); ctx.fillStyle = NAVY_D; ctx.fill();
+
+      // amber glow while the record is being sealed
+      if (life < .5) {
+        ctx.save();
+        ctx.shadowColor = rgba(AMBER, .9 * (1 - sealP)); ctx.shadowBlur = 22 * (1 - sealP) + 4;
+        roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.strokeStyle = AMBER; ctx.lineWidth = 2.4; ctx.stroke();
+        ctx.restore();
+      }
+      roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.stroke();
+
+      var padL = -cardW/2 + 18;
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      ctx.font = '500 11px ' + SANS; ctx.fillStyle = rgba(NAVY, .5);
+      spacing('.5px'); ctx.fillText(data.ts, padL, -cardH/2 + 24); spacing('0px');
+
+      ctx.font = '600 33px ' + MONO; ctx.fillStyle = NAVY;
+      ctx.fillText(data.temp, padL, -cardH/2 + 62);
+      var tw = ctx.measureText(data.temp).width;
+      ctx.font = '500 15px ' + MONO; ctx.fillStyle = rgba(NAVY, .7);
+      ctx.fillText('°C', padL + tw + 5, -cardH/2 + 62);
+
+      // seal (lock + pulse) until verified, then a check
+      var icx = cardW/2 - 24, icy = -cardH/2 + 30;
+      if (green < .6) {
+        if (sealP < 1) {
+          ctx.beginPath(); ctx.arc(icx, icy, 12 + sealP*20, 0, Math.PI*2);
+          ctx.strokeStyle = rgba(AMBER, (1 - sealP) * .8); ctx.lineWidth = 2; ctx.stroke();
+        }
+        var ps = 1 + (1 - easeOut(sealP)) * .5;
+        ctx.save(); ctx.translate(icx, icy); ctx.scale(ps, ps); drawLock(0, 0, 15, AMBER); ctx.restore();
+      } else {
+        drawCheck(icx, icy, 16, accent);
+      }
+
+      ctx.font = '600 8.5px ' + SANS; ctx.textAlign = 'right';
+      spacing('1px'); ctx.fillStyle = rgba(accent, .9); ctx.fillText('SHA-256', cardW/2 - 16, -cardH/2 + 48); spacing('0px');
+      ctx.textAlign = 'left';
+
+      // the hash types out, with a caret while it does
+      var typeP = clamp((life - .08) / .5);
+      var shown = data.hash.substring(0, Math.ceil(typeP * data.hash.length));
+      var footCy = footTop + (cardH/2 - footTop) / 2;
+      ctx.beginPath(); ctx.arc(padL + 3, footCy - 2, 3.2, 0, Math.PI*2); ctx.fillStyle = accent; ctx.fill();
+      ctx.font = '500 13px ' + MONO; ctx.fillStyle = mix(AMBER, CREAM, gE*.55 + .15); ctx.textBaseline = 'middle';
+      ctx.fillText(shown, padL + 14, footCy - 1);
+      if (typeP < 1 && Math.floor(life * 6) % 2 === 0) {
+        ctx.fillStyle = AMBER; ctx.fillRect(padL + 15 + ctx.measureText(shown).width, footCy - 8, 6, 14);
+      }
+      ctx.restore();
+    }
+
+    function drawBg(){
+      ctx.clearRect(0, 0, W, H);
+      var g = ctx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, '#22305f'); g.addColorStop(1, '#18234a');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      var rg = ctx.createRadialGradient(W*.42, cy, 60, W*.42, cy, 720);
+      rg.addColorStop(0, 'rgba(120,140,210,.14)'); rg.addColorStop(1, 'rgba(120,140,210,0)');
+      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(246,247,244,.045)';
+      for (var gx = 40; gx < W; gx += 48) for (var gy = 40; gy < H; gy += 48) { ctx.beginPath(); ctx.arc(gx, gy, 1, 0, Math.PI*2); ctx.fill(); }
+      ctx.strokeStyle = 'rgba(246,247,244,.08)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, linkY); ctx.lineTo(W, linkY); ctx.stroke();
+    }
+
+    function render(f){
+      drawBg();
+      var k0 = Math.floor(f), k;
+      // beam from the sensor to the newest record
+      ctx.strokeStyle = rgba(AMBER, .28 + .3 * (1 - (f - k0))); ctx.lineWidth = 2; ctx.setLineDash([4, 5]);
+      ctx.beginPath(); ctx.moveTo(142, cy - 6); ctx.lineTo(entryX + (f - k0) * pitch - cardW/2, linkY); ctx.stroke();
+      ctx.setLineDash([]);
+      for (k = k0 - 6; k <= k0; k++) {
+        var lifeNew = f - k, xNew = entryX + lifeNew * pitch, xOld = entryX + (f - (k - 1)) * pitch;
+        if (xNew > W + cardW || xOld < -cardW) continue;
+        drawLink(xNew, xOld, lifeNew, clamp((lifeNew - .95) / .6));
+      }
+      drawSensor(f);
+      for (k = k0 - 6; k <= k0; k++) {
+        var life = f - k, x = entryX + life * pitch;
+        if (x > W + cardW || x < -cardW) continue;
+        drawCard(x, life, readings[((k % L) + L) % L]);
+      }
+    }
+
+    // time only advances while the scene is visible, so it resumes where it left off
+    var f = 3.6, last = null, raf = 0, visible = false;
+    function tick(now){
+      if (last !== null) f += Math.min(now - last, 100) / 1000 / beat;
+      last = now;
+      render(f);
+      raf = requestAnimationFrame(tick);
+    }
+    function play(){ if (!raf && !reduce && visible && !document.hidden) { last = null; raf = requestAnimationFrame(tick); } }
+    function stop(){ if (raf) cancelAnimationFrame(raf); raf = 0; }
+
+    size(); render(f);
+    // redraw once the web fonts arrive, or the still frame keeps the fallback face
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (!raf) render(f); });
+    var onNarrow = function(){ size(); render(f); };
+    if (narrow.addEventListener) narrow.addEventListener('change', onNarrow); else narrow.addListener(onNarrow);
+    new IntersectionObserver(function(entries){
+      visible = entries[0].isIntersecting;
+      visible ? play() : stop();
+    }).observe(canvas);
+    document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : play(); });
   })();
 
   // decorative flowing cryptochain
