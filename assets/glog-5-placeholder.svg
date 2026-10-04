@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" role="img" aria-label="Placeholder for the Elitech Glog 5 cutout">
+  <!-- Stand-in until the operator supplies a transparent Glog 5 cutout. Proportions follow
+       Elitech's product graphic: hanger tab, grey shell, white face, LCD, two orange keys, probe cable. -->
+  <defs>
+    <linearGradient id="shell" x1="0" x2="1">
+      <stop offset="0" stop-color="#c9ccd1"/><stop offset=".5" stop-color="#e4e6e9"/><stop offset="1" stop-color="#b9bdc3"/>
+    </linearGradient>
+  </defs>
+  <path d="M120 470 C 40 470, 30 380, 70 330 C 100 290, 40 230, 50 120" fill="none" stroke="#eceef0" stroke-width="10" stroke-linecap="round"/>
+  <rect x="38" y="40" width="22" height="92" rx="9" fill="#d8dbdf" stroke="#a9adb3" stroke-width="2"/>
+  <rect x="165" y="18" width="70" height="40" rx="10" fill="url(#shell)" stroke="#a9adb3" stroke-width="2"/>
+  <rect x="185" y="28" width="30" height="12" rx="6" fill="#8d9298"/>
+  <rect x="105" y="50" width="190" height="400" rx="26" fill="url(#shell)" stroke="#a9adb3" stroke-width="2"/>
+  <rect x="122" y="62" width="156" height="376" rx="16" fill="#fbfbfa"/>
+  <rect x="122" y="70" width="156" height="6" fill="#ee7a1a"/>
+  <text x="200" y="112" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f5aa6">Elitech</text>
+  <rect x="138" y="128" width="124" height="62" rx="6" fill="#d9dccf" stroke="#9ea291" stroke-width="2"/>
+  <text x="250" y="174" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" fill="#1d1f1a">3.9°C</text>
+  <rect x="122" y="232" width="156" height="5" fill="#ee7a1a"/>
+  <rect x="134" y="250" width="62" height="34" rx="6" fill="#ee7a1a"/>
+  <path d="M152 270 l24 -6 l-6 -6 l4 0 l8 6 l8 -2 l2 3 l-8 3 l-2 10 l-4 0 l0 -8 z" fill="#fff"/>
+  <rect x="204" y="250" width="62" height="34" rx="6" fill="#ee7a1a"/>
+  <text x="235" y="264" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#fff">START</text>
+  <text x="235" y="277" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#fff">STOP</text>
+  <text x="200" y="326" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" fill="#1f5aa6">Glog 5</text>
+  <rect x="146" y="342" width="108" height="34" rx="3" fill="none" stroke="#555" stroke-dasharray="3 3"/>
+  <g fill="#222"><rect x="156" y="348" width="2" height="18"/><rect x="161" y="348" width="4" height="18"/><rect x="168" y="348" width="2" height="18"/><rect x="173" y="348" width="5" height="18"/><rect x="181" y="348" width="2" height="18"/><rect x="186" y="348" width="3" height="18"/><rect x="192" y="348" width="2" height="18"/><rect x="197" y="348" width="5" height="18"/><rect x="205" y="348" width="2" height="18"/><rect x="210" y="348" width="3" height="18"/><rect x="216" y="348" width="2" height="18"/><rect x="221" y="348" width="4" height="18"/><rect x="228" y="348" width="2" height="18"/><rect x="233" y="348" width="3" height="18"/><rect x="239" y="348" width="2" height="18"/></g>
+  <g fill="#3a3d42"><rect x="140" y="396" width="8" height="24" rx="2"/><rect x="156" y="396" width="8" height="24" rx="2"/><rect x="172" y="396" width="8" height="24" rx="2"/></g>
+  <circle cx="252" cy="410" r="9" fill="#9aa0a6"/>
+  <rect x="186" y="450" width="28" height="22" rx="4" fill="#d8dbdf" stroke="#a9adb3" stroke-width="2"/>
+  <path d="M200 472 C 200 520, 150 520, 120 470" fill="none" stroke="#eceef0" stroke-width="10" stroke-linecap="round"/>
+</svg>
