@@ -352,6 +352,17 @@
   .reveal.d3{transition-delay:.24s}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.scrollcue .mouse::after{animation:none}}
 
+  /* Motion (motion.dev, self-hosted) drives entrances when <html class="mo"> is set.
+     These are only its start states; the inline script drops .mo if the library is missing. */
+  .mo .hero [data-enter]{opacity:0}
+  .mo .reveal{transition:none}
+  /* Motion owns the card transform (reveal, lift, tilt); a CSS transform transition would smear it */
+  .mo .wcard.reveal{transition:box-shadow .45s cubic-bezier(.2,.7,.2,1)}
+  .mo .wcard:hover{transform:none}
+  .w{display:inline-block}
+  .faq details.closing summary .pm{transform:none;background:transparent;color:var(--indigo);border-color:var(--line-2)}
+  .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
+
   @media (max-width:880px){
     nav.top ul{display:none}
     .cards3{grid-template-columns:1fr}
@@ -360,14 +371,18 @@
     section.block{padding:60px 0}
   }
 </style>
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('mo');
+</script>
 </head>
 <body>
+<div class="scrollbar" aria-hidden="true"></div>
 
 <!-- ===================== HERO ===================== -->
 <header class="hero" data-screen-label="Hero">
   <div class="bg"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2200&q=80" alt="Cold storage warehouse aisle" fetchpriority="high" decoding="async" /></div>
 
-  <nav class="top">
+  <nav class="top" data-enter>
     <div class="logo"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
     <ul>
       <li>Platform</li>
@@ -386,10 +401,10 @@
 
   <div class="hero-inner">
     <div class="wrap">
-      <span class="h-eyebrow"><span class="dot"></span> HACCP · Cold-chain integrity</span>
-      <h1>Proof of cold, <em>end&nbsp;to&nbsp;end</em>.</h1>
-      <p class="lede">FahCel turns every logger reading into a tamper-evident record so you can prove your cold chain held, from the dock to the shelf.</p>
-      <div class="herocta">
+      <span class="h-eyebrow" data-enter><span class="dot"></span> HACCP · Cold-chain integrity</span>
+      <h1 data-enter>Proof of cold, <em>end&nbsp;to&nbsp;end</em>.</h1>
+      <p class="lede" data-enter>FahCel turns every logger reading into a tamper-evident record so you can prove your cold chain held, from the dock to the shelf.</p>
+      <div class="herocta" data-enter>
         <a class="btn primary" href="/book-a-demo">Book a demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -398,7 +413,7 @@
     </div>
   </div>
 
-  <div class="scrollcue"><span class="mouse"></span> Scroll</div>
+  <div class="scrollcue" data-enter><span class="mouse"></span> Scroll</div>
 </header>
 
 <!-- ===================== SHEET ===================== -->
@@ -451,7 +466,7 @@
     <div class="wrap">
       <div class="grid">
         <div class="media reveal">
-          <div class="chip c1"><span class="led"></span> chain intact · 4,210 readings</div>
+          <div class="chip c1"><span class="led"></span> chain intact · <span class="n">4,210</span> readings</div>
           <div class="chip c2">verifyChain() → valid: true</div>
           <img src="assets/hash-chain-verify.jpg" alt="Quality lead verifying a cold-chain hash chain on a tablet, with a sealed record and the first altered reading highlighted" loading="lazy" decoding="async" />
         </div>
@@ -586,12 +601,196 @@
 
 </main>
 
+<script src="/assets/vendor/motion-13.5.1.js"></script>
 <script>
-  // scroll reveal
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // Motion (motion.dev, MIT, self-hosted: no build step here and no third-party request).
+  // Same setup as /usb-logger. If it failed to load, drop .mo so the hero shows and fall
+  // back to the plain observer.
+  (function(){
+    var M = window.Motion, root = document.documentElement;
+    if (!M || !root.classList.contains('mo')) {
+      root.classList.remove('mo');
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+      return;
+    }
+
+    var ease = [.2,.7,.2,1];
+    var spring = { type:'spring', stiffness:220, damping:24 };
+    var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    // keep the d1/d2/d3 stagger the markup already declares
+    function delayOf(el){ return el.classList.contains('d3') ? .24 : el.classList.contains('d2') ? .16 : el.classList.contains('d1') ? .08 : 0; }
+
+    // Wrap each word of a heading in .w so words can enter one by one. An <em> stays one unit,
+    // and a bare "." or "," gets a plain inline span (not inline-block); it only fades.
+    function splitWords(el){
+      (function walk(node){
+        [].slice.call(node.childNodes).forEach(function(n){
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function(t){
+              if (!t) return;
+              if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+              var w = document.createElement('span');
+              w.className = /^[.,;:!?…]+$/.test(t) ? 'wp' : 'w';
+              w.textContent = t; frag.appendChild(w);
+            });
+            node.replaceChild(frag, n);
+          } else if (n.nodeType === 1) {
+            if (n.tagName === 'EM') n.classList.add('w'); else walk(n);
+          }
+        });
+      })(el);
+      // A line can still break between an inline-block word and the punctuation right after
+      // it (", not the building" lost its comma to the next line), so glue the pair.
+      [].forEach.call(el.querySelectorAll('.wp'), function(p){
+        var prev = p.previousSibling;
+        if (!prev || prev.nodeType !== 1 || !prev.classList.contains('w')) return;
+        var glue = document.createElement('span');
+        glue.style.whiteSpace = 'nowrap';
+        prev.parentNode.insertBefore(glue, prev);
+        glue.appendChild(prev); glue.appendChild(p);
+      });
+      var words = el.querySelectorAll('.w, .wp');
+      [].forEach.call(words, function(w){ w.style.opacity = 0; });
+      return words;
+    }
+    function wordsIn(words, startDelay){
+      return M.animate(words, { opacity:[0,1], y:['0.45em',0], filter:['blur(6px)','blur(0px)'] },
+        { duration:.7, delay:M.stagger(.05, { startDelay:startDelay }), ease:ease });
+    }
+
+    // ---- hero
+    M.animate('.hero .bg img', { scale:[1.12,1] }, { duration:2.4, ease:ease });
+    M.animate('nav.top', { opacity:[0,1], y:[-14,0] }, { duration:.7, ease:ease });
+    var h1 = document.querySelector('.hero h1'), h1Words = splitWords(h1);
+    h1.style.opacity = 1;
+    wordsIn(h1Words, .25);
+    M.animate('.hero-inner [data-enter]:not(h1)', { opacity:[0,1], y:[18,0] }, { duration:.8, delay:M.stagger(.12, { startDelay:.15 }), ease:ease });
+    // opacity only: the cue is centred with a CSS translateX that a Motion y would replace
+    M.animate('.scrollcue', { opacity:[0,1] }, { duration:.8, delay:1.2 });
+
+    // The hero is sticky and the sheet slides up over it: as it does, the copy lifts and
+    // fades, the photo pushes in, and the scroll cue is the first thing to go.
+    // Driven off scrollY, not the sheet's offset: the sheet already overlaps the hero by 34px
+    // at rest, so a target-based progress starts above zero and dims the hero before any scroll.
+    var heroInner = document.querySelector('.hero-inner'), heroBg = document.querySelector('.hero .bg'), mouse = document.querySelector('.scrollcue .mouse');
+    M.scroll(function(){
+      var t = Math.min(1, Math.max(0, scrollY / innerHeight));
+      var out = Math.min(1, t / .75);
+      heroInner.style.opacity = 1 - out;
+      heroInner.style.transform = 'translateY(' + (-70 * out) + 'px)';
+      heroBg.style.transform = 'scale(' + (1 + .1 * t) + ')';
+      mouse.style.opacity = 1 - Math.min(1, t / .2);
+    });
+
+    // ---- hash-chain band: the readings chip counts up, then verifyChain() confirms
+    var count = document.querySelector('.band .chip.c1 .n'), verify = document.querySelector('.band .chip.c2');
+    var target = count ? parseInt(count.textContent.replace(/\D/g,''), 10) || 0 : 0;
+    var show = function(v){ count.textContent = Math.round(v).toLocaleString('en-GB'); };
+    if (count) show(0);
+    if (verify) verify.style.opacity = 0;
+    function chainIn(d){
+      M.animate('.band .chip.c1', { opacity:[0,1], y:[10,0] }, { duration:.5, delay:d + .3, ease:ease });
+      M.animate('.band .chip .led', { boxShadow:['0 0 0 0 rgba(46,107,78,.45)','0 0 0 9px rgba(46,107,78,0)'] }, { duration:1.6, repeat:Infinity, ease:'easeOut' });
+      var counted = count ? M.animate(0, target, { duration:1.6, delay:d + .4, ease:ease, onUpdate:show }) : Promise.resolve();
+      counted.then(function(){
+        if (verify) M.animate(verify, { opacity:[0,1], scale:[.85,1], y:[8,0] }, { type:'spring', stiffness:320, damping:18 });
+        if (count) setInterval(function(){ if (!document.hidden) show(++target); }, 3000);
+        document.querySelectorAll('.band .chip').forEach(function(c, i){
+          M.animate(c, { y:[0,-5,0] }, { duration:4.5, delay:.6 + i*1.2, repeat:Infinity, ease:'easeInOut' });
+        });
+      });
+    }
+
+    // ---- headings outside the hero: word by word once in view
+    var headWords = new Map();
+    document.querySelectorAll('main h2').forEach(function(h){ headWords.set(h, splitWords(h)); });
+    document.querySelectorAll('main h2:not(.reveal)').forEach(function(h){
+      M.inView(h, function(){ wordsIn(headWords.get(h), 0); }, { amount:.3 });
+    });
+
+    // ---- section reveals
+    M.inView('.reveal', function(el){
+      var d = delayOf(el);
+      if (headWords.has(el)) {
+        el.style.opacity = 1; el.style.transform = 'none';
+        wordsIn(headWords.get(el), d);
+        return;
+      }
+      M.animate(el, { opacity:[0,1], y:[26,0] }, { duration:.75, delay:d, ease:ease });
+
+      // only the band photo: the coverage photos keep their CSS hover zoom, which an inline
+      // transform left behind by Motion would override
+      if (el.classList.contains('media')) {
+        M.animate(el.querySelector(':scope > img'), { scale:[1.08,1] }, { duration:1.3, delay:d, ease:ease });
+        chainIn(d);
+      }
+
+      // why-card icons draw themselves
+      var paths = el.querySelectorAll('.wicon svg path');
+      if (paths.length) M.animate(paths, { pathLength:[0,1], opacity:[0,1] }, { duration:1.1, delay:d + .25, ease:'easeInOut' });
+
+      // the hash-chain link's arrow nudges once it lands
+      if (el.classList.contains('linkbtn')) M.animate(el.querySelector('svg'), { x:[0,5,0] }, { duration:.7, delay:d + .7, ease:'easeInOut' });
+    }, { amount:.12, margin:'0px 0px -8% 0px' });
+
+    // ---- pointer: cards lift and tilt, primary buttons pull toward the cursor
+    M.hover('.wcard', function(el){
+      M.animate(el, { y:-5 }, { duration:.25, ease:ease });
+      return function(){ M.animate(el, { y:0 }, { duration:.35, ease:ease }); };
+    });
+    if (finePointer) {
+      document.querySelectorAll('.wcard, .band .media').forEach(function(el){
+        var max = el.classList.contains('media') ? 4 : 5;
+        M.animate(el, { transformPerspective:1000 }, { duration:0 });
+        el.addEventListener('pointermove', function(e){
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+          M.animate(el, { rotateY:px * max, rotateX:-py * max }, spring);
+        });
+        el.addEventListener('pointerleave', function(){ M.animate(el, { rotateX:0, rotateY:0 }, spring); });
+      });
+      document.querySelectorAll('.btn.primary, nav.top .cta').forEach(function(el){
+        el.addEventListener('pointermove', function(e){
+          var r = el.getBoundingClientRect();
+          M.animate(el, { x:(e.clientX - r.left - r.width/2) * .22, y:(e.clientY - r.top - r.height/2) * .3 }, { type:'spring', stiffness:300, damping:20 });
+        });
+        el.addEventListener('pointerleave', function(){ M.animate(el, { x:0, y:0 }, { type:'spring', stiffness:300, damping:15 }); });
+      });
+    }
+    M.press('.btn, nav.top .cta', function(el){
+      M.animate(el, { scale:.95 }, { duration:.12 });
+      return function(){ M.animate(el, { scale:1 }, { type:'spring', stiffness:500, damping:18 }); };
+    });
+
+    // ---- FAQ: height animates open and closed instead of snapping
+    document.querySelectorAll('.faq details').forEach(function(d){
+      var ans = d.querySelector('.ans'), clip = document.createElement('div'), busy = false;
+      clip.style.overflow = 'hidden';
+      ans.parentNode.insertBefore(clip, ans); clip.appendChild(ans);
+      d.querySelector('summary').addEventListener('click', function(e){
+        e.preventDefault();
+        if (busy) return;
+        busy = true;
+        if (!d.open) {
+          d.open = true;
+          M.animate(ans, { opacity:[0,1], y:[-8,0] }, { duration:.35, delay:.05, ease:ease });
+          M.animate(clip, { height:[0, clip.scrollHeight] }, { duration:.42, ease:ease }).then(function(){ clip.style.height = 'auto'; busy = false; });
+        } else {
+          d.classList.add('closing');
+          M.animate(ans, { opacity:0 }, { duration:.2 });
+          M.animate(clip, { height:[clip.offsetHeight, 0] }, { duration:.32, ease:ease }).then(function(){
+            d.open = false; d.classList.remove('closing'); clip.style.height = ''; busy = false;
+          });
+        }
+      });
+    });
+
+    M.scroll(M.animate('.scrollbar', { scaleX:[0,1] }, { ease:'linear' }));
+  })();
 
   // decorative flowing cryptochain
   (function(){
