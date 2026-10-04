@@ -90,7 +90,7 @@
   .rail::before{content:"";position:absolute;inset:0;background:radial-gradient(560px 300px at 112% -8%,rgba(82,176,191,.42),transparent 60%),radial-gradient(440px 300px at -10% 114%,rgba(46,107,78,.32),transparent 62%)}
   .rail>*{position:relative;z-index:1}
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;font-size:18px}
-  .logo .m{width:28px;height:28px;border-radius:8px;background:#fff}
+  .logo .m{width:28px;height:28px;border-radius:8px;background:#fff;padding:2px;object-fit:contain;display:block;box-sizing:border-box}
   .rail .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2);font-weight:600;margin-top:30px}
   .rail .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
   .rail h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:16px 0 0;text-wrap:balance}
@@ -147,7 +147,7 @@
   <div class="card">
     <!-- LEFT: what they're getting -->
     <div class="rail">
-      <div class="logo"><span class="m"></span>FahCel</div>
+      <div class="logo"><img class="m" src="/assets/fahcel-logo.jpg" alt="" width="28" height="28" />FahCel</div>
       <div class="eyebrow"><span class="dot"></span>Free field playbook</div>
       <h1>The Cold-Chain <em>Excursion</em> Playbook</h1>
       <p class="sub">Six moves to defend a shipment the moment temperature breaks — and the paper trail that proves you did.</p>
