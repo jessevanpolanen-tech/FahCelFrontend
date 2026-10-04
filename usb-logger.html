@@ -464,10 +464,10 @@
   .jx .journey .jbank img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
   .jx .journey .jshadow{display:block;position:absolute;left:0;top:0;z-index:1;width:clamp(160px,18vw,260px);height:34px;border-radius:50%;
     background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);will-change:transform,opacity;pointer-events:none}
-  .journey .jchip{position:absolute;left:62%;top:6%;white-space:nowrap;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);
+  /* sits above the shell's top-right corner, clear of the Elitech wordmark */
+  .journey .jchip{position:absolute;left:66%;top:-3%;white-space:nowrap;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);
     color:var(--ink);padding:7px 11px;border-radius:9px;box-shadow:0 10px 30px -12px rgba(0,0,0,.5);display:flex;align-items:center;gap:7px}
   .journey .jchip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.2)}
-  .journey .jph{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);white-space:nowrap;font-size:11px}
   .jx .journey .jroute{display:flex;position:absolute;z-index:3;left:6%;right:6%;bottom:46px;align-items:center;gap:0;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.55)}
   .journey .jroute .bar{position:absolute;left:0;right:0;top:50%;height:2px;background:rgba(255,255,255,.18)}
   .journey .jroute .fill{position:absolute;left:0;top:50%;height:2px;width:100%;background:#9fd6e0;transform-origin:0 50%;transform:scaleX(0)}
@@ -745,8 +745,8 @@
 
 <!-- ===================== GLOG 5 JOURNEY ===================== -->
 <!-- Figures: Elitech's Glog 5 spec graphic (same source as the hardware card above). The flying
-     image is a placeholder until the operator supplies a transparent Glog 5 cutout: swap
-     /assets/glog-5-placeholder.svg for it and delete the .jph tag. -->
+     image is Elitech's Glog 5 product photo (supplied by the operator 2026-10-04), cut out of its
+     white background here; the source is only 700px, so don't size .jfly up past ~340px. -->
 <section class="journey" id="glog5" aria-label="De Glog 5 onderweg">
   <div class="jtrack">
     <div class="jstage">
@@ -758,9 +758,8 @@
       <div class="jshadow" aria-hidden="true"></div>
       <div class="jfly">
         <div class="jbank">
-          <img src="/assets/glog-5-placeholder.svg" width="400" height="560" alt="Elitech Glog 5, 4G-temperatuurlogger met externe sensor" />
+          <img src="/assets/elitech-glog-5-cutout.webp" width="372" height="557" alt="Elitech Glog 5, 4G-temperatuurlogger met externe sensor" />
           <span class="jchip"><span class="led"></span><span class="jtxt">START · registratie loopt</span></span>
-          <span class="jph tbd">Placeholder · Glog 5-foto volgt</span>
         </div>
       </div>
       <ol class="jcaps">
