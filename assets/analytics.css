@@ -1,0 +1,11 @@
+.fc-consent[hidden], .fc-cookie-settings[hidden]{display:none!important}
+.fc-consent{position:fixed;z-index:1000;bottom:20px;left:20px;right:20px;max-width:960px;margin:auto;padding:24px;background:#fff;color:#0B1220;border:1px solid #d3d5cd;border-radius:16px;box-shadow:0 12px 48px rgba(11,18,32,.22);font:14px/1.6 var(--sans,system-ui,sans-serif);max-height:calc(100dvh - 40px);overflow:auto}
+.fc-consent h2{font:600 22px/1.2 var(--serif,Georgia,serif);color:#0B1220;letter-spacing:-.3px;max-width:none;margin:0 0 10px}
+.fc-consent p{margin:0 0 18px;color:#5a6374;max-width:80ch}
+.fc-consent-actions{display:flex;gap:10px;flex-wrap:wrap}
+.fc-consent button,.fc-cookie-settings{font:600 13px/1.4 var(--sans,system-ui,sans-serif);cursor:pointer;border:1px solid #1E2A5A;border-radius:999px;padding:11px 18px;background:#fff;color:#1E2A5A;min-height:44px}
+.fc-consent button:hover,.fc-cookie-settings:hover{background:#eef0f7}
+.fc-consent button:focus-visible,.fc-cookie-settings:focus-visible{outline:3px solid #1f7a8c;outline-offset:3px}
+.fc-cookie-settings{position:fixed;bottom:12px;left:12px;z-index:999;box-shadow:0 4px 16px rgba(11,18,32,.12)}
+@media(max-width:600px){.fc-consent{left:12px;right:12px;bottom:12px;padding:20px}.fc-consent-actions button{flex:1 1 100%}}
+@media print{.fc-consent,.fc-cookie-settings{display:none!important}}

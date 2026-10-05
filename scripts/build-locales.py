@@ -79,7 +79,7 @@ def switcher(page, lang):
 
 def add_language_ui(source, page, lang):
     alternates = '\n'.join(f'<link rel="alternate" hreflang="{code}" href="{ORIGIN}{route(page, code)}" />' for code in LANGUAGES)
-    head = '<!-- languages:head -->\n' + alternates + f'\n<link rel="alternate" hreflang="x-default" href="{ORIGIN}{route(page, "en")}" />\n<link rel="stylesheet" href="/assets/languages.css" />\n<script src="/assets/languages.js" defer></script>\n<!-- /languages:head -->\n'
+    head = '<!-- languages:head -->\n' + alternates + f'\n<link rel="alternate" hreflang="x-default" href="{ORIGIN}{route(page, "en")}" />\n<link rel="stylesheet" href="/assets/languages.css" />\n<script src="/assets/languages.js" defer></script>\n<link rel="stylesheet" href="/assets/analytics.css" />\n<script src="/assets/analytics-config.js" defer></script>\n<script src="/assets/analytics.js" defer></script>\n<!-- /languages:head -->\n'
     source = source.replace('</head>', head + '</head>', 1)
     nav = '<!-- languages:nav -->' + switcher(page, lang) + '<!-- /languages:nav -->'
     if page in ['index', 'hash-chain']:

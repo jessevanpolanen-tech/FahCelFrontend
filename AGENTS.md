@@ -68,3 +68,16 @@ endpoints, dashboard architecture, deploy workflow).
 - Do not submit live lead forms during testing: they write to the shared backend
   and may send real email. Test validation/navigation without completing a lead.
 - Healthcheck must use `127.0.0.1`, not `localhost` (nginx listens on IPv4).
+
+## Public analytics
+
+- `assets/analytics-config.js` holds a public GA4 Measurement ID (currently empty),
+  not a secret. Google property creation requires the user's account. Setup and
+  language comparison instructions: `scripts/ANALYTICS.md`.
+- The locale generator includes the shared consent assets on the 15 public pages.
+  GA loads only after opt-in, with a valid ID, on explicitly allowed production
+  hosts. Keep preview hosts excluded. No tracking is connected until the ID lands.
+- Compare `site_language` (page language, not GA's browser Language) and
+  `page_group` (same English slug across translations) as event-scoped GA4 custom
+  dimensions. Enhanced measurement must be disabled in the Web stream for the
+  documented page-view-only scope. Don't test by submitting real lead forms.
