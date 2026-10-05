@@ -1,0 +1,116 @@
+How a Hash Chain Proves Cold-Chain Data | FahCel	Hoe een hashketen koelketendata bewijst | FahCel	Wie eine Hash-Kette Kühlkettendaten belegt | FahCel
+Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where.	Elke temperatuurmeting wordt gehasht met de vorige. Een wijziging van een eerdere waarde verbreekt elke volgende schakel, en FahCel laat precies zien waar.	Jeder Temperaturmesswert wird mit seinem Vorgänger gehasht. Jede Änderung eines früheren Werts unterbricht alle folgenden Verknüpfungen – und FahCel zeigt genau, wo.
+Data Integrity	Data-integriteit	Datenintegrität
+Customers	Klanten	Kunden
+Schedule a QA demo	Plan een QA-demo	QS-Demo vereinbaren
+Data Integrity · Reading-level	Data-integriteit · Per meting	Datenintegrität · Pro Messwert
+Every reading is	Elke meting wordt	Jeder Messwert wird
+cryptographically sealed	cryptografisch verzegeld	kryptografisch versiegelt
+at the moment it arrives.	zodra die binnenkomt.	sobald er eingeht.
+Most systems sign the report. FahCel signs every reading — and chains them together — so tampering with any value, anywhere in the history, becomes mathematically undeniable.	De meeste systemen ondertekenen het rapport. FahCel ondertekent elke meting en koppelt ze aan elkaar. Manipulatie van welke waarde dan ook, waar ook in de historie, wordt zo wiskundig aantoonbaar.	Die meisten Systeme signieren den Bericht. FahCel signiert jeden Messwert und verkettet sie miteinander. Dadurch wird jede Manipulation eines Werts an beliebiger Stelle der Historie mathematisch nachweisbar.
+Try the tamper demo	Probeer de manipulatiedemo	Manipulationsdemo ausprobieren
+Read the principle	Lees het principe	Prinzip nachlesen
+Hash algorithm	Hashalgoritme	Hash-Algorithmus
+Hashes per reading	Hashes per meting	Hashes pro Messwert
+Two	Twee	Zwei
+Verification	Verificatie	Verifizierung
+Deterministic	Deterministisch	Deterministisch
+offline, replayable, open-source	offline, herhaalbaar, opensource	offline, reproduzierbar, Open Source
+Genesis	Beginpunt	Ursprung
+one root per device lifetime	één beginpunt per levensduur van het apparaat	ein Ursprung pro Gerätelebensdauer
+Before your next inspection	Vóór je volgende inspectie	Vor deiner nächsten Inspektion
+The cryptography does the work.	De cryptografie doet het werk.	Die Kryptografie übernimmt die Arbeit.
+You get the readiness.	Jij bent er klaar voor.	Du bist bereit.
+Sealing happens at ingestion, so the proof already exists before anyone asks for it. For a QA manager, that turns three familiar scrambles into things that are simply ready.	Verzegeling gebeurt bij ontvangst, dus het bewijs bestaat al voordat iemand erom vraagt. Voor een QA-manager verandert dat drie bekende haastklussen in zaken die gewoon klaarstaan.	Die Versiegelung erfolgt bei Eingang. Der Nachweis existiert also, bevor jemand danach fragt. Für QS-Verantwortliche werden drei typische Stresssituationen zu Dingen, die bereits erledigt sind.
+Audit-ready pack in one click	Auditklaar pakket met één klik	Auditbereites Paket mit einem Klick
+Export a signed, timestamped PDF with the full reading-level history and its verification result — laid out for review against the records you're already assessed on.	Exporteer een ondertekende pdf met tijdstempel, de volledige meethistorie en het verificatieresultaat, ingericht voor toetsing aan de registraties waarop je al wordt beoordeeld.	Exportiere ein signiertes PDF mit Zeitstempel, vollständiger Messhistorie und Prüfergebnis – aufbereitet für den Abgleich mit den Unterlagen, anhand derer du bereits geprüft wirst.
+Excursion alerts in real time	Afwijkingsmeldingen in realtime	Abweichungswarnungen in Echtzeit
+The moment a reading crosses a threshold, the team is notified — and the record is already sealed into the chain, not reconstructed after the fact.	Zodra een meting een grenswaarde overschrijdt, krijgt het team een melding. De registratie is dan al verzegeld in de keten, niet achteraf gereconstrueerd.	Sobald ein Messwert einen Grenzwert überschreitet, wird das Team informiert. Der Datensatz ist bereits in der Kette versiegelt, nicht erst nachträglich rekonstruiert.
+Sealed at ingestion · not at report time	Verzegeld bij ontvangst · niet bij rapportage	Bei Eingang versiegelt · nicht erst beim Bericht
+Verification the auditor can replay	Verificatie die de auditor kan herhalen	Prüfung, die der Auditor wiederholen kann
+Hand over the dataset and the open verifier. An inspector can recompute the chain themselves, offline, and reach the same result you did.	Overhandig de dataset en de open verificatietool. Een inspecteur kan de keten zelf offline opnieuw berekenen en tot hetzelfde resultaat komen.	Übergib den Datensatz und das offene Prüfwerkzeug. Prüfer können die Kette selbst offline nachrechnen und zum selben Ergebnis kommen.
+Deterministic · offline · open-source	Deterministisch · offline · opensource	Deterministisch · offline · Open Source
+Evidence ledger · Live	Bewijsregister · Live	Nachweisregister · Live
+Edit any reading.	Wijzig een meting.	Ändere einen Messwert.
+Watch the chain break.	Zie hoe de keten breekt.	Sieh zu, wie die Kette bricht.
+Select a reading and change the temperature. Every record_hash from that point forward is recomputed and compared — the first broken link is flagged, and everything downstream is marked untrusted.	Selecteer een meting en wijzig de temperatuur. Elke volgende record_hash wordt opnieuw berekend en vergeleken. De eerste gebroken schakel wordt gemarkeerd en alles erna geldt als onbetrouwbaar.	Wähle einen Messwert und ändere die Temperatur. Jeder folgende record_hash wird neu berechnet und verglichen. Die erste gebrochene Verknüpfung wird markiert, alle nachfolgenden Werte gelten als nicht vertrauenswürdig.
+Device FC-L421 · Freezer 3 · Batch L2604-B	Apparaat FC-L421 · Vriezer 3 · Batch L2604-B	Gerät FC-L421 · Gefrierraum 3 · Charge L2604-B
+Chain verified	Keten geverifieerd	Kette verifiziert
+root:	beginpunt:	Ursprung:
+· readings:	· metingen:	· Messwerte:
+6 of 6 readings verified.	6 van 6 metingen geverifieerd.	6 von 6 Messwerten verifiziert.
+Every data_hash matches its payload; every record_hash links to its predecessor.	Elke data_hash klopt met de inhoud; elke record_hash verwijst naar zijn voorganger.	Jeder data_hash stimmt mit seinen Nutzdaten überein; jeder record_hash verweist auf seinen Vorgänger.
+walk time ·	controletijd ·	Prüfzeit ·
+The principle	Het principe	Das Prinzip
+Two hashes per reading.	Twee hashes per meting.	Zwei Hashes pro Messwert.
+One seals the data, one seals the history.	Eén verzegelt de data, één de historie.	Einer versiegelt die Daten, einer die Historie.
+A single hash would tell you if a reading was edited in place. It wouldn't tell you if a reading was deleted, reordered, or silently inserted. Two hashes — one over the payload, one over the payload plus the previous record_hash — make every form of tampering detectable.	Eén hash toont of een meting is bewerkt, maar niet of er een is verwijderd, verplaatst of stilzwijgend toegevoegd. Twee hashes, één over de inhoud en één over de inhoud plus de vorige record_hash, maken elke vorm van manipulatie zichtbaar.	Ein einzelner Hash zeigt, ob ein Messwert bearbeitet wurde, nicht aber, ob er gelöscht, umgeordnet oder unbemerkt eingefügt wurde. Zwei Hashes – einer über die Nutzdaten, einer über die Nutzdaten plus den vorherigen record_hash – machen jede Form der Manipulation erkennbar.
+Layer 1 · Payload integrity	Laag 1 · Integriteit van de inhoud	Ebene 1 · Integrität der Nutzdaten
+// reading fields —	// meetvelden —	// Messfelder –
+proprietary	bedrijfseigen	proprietär
+A fingerprint of the reading's	Een vingerafdruk van de	Ein Fingerabdruck der
+business content	inhoud van de meting	fachlichen Messdaten
+, independent of its position in the chain. The exact field set and canonicalization rule are proprietary — but deterministic: the same reading always produces the same hash, on any system, forever.	, onafhankelijk van de plek in de keten. De exacte velden en canonisatieregel zijn bedrijfseigen, maar deterministisch: dezelfde meting levert altijd dezelfde hash op, op elk systeem, voor altijd.	, unabhängig von ihrer Position in der Kette. Die genauen Felder und die Kanonisierungsregel sind proprietär, aber deterministisch: Derselbe Messwert liefert auf jedem System immer denselben Hash.
+Purpose.	Doel.	Zweck.
+Tamper-detect the reading data in isolation. If any field changes — one decimal place, one second — the data_hash changes.	Manipulatie in de meetdata afzonderlijk herkennen. Verandert een veld, al is het één decimaal of seconde, dan verandert de data_hash.	Manipulationen einzelner Messdaten erkennen. Ändert sich ein Feld – eine Dezimalstelle, eine Sekunde –, ändert sich der data_hash.
+Layer 2 · History integrity	Laag 2 · Integriteit van de historie	Ebene 2 · Integrität der Historie
+// previous reading's record_hash	// record_hash van de vorige meting	// record_hash des vorherigen Messwerts
+The chain link. Every record_hash embeds the previous reading's record_hash, so the hashes form a one-way dependency graph. Genesis reading uses	De ketenschakel. Elke record_hash bevat de record_hash van de vorige meting. Zo vormen de hashes een eenrichtingsafhankelijkheid. De eerste meting gebruikt	Das Kettenglied. Jeder record_hash enthält den record_hash des vorherigen Messwerts. So bilden die Hashes einen gerichteten Abhängigkeitsgraphen. Der erste Messwert verwendet
+Tamper with any reading, and every record_hash after it changes. The chain tells you	Wijzig een meting en elke volgende record_hash verandert. De keten laat zien	Ändere einen Messwert, und jeder nachfolgende record_hash ändert sich. Die Kette zeigt dir
+where	waar	wo
+tampering started.	de manipulatie begon.	die Manipulation begann.
+Chain structure	Ketenstructuur	Kettenstruktur
+Each reading depends on every reading before it.	Elke meting is afhankelijk van alle voorgaande metingen.	Jeder Messwert hängt von allen vorherigen Messwerten ab.
+A linked list where every link is independently verifiable. If reading #3 is altered, readings #4 through #N all fail verification — because their stored record_hash no longer matches the recomputed one.	Een gekoppelde lijst waarin elke schakel onafhankelijk te verifiëren is. Als meting #3 wordt gewijzigd, mislukken de controles voor #4 tot en met #N: hun opgeslagen record_hash komt niet meer overeen met de herberekende hash.	Eine verkettete Liste, in der jede Verknüpfung unabhängig prüfbar ist. Wird Messwert #3 geändert, schlagen die Prüfungen von #4 bis #N fehl: Ihr gespeicherter record_hash stimmt nicht mehr mit dem neu berechneten überein.
+Reading	Meting	Messwert
+· Genesis	· Beginpunt	· Ursprung
+— deterministic, replayable, offline.	— deterministisch, herhaalbaar, offline.	– deterministisch, reproduzierbar, offline.
+The verifier is deterministic and identical to the code that seals the chain: the same readings always produce the same verdict. Customers and auditors run the full version offline against any exported dataset — the core sealing rule stays proprietary.	De verificatietool is deterministisch en identiek aan de code die de keten verzegelt. Dezelfde metingen geven altijd hetzelfde oordeel. Klanten en auditors draaien de volledige versie offline op elke geëxporteerde dataset. De kernregel voor verzegeling blijft bedrijfseigen.	Das Prüfwerkzeug ist deterministisch und identisch mit dem Code zur Versiegelung der Kette. Dieselben Messwerte liefern immer dasselbe Ergebnis. Kunden und Auditoren führen die Vollversion offline mit exportierten Datensätzen aus. Die zentrale Versiegelungsregel bleibt proprietär.
+Order by device timestamp	Sorteer op apparaattijdstempel	Nach Gerätezeitstempel sortieren
+The verifier walks readings in	De verificatietool doorloopt metingen in	Das Prüfwerkzeug durchläuft Messwerte in
+order — not ingestion order. A reading that arrives late but was captured earlier slots into the right position in the chain.	-volgorde, niet op ontvangstvolgorde. Een later ontvangen maar eerder vastgelegde meting komt op de juiste plek in de keten.	-Reihenfolge, nicht in Eingangsreihenfolge. Ein später eingegangener, aber früher erfasster Messwert wird an der richtigen Position eingeordnet.
+Recompute both hashes from scratch	Bereken beide hashes opnieuw	Beide Hashes vollständig neu berechnen
+For every reading, the verifier rebuilds	Voor elke meting berekent de verificatietool	Für jeden Messwert berechnet das Prüfwerkzeug
+and	en	und
+from the stored fields using the same canonicalization rules. It does not trust the stored values — it recomputes them and compares.	opnieuw vanuit de opgeslagen velden met dezelfde canonisatieregels. De opgeslagen waarden worden niet vertrouwd, maar opnieuw berekend en vergeleken.	aus den gespeicherten Feldern mit denselben Kanonisierungsregeln neu. Gespeicherten Werten wird nicht vertraut; sie werden neu berechnet und verglichen.
+Track the first broken link	Vind de eerste gebroken schakel	Erste gebrochene Verknüpfung finden
+The first mismatch — in either hash — is flagged. Every reading after it inherits suspicion: even if their own hashes look valid, the chain has already lost integrity.	De eerste afwijking in een van de hashes wordt gemarkeerd. Elke volgende meting wordt verdacht: ook als de eigen hashes geldig lijken, is de integriteit van de keten al verloren.	Die erste Abweichung in einem der Hashes wird markiert. Jeder folgende Messwert gilt als verdächtig: Selbst wenn seine eigenen Hashes gültig wirken, ist die Integrität der Kette bereits verloren.
+Return a verifiable verdict	Geef een verifieerbaar oordeel	Überprüfbares Ergebnis liefern
+, and total readings walked. The same values land in your audit PDF — so the inspector sees exactly what your QA team saw, and can replay it themselves.	, en het totale aantal gecontroleerde metingen. Dezelfde waarden staan in je audit-pdf. De inspecteur ziet dus precies wat je QA-team zag en kan het zelf herhalen.	, sowie die Gesamtzahl geprüfter Messwerte. Dieselben Werte stehen im Audit-PDF. Prüfer sehen genau das, was dein QS-Team gesehen hat, und können es selbst nachvollziehen.
+Common questions	Veelgestelde vragen	Häufige Fragen
+What auditors and QA leads ask	Wat auditors en QA-managers vragen	Was Auditoren und QS-Leitungen fragen
+before they trust the chain.	voordat ze de keten vertrouwen.	bevor sie der Kette vertrauen.
+Why does each temperature reading need two hashes?	Waarom heeft elke temperatuurmeting twee hashes nodig?	Warum braucht jeder Temperaturmesswert zwei Hashes?
+A single hash detects a reading edited in place, but not one deleted, reordered or silently inserted. FahCel stores two: a	Eén hash herkent een bewerkte meting, maar geen verwijderde, verplaatste of stilzwijgend toegevoegde meting. FahCel slaat er twee op: een	Ein einzelner Hash erkennt bearbeitete Messwerte, aber keine gelöschten, umgeordneten oder unbemerkt eingefügten. FahCel speichert zwei: einen
+over the reading’s payload, and a	over de inhoud van de meting en een	über die Nutzdaten des Messwerts und einen
+over that payload plus the previous reading’s	over die inhoud plus de vorige	über diese Nutzdaten plus den vorherigen
+. Together they make every form of tampering detectable, not just field-level edits.	. Samen maken ze elke vorm van manipulatie zichtbaar, niet alleen wijzigingen in velden.	. Zusammen machen sie jede Form der Manipulation erkennbar, nicht nur Änderungen einzelner Felder.
+What is a	Wat is een	Was ist ein
+in a cold-chain log?	in een koelketenlogboek?	in einem Kühlkettenprotokoll?
+The	De	Der
+is the chain link. It is the SHA-256 of the reading’s canonical payload combined with the previous reading’s	is de ketenschakel: de SHA-256 van de canonieke meetinhoud gecombineerd met de vorige	ist das Kettenglied: der SHA-256 der kanonischen Nutzdaten des Messwerts, kombiniert mit dem vorherigen
+, so the hashes form a one-way dependency graph. The first reading in a shipment uses	. Zo vormen de hashes een eenrichtingsafhankelijkheid. De eerste meting in een zending gebruikt	. So bilden die Hashes einen gerichteten Abhängigkeitsgraphen. Der erste Messwert einer Sendung verwendet
+. Alter any reading and every	. Wijzig een meting en elke	. Ändere einen Messwert, und jeder
+after it changes.	erna verandert.	danach ändert sich.
+How do you verify a temperature chain has not been altered?	Hoe controleer je of een temperatuurketen ongewijzigd is?	Wie prüfst du, ob eine Temperaturkette unverändert ist?
+Run	Voer	Führe
+over the exported readings. It recomputes each	uit op de geëxporteerde metingen. Het berekent elke	für die exportierten Messwerte aus. Es berechnet jeden
+from the payload and each	vanuit de inhoud en elke	aus den Nutzdaten und jeden
+from the payload plus its predecessor, then compares them to the stored values. The check is deterministic, replayable and works offline, so an auditor can reproduce the result without trusting FahCel.	vanuit de inhoud plus de voorganger opnieuw en vergelijkt ze met de opgeslagen waarden. De controle is deterministisch, herhaalbaar en werkt offline. Een auditor kan het resultaat dus reproduceren zonder FahCel te hoeven vertrouwen.	aus den Nutzdaten plus seinem Vorgänger neu und vergleicht sie mit den gespeicherten Werten. Die Prüfung ist deterministisch, reproduzierbar und funktioniert offline. Ein Auditor kann das Ergebnis daher ohne Vertrauen in FahCel nachvollziehen.
+What happens if someone edits a past temperature reading?	Wat gebeurt er als iemand een eerdere temperatuurmeting wijzigt?	Was passiert, wenn jemand einen früheren Temperaturmesswert ändert?
+Verification fails from that reading onward. If reading #3 is altered, readings #4 through #N all fail because their stored	Vanaf die meting mislukt de verificatie. Als meting #3 wordt gewijzigd, falen #4 tot en met #N omdat hun opgeslagen	Ab diesem Messwert schlägt die Prüfung fehl. Wird Messwert #3 geändert, fallen #4 bis #N durch, weil ihr gespeicherter
+no longer matches the recomputed one. The first broken link is flagged and everything downstream is marked untrusted, so you learn where the tampering started, not just that it happened.	niet meer overeenkomt met de herberekende hash. De eerste gebroken schakel wordt gemarkeerd en alles erna geldt als onbetrouwbaar. Je ziet dus waar de manipulatie begon, niet alleen dat die plaatsvond.	nicht mehr mit dem neu berechneten übereinstimmt. Die erste gebrochene Verknüpfung wird markiert, alles danach gilt als nicht vertrauenswürdig. Du erfährst also, wo die Manipulation begann, nicht nur, dass sie stattfand.
+Which standards does the hash chain map to?	Op welke normen sluit de hashketen aan?	An welchen Standards orientiert sich die Hash-Kette?
+Hashing uses SHA-256 as specified in FIPS 180-4. The tamper-evident audit trail is designed against 21 CFR Part 11 §11.10(e), which requires secure, computer-generated, time-stamped audit trails that do not obscure previously recorded information, and it supports EU GDP record-keeping expectations.	Het hashen gebruikt SHA-256 volgens FIPS 180-4. Het controlespoor dat manipulatie zichtbaar maakt is ontworpen op basis van 21 CFR Part 11 §11.10(e). Die bepaling vereist veilige, computergegenereerde controlesporen met tijdstempels die eerdere informatie niet verbergen. Het ondersteunt ook de registratie-eisen van EU GDP.	Das Hashing nutzt SHA-256 gemäß FIPS 180-4. Der manipulationserkennbare Audit-Trail orientiert sich an 21 CFR Part 11 §11.10(e). Diese Vorgabe verlangt sichere, computergenerierte Audit-Trails mit Zeitstempel, die frühere Informationen nicht verdecken. Er unterstützt außerdem die Dokumentationsanforderungen der EU GDP.
+Watch the chain hold — or break.	Zie de keten standhouden — of breken.	Sieh, wie die Kette hält – oder bricht.
+Live.	Live.	Live.
+In a 20-minute QA demo, we'll seal a stream of temperature readings at ingestion, run verifyChain in front of you, then tamper with a single reading and show you exactly where the chain catches it. No slideware — the actual system, the actual hashes.	In een QA-demo van 20 minuten verzegelen we temperatuurmetingen bij ontvangst, voeren we verifyChain uit en wijzigen we één meting. Je ziet precies waar de keten dat detecteert. Geen slides, maar het echte systeem en de echte hashes.	In einer 20-minütigen QS-Demo versiegeln wir Temperaturmesswerte bei Eingang, führen verifyChain vor deinen Augen aus und manipulieren dann einen Messwert. Du siehst genau, wo die Kette dies erkennt. Keine Folien – das echte System und die echten Hashes.
+Read the excursion playbook	Lees het draaiboek bij afwijkingen	Abweichungsleitfaden lesen
+// verify against your own datalogger's API	// verifieer via de API van je eigen datalogger	// über die API deines eigenen Datenloggers prüfen
+→ 14,208 readings walked	→ 14.208 metingen gecontroleerd	→ 14.208 Messwerte geprüft
+→ genesis:	→ beginpunt:	→ Ursprung:
+chain: verified ✓	keten: geverifieerd ✓	Kette: verifiziert ✓
+// alter one reading, re-run	// wijzig één meting en voer opnieuw uit	// einen Messwert ändern, erneut ausführen
+integrity breach at reading 8,341	integriteitsschending bij meting 8.341	Integritätsverletzung bei Messwert 8.341
+chain: BROKEN ✗	keten: GEBROKEN ✗	Kette: GEBROCHEN ✗
+Reading-level integrity for pharmaceutical cold chain ·	Integriteit per meting voor de farmaceutische koelketen ·	Integrität pro Messwert für die pharmazeutische Kühlkette ·

@@ -1,133 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="utf-8" />
-<title>How a Hash Chain Proves Cold-Chain Data | FahCel</title>
+<title>Hoe een hashketen koelketendata bewijst | FahCel</title>
 <link rel="icon" href="/assets/fahcel-logo.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
-<link rel="canonical" href="https://www.fahcel.eu/hash-chain" />
+<meta name="description" content="Elke temperatuurmeting wordt gehasht met de vorige. Een wijziging van een eerdere waarde verbreekt elke volgende schakel, en FahCel laat precies zien waar." />
+<link rel="canonical" href="https://www.fahcel.eu/nl/hash-chain" />
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="FahCel" />
-<meta property="og:locale" content="en_GB" />
-<meta property="og:url" content="https://www.fahcel.eu/hash-chain" />
-<meta property="og:title" content="How a Hash Chain Proves Cold-Chain Data | FahCel" />
-<meta property="og:description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:url" content="https://www.fahcel.eu/nl/hash-chain" />
+<meta property="og:title" content="Hoe een hashketen koelketendata bewijst | FahCel" />
+<meta property="og:description" content="Elke temperatuurmeting wordt gehasht met de vorige. Een wijziging van een eerdere waarde verbreekt elke volgende schakel, en FahCel laat precies zien waar." />
 <meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="A warehouse lead checking cold-storage temperature readings on a tablet" />
+<meta property="og:image:alt" content="Een magazijnmedewerker controleert koelceltemperaturen op een tablet" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="How a Hash Chain Proves Cold-Chain Data | FahCel" />
-<meta name="twitter:description" content="Each temperature reading is hashed with the one before it, so altering any past value breaks every link after it — and FahCel shows you exactly where." />
+<meta name="twitter:title" content="Hoe een hashketen koelketendata bewijst | FahCel" />
+<meta name="twitter:description" content="Elke temperatuurmeting wordt gehasht met de vorige. Een wijziging van een eerdere waarde verbreekt elke volgende schakel, en FahCel laat precies zien waar." />
 <meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "@id": "https://www.fahcel.eu/hash-chain#article",
-      "headline": "Every reading is cryptographically sealed at the moment it arrives",
-      "description": "How FahCel chains each temperature logger reading to the hash of the one before it, so any alteration to a shipment's history breaks every link after it and can be pinpointed.",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://www.fahcel.eu/hash-chain"
-      },
-      "url": "https://www.fahcel.eu/hash-chain",
-      "image": "https://www.fahcel.eu/assets/hash-chain-verify.jpg",
-      "datePublished": "2026-07-30",
-      "dateModified": "2026-09-09",
-      "author": {
-        "@type": "Person",
-        "@id": "https://www.fahcel.eu/#jesse",
-        "name": "Jesse van Polanen",
-        "jobTitle": "Co-founder",
-        "worksFor": {
-          "@id": "https://www.fahcel.eu/#org"
-        }
-      },
-      "publisher": {
-        "@id": "https://www.fahcel.eu/#org"
-      },
-      "proficiencyLevel": "Beginner",
-      "about": [
-        {
-          "@type": "Thing",
-          "name": "Cold chain integrity"
-        },
-        {
-          "@type": "Thing",
-          "name": "Hash chain"
-        },
-        {
-          "@type": "Thing",
-          "name": "Tamper-evident logging"
-        }
-      ],
-      "isPartOf": {
-        "@type": "SoftwareApplication",
-        "@id": "https://www.fahcel.eu/#product",
-        "name": "FahCel"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.fahcel.eu/#org",
-      "name": "FahCel",
-      "url": "https://www.fahcel.eu/",
-      "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg"
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.fahcel.eu/hash-chain#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Why does each temperature reading need two hashes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A single hash detects a reading edited in place, but not one deleted, reordered or silently inserted. FahCel stores two: a data_hash over the reading's payload, and a record_hash over that payload plus the previous reading's record_hash. Together they make every form of tampering detectable, not just field-level edits."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is a record_hash in a cold-chain log?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The record_hash is the chain link. It is the SHA-256 of the reading's canonical payload combined with the previous reading's record_hash, so the hashes form a one-way dependency graph. The first reading in a shipment uses prev_hash = '0'. Alter any reading and every record_hash after it changes."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you verify a temperature chain has not been altered?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Run verifyChain() over the exported readings. It recomputes each data_hash from the payload and each record_hash from the payload plus its predecessor, then compares them to the stored values. The check is deterministic, replayable and works offline, so an auditor can reproduce the result without trusting FahCel."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens if someone edits a past temperature reading?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Verification fails from that reading onward. If reading #3 is altered, readings #4 through #N all fail because their stored record_hash no longer matches the recomputed one. The first broken link is flagged and everything downstream is marked untrusted, so you learn where the tampering started, not just that it happened."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which standards does the hash chain map to?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Hashing uses SHA-256 as specified in FIPS 180-4. The tamper-evident audit trail is designed against 21 CFR Part 11 §11.10(e), which requires secure, computer-generated, time-stamped audit trails that do not obscure previously recorded information, and it supports EU GDP record-keeping expectations."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -559,6 +454,75 @@
     .lede{font-size:17px}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fahcel.eu/nl/hash-chain#page",
+      "url": "https://www.fahcel.eu/nl/hash-chain",
+      "name": "Hoe een hashketen koelketendata bewijst | FahCel",
+      "description": "Elke temperatuurmeting wordt gehasht met de vorige. Een wijziging van een eerdere waarde verbreekt elke volgende schakel, en FahCel laat precies zien waar.",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@id": "https://www.fahcel.eu/#website"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FahCel",
+        "url": "https://www.fahcel.eu/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "nl-NL",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Waarom heeft elke temperatuurmeting twee hashes nodig?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eén hash herkent een bewerkte meting, maar geen verwijderde, verplaatste of stilzwijgend toegevoegde meting. FahCel slaat er twee op: een data_hash over de inhoud van de meting en een record_hash over die inhoud plus de vorige record_hash. Samen maken ze elke vorm van manipulatie zichtbaar, niet alleen wijzigingen in velden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is een record_hash in een koelketenlogboek?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De record_hash is de ketenschakel: de SHA-256 van de canonieke meetinhoud gecombineerd met de vorige record_hash. Zo vormen de hashes een eenrichtingsafhankelijkheid. De eerste meting in een zending gebruikt prev_hash = '0'. Wijzig een meting en elke record_hash erna verandert."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe controleer je of een temperatuurketen ongewijzigd is?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Voer verifyChain() uit op de geëxporteerde metingen. Het berekent elke data_hash vanuit de inhoud en elke record_hash vanuit de inhoud plus de voorganger opnieuw en vergelijkt ze met de opgeslagen waarden. De controle is deterministisch, herhaalbaar en werkt offline. Een auditor kan het resultaat dus reproduceren zonder FahCel te hoeven vertrouwen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat gebeurt er als iemand een eerdere temperatuurmeting wijzigt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vanaf die meting mislukt de verificatie. Als meting #3 wordt gewijzigd, falen #4 tot en met #N omdat hun opgeslagen record_hash niet meer overeenkomt met de herberekende hash. De eerste gebroken schakel wordt gemarkeerd en alles erna geldt als onbetrouwbaar. Je ziet dus waar de manipulatie begon, niet alleen dat die plaatsvond."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Op welke normen sluit de hashketen aan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Het hashen gebruikt SHA-256 volgens FIPS 180-4. Het controlespoor dat manipulatie zichtbaar maakt is ontworpen op basis van 21 CFR Part 11 §11.10(e). Die bepaling vereist veilige, computergegenereerde controlesporen met tijdstempels die eerdere informatie niet verbergen. Het ondersteunt ook de registratie-eisen van EU GDP."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <!-- languages:head -->
 <link rel="alternate" hreflang="en" href="https://www.fahcel.eu/hash-chain" />
 <link rel="alternate" hreflang="nl" href="https://www.fahcel.eu/nl/hash-chain" />
@@ -574,46 +538,46 @@
 <body style="background-color: rgb(217, 221, 207)">
 
 <nav class="top" data-screen-label="01 Hash Chain page">
-  <a class="logo" href="/" style="text-decoration:none;color:inherit"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
+  <a class="logo" href="/nl" style="text-decoration:none;color:inherit"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
   <ul>
     <li>Platform</li>
-    <li>Data Integrity</li>
-    <li>Compliance</li>
-    <li>Customers</li>
-    <li>Pricing</li>
+    <li>Data-integriteit</li>
+    <li>Naleving</li>
+    <li>Klanten</li>
+    <li>Prijzen</li>
   </ul>
-  <a href="/book-a-demo" class="cta">Schedule a QA demo</a>
-<!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Language"><a href="/hash-chain" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a><a href="/nl/hash-chain" lang="nl" hreflang="nl" aria-label="Nederlands">NL</a><a href="/de/hash-chain" lang="de" hreflang="de" aria-label="Deutsch">DE</a></div><!-- /languages:nav --></nav>
+  <a href="/nl/book-a-demo" class="cta">Plan een QA-demo</a>
+<!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Taal"><a href="/hash-chain" lang="en" hreflang="en" aria-label="English">EN</a><a href="/nl/hash-chain" lang="nl" hreflang="nl" aria-label="Nederlands" aria-current="page">NL</a><a href="/de/hash-chain" lang="de" hreflang="de" aria-label="Deutsch">DE</a></div><!-- /languages:nav --></nav>
 
 <!-- ===================== HERO ===================== -->
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span>Data Integrity · Reading-level</span>
-    <h1>Every reading is <em class="hack">cryptographically sealed</em> at the moment it arrives.</h1>
-    <p class="lede">Most systems sign the report. FahCel signs every reading — and chains them together — so tampering with any value, anywhere in the history, becomes mathematically undeniable.</p>
+    <span class="eyebrow"><span class="dot"></span>Data-integriteit · Per meting</span>
+    <h1>Elke meting wordt <em class="hack">cryptografisch verzegeld</em> zodra die binnenkomt.</h1>
+    <p class="lede">De meeste systemen ondertekenen het rapport. FahCel ondertekent elke meting en koppelt ze aan elkaar. Manipulatie van welke waarde dan ook, waar ook in de historie, wordt zo wiskundig aantoonbaar.</p>
     <div class="cta-row">
-      <a class="btn primary" href="#demo">Try the tamper demo
+      <a class="btn primary" href="#demo">Probeer de manipulatiedemo
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
-      <a class="btn ghost" href="#principle">Read the principle</a>
+      <a class="btn ghost" href="#principle">Lees het principe</a>
     </div>
 
     <div class="meta">
       <div>
-        <div class="k">Hash algorithm</div>
+        <div class="k">Hashalgoritme</div>
         <div class="v">SHA-256 <small>FIPS 180-4 · 21 CFR Part 11 §11.10(e)</small></div>
       </div>
       <div>
-        <div class="k">Hashes per reading</div>
-        <div class="v">Two <small>data_hash · record_hash</small></div>
+        <div class="k">Hashes per meting</div>
+        <div class="v">Twee <small>data_hash · record_hash</small></div>
       </div>
       <div>
-        <div class="k">Verification</div>
-        <div class="v">Deterministic <small>offline, replayable, open-source</small></div>
+        <div class="k">Verificatie</div>
+        <div class="v">Deterministisch <small>offline, herhaalbaar, opensource</small></div>
       </div>
       <div>
-        <div class="k">Genesis</div>
-        <div class="v">prev_hash = '0' <small>one root per device lifetime</small></div>
+        <div class="k">Beginpunt</div>
+        <div class="v">prev_hash = '0' <small>één beginpunt per levensduur van het apparaat</small></div>
       </div>
     </div>
   </div>
@@ -622,28 +586,28 @@
 <!-- ===================== BUYER OUTCOMES ===================== -->
 <section class="outcomes" id="outcomes">
   <div class="wrap">
-    <div class="section-eyebrow">Before your next inspection</div>
-    <h2>The cryptography does the work. <em>You get the readiness.</em></h2>
-    <p class="lead">Sealing happens at ingestion, so the proof already exists before anyone asks for it. For a QA manager, that turns three familiar scrambles into things that are simply ready.</p>
+    <div class="section-eyebrow">Vóór je volgende inspectie</div>
+    <h2>De cryptografie doet het werk. <em>Jij bent er klaar voor.</em></h2>
+    <p class="lead">Verzegeling gebeurt bij ontvangst, dus het bewijs bestaat al voordat iemand erom vraagt. Voor een QA-manager verandert dat drie bekende haastklussen in zaken die gewoon klaarstaan.</p>
 
     <div class="outcome-grid">
       <div class="ocard">
         <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></div>
-        <h3>Audit-ready pack in one click</h3>
-        <p>Export a signed, timestamped PDF with the full reading-level history and its verification result — laid out for review against the records you're already assessed on.</p>
+        <h3>Auditklaar pakket met één klik</h3>
+        <p>Exporteer een ondertekende pdf met tijdstempel, de volledige meethistorie en het verificatieresultaat, ingericht voor toetsing aan de registraties waarop je al wordt beoordeeld.</p>
         <span class="ref">EU GDP · 21 CFR Part 11 §11.10(e)</span>
       </div>
       <div class="ocard">
         <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 21a2 2 0 0 0 3.46 0"/><path d="M3.34 17a10 10 0 0 1 1.66-12"/><path d="M19 5a10 10 0 0 1 1.66 12"/><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg></div>
-        <h3>Excursion alerts in real time</h3>
-        <p>The moment a reading crosses a threshold, the team is notified — and the record is already sealed into the chain, not reconstructed after the fact.</p>
-        <span class="ref">Sealed at ingestion · not at report time</span>
+        <h3>Afwijkingsmeldingen in realtime</h3>
+        <p>Zodra een meting een grenswaarde overschrijdt, krijgt het team een melding. De registratie is dan al verzegeld in de keten, niet achteraf gereconstrueerd.</p>
+        <span class="ref">Verzegeld bij ontvangst · niet bij rapportage</span>
       </div>
       <div class="ocard">
         <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.36 2.64L3 8"/><path d="M3 3v5h5"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Verification the auditor can replay</h3>
-        <p>Hand over the dataset and the open verifier. An inspector can recompute the chain themselves, offline, and reach the same result you did.</p>
-        <span class="ref">Deterministic · offline · open-source</span>
+        <h3>Verificatie die de auditor kan herhalen</h3>
+        <p>Overhandig de dataset en de open verificatietool. Een inspecteur kan de keten zelf offline opnieuw berekenen en tot hetzelfde resultaat komen.</p>
+        <span class="ref">Deterministisch · offline · opensource</span>
       </div>
     </div>
   </div>
@@ -654,25 +618,25 @@
   <div class="wrap">
     <div class="hd">
       <div>
-        <div class="section-eyebrow">Evidence ledger · Live</div>
-        <h2>Edit any reading. <em>Watch the chain break.</em></h2>
+        <div class="section-eyebrow">Bewijsregister · Live</div>
+        <h2>Wijzig een meting. <em>Zie hoe de keten breekt.</em></h2>
       </div>
       <div class="right">
-        Select a reading and change the temperature. Every record_hash from that point forward is recomputed and compared — the first broken link is flagged, and everything downstream is marked untrusted.
+        Selecteer een meting en wijzig de temperatuur. Elke volgende record_hash wordt opnieuw berekend en vergeleken. De eerste gebroken schakel wordt gemarkeerd en alles erna geldt als onbetrouwbaar.
       </div>
     </div>
 
     <div class="ledger">
       <div class="ledger-head">
-        <span class="title">Device FC-L421 · Freezer 3 · Batch L2604-B</span>
-        <span class="pill ok" id="headerPill"><span class="d"></span> Chain verified</span>
-        <span class="chain">root: <b id="rootHash">0</b> · readings: <b id="readingCount">6</b></span>
+        <span class="title">Apparaat FC-L421 · Vriezer 3 · Batch L2604-B</span>
+        <span class="pill ok" id="headerPill"><span class="d"></span> Keten geverifieerd</span>
+        <span class="chain">beginpunt: <b id="rootHash">0</b> · metingen: <b id="readingCount">6</b></span>
       </div>
 
       <div class="verify-bar" id="verifyBar">
         <div class="ic" id="verifyIcon">✓</div>
-        <div class="msg" id="verifyMsg"><b>6 of 6 readings verified.</b> Every data_hash matches its payload; every record_hash links to its predecessor.</div>
-        <div class="stat" id="verifyStat">walk time · <b>0.4 ms</b></div>
+        <div class="msg" id="verifyMsg"><b>6 van 6 metingen geverifieerd.</b> Elke data_hash klopt met de inhoud; elke record_hash verwijst naar zijn voorganger.</div>
+        <div class="stat" id="verifyStat">controletijd · <b>0.4 ms</b></div>
       </div>
 
       <div class="rows" id="rows"></div>
@@ -685,42 +649,42 @@
 <!-- ===================== TWO-HASH PRINCIPLE ===================== -->
 <section class="principle" id="principle">
   <div class="wrap">
-    <div class="section-eyebrow">The principle</div>
-    <h2>Two hashes per reading. <em>One seals the data, one seals the history.</em></h2>
-    <p class="lead">A single hash would tell you if a reading was edited in place. It wouldn't tell you if a reading was deleted, reordered, or silently inserted. Two hashes — one over the payload, one over the payload plus the previous record_hash — make every form of tampering detectable.</p>
+    <div class="section-eyebrow">Het principe</div>
+    <h2>Twee hashes per meting. <em>Eén verzegelt de data, één de historie.</em></h2>
+    <p class="lead">Eén hash toont of een meting is bewerkt, maar niet of er een is verwijderd, verplaatst of stilzwijgend toegevoegd. Twee hashes, één over de inhoud en één over de inhoud plus de vorige record_hash, maken elke vorm van manipulatie zichtbaar.</p>
 
     <div class="principle-grid">
       <div class="card">
-        <span class="tag"><span class="d"></span>Layer 1 · Payload integrity</span>
+        <span class="tag"><span class="d"></span>Laag 1 · Integriteit van de inhoud</span>
         <h3>data_hash</h3>
         <div class="formula">
-          <span class="fn">SHA-256</span>(<span class="tag2">deterministicJSON</span>(<span class="c">// reading fields — </span><span class="rdlock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>proprietary</span><br/>
+          <span class="fn">SHA-256</span>(<span class="tag2">deterministicJSON</span>(<span class="c">// meetvelden — </span><span class="rdlock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>bedrijfseigen</span><br/>
           <span class="secret">&nbsp;&nbsp;{ <span class="rd">████████ ┄ ████████ ┄ ████</span>,<br/>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="rd">███████ ┄ ██████ ┄ █████ ┄ ████████</span>,<br/>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="rd">████████ ┄ █████████ ┄ ███████</span>,<br/>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="rd">██████████ ┄ ███████████</span> }</span><br/>
           ))
         </div>
-        <p>A fingerprint of the reading's <b>business content</b>, independent of its position in the chain. The exact field set and canonicalization rule are proprietary — but deterministic: the same reading always produces the same hash, on any system, forever.</p>
+        <p>Een vingerafdruk van de <b>inhoud van de meting</b>, onafhankelijk van de plek in de keten. De exacte velden en canonisatieregel zijn bedrijfseigen, maar deterministisch: dezelfde meting levert altijd dezelfde hash op, op elk systeem, voor altijd.</p>
         <div class="purpose">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <div><b>Purpose.</b> Tamper-detect the reading data in isolation. If any field changes — one decimal place, one second — the data_hash changes.</div>
+          <div><b>Doel.</b> Manipulatie in de meetdata afzonderlijk herkennen. Verandert een veld, al is het één decimaal of seconde, dan verandert de data_hash.</div>
         </div>
       </div>
 
       <div class="card" style="background:linear-gradient(180deg,#fff,#f4f5ef)">
-        <span class="tag" style="color:var(--teal)"><span class="d" style="background:var(--teal)"></span>Layer 2 · History integrity</span>
+        <span class="tag" style="color:var(--teal)"><span class="d" style="background:var(--teal)"></span>Laag 2 · Integriteit van de historie</span>
         <h3>record_hash</h3>
         <div class="formula">
           <span class="fn">SHA-256</span>(<span class="tag2">deterministicJSON</span>({<br/>
           &nbsp;&nbsp;...business_fields,<br/>
-          &nbsp;&nbsp;<span style="color:var(--red);font-weight:700">prev_hash</span> <span class="c">// previous reading's record_hash</span><br/>
+          &nbsp;&nbsp;<span style="color:var(--red);font-weight:700">prev_hash</span> <span class="c">// record_hash van de vorige meting</span><br/>
           }))
         </div>
-        <p>The chain link. Every record_hash embeds the previous reading's record_hash, so the hashes form a one-way dependency graph. Genesis reading uses <code style="font-family:var(--mono);background:#eef0ea;padding:1px 6px;border-radius:4px;color:var(--indigo)">prev_hash = '0'</code>.</p>
+        <p>De ketenschakel. Elke record_hash bevat de record_hash van de vorige meting. Zo vormen de hashes een eenrichtingsafhankelijkheid. De eerste meting gebruikt <code style="font-family:var(--mono);background:#eef0ea;padding:1px 6px;border-radius:4px;color:var(--indigo)">prev_hash = '0'</code>.</p>
         <div class="purpose">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-          <div><b>Purpose.</b> Tamper with any reading, and every record_hash after it changes. The chain tells you <b>where</b> tampering started.</div>
+          <div><b>Doel.</b> Wijzig een meting en elke volgende record_hash verandert. De keten laat zien <b>waar</b> de manipulatie begon.</div>
         </div>
       </div>
     </div>
@@ -730,14 +694,14 @@
 <!-- ===================== CHAIN DIAGRAM ===================== -->
 <section class="chain-diagram">
   <div class="wrap">
-    <div class="section-eyebrow">Chain structure</div>
-    <h2>Each reading depends on every reading before it.</h2>
-    <p class="sub">A linked list where every link is independently verifiable. If reading #3 is altered, readings #4 through #N all fail verification — because their stored record_hash no longer matches the recomputed one.</p>
+    <div class="section-eyebrow">Ketenstructuur</div>
+    <h2>Elke meting is afhankelijk van alle voorgaande metingen.</h2>
+    <p class="sub">Een gekoppelde lijst waarin elke schakel onafhankelijk te verifiëren is. Als meting #3 wordt gewijzigd, mislukken de controles voor #4 tot en met #N: hun opgeslagen record_hash komt niet meer overeen met de herberekende hash.</p>
 
     <div class="chain-viz">
       <div class="chain-row">
         <div class="node genesis">
-          <div class="rid">Reading <b>#001</b> · Genesis</div>
+          <div class="rid">Meting <b>#001</b> · Beginpunt</div>
           <div class="temp">-20.4 <small>°C</small></div>
           <div class="hashes">
             <div class="h"><span class="l">prev_hash</span><b>0</b></div>
@@ -747,7 +711,7 @@
         </div>
         <div class="arrow"><span class="lbl">prev_hash</span></div>
         <div class="node">
-          <div class="rid">Reading <b>#002</b></div>
+          <div class="rid">Meting <b>#002</b></div>
           <div class="temp">-20.3 <small>°C</small></div>
           <div class="hashes">
             <div class="h"><span class="l">prev_hash</span><b>c4f0…91ae</b></div>
@@ -757,7 +721,7 @@
         </div>
         <div class="arrow"><span class="lbl">prev_hash</span></div>
         <div class="node">
-          <div class="rid">Reading <b>#003</b></div>
+          <div class="rid">Meting <b>#003</b></div>
           <div class="temp">-20.6 <small>°C</small></div>
           <div class="hashes">
             <div class="h"><span class="l">prev_hash</span><b>e8a3…1c77</b></div>
@@ -767,7 +731,7 @@
         </div>
         <div class="arrow"><span class="lbl">prev_hash</span></div>
         <div class="node">
-          <div class="rid">Reading <b>#004</b></div>
+          <div class="rid">Meting <b>#004</b></div>
           <div class="temp">-20.5 <small>°C</small></div>
           <div class="hashes">
             <div class="h"><span class="l">prev_hash</span><b>2f6d…d8b3</b></div>
@@ -783,9 +747,9 @@
 <!-- ===================== VERIFY WALKTHROUGH ===================== -->
 <section class="verify">
   <div class="wrap">
-    <div class="section-eyebrow">Verification</div>
-    <h2>verifyChain() <em>— deterministic, replayable, offline.</em></h2>
-    <p class="lead">The verifier is deterministic and identical to the code that seals the chain: the same readings always produce the same verdict. Customers and auditors run the full version offline against any exported dataset — the core sealing rule stays proprietary.</p>
+    <div class="section-eyebrow">Verificatie</div>
+    <h2>verifyChain() <em>— deterministisch, herhaalbaar, offline.</em></h2>
+    <p class="lead">De verificatietool is deterministisch en identiek aan de code die de keten verzegelt. Dezelfde metingen geven altijd hetzelfde oordeel. Klanten en auditors draaien de volledige versie offline op elke geëxporteerde dataset. De kernregel voor verzegeling blijft bedrijfseigen.</p>
 
     <div class="verify-grid">
       <pre class="code"><span class="cm">// hashChain.js</span>
@@ -822,29 +786,29 @@
         <div class="step">
           <div class="n">1</div>
           <div>
-            <h4>Order by device timestamp</h4>
-            <p>The verifier walks readings in <code>device_timestamp</code> order — not ingestion order. A reading that arrives late but was captured earlier slots into the right position in the chain.</p>
+            <h4>Sorteer op apparaattijdstempel</h4>
+            <p>De verificatietool doorloopt metingen in <code>device_timestamp</code> -volgorde, niet op ontvangstvolgorde. Een later ontvangen maar eerder vastgelegde meting komt op de juiste plek in de keten.</p>
           </div>
         </div>
         <div class="step">
           <div class="n">2</div>
           <div>
-            <h4>Recompute both hashes from scratch</h4>
-            <p>For every reading, the verifier rebuilds <code>data_hash</code> and <code>record_hash</code> from the stored fields using the same canonicalization rules. It does not trust the stored values — it recomputes them and compares.</p>
+            <h4>Bereken beide hashes opnieuw</h4>
+            <p>Voor elke meting berekent de verificatietool <code>data_hash</code> en <code>record_hash</code> opnieuw vanuit de opgeslagen velden met dezelfde canonisatieregels. De opgeslagen waarden worden niet vertrouwd, maar opnieuw berekend en vergeleken.</p>
           </div>
         </div>
         <div class="step">
           <div class="n">3</div>
           <div>
-            <h4>Track the first broken link</h4>
-            <p>The first mismatch — in either hash — is flagged. Every reading after it inherits suspicion: even if their own hashes look valid, the chain has already lost integrity.</p>
+            <h4>Vind de eerste gebroken schakel</h4>
+            <p>De eerste afwijking in een van de hashes wordt gemarkeerd. Elke volgende meting wordt verdacht: ook als de eigen hashes geldig lijken, is de integriteit van de keten al verloren.</p>
           </div>
         </div>
         <div class="step">
           <div class="n">4</div>
           <div>
-            <h4>Return a verifiable verdict</h4>
-            <p><code>valid</code>, <code>first_tampered_at</code>, and total readings walked. The same values land in your audit PDF — so the inspector sees exactly what your QA team saw, and can replay it themselves.</p>
+            <h4>Geef een verifieerbaar oordeel</h4>
+            <p><code>valid</code>, <code>first_tampered_at</code>, en het totale aantal gecontroleerde metingen. Dezelfde waarden staan in je audit-pdf. De inspecteur ziet dus precies wat je QA-team zag en kan het zelf herhalen.</p>
           </div>
         </div>
       </div>
@@ -856,28 +820,28 @@
 <!-- ===================== FAQ ===================== -->
 <section class="faq" id="faq">
   <div class="wrap">
-    <div class="section-eyebrow">Common questions</div>
-    <h2>What auditors and QA leads ask <em>before they trust the chain.</em></h2>
+    <div class="section-eyebrow">Veelgestelde vragen</div>
+    <h2>Wat auditors en QA-managers vragen <em>voordat ze de keten vertrouwen.</em></h2>
     <div class="faq-list">
       <details open>
-        <summary>Why does each temperature reading need two hashes?</summary>
-        <p>A single hash detects a reading edited in place, but not one deleted, reordered or silently inserted. FahCel stores two: a <code>data_hash</code> over the reading&rsquo;s payload, and a <code>record_hash</code> over that payload plus the previous reading&rsquo;s <code>record_hash</code>. Together they make every form of tampering detectable, not just field-level edits.</p>
+        <summary>Waarom heeft elke temperatuurmeting twee hashes nodig?</summary>
+        <p>Eén hash herkent een bewerkte meting, maar geen verwijderde, verplaatste of stilzwijgend toegevoegde meting. FahCel slaat er twee op: een <code>data_hash</code> over de inhoud van de meting en een <code>record_hash</code> over die inhoud plus de vorige <code>record_hash</code>. Samen maken ze elke vorm van manipulatie zichtbaar, niet alleen wijzigingen in velden.</p>
       </details>
       <details>
-        <summary>What is a <code>record_hash</code> in a cold-chain log?</summary>
-        <p>The <code>record_hash</code> is the chain link. It is the SHA-256 of the reading&rsquo;s canonical payload combined with the previous reading&rsquo;s <code>record_hash</code>, so the hashes form a one-way dependency graph. The first reading in a shipment uses <code>prev_hash = '0'</code>. Alter any reading and every <code>record_hash</code> after it changes.</p>
+        <summary>Wat is een <code>record_hash</code> in een koelketenlogboek?</summary>
+        <p>De <code>record_hash</code> is de ketenschakel: de SHA-256 van de canonieke meetinhoud gecombineerd met de vorige <code>record_hash</code>. Zo vormen de hashes een eenrichtingsafhankelijkheid. De eerste meting in een zending gebruikt <code>prev_hash = '0'</code>. Wijzig een meting en elke <code>record_hash</code> erna verandert.</p>
       </details>
       <details>
-        <summary>How do you verify a temperature chain has not been altered?</summary>
-        <p>Run <code>verifyChain()</code> over the exported readings. It recomputes each <code>data_hash</code> from the payload and each <code>record_hash</code> from the payload plus its predecessor, then compares them to the stored values. The check is deterministic, replayable and works offline, so an auditor can reproduce the result without trusting FahCel.</p>
+        <summary>Hoe controleer je of een temperatuurketen ongewijzigd is?</summary>
+        <p>Voer <code>verifyChain()</code> uit op de geëxporteerde metingen. Het berekent elke <code>data_hash</code> vanuit de inhoud en elke <code>record_hash</code> vanuit de inhoud plus de voorganger opnieuw en vergelijkt ze met de opgeslagen waarden. De controle is deterministisch, herhaalbaar en werkt offline. Een auditor kan het resultaat dus reproduceren zonder FahCel te hoeven vertrouwen.</p>
       </details>
       <details>
-        <summary>What happens if someone edits a past temperature reading?</summary>
-        <p>Verification fails from that reading onward. If reading&nbsp;#3 is altered, readings&nbsp;#4 through&nbsp;#N all fail because their stored <code>record_hash</code> no longer matches the recomputed one. The first broken link is flagged and everything downstream is marked untrusted, so you learn where the tampering started, not just that it happened.</p>
+        <summary>Wat gebeurt er als iemand een eerdere temperatuurmeting wijzigt?</summary>
+        <p>Vanaf die meting mislukt de verificatie. Als meting #3 wordt gewijzigd, falen #4 tot en met #N omdat hun opgeslagen <code>record_hash</code> niet meer overeenkomt met de herberekende hash. De eerste gebroken schakel wordt gemarkeerd en alles erna geldt als onbetrouwbaar. Je ziet dus waar de manipulatie begon, niet alleen dat die plaatsvond.</p>
       </details>
       <details>
-        <summary>Which standards does the hash chain map to?</summary>
-        <p>Hashing uses SHA-256 as specified in FIPS&nbsp;180-4. The tamper-evident audit trail is designed against 21&nbsp;CFR&nbsp;Part&nbsp;11&nbsp;&sect;11.10(e), which requires secure, computer-generated, time-stamped audit trails that do not obscure previously recorded information, and it supports EU&nbsp;GDP record-keeping expectations.</p>
+        <summary>Op welke normen sluit de hashketen aan?</summary>
+        <p>Het hashen gebruikt SHA-256 volgens FIPS 180-4. Het controlespoor dat manipulatie zichtbaar maakt is ontworpen op basis van 21 CFR Part 11 §11.10(e). Die bepaling vereist veilige, computergegenereerde controlesporen met tijdstempels die eerdere informatie niet verbergen. Het ondersteunt ook de registratie-eisen van EU GDP.</p>
       </details>
     </div>
   </div>
@@ -886,25 +850,25 @@
 <section class="cta-band">
   <div class="wrap">
     <div>
-      <h2>Watch the chain hold — or break. <em>Live.</em></h2>
-      <p>In a 20-minute QA demo, we'll seal a stream of temperature readings at ingestion, run verifyChain in front of you, then tamper with a single reading and show you exactly where the chain catches it. No slideware — the actual system, the actual hashes.</p>
+      <h2>Zie de keten standhouden — of breken. <em>Live.</em></h2>
+      <p>In een QA-demo van 20 minuten verzegelen we temperatuurmetingen bij ontvangst, voeren we verifyChain uit en wijzigen we één meting. Je ziet precies waar de keten dat detecteert. Geen slides, maar het echte systeem en de echte hashes.</p>
       <div class="actions">
-        <a class="btn primary" href="/book-a-demo">Schedule a QA demo
+        <a class="btn primary" href="/nl/book-a-demo">Plan een QA-demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a class="btn ghost" href="/cold-chain-excursion-playbook">Read the excursion playbook</a>
+        <a class="btn ghost" href="/nl/cold-chain-excursion-playbook">Lees het draaiboek bij afwijkingen</a>
       </div>
     </div>
     <div class="cta-card">
-<span class="l">// verify against your own datalogger's API</span><br/>
+<span class="l">// verifieer via de API van je eigen datalogger</span><br/>
 $ fahcel verify readings.csv<br/>
-→ 14,208 readings walked<br/>
-→ genesis: <b>prev_hash = '0'</b><br/>
-→ <b style="color:#a4e0a4">chain: verified ✓</b><br/><br/>
-<span class="l">// alter one reading, re-run</span><br/>
+→ 14.208 metingen gecontroleerd<br/>
+→ beginpunt: <b>prev_hash = '0'</b><br/>
+→ <b style="color:#a4e0a4">keten: geverifieerd ✓</b><br/><br/>
+<span class="l">// wijzig één meting en voer opnieuw uit</span><br/>
 $ fahcel verify readings_edited.csv<br/>
-→ <b style="color:#f0a59b">integrity breach at reading 8,341</b><br/>
-→ <b style="color:#f0a59b">chain: BROKEN ✗</b>
+→ <b style="color:#f0a59b">integriteitsschending bij meting 8.341</b><br/>
+→ <b style="color:#f0a59b">keten: GEBROKEN ✗</b>
     </div>
   </div>
 </section>
@@ -912,7 +876,7 @@ $ fahcel verify readings_edited.csv<br/>
 <footer>
   <div class="wrap">
     <div>© 2026 FahCel · EU GDP · 21 CFR Part 11</div>
-    <div>Reading-level integrity for pharmaceutical cold chain · <span style="opacity:.75">Last updated <time datetime="2026-09-09">9 September 2026</time></span></div>
+    <div>Integriteit per meting voor de farmaceutische koelketen · <span style="opacity:.75">Laatst bijgewerkt <time datetime="2026-09-09">9 september 2026</time></span></div>
   </div>
 </footer>
 
@@ -943,7 +907,7 @@ $ fahcel verify readings_edited.csv<br/>
   const state = {
     readings: seed.map(r => ({...r, edited:false, tampered:null})),
     selected: 2, // reading #3 selected initially (0-indexed=2)
-    verified: true, // verdict reflects current data only after Run verifyChain()
+    verified: true, // verdict reflects current data only after Voer verifyChain() uit
   };
 
   function recompute(){
@@ -996,20 +960,20 @@ $ fahcel verify readings_edited.csv<br/>
       row.onclick = () => { state.selected = i; render(); };
 
       const statusPill = dirty
-        ? `<span class="pill pending"><span class="d"></span>Unverified</span>`
+        ? `<span class="pill pending"><span class="d"></span>Niet geverifieerd</span>`
         : r.broken
-        ? `<span class="pill bad"><span class="d"></span>${r.firstBroken ? 'Hash mismatch' : 'Downstream untrusted'}</span>`
-        : `<span class="pill ok"><span class="d"></span>Sealed</span>`;
+        ? `<span class="pill bad"><span class="d"></span>${r.firstBroken ? 'Hash komt niet overeen' : 'Vervolg onbetrouwbaar'}</span>`
+        : `<span class="pill ok"><span class="d"></span>Verzegeld</span>`;
 
       row.innerHTML = `
         <div class="idx">
           <span class="n">#${String(r.idx).padStart(3,'0')}</span>
-          <span>${r.edited ? '<span style="color:var(--red);font-weight:600">edited</span>' : 'original'}</span>
+          <span>${r.edited ? '<span style="color:var(--red);font-weight:600">gewijzigd</span>' : 'origineel'}</span>
         </div>
         <div class="body">
           <div class="ts">${r.ts} UTC</div>
           <div class="temp">${r.temp.toFixed(1)}<small>°C</small></div>
-          <div class="sensor"><b>FC-L421</b> · sensor S1 · freezer 3 · batch L2604-B</div>
+          <div class="sensor"><b>FC-L421</b> · sensor S1 · vriezer 3 · batch L2604-B</div>
         </div>
         <div class="status">
           ${statusPill}
@@ -1028,8 +992,8 @@ $ fahcel verify readings_edited.csv<br/>
         const broken = !dirty && next.broken && next.firstBroken;
         link.className = 'chain-link' + (broken ? ' broken' : (dirty && next.edited ? ' pending' : ''));
         link.innerHTML = broken
-          ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.5 6.5 6.5 17.5"/><path d="M9 4h3a5 5 0 0 1 5 5"/><path d="M15 20h-3a5 5 0 0 1-5-5"/></svg> prev_hash mismatch · chain broken here`
-          : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> prev_hash · ${short(r.record_stored)} → embedded in #${String(next.idx).padStart(3,'0')}`;
+          ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.5 6.5 6.5 17.5"/><path d="M9 4h3a5 5 0 0 1 5 5"/><path d="M15 20h-3a5 5 0 0 1-5-5"/></svg> prev_hash wijkt af · keten hier gebroken`
+          : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> prev_hash · ${short(r.record_stored)} → opgenomen in #${String(next.idx).padStart(3,'0')}`;
         rows.appendChild(link);
       }
     });
@@ -1044,28 +1008,28 @@ $ fahcel verify readings_edited.csv<br/>
       bar.classList.remove('bad');
       bar.classList.add('pending');
       ic.textContent = '•';
-      msg.innerHTML = `<b>Data changed — not yet verified.</b> You edited a reading's value. Run verifyChain() to walk the chain and see whether it still holds.`;
-      stat.innerHTML = 'status · <b>pending</b>';
+      msg.innerHTML = `<b>Data gewijzigd — nog niet geverifieerd.</b> Je hebt een meetwaarde gewijzigd. Voer verifyChain() uit om te controleren of de keten nog intact is.`;
+      stat.innerHTML = 'status · <b>in afwachting</b>';
       pill.className = 'pill pending';
-      pill.innerHTML = `<span class="d"></span> Unverified`;
+      pill.innerHTML = `<span class="d"></span> Niet geverifieerd`;
     } else if (state.firstBroken === -1){
       bar.classList.remove('bad');
       bar.classList.remove('pending');
       ic.textContent = '✓';
-      msg.innerHTML = `<b>${state.readings.length} of ${state.readings.length} readings verified.</b> Every data_hash matches its payload; every record_hash links to its predecessor.`;
-      stat.innerHTML = 'walk time · <b>0.4 ms</b>';
+      msg.innerHTML = `<b>${state.readings.length} van ${state.readings.length} metingen geverifieerd.</b> Elke data_hash klopt met de inhoud; elke record_hash verwijst naar zijn voorganger.`;
+      stat.innerHTML = 'controletijd · <b>0.4 ms</b>';
       pill.className = 'pill ok';
-      pill.innerHTML = `<span class="d"></span> Chain verified`;
+      pill.innerHTML = `<span class="d"></span> Keten geverifieerd`;
     } else {
       bar.classList.remove('pending');
       bar.classList.add('bad');
       ic.textContent = '✕';
       const brokenR = state.readings[state.firstBroken];
       const down = state.readings.length - state.firstBroken - 1;
-      msg.innerHTML = `<b>Chain broken at reading #${String(brokenR.idx).padStart(3,'0')}.</b> data_hash mismatch detected; ${down} downstream reading${down===1?'':'s'} now untrusted.`;
+      msg.innerHTML = `<b>Keten gebroken bij meting #${String(brokenR.idx).padStart(3,'0')}.</b> data_hash wijkt af; volgende metingen onbetrouwbaar: ${down}.`;
       stat.innerHTML = 'first_tampered_at · <b>#' + String(brokenR.idx).padStart(3,'0') + '</b>';
       pill.className = 'pill bad';
-      pill.innerHTML = `<span class="d"></span> Chain broken`;
+      pill.innerHTML = `<span class="d"></span> Keten gebroken`;
     }
 
     // Detail
@@ -1079,31 +1043,31 @@ $ fahcel verify readings_edited.csv<br/>
     const dataBroken = !dirty && !r.dataOK;
     const recordBroken = !dirty && !r.recordOK;
     const verdict = (broken) => broken
-      ? '<span style="color:var(--red);margin-left:auto;font-weight:700">MISMATCH</span>'
+      ? '<span style="color:var(--red);margin-left:auto;font-weight:700">AFWIJKING</span>'
       : dirty
-        ? '<span style="color:#9aa3b2;margin-left:auto">pending — run verifyChain()</span>'
-        : '<span style="color:var(--green);margin-left:auto">match ✓</span>';
+        ? '<span style="color:#9aa3b2;margin-left:auto">in afwachting — voer verifyChain() uit</span>'
+        : '<span style="color:var(--green);margin-left:auto">komt overeen ✓</span>';
     const blkClass = (broken) => broken ? 'broken' : (dirty ? 'pending' : '');
     const recClass = (broken) => broken ? 'diff' : (dirty ? 'pend' : '');
 
     d.innerHTML = `
       <div class="hd">
         <span class="idxpill">#${String(r.idx).padStart(3,'0')}</span>
-        <h3>Reading detail</h3>
+        <h3>Meetdetails</h3>
       </div>
-      <div class="sub">Two steps: <b>1.</b> edit the temperature to change the data, then <b>2.</b> run verifyChain() to re-check the chain.</div>
+      <div class="sub">Twee stappen: <b>1.</b> wijzig de temperatuur en <b>2.</b> voer verifyChain() uit om de keten opnieuw te controleren.</div>
 
       <div class="field">
-        <div class="k">Device</div>
-        <div class="v">FC-L421 · sensor S1 · freezer 3</div>
+        <div class="k">Apparaat</div>
+        <div class="v">FC-L421 · sensor S1 · vriezer 3</div>
       </div>
       <div class="field">
-        <div class="k">Timestamp</div>
+        <div class="k">Tijdstempel</div>
         <div class="v">${r.ts} UTC</div>
       </div>
-      <div class="stepbadge"><span class="n">1</span> Change the data</div>
+      <div class="stepbadge"><span class="n">1</span> Wijzig de data</div>
       <div class="field">
-        <div class="k">Temperature</div>
+        <div class="k">Temperatuur</div>
         <div class="v">
           <span class="edit">
             <input type="number" step="0.1" id="tempInput" value="${r.temp.toFixed(1)}" />
@@ -1114,35 +1078,35 @@ $ fahcel verify readings_edited.csv<br/>
       </div>
 
       <div class="hashblock ${blkClass(dataBroken)}">
-        <div class="lbl"><span class="tag">Layer 1</span> data_hash
+        <div class="lbl"><span class="tag">Laag 1</span> data_hash
           ${verdict(dataBroken)}
         </div>
-        <div class="val"><b>stored:</b> ${r.data_stored}</div>
-        <div class="val"><b>recomputed:</b> <span class="${recClass(dataBroken)}">${r.data_live}</span></div>
+        <div class="val"><b>opgeslagen:</b> ${r.data_stored}</div>
+        <div class="val"><b>herberekend:</b> <span class="${recClass(dataBroken)}">${r.data_live}</span></div>
       </div>
 
       <div class="hashblock ${blkClass(recordBroken)}">
-        <div class="lbl"><span class="tag">Layer 2</span> record_hash
+        <div class="lbl"><span class="tag">Laag 2</span> record_hash
           ${verdict(recordBroken)}
         </div>
-        <div class="val"><b>stored:</b> ${r.record_stored}</div>
-        <div class="val"><b>recomputed:</b> <span class="${recClass(recordBroken)}">${r.record_live}</span></div>
+        <div class="val"><b>opgeslagen:</b> ${r.record_stored}</div>
+        <div class="val"><b>herberekend:</b> <span class="${recClass(recordBroken)}">${r.record_live}</span></div>
         <div class="row-inline">
-          prev_hash embedded · <b>${state.selected===0?'0':short(state.readings[state.selected-1].record_stored)}</b>
+          prev_hash opgenomen · <b>${state.selected===0?'0':short(state.readings[state.selected-1].record_stored)}</b>
         </div>
       </div>
 
-      <div class="stepbadge"><span class="n">2</span> Run the check</div>
+      <div class="stepbadge"><span class="n">2</span> Voer de controle uit</div>
       <div class="actions">
         <button class="primary" id="btnVerify">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
-          Run verifyChain()
+          Voer verifyChain() uit
         </button>
         <button class="danger" id="btnBreak">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M17.5 6.5 6.5 17.5"/></svg>
-          Break chain (demo)
+          Breek de keten (demo)
         </button>
-        <button id="btnReset">Reset</button>
+        <button id="btnReset">Herstellen</button>
       </div>
     `;
 

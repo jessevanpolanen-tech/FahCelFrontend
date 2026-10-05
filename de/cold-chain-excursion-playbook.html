@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>Der Leitfaden für Kühlkettenabweichungen | FahCel</title>
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Ein Sechs-Schritte-Protokoll für die erste Stunde nach einer Temperaturabweichung: Wer entscheidet, was dokumentiert wird und wie die Sendung nachvollziehbar bewertet bleibt." />
+<link rel="canonical" href="https://www.fahcel.eu/de/cold-chain-excursion-playbook" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="FahCel" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:url" content="https://www.fahcel.eu/de/cold-chain-excursion-playbook" />
+<meta property="og:title" content="Der Leitfaden für Kühlkettenabweichungen | FahCel" />
+<meta property="og:description" content="Ein Sechs-Schritte-Protokoll für die erste Stunde nach einer Temperaturabweichung: Wer entscheidet, was dokumentiert wird und wie die Sendung nachvollziehbar bewertet bleibt." />
+<meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Ein Lagerleiter prüft Kühlraumtemperaturen auf einem Tablet" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Der Leitfaden für Kühlkettenabweichungen | FahCel" />
+<meta name="twitter:description" content="Ein Sechs-Schritte-Protokoll für die erste Stunde nach einer Temperaturabweichung: Wer entscheidet, was dokumentiert wird und wie die Sendung nachvollziehbar bewertet bleibt." />
+<meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#52b0bf; --green:#2E6B4E; --amber:#c88912; --red:#b3402f;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  .locale-page{background:var(--paper);color:var(--ink);font-family:var(--sans);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+  .pad{padding:64px 62px}
+  .mono{font-family:var(--mono)}
+
+  /* running foot */
+  .foot{position:absolute;left:62px;right:62px;bottom:34px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);border-top:1px solid var(--line);padding-top:12px}
+  .foot .lg{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--ink-2);letter-spacing:.4px;text-transform:none;font-size:11px}
+  .foot .lg .m{width:15px;height:15px;border-radius:4px;background:var(--indigo);display:inline-block}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);font-weight:600}
+  .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--indigo);color:#fff}
+  .cover::before{content:"";position:absolute;inset:0;background:
+     radial-gradient(680px 380px at 108% -6%,rgba(82,176,191,.4),transparent 62%),
+     radial-gradient(560px 360px at -8% 112%,rgba(46,107,78,.34),transparent 60%)}
+  .cover .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .cover .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.3px;font-size:20px}
+  .cover .brand .m{width:30px;height:30px;border-radius:8px;background:#fff}
+  .cover .eyebrow{color:var(--teal-2);margin-top:auto}
+  .cover .eyebrow .dot{background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
+  .cover h1{font-family:var(--serif);font-weight:500;font-size:60px;line-height:1.02;letter-spacing:-1.6px;margin:20px 0 0;max-width:15ch;text-wrap:balance}
+  .cover h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .cover .lede{font-size:17px;line-height:1.55;color:rgba(255,255,255,.82);max-width:46ch;margin:22px 0 0;text-wrap:pretty}
+  .cover .meta{margin-top:34px;display:flex;gap:34px;flex-wrap:wrap}
+  .cover .meta div{border-left:2px solid rgba(255,255,255,.28);padding-left:14px}
+  .cover .meta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .cover .meta .v{font-size:15px;font-weight:600;color:#fff;margin-top:3px}
+  .cover .rule{margin-top:38px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* FAQ page. Each answer is self-contained so it survives being lifted out of the
+     document, and FAQPage markup is only legitimate when the copy is visible. */
+  .faqlist{margin-top:22px;border-top:1px solid var(--line)}
+  .faqlist .qa{padding:13px 0;border-bottom:1px solid var(--line);break-inside:avoid}
+  .faqlist .q{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-.2px;margin:0 0 5px}
+  .faqlist .a{font-size:12.5px;line-height:1.55;color:var(--muted);margin:0;max-width:64ch}
+
+  /* ---------- INTERIOR SHARED ---------- */
+  h2.sec{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:14px 0 0;max-width:22ch;text-wrap:balance}
+  .dek{font-size:14.5px;line-height:1.55;color:var(--muted);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+
+  /* stat band */
+  .band{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .band div{padding:20px 22px;border-right:1px solid var(--line)}
+  .band div:last-child{border-right:0}
+  .band .n{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-1px;color:var(--indigo)}
+  .band .n em{font-style:normal;font-size:18px;color:var(--teal)}
+  .band .l{font-size:12px;line-height:1.4;color:var(--muted);margin-top:5px}
+
+  /* protocol steps */
+  .steps{margin:26px 0 0;display:flex;flex-direction:column;gap:12px}
+  .stepc{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:17px 20px 17px 17px;break-inside:avoid}
+  .stepc .num{width:52px;height:52px;border-radius:11px;background:var(--indigo);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:600}
+  .stepc .num.t{background:var(--teal)}
+  .stepc .num.g{background:var(--green)}
+  .stepc h3{font-size:16px;font-weight:700;letter-spacing:-.2px;margin:2px 0 0;color:var(--ink)}
+  .stepc p{font-size:13px;line-height:1.5;color:var(--muted);margin:5px 0 0}
+  .stepc .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:8px;display:inline-block}
+
+  /* checklist */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:26px 0 0}
+  .chk{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 22px 8px}
+  .chk h4{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--indigo);font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+  .chk h4 .p{width:22px;height:22px;border-radius:6px;background:var(--paper-2);display:grid;place-items:center;color:var(--indigo)}
+  .chk ul{list-style:none;margin:0;padding:0}
+  .chk li{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--ink-2)}
+  .chk li:last-child{border-bottom:0}
+  .chk .box{flex:0 0 auto;width:17px;height:17px;border-radius:5px;border:1.6px solid var(--line-2);margin-top:1px}
+  .chk li b{font-weight:600}
+  .chk li span{color:var(--muted);font-weight:400}
+
+  /* callout */
+  .call{margin:24px 0 0;background:var(--indigo);color:#fff;border-radius:16px;padding:26px 28px;position:relative;overflow:hidden;break-inside:avoid}
+  .call::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 110% -20%,rgba(82,176,191,.4),transparent 62%)}
+  .call>*{position:relative;z-index:1}
+  .call .k{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .call h3{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.12;letter-spacing:-.5px;margin:9px 0 0;max-width:26ch}
+  .call p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);margin:10px 0 0;max-width:58ch}
+
+  /* rule-of-thumb list */
+  .rot{margin:24px 0 0;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .rot div{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:15px 20px;border-bottom:1px solid var(--line);align-items:baseline}
+  .rot div:last-child{border-bottom:0}
+  .rot .w{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.3px}
+  .rot .w.a{color:var(--amber)}
+  .rot .w.g{color:var(--green)}
+  .rot .d{font-size:13px;line-height:1.5;color:var(--ink-2)}
+  .rot .d b{font-weight:600}
+
+  /* back cover */
+  .back{background:var(--indigo);color:#fff}
+  .back::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 400px at -6% -8%,rgba(82,176,191,.36),transparent 60%),radial-gradient(520px 340px at 110% 112%,rgba(46,107,78,.3),transparent 62%)}
+  .back .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .back .eyebrow{color:var(--teal-2)} .back .eyebrow .dot{background:var(--teal-2)}
+  .back h2{font-family:var(--serif);font-weight:500;font-size:44px;line-height:1.05;letter-spacing:-1.2px;margin:18px 0 0;max-width:16ch;text-wrap:balance}
+  .back h2 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .back .p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.82);max-width:48ch;margin:18px 0 0}
+  .back .cards{margin:34px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .back .cc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:20px 22px}
+  .back .cc .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .back .cc .v{font-size:15px;font-weight:600;margin-top:7px;line-height:1.35}
+  .back .cc .v span{color:rgba(255,255,255,.62);font-weight:400;font-size:13px}
+  .back .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:26px;border-top:1px solid rgba(255,255,255,.18)}
+  .back .cta .big{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.4px}
+  .back .cta .big span{color:#9fd6e0}
+  .back .cta .pill{background:#fff;color:var(--indigo);font-weight:700;font-size:14px;padding:14px 26px;border-radius:999px;white-space:nowrap}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fahcel.eu/de/cold-chain-excursion-playbook#page",
+      "url": "https://www.fahcel.eu/de/cold-chain-excursion-playbook",
+      "name": "Der Leitfaden für Kühlkettenabweichungen | FahCel",
+      "description": "Ein Sechs-Schritte-Protokoll für die erste Stunde nach einer Temperaturabweichung: Wer entscheidet, was dokumentiert wird und wie die Sendung nachvollziehbar bewertet bleibt.",
+      "inLanguage": "de-DE",
+      "isPartOf": {
+        "@id": "https://www.fahcel.eu/#website"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FahCel",
+        "url": "https://www.fahcel.eu/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "de-DE",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was ist eine Temperaturabweichung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Temperaturabweichung ist jeder Zeitraum, in dem ein temperaturempfindliches Produkt bei Lagerung, Transport oder Zustellung außerhalb seines angegebenen Lagerbereichs liegt. Eine Abweichung bedeutet nicht automatisch Verlust. Dazu wird sie erst, wenn ohne den nötigen Nachweis entschieden wird."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist bei einem Temperaturalarm zuerst zu tun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sichere den Nachweis, statt in Panik zu geraten. Vermerke den Alarm mit Zeitstempel im versiegelten Protokoll und erfasse den Messwert unverändert. Bewege die Palette nicht und öffne die Tür nicht. Wer die Ladung vorher verändert, zerstört die Grundlage der Entscheidung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Führt eine einzelne Temperaturspitze zur Ablehnung des Produkts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Eine einzelne Spitze sagt allein wenig aus. Dauer und kumulierte Exposition bestimmen die Stabilität. Rufe die gesamte Kurve vom Beladen bis jetzt ab und vergleiche die kumulierte Zeit außerhalb des Bereichs mit der zulässigen mittleren kinetischen Temperatur. Entscheidend ist der Etikettgrenzwert, nicht der Spitzenwert."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie ist eine Lücke im Temperaturprotokoll zu behandeln?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Als schlimmster Fall. Eine Messlücke während einer Überschreitung – etwa zwanzig Minuten ohne Messwerte – wird behandelt, als wäre das Produkt während der gesamten Lücke außerhalb des Bereichs gewesen. Nicht als „wahrscheinlich in Ordnung“. Die Lücke ist das Risiko, auch aus Sicht des Auditors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wo sollte der Temperaturlogger platziert werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In der Ladung, nicht in der Rückluft. Rückluft ist nicht die Produkttemperatur, und die Sensorposition kann mehrere Grad Unterschied machen. Platziere den Fühler bei der Ware, starte ihn vor dem Beladen der ersten Palette und ordne Logger-ID und Siegel im Manifest zu, bevor die Türen schließen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie schnell sollte über eine Abweichung entschieden werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In derselben Schicht. Eine dokumentierte Entscheidung am selben Tag ist besser als eine perfekte Analyse drei Tage später. Die Entscheidung muss nicht nur richtig, sondern auch begründbar sein. Dokumentiere Freigabe, Quarantäne oder Ablehnung bei der zugehörigen Temperaturkurve und lasse die QS-Leitung unterzeichnen."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- languages:head -->
+<link rel="alternate" hreflang="en" href="https://www.fahcel.eu/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="nl" href="https://www.fahcel.eu/nl/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="de" href="https://www.fahcel.eu/de/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="x-default" href="https://www.fahcel.eu/cold-chain-excursion-playbook" />
+<link rel="stylesheet" href="/assets/languages.css" />
+<script src="/assets/languages.js" defer></script>
+<link rel="stylesheet" href="/assets/analytics.css" />
+<script src="/assets/analytics-config.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+<!-- /languages:head -->
+</head>
+<body>
+<div class="document-languages"><!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Sprache"><a href="/cold-chain-excursion-playbook" lang="en" hreflang="en" aria-label="English">EN</a><a href="/nl/cold-chain-excursion-playbook" lang="nl" hreflang="nl" aria-label="Nederlands">NL</a><a href="/de/cold-chain-excursion-playbook" lang="de" hreflang="de" aria-label="Deutsch" aria-current="page">DE</a></div><!-- /languages:nav --></div>
+<doc-page size="letter" margin="0" class="translated-playbook">
+
+  <!-- 1 · COVER -->
+  <section class="locale-page cover">
+    <div class="pad">
+      <div class="brand"><span class="m"></span>FahCel</div>
+      <div class="eyebrow"><span class="dot"></span>Praxisleitfaden · Version 2026.1</div>
+      <h1>Der Leitfaden für <em>Kühlkettenabweichungen</em></h1>
+      <p class="lede">Sechs Schritte, um eine Sendung bei einer Temperaturabweichung abzusichern – und die Dokumentation, die dein Handeln belegt.</p>
+      <div class="meta">
+        <div><div class="k">Für</div><div class="v">QS-, Logistik- &amp; Betriebsleitungen</div></div>
+        <div><div class="k">Lesezeit</div><div class="v">11 Minuten</div></div>
+        <div><div class="k">Seiten</div><div class="v">Titelseite + 4</div></div>
+        <div><div class="k">Aktualisiert</div><div class="v"><time datetime="2026-09-09">9. September 2026</time></div></div>
+      </div>
+      <div class="rule"><span>fahcel.eu / playbook</span><span>Kühlung nachgewiesen, von Anfang bis Ende</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · PROTOCOL -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Teil eins · Wenn der Alarm auslöst</div>
+      <h2 class="sec">Eine Abweichung ist erst ein Verlust, wenn du so entscheidest.</h2>
+      <p class="dek">Die meisten Abschreibungen verdorbener Produkte entstehen nicht durch die Temperaturspitze, sondern durch die Stunden der Untätigkeit danach. Diese sechs Schritte machen aus Panik eine dokumentierte Entscheidung, die du gegenüber Behörden, Auditoren und Kunden begründen kannst.</p>
+
+      <div class="band">
+        <div><div class="n">80<em>%</em></div><div class="l">der Abschreibungen durch Abweichungen sind mit einer Entscheidung in derselben Schicht vermeidbar</div></div>
+        <div><div class="n">6<em>Std.</em></div><div class="l">mediane Verzögerung zwischen Überschreitung und erster dokumentierter Reaktion</div></div>
+        <div><div class="n">1<em>×</em></div><div class="l">die Anzahl lückenloser Nachweise, die ein Auditor wirklich braucht</div></div>
+      </div>
+
+      <div class="steps">
+        <div class="stepc" id="step-1"><div class="num">1</div><div><h3>Sichere den Nachweis, statt in Panik zu geraten</h3><p>Vermerke den Alarm sofort mit Zeitstempel im versiegelten Protokoll. Bewege die Palette nicht und öffne die Tür nicht – erfasse den Messwert unverändert.</p><span class="tag">Verantwortlich: Personal vor Ort · &lt; 5 Min.</span></div></div>
+        <div class="stepc" id="step-2"><div class="num t">2</div><div><h3>Rufe die vollständige Temperaturhistorie ab</h3><p>Nicht nur die Spitze. Dauer und Fläche unter der Kurve bestimmen die Produktstabilität weit stärker als ein einzelner Ausschlag. Exportiere den gesamten Zeitraum vom ersten Beladen bis jetzt.</p><span class="tag">Verantwortlich: QS · versiegelte Messreihe abrufen</span></div></div>
+        <div class="stepc" id="step-3"><div class="num t">3</div><div><h3>Prüfe gegen das Stabilitätsbudget</h3><p>Vergleiche die kumulierte Zeit außerhalb des Bereichs mit der zulässigen mittleren kinetischen Temperatur des Produkts. Maßgeblich ist der Grenzwert auf dem Etikett, nicht das Bauchgefühl. Hier fällt die Ja-Nein-Entscheidung.</p><span class="tag">Verantwortlich: QS · MKT / Etikettvorgabe</span></div></div>
+        <div class="stepc" id="step-4"><div class="num g">4</div><div><h3>Dokumentiere die Freigabeentscheidung im Nachweis</h3><p>Freigeben, unter Quarantäne stellen oder ablehnen: Halte die Begründung direkt bei den zugrunde liegenden Daten fest. Eine Entscheidung ohne Belege ist ein Risiko, keine Absicherung.</p><span class="tag">Verantwortlich: QS-Leitung · unterzeichnet</span></div></div>
+        <div class="stepc" id="step-5"><div class="num g">5</div><div><h3>Informiere die Kette mit einer Nachricht</h3><p>Empfänger, Spediteur und empfangende QS erhalten dieselbe Entscheidung mit demselben Nachweis im Anhang – keine weitergeleiteten Screenshots oder abweichenden Versionen.</p><span class="tag">Verantwortlich: Logistik · &lt; 1 Std.</span></div></div>
+        <div class="stepc" id="step-6"><div class="num g">6</div><div><h3>Schließe mit einer Ursachenanalyse ab</h3><p>Ordne die Überschreitung einer Ursache zu: Standzeit an der Rampe, ausgefallenes Kühlaggregat oder offene Tür. Dokumentiere sie, damit die nächste Sendung die Lösung übernimmt, nicht den Fehler.</p><span class="tag">Verantwortlich: Betrieb · CAPA dokumentiert</span></div></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Abweichungsleitfaden</span><span>02 · Das Sechs-Schritte-Protokoll</span></div>
+  </section>
+
+  <!-- 3 · CHECKLIST + THRESHOLDS -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Teil zwei · Vor der Abfahrt</div>
+      <h2 class="sec">Die Abfahrtscheckliste, die die meisten Abweichungen verhindert.</h2>
+      <p class="dek">Hänge diese Liste an die Rampentür. Jedes Häkchen verhindert eine Abweichung – und eine Rückfrage des Auditors.</p>
+
+      <div class="two">
+        <div class="chk">
+          <h4><span class="p">A</span>Beladen &amp; versiegeln</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Vorkühlung bestätigt</b> — Anhänger vor der ersten Palette auf Solltemperatur, nicht danach.</span></li>
+            <li><span class="box"></span><span><b>Logger platziert &amp; gestartet</b> — Fühler in der Ladung, nicht in der Rückluft.</span></li>
+            <li><span class="box"></span><span><b>Sollwert entspricht Etikett</b> — anhand der Produktspezifikation geprüft und abgezeichnet.</span></li>
+            <li><span class="box"></span><span><b>Siegel + Logger-ID zugeordnet</b> — vor dem Schließen der Türen im Manifest erfasst.</span></li>
+          </ul>
+        </div>
+        <div class="chk">
+          <h4><span class="p">B</span>Transport &amp; Übergabe</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Alarmgrenzwerte aktiv</b> — jemand nimmt die Warnungen entgegen.</span></li>
+            <li><span class="box"></span><span><b>Standzeitgrenzen festgelegt</b> — maximale Minuten an einer offenen Rampe vor Eskalation.</span></li>
+            <li><span class="box"></span><span><b>Empfänger informiert</b> — kennt die Entscheidungsregel vor Ankunft.</span></li>
+            <li><span class="box"></span><span><b>Nachweisübergabe geplant</b> — eine Datei begleitet die Ware bei lückenloser Übergabekette.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:30px"><span class="dot"></span>Faustregeln · lesen, bevor du die Daten anzweifelst</div>
+      <div class="rot">
+        <div><span class="w">ABLEHNUNGSBIAS</span><span class="d"><b>Eine einzelne Spitze sagt wenig aus.</b> Dauer und kumulierte Exposition bestimmen die Stabilität. Rufe vor jeder Entscheidung die vollständige Kurve ab.</span></div>
+        <div><span class="w a">VORSICHT</span><span class="d"><b>Die Lücke ist das Risiko.</b> Eine Messlücke von 20 Minuten während einer Überschreitung gilt als schlimmster Fall, nicht als „wahrscheinlich in Ordnung“.</span></div>
+        <div><span class="w a">VORSICHT</span><span class="d"><b>Rückluft ≠ Produkt.</b> Die Sensorposition kann den Messwert um mehrere Grad verändern. Vertraue dem Fühler in der Ladung.</span></div>
+        <div><span class="w g">BEGRÜNDBAR</span><span class="d"><b>Entscheide in derselben Schicht.</b> Eine dokumentierte Entscheidung am selben Tag ist besser als eine perfekte Analyse, die drei Tage zu spät kommt.</span></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Abweichungsleitfaden</span><span>03 · Checkliste &amp; Grenzwerte</span></div>
+  </section>
+
+  <!-- 4 · BACK / CTA -->
+  <!-- 4 · FAQ -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Teil drei · Fragen, die die Entscheidung bestimmen</div>
+      <h2 class="sec">Die sechs Antworten, an denen ein Auditor dich misst.</h2>
+      <p class="dek">Diese Fragen stellen sich bei jeder Abweichungsprüfung. Kläre sie vor dem Alarm, nicht danach. Die Antworten machen aus einer Einschätzung einen belastbaren Nachweis.</p>
+
+      <div class="faqlist">
+        <div class="qa"><p class="q">Was ist eine Temperaturabweichung?</p><p class="a">Eine Temperaturabweichung ist jeder Zeitraum, in dem ein temperaturempfindliches Produkt bei Lagerung, Transport oder Zustellung außerhalb seines angegebenen Lagerbereichs liegt. Eine Abweichung bedeutet nicht automatisch Verlust. Dazu wird sie erst, wenn ohne den nötigen Nachweis entschieden wird.</p></div>
+        <div class="qa"><p class="q">Was ist bei einem Temperaturalarm zuerst zu tun?</p><p class="a">Sichere den Nachweis, statt in Panik zu geraten. Vermerke den Alarm mit Zeitstempel im versiegelten Protokoll und erfasse den Messwert unverändert. Bewege die Palette nicht und öffne die Tür nicht. Wer die Ladung vorher verändert, zerstört die Grundlage der Entscheidung.</p></div>
+        <div class="qa"><p class="q">Führt eine einzelne Temperaturspitze zur Ablehnung des Produkts?</p><p class="a">Nein. Eine einzelne Spitze sagt allein wenig aus. Dauer und kumulierte Exposition bestimmen die Stabilität. Rufe die gesamte Kurve vom Beladen bis jetzt ab und vergleiche die kumulierte Zeit außerhalb des Bereichs mit der zulässigen mittleren kinetischen Temperatur. Entscheidend ist der Etikettgrenzwert, nicht der Spitzenwert.</p></div>
+        <div class="qa"><p class="q">Wie ist eine Lücke im Temperaturprotokoll zu behandeln?</p><p class="a">Als schlimmster Fall. Eine Messlücke während einer Überschreitung – etwa zwanzig Minuten ohne Messwerte – wird behandelt, als wäre das Produkt während der gesamten Lücke außerhalb des Bereichs gewesen. Nicht als „wahrscheinlich in Ordnung“. Die Lücke ist das Risiko, auch aus Sicht des Auditors.</p></div>
+        <div class="qa"><p class="q">Wo sollte der Temperaturlogger platziert werden?</p><p class="a">In der Ladung, nicht in der Rückluft. Rückluft ist nicht die Produkttemperatur, und die Sensorposition kann mehrere Grad Unterschied machen. Platziere den Fühler bei der Ware, starte ihn vor dem Beladen der ersten Palette und ordne Logger-ID und Siegel im Manifest zu, bevor die Türen schließen.</p></div>
+        <div class="qa"><p class="q">Wie schnell sollte über eine Abweichung entschieden werden?</p><p class="a">In derselben Schicht. Eine dokumentierte Entscheidung am selben Tag ist besser als eine perfekte Analyse drei Tage später. Die Entscheidung muss nicht nur richtig, sondern auch begründbar sein. Dokumentiere Freigabe, Quarantäne oder Ablehnung bei der zugehörigen Temperaturkurve und lasse die QS-Leitung unterzeichnen.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Abweichungsleitfaden</span><span>04 · Häufige Fragen</span></div>
+  </section>
+
+  <section class="locale-page back">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Die Rolle von FahCel</div>
+      <h2>Schluss mit der Rekonstruktion <em>nach</em> der Überschreitung.</h2>
+      <p class="p">Dieser Leitfaden ist die manuelle Variante. FahCel führt dieselben sechs Schritte automatisch aus: ein versiegelter, lückenloser Temperaturnachweis vom Beladen bis zur Übergabe. Entscheidung und Belege bleiben so an einem Ort.</p>
+
+      <div class="cards">
+        <div class="cc"><div class="k">Schritt 1–3</div><div class="v">Versiegeltes Hash-Ketten-Protokoll <span>— jeder Messwert ab Beladung mit Zeitstempel und erkennbaren Manipulationen.</span></div></div>
+        <div class="cc"><div class="k">Schritt 4</div><div class="v">Datenbasierte Entscheidung <span>— Freigabe / Quarantäne / Ablehnung anhand der zugrunde liegenden Kurve unterzeichnet.</span></div></div>
+        <div class="cc"><div class="k">Schritt 5</div><div class="v">Übergabe mit einer Nachricht <span>— derselbe Nachweis begleitet die Ware bei lückenloser Übergabekette.</span></div></div>
+        <div class="cc"><div class="k">Schritt 6</div><div class="v">Ursache dokumentiert <span>— jede Abweichung verbessert die nächste Sendung.</span></div></div>
+      </div>
+
+      <div class="cta">
+        <div class="big">Erlebe es auf deinen Routen – <span>eine 20-minütige Demo mit deinen eigenen Sendungsdaten.</span></div>
+        <a href="/de/book-a-demo" style="text-decoration:none;color:inherit"><div class="pill">Demo buchen → fahcel.eu/demo</div></a>
+      </div>
+    </div>
+  </section>
+
+</doc-page>
+<script src="/doc-page.js"></script>
+</body>
+</html>

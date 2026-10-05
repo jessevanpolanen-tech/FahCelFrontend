@@ -9,3 +9,9 @@ haccp-pro
 plans
 CLAUDE.md
 .claude
+# Locale tooling and development setup; generated /nl and /de pages are served.
+scripts
+locales
+.base44
+AGENTS.md
+docker-compose.base44.yml
