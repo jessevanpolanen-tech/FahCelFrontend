@@ -53,5 +53,6 @@ Update your privacy notice for Google Analytics processing and review your Googl
 property settings/legal obligations before enabling collection. This banner is not
 certification of GDPR compliance. Analytics measures consenting visitors only.
 
-Until a real Measurement ID is supplied, consent controls work but Google receives
-no traffic; a property has not been created automatically.
+The supplied Measurement ID `G-703LHFFHQ3` is configured in
+`assets/analytics-config.js`. Collection starts on allowed production hosts after
+deployment and visitor consent; preview visits remain excluded.
