@@ -1,0 +1,108 @@
+The Cold-Chain Excursion Playbook | FahCel	Het draaiboek voor koelketenafwijkingen | FahCel	Der Leitfaden für Kühlkettenabweichungen | FahCel
+A six-move protocol for the first hour of a temperature excursion: who decides, what to record, and how to keep the shipment defensible.	Een zesstappenprotocol voor het eerste uur na een temperatuurafwijking: wie beslist, wat je vastlegt en hoe je de zending verantwoordt.	Ein Sechs-Schritte-Protokoll für die erste Stunde nach einer Temperaturabweichung: Wer entscheidet, was dokumentiert wird und wie die Sendung nachvollziehbar bewertet bleibt.
+Field Playbook · Rev 2026.1	Praktijkdraaiboek · Versie 2026.1	Praxisleitfaden · Version 2026.1
+For	Voor	Für
+QA, logistics & ops leads	QA-, logistiek- & operationeel managers	QS-, Logistik- & Betriebsleitungen
+Read time	Leestijd	Lesezeit
+11 minutes	11 minuten	11 Minuten
+Pages	Pagina’s	Seiten
+Cover + 4	Omslag + 4	Titelseite + 4
+Updated	Bijgewerkt	Aktualisiert
+Proof of cold, end to end	Bewijs van koeling, van begin tot eind	Kühlung nachgewiesen, von Anfang bis Ende
+Part one · When the alarm fires	Deel één · Als het alarm afgaat	Teil eins · Wenn der Alarm auslöst
+An excursion isn't a loss until you decide it is.	Een afwijking is pas verlies als je dat vaststelt.	Eine Abweichung ist erst ein Verlust, wenn du so entscheidest.
+Most spoiled-product write-offs aren't caused by the temperature spike — they're caused by the hours of silence after it. These six moves turn a panic into a documented decision you can defend to a regulator, an auditor, or a customer.	De meeste afschrijvingen door bederf komen niet door de temperatuurpiek, maar door de uren stilte erna. Deze zes stappen zetten paniek om in een vastgelegd besluit dat je kunt verantwoorden aan een toezichthouder, auditor of klant.	Die meisten Abschreibungen verdorbener Produkte entstehen nicht durch die Temperaturspitze, sondern durch die Stunden der Untätigkeit danach. Diese sechs Schritte machen aus Panik eine dokumentierte Entscheidung, die du gegenüber Behörden, Auditoren und Kunden begründen kannst.
+of excursion write-offs are avoidable with a same-shift decision	van de afschrijvingen door afwijkingen is te voorkomen met een besluit tijdens dezelfde dienst	der Abschreibungen durch Abweichungen sind mit einer Entscheidung in derselben Schicht vermeidbar
+hr	uur	Std.
+median delay between a breach and the first logged response	mediane vertraging tussen overschrijding en eerste vastgelegde reactie	mediane Verzögerung zwischen Überschreitung und erster dokumentierter Reaktion
+the number of unbroken records an auditor actually wants	het aantal ononderbroken registraties dat een auditor echt nodig heeft	die Anzahl lückenloser Nachweise, die ein Auditor wirklich braucht
+Freeze the record, not the panic	Stel de registratie veilig, raak niet in paniek	Sichere den Nachweis, statt in Panik zu geraten
+The instant an alarm fires, timestamp it against the sealed log. Don't move the pallet, don't open the door — capture the reading exactly as it stands.	Leg zodra het alarm afgaat de tijd vast bij het verzegelde logboek. Verplaats de pallet niet en open de deur niet: leg de meting precies vast zoals die is.	Vermerke den Alarm sofort mit Zeitstempel im versiegelten Protokoll. Bewege die Palette nicht und öffne die Tür nicht – erfasse den Messwert unverändert.
+Owner: on-site handler · < 5 min	Verantwoordelijk: medewerker ter plaatse · < 5 min	Verantwortlich: Personal vor Ort · < 5 Min.
+Pull the full temperature history	Haal de volledige temperatuurhistorie op	Rufe die vollständige Temperaturhistorie ab
+Not just the peak. Duration and area-under-curve decide product stability far more than a single spike — export the whole interval from first load to now.	Niet alleen de piek. Duur en oppervlakte onder de curve bepalen de productstabiliteit veel meer dan één piek. Exporteer het volledige interval, van het laden tot nu.	Nicht nur die Spitze. Dauer und Fläche unter der Kurve bestimmen die Produktstabilität weit stärker als ein einzelner Ausschlag. Exportiere den gesamten Zeitraum vom ersten Beladen bis jetzt.
+Owner: QA · pull sealed series	Verantwoordelijk: QA · verzegelde reeks ophalen	Verantwortlich: QS · versiegelte Messreihe abrufen
+Run it against the stability budget	Toets aan de toegestane stabiliteitsmarge	Prüfe gegen das Stabilitätsbudget
+Compare cumulative time-out-of-range to the product's mean kinetic temperature allowance — the label limit, not a gut call. This is the yes/no gate.	Vergelijk de totale tijd buiten het bereik met de toegestane gemiddelde kinetische temperatuur van het product. De etiketlimiet beslist, niet je gevoel. Dit is het ja/nee-moment.	Vergleiche die kumulierte Zeit außerhalb des Bereichs mit der zulässigen mittleren kinetischen Temperatur des Produkts. Maßgeblich ist der Grenzwert auf dem Etikett, nicht das Bauchgefühl. Hier fällt die Ja-Nein-Entscheidung.
+Owner: QA · MKT / label spec	Verantwoordelijk: QA · MKT / etiketspecificatie	Verantwortlich: QS · MKT / Etikettvorgabe
+Make the release decision on the record	Leg het vrijgavebesluit vast bij de registratie	Dokumentiere die Freigabeentscheidung im Nachweis
+Release, quarantine, or reject — and write the reasoning beside the data that drove it. A decision without its evidence is a liability, not a defense.	Vrijgeven, in quarantaine plaatsen of afkeuren: schrijf de onderbouwing bij de data die tot het besluit leidde. Een besluit zonder bewijs is een risico, geen verantwoording.	Freigeben, unter Quarantäne stellen oder ablehnen: Halte die Begründung direkt bei den zugrunde liegenden Daten fest. Eine Entscheidung ohne Belege ist ein Risiko, keine Absicherung.
+Owner: QA lead · signed	Verantwoordelijk: QA-manager · ondertekend	Verantwortlich: QS-Leitung · unterzeichnet
+Notify the chain in one message	Informeer de keten met één bericht	Informiere die Kette mit einer Nachricht
+Consignee, carrier, and receiving QA get the same disposition and the same attached record — no forwarded screenshots, no version drift.	Ontvanger, vervoerder en ontvangende QA krijgen hetzelfde besluit en dezelfde registratie als bijlage. Geen doorgestuurde screenshots of verschillende versies.	Empfänger, Spediteur und empfangende QS erhalten dieselbe Entscheidung mit demselben Nachweis im Anhang – keine weitergeleiteten Screenshots oder abweichenden Versionen.
+Owner: logistics · < 1 hr	Verantwoordelijk: logistiek · < 1 uur	Verantwortlich: Logistik · < 1 Std.
+Close the loop with a root cause	Sluit af met een oorzaakanalyse	Schließe mit einer Ursachenanalyse ab
+Tie the breach to a cause — dwell at dock, failed reefer, door left open — and file it so the next shipment inherits the fix, not the failure.	Koppel de overschrijding aan een oorzaak: wachten bij het dock, defecte koeling of een open deur. Leg dit vast zodat de volgende zending de oplossing meekrijgt, niet de fout.	Ordne die Überschreitung einer Ursache zu: Standzeit an der Rampe, ausgefallenes Kühlaggregat oder offene Tür. Dokumentiere sie, damit die nächste Sendung die Lösung übernimmt, nicht den Fehler.
+Owner: ops · CAPA logged	Verantwoordelijk: operatie · CAPA vastgelegd	Verantwortlich: Betrieb · CAPA dokumentiert
+FahCel · Excursion Playbook	FahCel · Draaiboek bij afwijkingen	FahCel · Abweichungsleitfaden
+02 · The six-move protocol	02 · Het zesstappenprotocol	02 · Das Sechs-Schritte-Protokoll
+Part two · Before the truck leaves	Deel twee · Voordat de vrachtwagen vertrekt	Teil zwei · Vor der Abfahrt
+The pre-departure checklist that prevents most excursions.	De vertrekchecklist die de meeste afwijkingen voorkomt.	Die Abfahrtscheckliste, die die meisten Abweichungen verhindert.
+Tape this to the dock door. Every box checked here is an excursion that never happens — and a line item an auditor never has to chase.	Hang dit bij de dockdeur. Elk afgevinkt vakje voorkomt een afwijking en een ontbrekend punt waar een auditor achteraan moet.	Hänge diese Liste an die Rampentür. Jedes Häkchen verhindert eine Abweichung – und eine Rückfrage des Auditors.
+Load & seal	Laden & verzegelen	Beladen & versiegeln
+Pre-cool confirmed	Voorkoeling bevestigd	Vorkühlung bestätigt
+— trailer at setpoint before the first pallet, not after.	— trailer op temperatuur vóór de eerste pallet, niet erna.	— Anhänger vor der ersten Palette auf Solltemperatur, nicht danach.
+Logger placed & started	Logger geplaatst & gestart	Logger platziert & gestartet
+— probe in the load, not the return air.	— sensor in de lading, niet in de retourlucht.	— Fühler in der Ladung, nicht in der Rückluft.
+Setpoint vs. label match	Instelling klopt met etiket	Sollwert entspricht Etikett
+— verified against the product spec, initialed.	— gecontroleerd aan de hand van de productspecificatie, geparafeerd.	— anhand der Produktspezifikation geprüft und abgezeichnet.
+Seal + logger ID paired	Zegel + logger-ID gekoppeld	Siegel + Logger-ID zugeordnet
+— recorded on the manifest before doors close.	— vastgelegd op het manifest voordat de deuren sluiten.	— vor dem Schließen der Türen im Manifest erfasst.
+Transit & handoff	Transport & overdracht	Transport & Übergabe
+Alarm thresholds live	Alarmgrenzen actief	Alarmgrenzwerte aktiv
+— someone is on the receiving end of the alert.	— iemand ontvangt de meldingen.	— jemand nimmt die Warnungen entgegen.
+Dwell limits set	Wachttijdlimieten ingesteld	Standzeitgrenzen festgelegt
+— max minutes on an open dock before escalation.	— maximaal aantal minuten aan een open dock vóór escalatie.	— maximale Minuten an einer offenen Rampe vor Eskalation.
+Receiver briefed	Ontvanger geïnformeerd	Empfänger informiert
+— knows the disposition rule before arrival.	— kent de beslisregel vóór aankomst.	— kennt die Entscheidungsregel vor Ankunft.
+Record handoff planned	Overdracht registratie gepland	Nachweisübergabe geplant
+— one file follows the goods, custody intact.	— één bestand volgt de goederen, met intacte overdrachtsketen.	— eine Datei begleitet die Ware bei lückenloser Übergabekette.
+Rules of thumb · read before you argue with the data	Vuistregels · lees dit voordat je de data betwist	Faustregeln · lesen, bevor du die Daten anzweifelst
+REJECT-BIAS	AFKEURBIAS	ABLEHNUNGSBIAS
+A single peak tells you little.	Eén piek zegt weinig.	Eine einzelne Spitze sagt wenig aus.
+Duration and cumulative exposure decide stability — always pull the full curve before disposition.	Duur en totale blootstelling bepalen de stabiliteit. Haal altijd de volledige curve op vóór het besluit.	Dauer und kumulierte Exposition bestimmen die Stabilität. Rufe vor jeder Entscheidung die vollständige Kurve ab.
+CAUTION	LET OP	VORSICHT
+The gap is the risk.	Het hiaat is het risico.	Die Lücke ist das Risiko.
+A 20-minute logging gap during a breach is treated as worst-case, not as “probably fine.”	Een meetgat van 20 minuten tijdens een overschrijding geldt als worstcasescenario, niet als ‘waarschijnlijk goed’.	Eine Messlücke von 20 Minuten während einer Überschreitung gilt als schlimmster Fall, nicht als „wahrscheinlich in Ordnung“.
+Return air ≠ product.	Retourlucht ≠ product.	Rückluft ≠ Produkt.
+Sensor placement changes the reading by degrees — trust the probe in the load.	De sensorpositie kan graden verschil maken. Vertrouw op de sensor in de lading.	Die Sensorposition kann den Messwert um mehrere Grad verändern. Vertraue dem Fühler in der Ladung.
+DEFENSIBLE	VERANTWOORDBAAR	BEGRÜNDBAR
+Decide on the shift.	Beslis tijdens de dienst.	Entscheide in derselben Schicht.
+A documented same-day disposition beats a perfect analysis that lands three days late.	Een vastgelegd besluit op dezelfde dag is beter dan een perfecte analyse die drie dagen te laat komt.	Eine dokumentierte Entscheidung am selben Tag ist besser als eine perfekte Analyse, die drei Tage zu spät kommt.
+03 · Checklist & thresholds	03 · Checklist & grenswaarden	03 · Checkliste & Grenzwerte
+Part three · Questions that decide the disposition	Deel drie · Vragen die het besluit bepalen	Teil drei · Fragen, die die Entscheidung bestimmen
+The six answers an auditor will hold you to.	De zes antwoorden waarop een auditor je toetst.	Die sechs Antworten, an denen ein Auditor dich misst.
+These come up in every excursion review. Settle them before the alarm, not after — the answers are what turn a judgement call into a defensible record.	Deze vragen komen terug bij elke beoordeling van een afwijking. Beantwoord ze vóór het alarm, niet erna. De antwoorden maken van een inschatting een verantwoorde registratie.	Diese Fragen stellen sich bei jeder Abweichungsprüfung. Kläre sie vor dem Alarm, nicht danach. Die Antworten machen aus einer Einschätzung einen belastbaren Nachweis.
+What is a temperature excursion?	Wat is een temperatuurafwijking?	Was ist eine Temperaturabweichung?
+A temperature excursion is any period in which a temperature-sensitive product sits outside its labelled storage range during storage, transit or last-mile delivery. An excursion is not automatically a loss — it becomes one only when the disposition decision is made without the record needed to defend it.	Een temperatuurafwijking is elke periode waarin een temperatuurgevoelig product tijdens opslag, transport of aflevering buiten het op het etiket aangegeven bereik valt. Een afwijking is niet automatisch verlies. Dat wordt het pas als je beslist zonder de registratie die nodig is om het besluit te verantwoorden.	Eine Temperaturabweichung ist jeder Zeitraum, in dem ein temperaturempfindliches Produkt bei Lagerung, Transport oder Zustellung außerhalb seines angegebenen Lagerbereichs liegt. Eine Abweichung bedeutet nicht automatisch Verlust. Dazu wird sie erst, wenn ohne den nötigen Nachweis entschieden wird.
+What is the first thing to do when a temperature alarm fires?	Wat doe je als eerste bij een temperatuuralarm?	Was ist bei einem Temperaturalarm zuerst zu tun?
+Freeze the record, not the panic. Timestamp the alarm against the sealed log and capture the reading exactly as it stands — do not move the pallet or open the door. Disturbing the load before the reading is captured destroys the evidence the disposition decision rests on.	Stel de registratie veilig, raak niet in paniek. Leg de alarmtijd vast bij het verzegelde logboek en registreer de meting precies zoals die is. Verplaats de pallet niet en open de deur niet. De lading verstoren vóór de meting is vastgelegd, vernietigt het bewijs waarop het besluit rust.	Sichere den Nachweis, statt in Panik zu geraten. Vermerke den Alarm mit Zeitstempel im versiegelten Protokoll und erfasse den Messwert unverändert. Bewege die Palette nicht und öffne die Tür nicht. Wer die Ladung vorher verändert, zerstört die Grundlage der Entscheidung.
+Does a single temperature spike mean the product is rejected?	Betekent één temperatuurpiek dat het product wordt afgekeurd?	Führt eine einzelne Temperaturspitze zur Ablehnung des Produkts?
+No. A single peak tells you little on its own. Duration and cumulative exposure decide stability, so pull the full curve from first load to now and compare cumulative time-out-of-range to the product’s mean kinetic temperature allowance. Disposition follows the label limit, not the peak value.	Nee. Eén piek zegt op zichzelf weinig. Duur en totale blootstelling bepalen de stabiliteit. Haal daarom de volledige curve op, van het laden tot nu, en vergelijk de totale tijd buiten het bereik met de toegestane gemiddelde kinetische temperatuur. De etiketlimiet bepaalt het besluit, niet de piekwaarde.	Nein. Eine einzelne Spitze sagt allein wenig aus. Dauer und kumulierte Exposition bestimmen die Stabilität. Rufe die gesamte Kurve vom Beladen bis jetzt ab und vergleiche die kumulierte Zeit außerhalb des Bereichs mit der zulässigen mittleren kinetischen Temperatur. Entscheidend ist der Etikettgrenzwert, nicht der Spitzenwert.
+How should a gap in the temperature log be treated?	Hoe ga je om met een gat in het temperatuurlogboek?	Wie ist eine Lücke im Temperaturprotokoll zu behandeln?
+As worst-case. A logging gap during a breach — say twenty minutes of missing readings — is treated as if the product was out of range for the entire gap, not as probably fine. The gap is the risk, and an auditor will read it the same way.	Als worstcasescenario. Een meetgat tijdens een overschrijding, bijvoorbeeld twintig minuten zonder metingen, behandel je alsof het product die hele tijd buiten bereik was. Niet als ‘waarschijnlijk goed’. Het hiaat is het risico, en een auditor ziet dat net zo.	Als schlimmster Fall. Eine Messlücke während einer Überschreitung – etwa zwanzig Minuten ohne Messwerte – wird behandelt, als wäre das Produkt während der gesamten Lücke außerhalb des Bereichs gewesen. Nicht als „wahrscheinlich in Ordnung“. Die Lücke ist das Risiko, auch aus Sicht des Auditors.
+Where should the temperature logger be placed?	Waar plaats je de temperatuurlogger?	Wo sollte der Temperaturlogger platziert werden?
+In the load, not in the return air. Return air is not product temperature, and sensor placement can change the reading by degrees. Place the probe with the goods, start it before the first pallet is loaded, and pair the logger ID with the seal on the manifest before the doors close.	In de lading, niet in de retourlucht. Retourlucht is geen producttemperatuur en de sensorpositie kan graden verschil maken. Plaats de sensor bij de goederen, start hem vóór de eerste pallet wordt geladen en koppel de logger-ID aan het zegel op het manifest voordat de deuren sluiten.	In der Ladung, nicht in der Rückluft. Rückluft ist nicht die Produkttemperatur, und die Sensorposition kann mehrere Grad Unterschied machen. Platziere den Fühler bei der Ware, starte ihn vor dem Beladen der ersten Palette und ordne Logger-ID und Siegel im Manifest zu, bevor die Türen schließen.
+How quickly should an excursion be dispositioned?	Hoe snel moet je over een afwijking beslissen?	Wie schnell sollte über eine Abweichung entschieden werden?
+On the shift. A documented same-day disposition beats a perfect analysis that lands three days later, because the decision has to be defensible as well as correct. Record the release, quarantine or reject alongside the temperature curve that drove it and have the QA lead sign it.	Tijdens dezelfde dienst. Een vastgelegd besluit op dezelfde dag is beter dan een perfecte analyse drie dagen later. Het besluit moet niet alleen juist zijn, maar ook verantwoord kunnen worden. Leg vrijgave, quarantaine of afkeuring vast bij de bijbehorende temperatuurcurve en laat de QA-manager ondertekenen.	In derselben Schicht. Eine dokumentierte Entscheidung am selben Tag ist besser als eine perfekte Analyse drei Tage später. Die Entscheidung muss nicht nur richtig, sondern auch begründbar sein. Dokumentiere Freigabe, Quarantäne oder Ablehnung bei der zugehörigen Temperaturkurve und lasse die QS-Leitung unterzeichnen.
+04 · Common questions	04 · Veelgestelde vragen	04 · Häufige Fragen
+Where FahCel fits	De rol van FahCel	Die Rolle von FahCel
+Stop rebuilding the record	Stop met reconstrueren	Schluss mit der Rekonstruktion
+after	na	nach
+the breach.	de overschrijding.	der Überschreitung.
+This playbook is the manual version. FahCel runs the same six moves automatically — a sealed, unbroken temperature record from load to handoff, so the decision and its evidence are always in one place.	Dit draaiboek is de handmatige versie. FahCel voert dezelfde zes stappen automatisch uit: een verzegelde, ononderbroken temperatuurregistratie van laden tot overdracht. Het besluit en het bewijs staan daardoor altijd bij elkaar.	Dieser Leitfaden ist die manuelle Variante. FahCel führt dieselben sechs Schritte automatisch aus: ein versiegelter, lückenloser Temperaturnachweis vom Beladen bis zur Übergabe. Entscheidung und Belege bleiben so an einem Ort.
+Move 1–3	Stap 1–3	Schritt 1–3
+Sealed hash-chained log	Verzegeld hashketenlogboek	Versiegeltes Hash-Ketten-Protokoll
+— every reading timestamped and tamper-evident from first load.	— elke meting met tijdstempel en zichtbare manipulaties vanaf het laden.	— jeder Messwert ab Beladung mit Zeitstempel und erkennbaren Manipulationen.
+Move 4	Stap 4	Schritt 4
+Disposition on the data	Besluit op basis van data	Datenbasierte Entscheidung
+— release / quarantine / reject signed against the curve that drove it.	— vrijgave / quarantaine / afkeuring ondertekend bij de onderliggende curve.	— Freigabe / Quarantäne / Ablehnung anhand der zugrunde liegenden Kurve unterzeichnet.
+Move 5	Stap 5	Schritt 5
+One-message handoff	Overdracht met één bericht	Übergabe mit einer Nachricht
+— the same record follows the goods, custody intact.	— dezelfde registratie volgt de goederen, met intacte overdrachtsketen.	— derselbe Nachweis begleitet die Ware bei lückenloser Übergabekette.
+Move 6	Stap 6	Schritt 6
+Root cause on file	Oorzaak vastgelegd	Ursache dokumentiert
+— every excursion feeds the next shipment's fix.	— elke afwijking verbetert de volgende zending.	— jede Abweichung verbessert die nächste Sendung.
+See it on your lanes —	Bekijk het op jouw routes —	Erlebe es auf deinen Routen –
+a 20-minute walkthrough with your own shipment data.	een demonstratie van 20 minuten met je eigen zendingsdata.	eine 20-minütige Demo mit deinen eigenen Sendungsdaten.
+Book a demo → fahcel.eu/demo	Boek een demo → fahcel.eu/demo	Demo buchen → fahcel.eu/demo

@@ -435,7 +435,7 @@
       this._root.innerHTML = `
         <style>${stylesheet}</style>
         <style id="vars"></style>
-        <div class="sheet" data-screen-label="Document">
+        <div class="sheet" part="sheet" data-screen-label="Document">
           <table class="frame" role="presentation">
             <thead><tr><th><div class="hdr-space"><slot name="header"></slot></div></th></tr></thead>
             <tbody><tr><td class="body"><div class="fit-box"><div class="fit"><slot></slot></div></div></td></tr></tbody>

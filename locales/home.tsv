@@ -1,0 +1,86 @@
+Cold-Chain Monitoring With Tamper-Evident Proof | FahCel	Koelketenmonitoring met verifieerbaar bewijs | FahCel	Kühlkettenüberwachung mit überprüfbaren Nachweisen | FahCel
+FahCel turns every logger reading into a tamper-evident record, so cold-chain teams can prove a shipment held from dock to shelf and is audit-ready end to end.	FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat koelketenteams kunnen aantonen dat een zending van laaddock tot schap op temperatuur bleef en klaar is voor een audit.	FahCel versiegelt jeden Logger-Messwert in einem überprüfbaren Datensatz. So können Kühlkettenteams nachweisen, dass eine Sendung von der Laderampe bis ins Regal korrekt gekühlt blieb und auditbereit ist.
+A warehouse lead checking cold-storage temperature readings on a tablet	Een magazijnmedewerker controleert koelceltemperaturen op een tablet	Ein Lagerleiter prüft Kühlraumtemperaturen auf einem Tablet
+Cold storage warehouse aisle	Gangpad in een koelmagazijn	Gang in einem Kühllager
+Platform	Platform	Plattform
+Coverage	Dekking	Abdeckung
+Compliance	Naleving	Compliance
+Pricing	Prijzen	Preise
+Playbook	Draaiboek	Leitfaden
+Sign in	Inloggen	Anmelden
+Book a demo	Boek een demo	Demo buchen
+HACCP · Cold-chain integrity	HACCP · Koelketenintegriteit	HACCP · Kühlkettenintegrität
+Proof of cold,	Bewijs van koeling,	Kühlung nachgewiesen,
+end to end	van begin tot eind	von Anfang bis Ende
+FahCel turns every logger reading into a tamper-evident record so you can prove your cold chain held, from the dock to the shelf.	FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat je kunt bewijzen dat je koelketen intact bleef, van het laaddock tot het schap.	FahCel versiegelt jeden Logger-Messwert in einem überprüfbaren Datensatz. So kannst du belegen, dass deine Kühlkette von der Laderampe bis ins Regal intakt blieb.
+See how the hash chain works	Zo werkt de hashketen	So funktioniert die Hash-Kette
+Scroll	Scroll verder	Weiterscrollen
+Our coverage	Onze dekking	Unsere Abdeckung
+Monitoring that follows the	Monitoring die het	Überwachung folgt dem
+product	product	Produkt
+, not the building.	volgt, niet het gebouw.	, nicht dem Gebäude.
+Wireless loggers report temperature, humidity, shock and light at every leg, and FahCel chains each reading so the history can't be quietly rewritten.	Draadloze loggers registreren temperatuur, vochtigheid, schokken en licht tijdens elke etappe. FahCel koppelt elke meting aan de keten, zodat de geschiedenis niet ongemerkt kan worden herschreven.	Drahtlose Logger erfassen auf jeder Etappe Temperatur, Feuchtigkeit, Erschütterungen und Licht. FahCel verkettet jeden Messwert, damit sich die Historie nicht unbemerkt umschreiben lässt.
+Storage	Opslag	Lagerung
+Warehouse lead checking cold-storage zone readings on a tablet	Magazijnmedewerker controleert koelcelzones op een tablet	Ein Lagerleiter prüft Messwerte verschiedener Kühlzonen auf einem Tablet
+Cold storage	Koelopslag	Kühllagerung
+Map every freezer, cooler and zone. Threshold breaches alert the right team before product is at risk.	Breng elke vriezer, koelcel en zone in kaart. Bij grensoverschrijdingen krijgt het juiste team een melding voordat het product gevaar loopt.	Erfasse jeden Gefrierschrank, Kühlraum und jede Zone. Bei Grenzwertüberschreitungen wird das zuständige Team gewarnt, bevor das Produkt gefährdet ist.
+In transit	Onderweg	Unterwegs
+GPS + shock	GPS + schokken	GPS + Erschütterungen
+Delivery driver reviewing a shipment on a tablet beside stacked cartons in a van	Chauffeur controleert een zending op een tablet naast dozen in een bestelwagen	Ein Fahrer prüft eine Sendung auf einem Tablet neben Kartons im Lieferwagen
+Loggers ride with the pallet across handoffs, logging location, jolts and door-open events the whole way.	Loggers reizen met de pallet mee bij elke overdracht en registreren onderweg de locatie, schokken en geopende deuren.	Logger begleiten die Palette bei jeder Übergabe und erfassen durchgehend Standort, Erschütterungen und Türöffnungen.
+Last mile	Laatste kilometer	Letzte Meile
+Audit-ready	Klaar voor audits	Auditbereit
+Pharmacist checking a delivery record on screen in front of stocked shelves	Apotheker controleert een afleverregistratie op een scherm voor gevulde schappen	Ein Apotheker prüft einen Liefernachweis auf einem Bildschirm vor gefüllten Regalen
+Retail & last mile	Retail & laatste kilometer	Handel & letzte Meile
+Hand stores and inspectors a verifiable record of the journey with no clipboards, no gaps and no disputes.	Geef winkels en inspecteurs een verifieerbare registratie van de reis, zonder klemborden, hiaten of geschillen.	Gib Filialen und Prüfern einen überprüfbaren Transportnachweis – ohne Klemmbretter, Lücken oder Streitfälle.
+chain intact ·	keten intact ·	Kette intakt ·
+readings	metingen	Messwerte
+Quality lead verifying a cold-chain hash chain on a tablet, with a sealed record and the first altered reading highlighted	Kwaliteitsmanager verifieert een koelketen op een tablet, met de eerste gewijzigde meting gemarkeerd	Eine Qualitätsleitung prüft eine Kühlketten-Hash-Kette auf einem Tablet; der erste veränderte Messwert ist markiert
+Tamper-evident by design	Manipulatie zichtbaar vanaf het ontwerp	Manipulationen von Grund auf erkennbar
+Every reading is sealed into a	Elke meting wordt verzegeld in een	Jeder Messwert wird versiegelt in einer
+hash chain	hashketen	Hash-Kette
+Each reading hashes the one before it, so altering history breaks the chain. Canonical JSON makes the proof recomputable anywhere, and the first touched reading is clear at a glance.	Elke meting bevat de hash van de vorige. Een wijziging in de geschiedenis verbreekt dus de keten. Met canonieke JSON kan het bewijs overal opnieuw worden berekend en is de eerste gewijzigde meting direct zichtbaar.	Jeder Messwert enthält den Hash seines Vorgängers. Eine Änderung der Historie unterbricht daher die Kette. Kanonisches JSON macht den Nachweis überall nachrechenbar; der erste veränderte Messwert ist sofort erkennbar.
+Readings sealed at ingestion	Metingen verzegeld bij ontvangst	Bei Eingang versiegelte Messwerte
+A sensor emits temperature readings; each becomes a record whose SHA-256 hash is sealed on arrival, verified, and linked to the record before it.	Een sensor verstuurt temperatuurmetingen. Elke meting krijgt bij ontvangst een verzegelde SHA-256-hash, wordt geverifieerd en gekoppeld aan de vorige registratie.	Ein Sensor sendet Temperaturmesswerte. Jeder wird bei Eingang mit einem SHA-256-Hash versiegelt, geprüft und mit dem vorherigen Datensatz verknüpft.
+Hash-chained integrity	Integriteit via een hashketen	Integrität durch Hash-Verkettung
+Sealed at ingestion.	Verzegeld bij ontvangst.	Bei Eingang versiegelt.
+Not after the fact.	Niet achteraf.	Nicht erst im Nachhinein.
+Why FahCel	Waarom FahCel	Warum FahCel
+Built for the people who	Voor de mensen die	Für Menschen, die
+sign off	tekenen	Verantwortung übernehmen
+on safety.	voor veiligheid.	für Sicherheit.
+Quality leads, logistics ops and auditors work from one record with fewer spreadsheets, faster sign-off and defensible proof.	Kwaliteitsmanagers, logistieke teams en auditors werken vanuit één registratie: minder spreadsheets, snellere goedkeuring en aantoonbaar bewijs.	Qualitätsleitungen, Logistikteams und Auditoren arbeiten mit einem gemeinsamen Datensatz: weniger Tabellen, schnellere Freigaben und belastbare Nachweise.
+Audit	Audit	Audit
+Inspection-ready in seconds	Binnen seconden klaar voor inspectie	In Sekunden prüfbereit
+Export a signed PDF of any shipment's full temperature history, complete with the integrity check result.	Exporteer een ondertekende pdf met de volledige temperatuurhistorie van elke zending, inclusief het resultaat van de integriteitscontrole.	Exportiere ein signiertes PDF mit der vollständigen Temperaturhistorie einer Sendung und dem Ergebnis der Integritätsprüfung.
+Open the Cold-Chain Excursion Playbook	Open het draaiboek voor koelketenafwijkingen	Leitfaden für Kühlkettenabweichungen öffnen
+Alerts	Meldingen	Warnungen
+Realtime	Realtime	Echtzeit
+Catch excursions live	Merk afwijkingen direct op	Abweichungen sofort erkennen
+Threshold and door-open alerts hit your phone the moment a reading drifts, not at the next manual check.	Meldingen over grensoverschrijdingen en geopende deuren komen direct op je telefoon, niet pas bij de volgende handmatige controle.	Warnungen zu Grenzwerten und Türöffnungen erreichen dein Handy sofort – nicht erst bei der nächsten manuellen Kontrolle.
+Disputes	Geschillen	Streitfälle
+Proof	Bewijs	Nachweis
+End the finger-pointing	Stop het wijzen naar elkaar	Schluss mit Schuldzuweisungen
+When a load is rejected, the chain shows exactly where and when cold was lost and who was holding it.	Als een lading wordt afgekeurd, laat de keten precies zien waar en wanneer de koeling wegviel en wie de lading toen beheerde.	Wird eine Ladung abgelehnt, zeigt die Kette genau, wo und wann die Kühlung ausfiel und wer die Ladung zu diesem Zeitpunkt betreute.
+FAQ	Veelgestelde vragen	Häufige Fragen
+Questions from the people who	Vragen van de mensen die	Fragen von Menschen, die
+Straight answers on how the chain works, what FahCel monitors, and how the record holds up in an audit.	Duidelijke antwoorden over de werking van de keten, wat FahCel meet en hoe de registratie standhoudt bij een audit.	Klare Antworten dazu, wie die Kette funktioniert, was FahCel überwacht und wie der Nachweis einer Prüfung standhält.
+What is cold-chain integrity?	Wat is koelketenintegriteit?	Was bedeutet Kühlkettenintegrität?
+Cold-chain integrity is proof that a perishable product stayed within its required temperature range at every stage, from storage to transit to last mile. FahCel establishes it by recording each logger reading and sealing it into a tamper-evident hash chain, so the history can be verified rather than trusted.	Koelketenintegriteit is het bewijs dat een bederfelijk product in elke fase binnen het vereiste temperatuurbereik bleef: van opslag tot transport en aflevering. FahCel legt elke loggermeting vast en verzegelt die in een hashketen die manipulatie zichtbaar maakt. Zo kun je de historie controleren in plaats van erop te vertrouwen.	Kühlkettenintegrität belegt, dass ein verderbliches Produkt in jeder Phase innerhalb seines vorgeschriebenen Temperaturbereichs blieb – von der Lagerung über den Transport bis zur letzten Meile. FahCel erfasst jeden Logger-Messwert und versiegelt ihn in einer Hash-Kette, die Manipulationen erkennbar macht. So lässt sich die Historie überprüfen, statt ihr nur zu vertrauen.
+How does a hash chain prove temperature wasn't altered?	Hoe bewijst een hashketen dat temperaturen niet zijn gewijzigd?	Wie belegt eine Hash-Kette, dass Temperaturen nicht verändert wurden?
+Each reading is hashed together with the hash of the reading before it, forming a linked chain. Changing any past value changes its hash, which breaks every link after it. Anyone can recompute the chain from canonical JSON and pinpoint the first reading that was touched.	Elke meting wordt gehasht samen met de hash van de vorige meting. Zo ontstaat een gekoppelde keten. Een wijziging van een eerdere waarde verandert de hash en verbreekt elke volgende schakel. Iedereen kan de keten opnieuw berekenen vanuit canonieke JSON en de eerste gewijzigde meting aanwijzen.	Jeder Messwert wird zusammen mit dem Hash seines Vorgängers gehasht. So entsteht eine verkettete Folge. Wird ein früherer Wert geändert, ändert sich sein Hash und jede nachfolgende Verknüpfung bricht. Jeder kann die Kette aus kanonischem JSON neu berechnen und den ersten veränderten Messwert bestimmen.
+What does FahCel monitor?	Wat monitort FahCel?	Was überwacht FahCel?
+Wireless loggers report temperature, humidity, shock and light, plus GPS location and door-open events in transit. FahCel covers the full journey from cold storage through in-transit handoffs to retail last mile, and chains every reading so the record follows the product, not the building.	Draadloze loggers registreren temperatuur, vochtigheid, schokken en licht, plus GPS-locatie en deur-openingen onderweg. FahCel volgt de hele reis, van koelopslag via overdrachten tot aflevering bij de winkel. Elke meting wordt gekoppeld, zodat de registratie het product volgt, niet het gebouw.	Drahtlose Logger erfassen Temperatur, Feuchtigkeit, Erschütterungen und Licht sowie GPS-Positionen und Türöffnungen unterwegs. FahCel begleitet den gesamten Weg vom Kühllager über Übergaben bis zur letzten Meile im Handel. Jeder Messwert wird verkettet, damit der Nachweis dem Produkt folgt, nicht dem Gebäude.
+What happens when a reading breaches the threshold?	Wat gebeurt er als een meting de grenswaarde overschrijdt?	Was passiert bei einer Grenzwertüberschreitung?
+A threshold or door-open alert hits the responsible team's phone the moment a reading drifts out of range, not at the next manual check. The excursion is recorded in the chain with its timestamp, so the event is both actionable in the moment and provable afterward.	Een melding over een grensoverschrijding of geopende deur bereikt direct de telefoon van het verantwoordelijke team, niet pas bij de volgende handmatige controle. De afwijking wordt met tijdstempel vastgelegd in de keten. Zo kun je direct handelen en het voorval later aantonen.	Eine Grenzwert- oder Türöffnungswarnung erreicht das zuständige Team sofort auf dem Handy, nicht erst bei der nächsten manuellen Kontrolle. Die Abweichung wird mit Zeitstempel in der Kette erfasst. So kannst du unmittelbar reagieren und das Ereignis später belegen.
+Is the record audit-ready?	Is de registratie klaar voor een audit?	Ist der Nachweis auditbereit?
+Yes. You can export a signed PDF of any shipment's full temperature history together with the chain-integrity check result. Quality leads, logistics ops and auditors work from one verifiable record, which replaces clipboards and spreadsheets and shortens sign-off.	Ja. Je kunt een ondertekende pdf exporteren met de volledige temperatuurhistorie van een zending en het resultaat van de ketencontrole. Kwaliteitsmanagers, logistieke teams en auditors werken vanuit één verifieerbare registratie. Dat vervangt klemborden en spreadsheets en versnelt de goedkeuring.	Ja. Du kannst ein signiertes PDF mit der vollständigen Temperaturhistorie einer Sendung und dem Ergebnis der Kettenprüfung exportieren. Qualitätsleitungen, Logistikteams und Auditoren arbeiten mit einem überprüfbaren Nachweis. Das ersetzt Klemmbretter und Tabellen und beschleunigt die Freigabe.
+Prove your cold chain	Bewijs dat je koelketen	Belege, dass deine Kühlkette
+held	intact bleef	intakt blieb
+See FahCel running on a live shipment with loggers, alerts and a verifiable hash chain in a 20-minute walkthrough.	Bekijk FahCel op een echte zending: loggers, meldingen en een verifieerbare hashketen in een demonstratie van 20 minuten.	Erlebe FahCel an einer echten Sendung: Logger, Warnungen und eine überprüfbare Hash-Kette in einer 20-minütigen Demo.
+Explore the hash chain	Ontdek de hashketen	Hash-Kette entdecken
+Excursion playbook	Draaiboek bij afwijkingen	Leitfaden bei Abweichungen
+Privacy	Privacy	Datenschutz
+© 2026 FahCel | Cold-chain integrity ·	© 2026 FahCel | Koelketenintegriteit ·	© 2026 FahCel | Kühlkettenintegrität ·
+Last updated	Laatst bijgewerkt	Zuletzt aktualisiert
+9 September 2026	9 september 2026	9. September 2026

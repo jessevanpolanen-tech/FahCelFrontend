@@ -1,117 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="utf-8" />
-<title>Cold-Chain Monitoring With Tamper-Evident Proof | FahCel</title>
+<title>Koelketenmonitoring met verifieerbaar bewijs | FahCel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="FahCel turns every logger reading into a tamper-evident record, so cold-chain teams can prove a shipment held from dock to shelf and is audit-ready end to end." />
-<link rel="canonical" href="https://www.fahcel.eu/" />
+<meta name="description" content="FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat koelketenteams kunnen aantonen dat een zending van laaddock tot schap op temperatuur bleef en klaar is voor een audit." />
+<link rel="canonical" href="https://www.fahcel.eu/nl" />
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="FahCel" />
-<meta property="og:locale" content="en_GB" />
-<meta property="og:url" content="https://www.fahcel.eu/" />
-<meta property="og:title" content="Cold-Chain Monitoring With Tamper-Evident Proof | FahCel" />
-<meta property="og:description" content="FahCel turns every logger reading into a tamper-evident record, so cold-chain teams can prove a shipment held from dock to shelf and is audit-ready end to end." />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:url" content="https://www.fahcel.eu/nl" />
+<meta property="og:title" content="Koelketenmonitoring met verifieerbaar bewijs | FahCel" />
+<meta property="og:description" content="FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat koelketenteams kunnen aantonen dat een zending van laaddock tot schap op temperatuur bleef en klaar is voor een audit." />
 <meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="A warehouse lead checking cold-storage temperature readings on a tablet" />
+<meta property="og:image:alt" content="Een magazijnmedewerker controleert koelceltemperaturen op een tablet" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Cold-Chain Monitoring With Tamper-Evident Proof | FahCel" />
-<meta name="twitter:description" content="FahCel turns every logger reading into a tamper-evident record, so cold-chain teams can prove a shipment held from dock to shelf and is audit-ready end to end." />
+<meta name="twitter:title" content="Koelketenmonitoring met verifieerbaar bewijs | FahCel" />
+<meta name="twitter:description" content="FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat koelketenteams kunnen aantonen dat een zending van laaddock tot schap op temperatuur bleef en klaar is voor een audit." />
 <meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
-<link rel="icon" href="assets/fahcel-logo.jpg" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.fahcel.eu/#org",
-      "name": "FahCel",
-      "url": "https://www.fahcel.eu/",
-      "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg",
-      "description": "Cold-chain integrity platform that seals every temperature logger reading into a tamper-evident hash chain, so teams can prove a shipment held from dock to shelf.",
-      "founder": { "@id": "https://www.fahcel.eu/#jesse" },
-      "sameAs": []
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.fahcel.eu/#jesse",
-      "name": "Jesse van Polanen",
-      "jobTitle": "Co-founder",
-      "worksFor": { "@id": "https://www.fahcel.eu/#org" }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.fahcel.eu/#website",
-      "url": "https://www.fahcel.eu/",
-      "name": "FahCel",
-      "inLanguage": "en-GB",
-      "publisher": { "@id": "https://www.fahcel.eu/#org" }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.fahcel.eu/#webpage",
-      "url": "https://www.fahcel.eu/",
-      "name": "Cold-Chain Monitoring With Tamper-Evident Proof",
-      "isPartOf": { "@id": "https://www.fahcel.eu/#website" },
-      "about": { "@id": "https://www.fahcel.eu/#product" },
-      "datePublished": "2026-07-30",
-      "dateModified": "2026-09-09"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.fahcel.eu/#product",
-      "name": "FahCel",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "url": "https://www.fahcel.eu/",
-      "publisher": { "@id": "https://www.fahcel.eu/#org" },
-      "description": "FahCel monitors temperature, humidity, shock and light across storage, transit and last mile, then chains each reading so the history cannot be silently rewritten. Teams get live excursion alerts and one-click, audit-ready proof.",
-      "featureList": [
-        "Tamper-evident hash chain of logger readings",
-        "One-click chain verification",
-        "Real-time threshold and door-open alerts",
-        "Signed PDF export of full shipment history",
-        "Coverage across cold storage, in-transit and last mile"
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.fahcel.eu/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is cold-chain integrity?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Cold-chain integrity is proof that a perishable product stayed within its required temperature range at every stage, from storage to transit to last mile. FahCel establishes it by recording each logger reading and sealing it into a tamper-evident hash chain, so the history can be verified rather than trusted." }
-        },
-        {
-          "@type": "Question",
-          "name": "How does a hash chain prove temperature wasn't altered?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Each reading is hashed together with the hash of the reading before it, forming a linked chain. Changing any past value changes its hash, which breaks every link after it. Anyone can recompute the chain from canonical JSON and pinpoint the first reading that was touched." }
-        },
-        {
-          "@type": "Question",
-          "name": "What does FahCel monitor?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Wireless loggers report temperature, humidity, shock and light, plus GPS location and door-open events in transit. FahCel covers the full journey from cold storage through in-transit handoffs to retail last mile, and chains every reading so the record follows the product, not the building." }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens when a reading breaches the threshold?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A threshold or door-open alert hits the responsible team's phone the moment a reading drifts out of range, not at the next manual check. The excursion is recorded in the chain with its timestamp, so the event is both actionable in the moment and provable afterward." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is the record audit-ready?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can export a signed PDF of any shipment's full temperature history together with the chain-integrity check result. Quality leads, logistics ops and auditors work from one verifiable record, which replaces clipboards and spreadsheets and shortens sign-off." }
-        }
-      ]
-    }
-  ]
-}
-</script>
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
+
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -388,6 +299,75 @@
 <script>
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('mo');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fahcel.eu/nl#page",
+      "url": "https://www.fahcel.eu/nl",
+      "name": "Koelketenmonitoring met verifieerbaar bewijs | FahCel",
+      "description": "FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat koelketenteams kunnen aantonen dat een zending van laaddock tot schap op temperatuur bleef en klaar is voor een audit.",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@id": "https://www.fahcel.eu/#website"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FahCel",
+        "url": "https://www.fahcel.eu/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "nl-NL",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wat is koelketenintegriteit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Koelketenintegriteit is het bewijs dat een bederfelijk product in elke fase binnen het vereiste temperatuurbereik bleef: van opslag tot transport en aflevering. FahCel legt elke loggermeting vast en verzegelt die in een hashketen die manipulatie zichtbaar maakt. Zo kun je de historie controleren in plaats van erop te vertrouwen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe bewijst een hashketen dat temperaturen niet zijn gewijzigd?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Elke meting wordt gehasht samen met de hash van de vorige meting. Zo ontstaat een gekoppelde keten. Een wijziging van een eerdere waarde verandert de hash en verbreekt elke volgende schakel. Iedereen kan de keten opnieuw berekenen vanuit canonieke JSON en de eerste gewijzigde meting aanwijzen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat monitort FahCel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Draadloze loggers registreren temperatuur, vochtigheid, schokken en licht, plus GPS-locatie en deur-openingen onderweg. FahCel volgt de hele reis, van koelopslag via overdrachten tot aflevering bij de winkel. Elke meting wordt gekoppeld, zodat de registratie het product volgt, niet het gebouw."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat gebeurt er als een meting de grenswaarde overschrijdt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Een melding over een grensoverschrijding of geopende deur bereikt direct de telefoon van het verantwoordelijke team, niet pas bij de volgende handmatige controle. De afwijking wordt met tijdstempel vastgelegd in de keten. Zo kun je direct handelen en het voorval later aantonen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is de registratie klaar voor een audit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Je kunt een ondertekende pdf exporteren met de volledige temperatuurhistorie van een zending en het resultaat van de ketencontrole. Kwaliteitsmanagers, logistieke teams en auditors werken vanuit één verifieerbare registratie. Dat vervangt klemborden en spreadsheets en versnelt de goedkeuring."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <!-- languages:head -->
 <link rel="alternate" hreflang="en" href="https://www.fahcel.eu/" />
 <link rel="alternate" hreflang="nl" href="https://www.fahcel.eu/nl" />
@@ -402,40 +382,40 @@
 
 <!-- ===================== HERO ===================== -->
 <header class="hero" data-screen-label="Hero">
-  <div class="bg"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2200&q=80" alt="Cold storage warehouse aisle" fetchpriority="high" decoding="async" /></div>
+  <div class="bg"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2200&q=80" alt="Gangpad in een koelmagazijn" fetchpriority="high" decoding="async" /></div>
 
   <nav class="top" data-enter>
-    <div class="logo"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+    <div class="logo"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
     <ul>
       <li>Platform</li>
-      <li>Coverage</li>
-      <li>Compliance</li>
-      <li>Pricing</li>
-      <li><a href="/playbook-download">Playbook</a></li>
+      <li>Dekking</li>
+      <li>Naleving</li>
+      <li>Prijzen</li>
+      <li><a href="/nl/playbook-download">Draaiboek</a></li>
     </ul>
     <div class="right">
-      <a class="signin" href="#">Sign in</a>
-      <a class="cta" href="/book-a-demo">Book a demo
+      <a class="signin" href="#">Inloggen</a>
+      <a class="cta" href="/nl/book-a-demo">Boek een demo
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-  <!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Language"><a href="/" lang="en" hreflang="en" aria-label="English" aria-current="page">EN</a><a href="/nl" lang="nl" hreflang="nl" aria-label="Nederlands">NL</a><a href="/de" lang="de" hreflang="de" aria-label="Deutsch">DE</a></div><!-- /languages:nav --></nav>
+  <!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Taal"><a href="/" lang="en" hreflang="en" aria-label="English">EN</a><a href="/nl" lang="nl" hreflang="nl" aria-label="Nederlands" aria-current="page">NL</a><a href="/de" lang="de" hreflang="de" aria-label="Deutsch">DE</a></div><!-- /languages:nav --></nav>
 
   <div class="hero-inner">
     <div class="wrap">
-      <span class="h-eyebrow" data-enter><span class="dot"></span> HACCP · Cold-chain integrity</span>
-      <h1 data-enter>Proof of cold, <em>end&nbsp;to&nbsp;end</em>.</h1>
-      <p class="lede" data-enter>FahCel turns every logger reading into a tamper-evident record so you can prove your cold chain held, from the dock to the shelf.</p>
+      <span class="h-eyebrow" data-enter><span class="dot"></span> HACCP · Koelketenintegriteit</span>
+      <h1 data-enter>Bewijs van koeling, <em>van begin tot eind</em>.</h1>
+      <p class="lede" data-enter>FahCel verzegelt elke loggermeting in een controleerbare registratie, zodat je kunt bewijzen dat je koelketen intact bleef, van het laaddock tot het schap.</p>
       <div class="herocta" data-enter>
-        <a class="btn primary" href="/book-a-demo">Book a demo
+        <a class="btn primary" href="/nl/book-a-demo">Boek een demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn ghost" href="/hash-chain">See how the hash chain works</a>
+        <a class="btn ghost" href="/nl/hash-chain">Zo werkt de hashketen</a>
       </div>
     </div>
   </div>
 
-  <div class="scrollcue" data-enter><span class="mouse"></span> Scroll</div>
+  <div class="scrollcue" data-enter><span class="mouse"></span> Scroll verder</div>
 </header>
 
 <!-- ===================== SHEET ===================== -->
@@ -446,38 +426,38 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Our coverage</span>
-          <h2 class="reveal d1">Monitoring that follows the <em>product</em>, not the building.</h2>
+          <span class="eyebrow-pill reveal"><span class="dot"></span> Onze dekking</span>
+          <h2 class="reveal d1">Monitoring die het <em>product</em>volgt, niet het gebouw.</h2>
         </div>
-        <p class="desc reveal d2">Wireless loggers report temperature, humidity, shock and light at every leg, and FahCel chains each reading so the history can't be quietly rewritten.</p>
+        <p class="desc reveal d2">Draadloze loggers registreren temperatuur, vochtigheid, schokken en licht tijdens elke etappe. FahCel koppelt elke meting aan de keten, zodat de geschiedenis niet ongemerkt kan worden herschreven.</p>
       </div>
 
       <div class="cards3">
         <article class="scard reveal">
           <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> Storage</span><span class="tag">−24 °C → +8 °C</span></div>
-            <img src="assets/coverage-storage-tablet.jpg" alt="Warehouse lead checking cold-storage zone readings on a tablet" loading="lazy" decoding="async" />
+            <div class="tags"><span class="tag"><span class="d"></span> Opslag</span><span class="tag">−24 °C → +8 °C</span></div>
+            <img src="/assets/coverage-storage-tablet.jpg" alt="Magazijnmedewerker controleert koelcelzones op een tablet" loading="lazy" decoding="async" />
           </div>
-          <h3>Cold storage</h3>
-          <p>Map every freezer, cooler and zone. Threshold breaches alert the right team before product is at risk.</p>
+          <h3>Koelopslag</h3>
+          <p>Breng elke vriezer, koelcel en zone in kaart. Bij grensoverschrijdingen krijgt het juiste team een melding voordat het product gevaar loopt.</p>
         </article>
 
         <article class="scard reveal d1">
           <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> In transit</span><span class="tag">GPS + shock</span></div>
-            <img src="assets/coverage-transit-driver.jpg" alt="Delivery driver reviewing a shipment on a tablet beside stacked cartons in a van" loading="lazy" decoding="async" />
+            <div class="tags"><span class="tag"><span class="d"></span> Onderweg</span><span class="tag">GPS + schokken</span></div>
+            <img src="/assets/coverage-transit-driver.jpg" alt="Chauffeur controleert een zending op een tablet naast dozen in een bestelwagen" loading="lazy" decoding="async" />
           </div>
-          <h3>In transit</h3>
-          <p>Loggers ride with the pallet across handoffs, logging location, jolts and door-open events the whole way.</p>
+          <h3>Onderweg</h3>
+          <p>Loggers reizen met de pallet mee bij elke overdracht en registreren onderweg de locatie, schokken en geopende deuren.</p>
         </article>
 
         <article class="scard reveal d2">
           <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> Last mile</span><span class="tag">Audit-ready</span></div>
-            <img src="assets/coverage-retail-pharmacy.jpg" alt="Pharmacist checking a delivery record on screen in front of stocked shelves" loading="lazy" decoding="async" />
+            <div class="tags"><span class="tag"><span class="d"></span> Laatste kilometer</span><span class="tag">Klaar voor audits</span></div>
+            <img src="/assets/coverage-retail-pharmacy.jpg" alt="Apotheker controleert een afleverregistratie op een scherm voor gevulde schappen" loading="lazy" decoding="async" />
           </div>
-          <h3>Retail &amp; last mile</h3>
-          <p>Hand stores and inspectors a verifiable record of the journey with no clipboards, no gaps and no disputes.</p>
+          <h3>Retail &amp; laatste kilometer</h3>
+          <p>Geef winkels en inspecteurs een verifieerbare registratie van de reis, zonder klemborden, hiaten of geschillen.</p>
         </article>
       </div>
     </div>
@@ -488,15 +468,15 @@
     <div class="wrap">
       <div class="grid">
         <div class="media reveal">
-          <div class="chip c1"><span class="led"></span> chain intact · <span class="n">4,210</span> readings</div>
+          <div class="chip c1"><span class="led"></span> keten intact · <span class="n">4,210</span> metingen</div>
           <div class="chip c2">verifyChain() → valid: true</div>
-          <img src="assets/hash-chain-verify.jpg" alt="Quality lead verifying a cold-chain hash chain on a tablet, with a sealed record and the first altered reading highlighted" loading="lazy" decoding="async" />
+          <img src="/assets/hash-chain-verify.jpg" alt="Kwaliteitsmanager verifieert een koelketen op een tablet, met de eerste gewijzigde meting gemarkeerd" loading="lazy" decoding="async" />
         </div>
         <div class="copy">
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Tamper-evident by design</span>
-          <h2 class="reveal d1">Every reading is sealed into a <em>hash chain</em>.</h2>
-          <p class="reveal d1">Each reading hashes the one before it, so altering history breaks the chain. Canonical JSON makes the proof recomputable anywhere, and the first touched reading is clear at a glance.</p>
-          <a class="linkbtn reveal d3" href="/hash-chain">See how the hash chain works
+          <span class="eyebrow-pill reveal"><span class="dot"></span> Manipulatie zichtbaar vanaf het ontwerp</span>
+          <h2 class="reveal d1">Elke meting wordt verzegeld in een <em>hashketen</em>.</h2>
+          <p class="reveal d1">Elke meting bevat de hash van de vorige. Een wijziging in de geschiedenis verbreekt dus de keten. Met canonieke JSON kan het bewijs overal opnieuw worden berekend en is de eerste gewijzigde meting direct zichtbaar.</p>
+          <a class="linkbtn reveal d3" href="/nl/hash-chain">Zo werkt de hashketen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -505,11 +485,11 @@
   </section>
 
   <!-- sealed at ingestion: live hash-chain scene -->
-  <section class="sealed" aria-label="Readings sealed at ingestion">
+  <section class="sealed" aria-label="Metingen verzegeld bij ontvangst">
     <div class="stage">
-      <canvas id="sealCanvas" role="img" aria-label="A sensor emits temperature readings; each becomes a record whose SHA-256 hash is sealed on arrival, verified, and linked to the record before it."></canvas>
-      <p class="eb reveal"><span class="dot"></span><span>Hash-chained integrity</span></p>
-      <p class="tl reveal d2">Sealed at ingestion.<br><span>Not after the fact.</span></p>
+      <canvas id="sealCanvas" role="img" aria-label="Een sensor verstuurt temperatuurmetingen. Elke meting krijgt bij ontvangst een verzegelde SHA-256-hash, wordt geverifieerd en gekoppeld aan de vorige registratie."></canvas>
+      <p class="eb reveal"><span class="dot"></span><span>Integriteit via een hashketen</span></p>
+      <p class="tl reveal d2">Verzegeld bij ontvangst.<br><span>Niet achteraf.</span></p>
     </div>
   </section>
 
@@ -518,35 +498,35 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Why FahCel</span>
-          <h2 class="reveal d1">Built for the people who <em>sign off</em> on safety.</h2>
+          <span class="eyebrow-pill reveal"><span class="dot"></span> Waarom FahCel</span>
+          <h2 class="reveal d1">Voor de mensen die <em>tekenen</em> voor veiligheid.</h2>
         </div>
-        <p class="desc reveal d2">Quality leads, logistics ops and auditors work from one record with fewer spreadsheets, faster sign-off and defensible proof.</p>
+        <p class="desc reveal d2">Kwaliteitsmanagers, logistieke teams en auditors werken vanuit één registratie: minder spreadsheets, snellere goedkeuring en aantoonbaar bewijs.</p>
       </div>
 
       <div class="cards3">
         <article class="wcard a reveal">
           <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
           <a class="warrow" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Compliance</span><span class="wtag">Audit</span></div>
-          <h3>Inspection-ready in seconds</h3>
-          <p>Export a signed PDF of any shipment's full temperature history, complete with the integrity check result.</p>
+          <div class="wtags"><span class="wtag">Naleving</span><span class="wtag">Audit</span></div>
+          <h3>Binnen seconden klaar voor inspectie</h3>
+          <p>Exporteer een ondertekende pdf met de volledige temperatuurhistorie van elke zending, inclusief het resultaat van de integriteitscontrole.</p>
         </article>
 
         <article class="wcard b reveal d1">
           <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
-          <a class="warrow" href="/cold-chain-excursion-playbook" aria-label="Open the Cold-Chain Excursion Playbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Alerts</span><span class="wtag">Realtime</span></div>
-          <h3>Catch excursions live</h3>
-          <p>Threshold and door-open alerts hit your phone the moment a reading drifts, not at the next manual check.</p>
+          <a class="warrow" href="/nl/cold-chain-excursion-playbook" aria-label="Open het draaiboek voor koelketenafwijkingen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          <div class="wtags"><span class="wtag">Meldingen</span><span class="wtag">Realtime</span></div>
+          <h3>Merk afwijkingen direct op</h3>
+          <p>Meldingen over grensoverschrijdingen en geopende deuren komen direct op je telefoon, niet pas bij de volgende handmatige controle.</p>
         </article>
 
         <article class="wcard c reveal d2">
           <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
           <a class="warrow" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Disputes</span><span class="wtag">Proof</span></div>
-          <h3>End the finger-pointing</h3>
-          <p>When a load is rejected, the chain shows exactly where and when cold was lost and who was holding it.</p>
+          <div class="wtags"><span class="wtag">Geschillen</span><span class="wtag">Bewijs</span></div>
+          <h3>Stop het wijzen naar elkaar</h3>
+          <p>Als een lading wordt afgekeurd, laat de keten precies zien waar en wanneer de koeling wegviel en wie de lading toen beheerde.</p>
         </article>
       </div>
     </div>
@@ -572,31 +552,31 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> FAQ</span>
-          <h2 class="reveal d1">Questions from the people who <em>sign off</em>.</h2>
+          <span class="eyebrow-pill reveal"><span class="dot"></span> Veelgestelde vragen</span>
+          <h2 class="reveal d1">Vragen van de mensen die <em>tekenen</em>.</h2>
         </div>
-        <p class="desc lead reveal d2">Straight answers on how the chain works, what FahCel monitors, and how the record holds up in an audit.</p>
+        <p class="desc lead reveal d2">Duidelijke antwoorden over de werking van de keten, wat FahCel meet en hoe de registratie standhoudt bij een audit.</p>
       </div>
       <div class="list reveal d1">
         <details>
-          <summary>What is cold-chain integrity?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Cold-chain integrity is proof that a perishable product stayed within its required temperature range at every stage, from storage to transit to last mile. FahCel establishes it by recording each logger reading and sealing it into a tamper-evident hash chain, so the history can be verified rather than trusted.</div>
+          <summary>Wat is koelketenintegriteit?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Koelketenintegriteit is het bewijs dat een bederfelijk product in elke fase binnen het vereiste temperatuurbereik bleef: van opslag tot transport en aflevering. FahCel legt elke loggermeting vast en verzegelt die in een hashketen die manipulatie zichtbaar maakt. Zo kun je de historie controleren in plaats van erop te vertrouwen.</div>
         </details>
         <details>
-          <summary>How does a hash chain prove temperature wasn't altered?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Each reading is hashed together with the hash of the reading before it, forming a linked chain. Changing any past value changes its hash, which breaks every link after it. Anyone can recompute the chain from canonical JSON and pinpoint the first reading that was touched.</div>
+          <summary>Hoe bewijst een hashketen dat temperaturen niet zijn gewijzigd?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Elke meting wordt gehasht samen met de hash van de vorige meting. Zo ontstaat een gekoppelde keten. Een wijziging van een eerdere waarde verandert de hash en verbreekt elke volgende schakel. Iedereen kan de keten opnieuw berekenen vanuit canonieke JSON en de eerste gewijzigde meting aanwijzen.</div>
         </details>
         <details>
-          <summary>What does FahCel monitor?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Wireless loggers report temperature, humidity, shock and light, plus GPS location and door-open events in transit. FahCel covers the full journey from cold storage through in-transit handoffs to retail last mile, and chains every reading so the record follows the product, not the building.</div>
+          <summary>Wat monitort FahCel?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Draadloze loggers registreren temperatuur, vochtigheid, schokken en licht, plus GPS-locatie en deur-openingen onderweg. FahCel volgt de hele reis, van koelopslag via overdrachten tot aflevering bij de winkel. Elke meting wordt gekoppeld, zodat de registratie het product volgt, niet het gebouw.</div>
         </details>
         <details>
-          <summary>What happens when a reading breaches the threshold?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">A threshold or door-open alert hits the responsible team's phone the moment a reading drifts out of range, not at the next manual check. The excursion is recorded in the chain with its timestamp, so the event is both actionable in the moment and provable afterward.</div>
+          <summary>Wat gebeurt er als een meting de grenswaarde overschrijdt?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Een melding over een grensoverschrijding of geopende deur bereikt direct de telefoon van het verantwoordelijke team, niet pas bij de volgende handmatige controle. De afwijking wordt met tijdstempel vastgelegd in de keten. Zo kun je direct handelen en het voorval later aantonen.</div>
         </details>
         <details>
-          <summary>Is the record audit-ready?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Yes. You can export a signed PDF of any shipment's full temperature history together with the chain-integrity check result. Quality leads, logistics ops and auditors work from one verifiable record, which replaces clipboards and spreadsheets and shortens sign-off.</div>
+          <summary>Is de registratie klaar voor een audit?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Ja. Je kunt een ondertekende pdf exporteren met de volledige temperatuurhistorie van een zending en het resultaat van de ketencontrole. Kwaliteitsmanagers, logistieke teams en auditors werken vanuit één verifieerbare registratie. Dat vervangt klemborden en spreadsheets en versnelt de goedkeuring.</div>
         </details>
       </div>
     </div>
@@ -606,27 +586,27 @@
   <section class="cta-final" id="cta">
     <div class="cryptochain" aria-hidden="true"><div class="track" id="cryptoTrack"></div></div>
     <div class="wrap">
-      <h2 class="reveal">Prove your cold chain <em>held</em>.</h2>
-      <p class="reveal d1">See FahCel running on a live shipment with loggers, alerts and a verifiable hash chain in a 20-minute walkthrough.</p>
+      <h2 class="reveal">Bewijs dat je koelketen <em>intact bleef</em>.</h2>
+      <p class="reveal d1">Bekijk FahCel op een echte zending: loggers, meldingen en een verifieerbare hashketen in een demonstratie van 20 minuten.</p>
       <div class="row reveal d2">
-        <a class="btn primary" href="/book-a-demo">Book a demo
+        <a class="btn primary" href="/nl/book-a-demo">Boek een demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn ghost" href="/hash-chain">Explore the hash chain</a>
+        <a class="btn ghost" href="/nl/hash-chain">Ontdek de hashketen</a>
       </div>
     </div>
   </section>
 
   <footer class="site">
     <div class="wrap">
-      <div class="logo"><img class="mark" src="assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+      <div class="logo"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
       <div class="links">
         <a href="#">Platform</a>
-        <a href="#">Compliance</a>
-        <a href="/cold-chain-excursion-playbook">Excursion playbook</a>
+        <a href="#">Naleving</a>
+        <a href="/nl/cold-chain-excursion-playbook">Draaiboek bij afwijkingen</a>
         <a href="#">Privacy</a>
       </div>
-      <div>© 2026 FahCel | Cold-chain integrity · <span style="opacity:.8">Last updated <time datetime="2026-09-09">9 September 2026</time></span></div>
+      <div>© 2026 FahCel | Koelketenintegriteit · <span style="opacity:.8">Laatst bijgewerkt <time datetime="2026-09-09">9 september 2026</time></span></div>
     </div>
   </footer>
 
@@ -720,7 +700,7 @@
     // ---- hash-chain band: the readings chip counts up, then verifyChain() confirms
     var count = document.querySelector('.band .chip.c1 .n'), verify = document.querySelector('.band .chip.c2');
     var target = count ? parseInt(count.textContent.replace(/\D/g,''), 10) || 0 : 0;
-    var show = function(v){ count.textContent = Math.round(v).toLocaleString('en-GB'); };
+    var show = function(v){ count.textContent = Math.round(v).toLocaleString('nl-NL'); };
     if (count) show(0);
     if (verify) verify.style.opacity = 0;
     function chainIn(d){

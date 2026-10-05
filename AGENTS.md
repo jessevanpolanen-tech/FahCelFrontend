@@ -47,3 +47,24 @@ curl -s localhost:3000/ | grep '<title>'                # FahCel landing
 
 See `CLAUDE.md` for the full project knowledge base (page inventory, backend
 endpoints, dashboard architecture, deploy workflow).
+
+## Public-page languages
+
+- English remains at the original URLs; Dutch/German live at `/nl` and `/de`
+  plus the same page slugs. The five public pages have static, reciprocal
+  hreflang links. Internal collateral and the Dutch USB-logger draft are excluded.
+- Edit English source pages and `locales/*.tsv` (source, Dutch, German columns).
+  Dynamic UI copy is in `locales/scripts.json`; never translate backend payload
+  keys, option values, or tenant identifiers. Rebuild after source edits:
+  `docker run --rm -v "$PWD":/app -w /app python:3.12-slim python scripts/build-locales.py`.
+  Add `--check` to detect stale output. `/nl/*.html` and `/de/*.html` are generated
+  and committed so Vercel needs no Python runtime or new build step.
+- The generator owns only `languages:head` and `languages:nav` blocks in the
+  English pages. Localized assets and links use root-relative paths; switching
+  languages preserves the current page, query parameters and section fragment.
+- Translated printable guides use doc-page's existing flowing mode, not the
+  fixed-height English page boxes: longer translations otherwise get clipped.
+  The exported `sheet` part lets the translated guide fit a narrow screen.
+- Do not submit live lead forms during testing: they write to the shared backend
+  and may send real email. Test validation/navigation without completing a lead.
+- Healthcheck must use `127.0.0.1`, not `localhost` (nginx listens on IPv4).

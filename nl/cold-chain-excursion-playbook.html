@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<title>Het draaiboek voor koelketenafwijkingen | FahCel</title>
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Een zesstappenprotocol voor het eerste uur na een temperatuurafwijking: wie beslist, wat je vastlegt en hoe je de zending verantwoordt." />
+<link rel="canonical" href="https://www.fahcel.eu/nl/cold-chain-excursion-playbook" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="FahCel" />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:url" content="https://www.fahcel.eu/nl/cold-chain-excursion-playbook" />
+<meta property="og:title" content="Het draaiboek voor koelketenafwijkingen | FahCel" />
+<meta property="og:description" content="Een zesstappenprotocol voor het eerste uur na een temperatuurafwijking: wie beslist, wat je vastlegt en hoe je de zending verantwoordt." />
+<meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Een magazijnmedewerker controleert koelceltemperaturen op een tablet" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Het draaiboek voor koelketenafwijkingen | FahCel" />
+<meta name="twitter:description" content="Een zesstappenprotocol voor het eerste uur na een temperatuurafwijking: wie beslist, wat je vastlegt en hoe je de zending verantwoordt." />
+<meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  :root{
+    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
+    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
+    --line:#e1e2dd; --line-2:#d3d5cd;
+    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#52b0bf; --green:#2E6B4E; --amber:#c88912; --red:#b3402f;
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  .locale-page{background:var(--paper);color:var(--ink);font-family:var(--sans);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+  .pad{padding:64px 62px}
+  .mono{font-family:var(--mono)}
+
+  /* running foot */
+  .foot{position:absolute;left:62px;right:62px;bottom:34px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);border-top:1px solid var(--line);padding-top:12px}
+  .foot .lg{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--ink-2);letter-spacing:.4px;text-transform:none;font-size:11px}
+  .foot .lg .m{width:15px;height:15px;border-radius:4px;background:var(--indigo);display:inline-block}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);font-weight:600}
+  .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--indigo);color:#fff}
+  .cover::before{content:"";position:absolute;inset:0;background:
+     radial-gradient(680px 380px at 108% -6%,rgba(82,176,191,.4),transparent 62%),
+     radial-gradient(560px 360px at -8% 112%,rgba(46,107,78,.34),transparent 60%)}
+  .cover .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .cover .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.3px;font-size:20px}
+  .cover .brand .m{width:30px;height:30px;border-radius:8px;background:#fff}
+  .cover .eyebrow{color:var(--teal-2);margin-top:auto}
+  .cover .eyebrow .dot{background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
+  .cover h1{font-family:var(--serif);font-weight:500;font-size:60px;line-height:1.02;letter-spacing:-1.6px;margin:20px 0 0;max-width:15ch;text-wrap:balance}
+  .cover h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .cover .lede{font-size:17px;line-height:1.55;color:rgba(255,255,255,.82);max-width:46ch;margin:22px 0 0;text-wrap:pretty}
+  .cover .meta{margin-top:34px;display:flex;gap:34px;flex-wrap:wrap}
+  .cover .meta div{border-left:2px solid rgba(255,255,255,.28);padding-left:14px}
+  .cover .meta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .cover .meta .v{font-size:15px;font-weight:600;color:#fff;margin-top:3px}
+  .cover .rule{margin-top:38px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* FAQ page. Each answer is self-contained so it survives being lifted out of the
+     document, and FAQPage markup is only legitimate when the copy is visible. */
+  .faqlist{margin-top:22px;border-top:1px solid var(--line)}
+  .faqlist .qa{padding:13px 0;border-bottom:1px solid var(--line);break-inside:avoid}
+  .faqlist .q{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-.2px;margin:0 0 5px}
+  .faqlist .a{font-size:12.5px;line-height:1.55;color:var(--muted);margin:0;max-width:64ch}
+
+  /* ---------- INTERIOR SHARED ---------- */
+  h2.sec{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:14px 0 0;max-width:22ch;text-wrap:balance}
+  .dek{font-size:14.5px;line-height:1.55;color:var(--muted);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+
+  /* stat band */
+  .band{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .band div{padding:20px 22px;border-right:1px solid var(--line)}
+  .band div:last-child{border-right:0}
+  .band .n{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-1px;color:var(--indigo)}
+  .band .n em{font-style:normal;font-size:18px;color:var(--teal)}
+  .band .l{font-size:12px;line-height:1.4;color:var(--muted);margin-top:5px}
+
+  /* protocol steps */
+  .steps{margin:26px 0 0;display:flex;flex-direction:column;gap:12px}
+  .stepc{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:17px 20px 17px 17px;break-inside:avoid}
+  .stepc .num{width:52px;height:52px;border-radius:11px;background:var(--indigo);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:600}
+  .stepc .num.t{background:var(--teal)}
+  .stepc .num.g{background:var(--green)}
+  .stepc h3{font-size:16px;font-weight:700;letter-spacing:-.2px;margin:2px 0 0;color:var(--ink)}
+  .stepc p{font-size:13px;line-height:1.5;color:var(--muted);margin:5px 0 0}
+  .stepc .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:8px;display:inline-block}
+
+  /* checklist */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:26px 0 0}
+  .chk{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 22px 8px}
+  .chk h4{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--indigo);font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+  .chk h4 .p{width:22px;height:22px;border-radius:6px;background:var(--paper-2);display:grid;place-items:center;color:var(--indigo)}
+  .chk ul{list-style:none;margin:0;padding:0}
+  .chk li{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--ink-2)}
+  .chk li:last-child{border-bottom:0}
+  .chk .box{flex:0 0 auto;width:17px;height:17px;border-radius:5px;border:1.6px solid var(--line-2);margin-top:1px}
+  .chk li b{font-weight:600}
+  .chk li span{color:var(--muted);font-weight:400}
+
+  /* callout */
+  .call{margin:24px 0 0;background:var(--indigo);color:#fff;border-radius:16px;padding:26px 28px;position:relative;overflow:hidden;break-inside:avoid}
+  .call::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 110% -20%,rgba(82,176,191,.4),transparent 62%)}
+  .call>*{position:relative;z-index:1}
+  .call .k{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .call h3{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.12;letter-spacing:-.5px;margin:9px 0 0;max-width:26ch}
+  .call p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);margin:10px 0 0;max-width:58ch}
+
+  /* rule-of-thumb list */
+  .rot{margin:24px 0 0;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+  .rot div{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:15px 20px;border-bottom:1px solid var(--line);align-items:baseline}
+  .rot div:last-child{border-bottom:0}
+  .rot .w{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.3px}
+  .rot .w.a{color:var(--amber)}
+  .rot .w.g{color:var(--green)}
+  .rot .d{font-size:13px;line-height:1.5;color:var(--ink-2)}
+  .rot .d b{font-weight:600}
+
+  /* back cover */
+  .back{background:var(--indigo);color:#fff}
+  .back::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 400px at -6% -8%,rgba(82,176,191,.36),transparent 60%),radial-gradient(520px 340px at 110% 112%,rgba(46,107,78,.3),transparent 62%)}
+  .back .pad{position:relative;z-index:1;height:100%;display:flex;flex-direction:column}
+  .back .eyebrow{color:var(--teal-2)} .back .eyebrow .dot{background:var(--teal-2)}
+  .back h2{font-family:var(--serif);font-weight:500;font-size:44px;line-height:1.05;letter-spacing:-1.2px;margin:18px 0 0;max-width:16ch;text-wrap:balance}
+  .back h2 em{font-style:italic;color:#9fd6e0;font-weight:400}
+  .back .p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.82);max-width:48ch;margin:18px 0 0}
+  .back .cards{margin:34px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .back .cc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:20px 22px}
+  .back .cc .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal-2);font-weight:600}
+  .back .cc .v{font-size:15px;font-weight:600;margin-top:7px;line-height:1.35}
+  .back .cc .v span{color:rgba(255,255,255,.62);font-weight:400;font-size:13px}
+  .back .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:26px;border-top:1px solid rgba(255,255,255,.18)}
+  .back .cta .big{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.4px}
+  .back .cta .big span{color:#9fd6e0}
+  .back .cta .pill{background:#fff;color:var(--indigo);font-weight:700;font-size:14px;padding:14px 26px;border-radius:999px;white-space:nowrap}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fahcel.eu/nl/cold-chain-excursion-playbook#page",
+      "url": "https://www.fahcel.eu/nl/cold-chain-excursion-playbook",
+      "name": "Het draaiboek voor koelketenafwijkingen | FahCel",
+      "description": "Een zesstappenprotocol voor het eerste uur na een temperatuurafwijking: wie beslist, wat je vastlegt en hoe je de zending verantwoordt.",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@id": "https://www.fahcel.eu/#website"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FahCel",
+        "url": "https://www.fahcel.eu/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "nl-NL",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wat is een temperatuurafwijking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Een temperatuurafwijking is elke periode waarin een temperatuurgevoelig product tijdens opslag, transport of aflevering buiten het op het etiket aangegeven bereik valt. Een afwijking is niet automatisch verlies. Dat wordt het pas als je beslist zonder de registratie die nodig is om het besluit te verantwoorden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat doe je als eerste bij een temperatuuralarm?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stel de registratie veilig, raak niet in paniek. Leg de alarmtijd vast bij het verzegelde logboek en registreer de meting precies zoals die is. Verplaats de pallet niet en open de deur niet. De lading verstoren vóór de meting is vastgelegd, vernietigt het bewijs waarop het besluit rust."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Betekent één temperatuurpiek dat het product wordt afgekeurd?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nee. Eén piek zegt op zichzelf weinig. Duur en totale blootstelling bepalen de stabiliteit. Haal daarom de volledige curve op, van het laden tot nu, en vergelijk de totale tijd buiten het bereik met de toegestane gemiddelde kinetische temperatuur. De etiketlimiet bepaalt het besluit, niet de piekwaarde."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe ga je om met een gat in het temperatuurlogboek?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Als worstcasescenario. Een meetgat tijdens een overschrijding, bijvoorbeeld twintig minuten zonder metingen, behandel je alsof het product die hele tijd buiten bereik was. Niet als ‘waarschijnlijk goed’. Het hiaat is het risico, en een auditor ziet dat net zo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Waar plaats je de temperatuurlogger?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In de lading, niet in de retourlucht. Retourlucht is geen producttemperatuur en de sensorpositie kan graden verschil maken. Plaats de sensor bij de goederen, start hem vóór de eerste pallet wordt geladen en koppel de logger-ID aan het zegel op het manifest voordat de deuren sluiten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe snel moet je over een afwijking beslissen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tijdens dezelfde dienst. Een vastgelegd besluit op dezelfde dag is beter dan een perfecte analyse drie dagen later. Het besluit moet niet alleen juist zijn, maar ook verantwoord kunnen worden. Leg vrijgave, quarantaine of afkeuring vast bij de bijbehorende temperatuurcurve en laat de QA-manager ondertekenen."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- languages:head -->
+<link rel="alternate" hreflang="en" href="https://www.fahcel.eu/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="nl" href="https://www.fahcel.eu/nl/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="de" href="https://www.fahcel.eu/de/cold-chain-excursion-playbook" />
+<link rel="alternate" hreflang="x-default" href="https://www.fahcel.eu/cold-chain-excursion-playbook" />
+<link rel="stylesheet" href="/assets/languages.css" />
+<script src="/assets/languages.js" defer></script>
+<!-- /languages:head -->
+</head>
+<body>
+<div class="document-languages"><!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Taal"><a href="/cold-chain-excursion-playbook" lang="en" hreflang="en" aria-label="English">EN</a><a href="/nl/cold-chain-excursion-playbook" lang="nl" hreflang="nl" aria-label="Nederlands" aria-current="page">NL</a><a href="/de/cold-chain-excursion-playbook" lang="de" hreflang="de" aria-label="Deutsch">DE</a></div><!-- /languages:nav --></div>
+<doc-page size="letter" margin="0" class="translated-playbook">
+
+  <!-- 1 · COVER -->
+  <section class="locale-page cover">
+    <div class="pad">
+      <div class="brand"><span class="m"></span>FahCel</div>
+      <div class="eyebrow"><span class="dot"></span>Praktijkdraaiboek · Versie 2026.1</div>
+      <h1>Het draaiboek voor <em>koelketenafwijkingen</em></h1>
+      <p class="lede">Zes stappen om een zending te beschermen zodra de temperatuur afwijkt, met de documentatie die je handelen bewijst.</p>
+      <div class="meta">
+        <div><div class="k">Voor</div><div class="v">QA-, logistiek- &amp; operationeel managers</div></div>
+        <div><div class="k">Leestijd</div><div class="v">11 minuten</div></div>
+        <div><div class="k">Pagina’s</div><div class="v">Omslag + 4</div></div>
+        <div><div class="k">Bijgewerkt</div><div class="v"><time datetime="2026-09-09">9 september 2026</time></div></div>
+      </div>
+      <div class="rule"><span>fahcel.eu / playbook</span><span>Bewijs van koeling, van begin tot eind</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · PROTOCOL -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Deel één · Als het alarm afgaat</div>
+      <h2 class="sec">Een afwijking is pas verlies als je dat vaststelt.</h2>
+      <p class="dek">De meeste afschrijvingen door bederf komen niet door de temperatuurpiek, maar door de uren stilte erna. Deze zes stappen zetten paniek om in een vastgelegd besluit dat je kunt verantwoorden aan een toezichthouder, auditor of klant.</p>
+
+      <div class="band">
+        <div><div class="n">80<em>%</em></div><div class="l">van de afschrijvingen door afwijkingen is te voorkomen met een besluit tijdens dezelfde dienst</div></div>
+        <div><div class="n">6<em>uur</em></div><div class="l">mediane vertraging tussen overschrijding en eerste vastgelegde reactie</div></div>
+        <div><div class="n">1<em>×</em></div><div class="l">het aantal ononderbroken registraties dat een auditor echt nodig heeft</div></div>
+      </div>
+
+      <div class="steps">
+        <div class="stepc" id="step-1"><div class="num">1</div><div><h3>Stel de registratie veilig, raak niet in paniek</h3><p>Leg zodra het alarm afgaat de tijd vast bij het verzegelde logboek. Verplaats de pallet niet en open de deur niet: leg de meting precies vast zoals die is.</p><span class="tag">Verantwoordelijk: medewerker ter plaatse · &lt; 5 min</span></div></div>
+        <div class="stepc" id="step-2"><div class="num t">2</div><div><h3>Haal de volledige temperatuurhistorie op</h3><p>Niet alleen de piek. Duur en oppervlakte onder de curve bepalen de productstabiliteit veel meer dan één piek. Exporteer het volledige interval, van het laden tot nu.</p><span class="tag">Verantwoordelijk: QA · verzegelde reeks ophalen</span></div></div>
+        <div class="stepc" id="step-3"><div class="num t">3</div><div><h3>Toets aan de toegestane stabiliteitsmarge</h3><p>Vergelijk de totale tijd buiten het bereik met de toegestane gemiddelde kinetische temperatuur van het product. De etiketlimiet beslist, niet je gevoel. Dit is het ja/nee-moment.</p><span class="tag">Verantwoordelijk: QA · MKT / etiketspecificatie</span></div></div>
+        <div class="stepc" id="step-4"><div class="num g">4</div><div><h3>Leg het vrijgavebesluit vast bij de registratie</h3><p>Vrijgeven, in quarantaine plaatsen of afkeuren: schrijf de onderbouwing bij de data die tot het besluit leidde. Een besluit zonder bewijs is een risico, geen verantwoording.</p><span class="tag">Verantwoordelijk: QA-manager · ondertekend</span></div></div>
+        <div class="stepc" id="step-5"><div class="num g">5</div><div><h3>Informeer de keten met één bericht</h3><p>Ontvanger, vervoerder en ontvangende QA krijgen hetzelfde besluit en dezelfde registratie als bijlage. Geen doorgestuurde screenshots of verschillende versies.</p><span class="tag">Verantwoordelijk: logistiek · &lt; 1 uur</span></div></div>
+        <div class="stepc" id="step-6"><div class="num g">6</div><div><h3>Sluit af met een oorzaakanalyse</h3><p>Koppel de overschrijding aan een oorzaak: wachten bij het dock, defecte koeling of een open deur. Leg dit vast zodat de volgende zending de oplossing meekrijgt, niet de fout.</p><span class="tag">Verantwoordelijk: operatie · CAPA vastgelegd</span></div></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Draaiboek bij afwijkingen</span><span>02 · Het zesstappenprotocol</span></div>
+  </section>
+
+  <!-- 3 · CHECKLIST + THRESHOLDS -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Deel twee · Voordat de vrachtwagen vertrekt</div>
+      <h2 class="sec">De vertrekchecklist die de meeste afwijkingen voorkomt.</h2>
+      <p class="dek">Hang dit bij de dockdeur. Elk afgevinkt vakje voorkomt een afwijking en een ontbrekend punt waar een auditor achteraan moet.</p>
+
+      <div class="two">
+        <div class="chk">
+          <h4><span class="p">A</span>Laden &amp; verzegelen</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Voorkoeling bevestigd</b> — trailer op temperatuur vóór de eerste pallet, niet erna.</span></li>
+            <li><span class="box"></span><span><b>Logger geplaatst &amp; gestart</b> — sensor in de lading, niet in de retourlucht.</span></li>
+            <li><span class="box"></span><span><b>Instelling klopt met etiket</b> — gecontroleerd aan de hand van de productspecificatie, geparafeerd.</span></li>
+            <li><span class="box"></span><span><b>Zegel + logger-ID gekoppeld</b> — vastgelegd op het manifest voordat de deuren sluiten.</span></li>
+          </ul>
+        </div>
+        <div class="chk">
+          <h4><span class="p">B</span>Transport &amp; overdracht</h4>
+          <ul>
+            <li><span class="box"></span><span><b>Alarmgrenzen actief</b> — iemand ontvangt de meldingen.</span></li>
+            <li><span class="box"></span><span><b>Wachttijdlimieten ingesteld</b> — maximaal aantal minuten aan een open dock vóór escalatie.</span></li>
+            <li><span class="box"></span><span><b>Ontvanger geïnformeerd</b> — kent de beslisregel vóór aankomst.</span></li>
+            <li><span class="box"></span><span><b>Overdracht registratie gepland</b> — één bestand volgt de goederen, met intacte overdrachtsketen.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:30px"><span class="dot"></span>Vuistregels · lees dit voordat je de data betwist</div>
+      <div class="rot">
+        <div><span class="w">AFKEURBIAS</span><span class="d"><b>Eén piek zegt weinig.</b> Duur en totale blootstelling bepalen de stabiliteit. Haal altijd de volledige curve op vóór het besluit.</span></div>
+        <div><span class="w a">LET OP</span><span class="d"><b>Het hiaat is het risico.</b> Een meetgat van 20 minuten tijdens een overschrijding geldt als worstcasescenario, niet als ‘waarschijnlijk goed’.</span></div>
+        <div><span class="w a">LET OP</span><span class="d"><b>Retourlucht ≠ product.</b> De sensorpositie kan graden verschil maken. Vertrouw op de sensor in de lading.</span></div>
+        <div><span class="w g">VERANTWOORDBAAR</span><span class="d"><b>Beslis tijdens de dienst.</b> Een vastgelegd besluit op dezelfde dag is beter dan een perfecte analyse die drie dagen te laat komt.</span></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Draaiboek bij afwijkingen</span><span>03 · Checklist &amp; grenswaarden</span></div>
+  </section>
+
+  <!-- 4 · BACK / CTA -->
+  <!-- 4 · FAQ -->
+  <section class="locale-page">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>Deel drie · Vragen die het besluit bepalen</div>
+      <h2 class="sec">De zes antwoorden waarop een auditor je toetst.</h2>
+      <p class="dek">Deze vragen komen terug bij elke beoordeling van een afwijking. Beantwoord ze vóór het alarm, niet erna. De antwoorden maken van een inschatting een verantwoorde registratie.</p>
+
+      <div class="faqlist">
+        <div class="qa"><p class="q">Wat is een temperatuurafwijking?</p><p class="a">Een temperatuurafwijking is elke periode waarin een temperatuurgevoelig product tijdens opslag, transport of aflevering buiten het op het etiket aangegeven bereik valt. Een afwijking is niet automatisch verlies. Dat wordt het pas als je beslist zonder de registratie die nodig is om het besluit te verantwoorden.</p></div>
+        <div class="qa"><p class="q">Wat doe je als eerste bij een temperatuuralarm?</p><p class="a">Stel de registratie veilig, raak niet in paniek. Leg de alarmtijd vast bij het verzegelde logboek en registreer de meting precies zoals die is. Verplaats de pallet niet en open de deur niet. De lading verstoren vóór de meting is vastgelegd, vernietigt het bewijs waarop het besluit rust.</p></div>
+        <div class="qa"><p class="q">Betekent één temperatuurpiek dat het product wordt afgekeurd?</p><p class="a">Nee. Eén piek zegt op zichzelf weinig. Duur en totale blootstelling bepalen de stabiliteit. Haal daarom de volledige curve op, van het laden tot nu, en vergelijk de totale tijd buiten het bereik met de toegestane gemiddelde kinetische temperatuur. De etiketlimiet bepaalt het besluit, niet de piekwaarde.</p></div>
+        <div class="qa"><p class="q">Hoe ga je om met een gat in het temperatuurlogboek?</p><p class="a">Als worstcasescenario. Een meetgat tijdens een overschrijding, bijvoorbeeld twintig minuten zonder metingen, behandel je alsof het product die hele tijd buiten bereik was. Niet als ‘waarschijnlijk goed’. Het hiaat is het risico, en een auditor ziet dat net zo.</p></div>
+        <div class="qa"><p class="q">Waar plaats je de temperatuurlogger?</p><p class="a">In de lading, niet in de retourlucht. Retourlucht is geen producttemperatuur en de sensorpositie kan graden verschil maken. Plaats de sensor bij de goederen, start hem vóór de eerste pallet wordt geladen en koppel de logger-ID aan het zegel op het manifest voordat de deuren sluiten.</p></div>
+        <div class="qa"><p class="q">Hoe snel moet je over een afwijking beslissen?</p><p class="a">Tijdens dezelfde dienst. Een vastgelegd besluit op dezelfde dag is beter dan een perfecte analyse drie dagen later. Het besluit moet niet alleen juist zijn, maar ook verantwoord kunnen worden. Leg vrijgave, quarantaine of afkeuring vast bij de bijbehorende temperatuurcurve en laat de QA-manager ondertekenen.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span class="lg"><span class="m"></span>FahCel · Draaiboek bij afwijkingen</span><span>04 · Veelgestelde vragen</span></div>
+  </section>
+
+  <section class="locale-page back">
+    <div class="pad">
+      <div class="eyebrow"><span class="dot"></span>De rol van FahCel</div>
+      <h2>Stop met reconstrueren <em>na</em> de overschrijding.</h2>
+      <p class="p">Dit draaiboek is de handmatige versie. FahCel voert dezelfde zes stappen automatisch uit: een verzegelde, ononderbroken temperatuurregistratie van laden tot overdracht. Het besluit en het bewijs staan daardoor altijd bij elkaar.</p>
+
+      <div class="cards">
+        <div class="cc"><div class="k">Stap 1–3</div><div class="v">Verzegeld hashketenlogboek <span>— elke meting met tijdstempel en zichtbare manipulaties vanaf het laden.</span></div></div>
+        <div class="cc"><div class="k">Stap 4</div><div class="v">Besluit op basis van data <span>— vrijgave / quarantaine / afkeuring ondertekend bij de onderliggende curve.</span></div></div>
+        <div class="cc"><div class="k">Stap 5</div><div class="v">Overdracht met één bericht <span>— dezelfde registratie volgt de goederen, met intacte overdrachtsketen.</span></div></div>
+        <div class="cc"><div class="k">Stap 6</div><div class="v">Oorzaak vastgelegd <span>— elke afwijking verbetert de volgende zending.</span></div></div>
+      </div>
+
+      <div class="cta">
+        <div class="big">Bekijk het op jouw routes — <span>een demonstratie van 20 minuten met je eigen zendingsdata.</span></div>
+        <a href="/nl/book-a-demo" style="text-decoration:none;color:inherit"><div class="pill">Boek een demo → fahcel.eu/demo</div></a>
+      </div>
+    </div>
+  </section>
+
+</doc-page>
+<script src="/doc-page.js"></script>
+</body>
+</html>
