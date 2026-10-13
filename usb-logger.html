@@ -3,13 +3,20 @@
 <head>
 <!--
   ============================================================================
-  PRE-LAUNCH CHECKLIST — /usb-logger
+  PRE-LAUNCH CHECKLIST — /usb-logger  (brand: koudwijs°, working name)
   ============================================================================
-  This page ships with PLACEHOLDER hardware figures. Every one of them is
+  Since 2026-10-13 this page is its own brand: no FahCel name, logo, links,
+  hash chain or verification anywhere a visitor can see. Only the plumbing is
+  shared: the form still posts to the FahCel tenant so the lead reaches the
+  operator's dashboard.
+
+  It still ships with PLACEHOLDER hardware figures. Every one of them is
   wrapped in <span class="tbd"> and renders with an amber dashed underline, so
   an unverified number cannot reach a customer unnoticed.
 
   Before publishing:
+    [ ] Confirm the brand name "koudwijs°" (working name) and give it its own
+        domain; the canonical below still points at fahcel.eu
     [ ] Replace every .tbd value against the real datasheet (search: class="tbd")
     [ ] Confirm the sample-pack commercial terms (free? paid? quantity?)
     [ ] Confirm certifications — these are regulated claims, do not guess
@@ -17,70 +24,60 @@
     [ ] Flip <meta name="robots"> from noindex,nofollow to index,follow
     [ ] Uncomment the /usb-logger entry in sitemap.xml
     [ ] Add price + availability to the Product JSON-LD "offers" block
-    [x] Swap the hero image for a real photo of the logger (Elitech LogEt 1, 2026-09-25)
-
-  The page stays noindex until the specs are real. Publishing unverified
-  technical claims on a site that sells into GDP / Part 11 buyers is the one
-  mistake worth a redeploy to avoid.
+    [ ] Add an og:image in this brand's style (the FahCel one was removed)
   ============================================================================
 -->
 <meta charset="utf-8" />
-<title>USB-temperatuurlogger met verifieerbaar bewijs | FahCel</title>
+<title>USB-temperatuurloggers, ingesteld op jouw route | koudwijs°</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="USB-temperatuurlogger voor eenmalig gebruik die met de pallet meereist. Steek hem in een willekeurige laptop voor een ondertekend rapport — elke meting verzegeld in een verifieerbare hashketen." />
+<meta name="description" content="USB-temperatuurloggers van Elitech die met je zending meereizen, door ons ingesteld op jouw interval en grenswaarden. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
 <link rel="canonical" href="https://www.fahcel.eu/usb-logger" />
 <!-- TODO(pre-launch): flip to index,follow once every .tbd spec is verified. -->
 <meta name="robots" content="noindex,nofollow" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="FahCel" />
+<meta property="og:site_name" content="koudwijs°" />
 <meta property="og:locale" content="nl_NL" />
 <meta property="og:url" content="https://www.fahcel.eu/usb-logger" />
-<meta property="og:title" content="USB-temperatuurlogger met verifieerbaar bewijs | FahCel" />
-<meta property="og:description" content="USB-temperatuurlogger voor eenmalig gebruik die met de pallet meereist. Steek hem in een willekeurige laptop voor een ondertekend rapport — elke meting verzegeld in een verifieerbare hashketen." />
-<meta property="og:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Een magazijnmedewerker controleert temperatuurmetingen van de koelopslag op een tablet" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="USB-temperatuurlogger met verifieerbaar bewijs | FahCel" />
-<meta name="twitter:description" content="USB-temperatuurlogger voor eenmalig gebruik die met de pallet meereist. Steek hem in een willekeurige laptop voor een ondertekend rapport — elke meting verzegeld in een verifieerbare hashketen." />
-<meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
-<link rel="icon" href="/assets/fahcel-logo.jpg" />
+<meta property="og:title" content="Koud gehouden? Zwart op wit. | koudwijs°" />
+<meta property="og:description" content="USB-temperatuurloggers van Elitech, door ons ingesteld op jouw route. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Koud gehouden? Zwart op wit. | koudwijs°" />
+<meta name="twitter:description" content="USB-temperatuurloggers van Elitech, door ons ingesteld op jouw route. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0F0F'/%3E%3Ccircle cx='16' cy='16' r='7.5' fill='none' stroke='%23FF4A1C' stroke-width='5'/%3E%3C/svg%3E" />
 <!-- NOTE(pre-launch): the Product node below has no "offers" block on purpose.
      Add price, priceCurrency and availability once commercial terms are set — a
      fabricated price in structured data is both a rich-result penalty and a
-     trust problem. JSON-LD takes no comments, hence this note living out here. -->
+     trust problem. JSON-LD takes no comments, hence this note living out here.
+     The FAQ answers mirror the visible #faq text; change both together. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.fahcel.eu/#org",
-      "name": "FahCel",
-      "url": "https://www.fahcel.eu/",
-      "logo": "https://www.fahcel.eu/assets/fahcel-logo.jpg"
+      "@id": "https://www.fahcel.eu/usb-logger#org",
+      "name": "koudwijs°",
+      "url": "https://www.fahcel.eu/usb-logger"
     },
     {
       "@type": "WebPage",
       "@id": "https://www.fahcel.eu/usb-logger#page",
       "url": "https://www.fahcel.eu/usb-logger",
-      "name": "USB-temperatuurlogger met verifieerbaar bewijs",
-      "description": "USB-temperatuurlogger voor eenmalig gebruik die met de pallet meereist. Steek hem in een willekeurige laptop voor een ondertekend rapport — elke meting verzegeld in een verifieerbare hashketen.",
+      "name": "USB-temperatuurloggers, ingesteld op jouw route",
+      "description": "USB-temperatuurloggers van Elitech die met je zending meereizen, door ons ingesteld op jouw interval en grenswaarden. Insteken bij aankomst en het temperatuurverloop staat zwart op wit.",
       "inLanguage": "nl-NL",
-      "dateModified": "2026-10-02",
-      "isPartOf": { "@id": "https://www.fahcel.eu/#website" },
-      "publisher": { "@id": "https://www.fahcel.eu/#org" },
+      "dateModified": "2026-10-13",
+      "publisher": { "@id": "https://www.fahcel.eu/usb-logger#org" },
       "about": { "@id": "https://www.fahcel.eu/usb-logger#product" }
     },
     {
       "@type": "Product",
       "@id": "https://www.fahcel.eu/usb-logger#product",
-      "name": "FahCel USB-temperatuurlogger voor eenmalig gebruik",
+      "name": "Elitech LogEt 1 USB-temperatuurlogger voor eenmalig gebruik",
       "category": "Temperatuurdatalogger",
-      "brand": { "@id": "https://www.fahcel.eu/#org" },
+      "brand": { "@type": "Brand", "name": "Elitech" },
       "image": "https://www.fahcel.eu/assets/elitech-loget-1.webp",
-      "description": "Een USB-temperatuurdatalogger voor eenmalig gebruik die met een zending meereist. De ontvanger steekt hem in een willekeurige USB-poort en het temperatuurrapport opent, zonder software, driver of account. Elke meting wordt vastgelegd in een manipulatiebestendige hashketen, zodat de registratie onafhankelijk te verifiëren is.",
+      "description": "Een USB-temperatuurdatalogger voor eenmalig gebruik die met een zending meereist, geleverd met interval en grenswaarden ingesteld op de route. De ontvanger steekt hem in een willekeurige USB-poort en het pdf-rapport opent, zonder software, driver of account.",
       "url": "https://www.fahcel.eu/usb-logger"
     },
     {
@@ -90,22 +87,22 @@
         {
           "@type": "Question",
           "name": "Hebben we naast de logger nog iets anders nodig?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nee. De logger maakt zelf het temperatuurrapport, en de verificatie van de keten draait gewoon in een browser, zonder account of installatie. Alleen voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Voor de LogEt 1 en de RC-17 niet: de logger maakt zelf het pdf-rapport, en dat opent zodra hij in een laptop zit. Voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software. Kies je de Glog 5 met live 4G, dan stemmen we de opzet met je af bij je aanvraag." }
         },
         {
           "@type": "Question",
           "name": "Wat moet de ontvanger van de zending installeren?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Het werkt op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Bij de LogEt 1 en de RC-17: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt." }
         },
         {
           "@type": "Question",
           "name": "Wat is het verschil met de USB-loggers die we nu al kopen?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Elke meting wordt bij het wegschrijven gehasht en gekoppeld aan de vorige, zodat het rapport zijn eigen bewijs meedraagt. Een gewone logger geeft je een pdf, en dat is een bestand dat iedereen kan bewerken. Deze geeft je een pdf plus een controle die je klant, je auditor of je verzekeraar zelf kan uitvoeren." }
+          "acceptedAnswer": { "@type": "Answer", "text": "De hardware is beproefd Elitech; het verschil zit in alles eromheen. Wij leveren de loggers ingesteld op jouw interval en grenswaarden, met een instructiekaartje voor de goederenontvangst en advies over welk model bij je route past. En als je wilt, met jouw huisstijl erop." }
         },
         {
           "@type": "Question",
-          "name": "Kunnen we hem gebruiken op routes die we niet zelf in de hand hebben?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Daar is hij juist voor gemaakt. Hij reist met de goederen mee via externe vervoerders en expediteurs, en niemand in de keten heeft een account, een gateway of mobiel bereik nodig. De registratie volgt het product, niet het gebouw." }
+          "name": "Kunnen we ze gebruiken op routes die we niet zelf in de hand hebben?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Daar zijn ze juist voor gemaakt. De logger reist met de goederen mee via externe vervoerders en expediteurs, en niemand in de keten heeft een account of gateway nodig. De registratie volgt het product, niet het gebouw." }
         },
         {
           "@type": "Question",
@@ -127,406 +124,369 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* koudwijs° — its own brand, deliberately sharing nothing visual with FahCel: square corners,
+     ink rules instead of cards, a condensed grotesk instead of serif, and one hot accent on ice. */
   :root{
-    --paper:#F6F7F4;
-    --paper-2:#ecedea;
-    --white:#ffffff;
-    --ink:#0B1220;
-    --ink-2:#222938;
-    --muted:#5a6374;
-    --muted-2:#8a93a5;
-    --line:#e1e2dd;
-    --line-2:#d3d5cd;
-    --indigo:#1E2A5A;
-    --indigo-2:#2a3a79;
-    --teal:#1f7a8c;
-    --green:#2E6B4E;
-    --amber:#c88912;
-    --serif:'Source Serif 4', Georgia, serif;
-    --sans:'Inter', system-ui, sans-serif;
-    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --ice:#E4ECEE;
+    --snow:#F5F8F8;
+    --ink:#0D0F0F;
+    --ink-2:#2B3031;
+    --mute:#566163;
+    --hair:rgba(13,15,15,.16);
+    --heat:#FF4A1C;
+    --band:#CFE0E3;
+    --d:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+    --s:'Instrument Sans',system-ui,sans-serif;
+    --m:'DM Mono',ui-monospace,monospace;
+    --gut:clamp(18px,3.2vw,44px);
+    --nav:64px;
+    --ez:cubic-bezier(.7,0,.15,1);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  body{font-size:16px;line-height:1.6}
+  html,body{margin:0;padding:0;background:var(--ice);color:var(--ink);font-family:var(--s);-webkit-font-smoothing:antialiased}
+  body{font-size:16.5px;line-height:1.55;overflow-x:clip}
   a{color:inherit;text-decoration:none}
-  ::selection{background:#d9ddf0;color:var(--indigo)}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+  img{max-width:100%}
+  ::selection{background:var(--heat);color:var(--ink)}
+  .wrap{max-width:1400px;margin:0 auto;padding-inline:var(--gut)}
+  section{scroll-margin-top:var(--nav)}
+  .deg{color:var(--heat)}
 
   /* ---------- DRAFT BANNER — delete this block and the .draftbar element before launch ---------- */
-  .draftbar{
-    position:relative;z-index:40;background:#fbe9c0;border-bottom:1px solid #e8cf92;color:#6b4a05;
-    font-size:13px;line-height:1.5;padding:11px 40px;display:flex;gap:10px;align-items:flex-start;
-  }
-  .draftbar b{font-weight:700}
-  .draftbar svg{width:16px;height:16px;flex:0 0 auto;margin-top:2px;color:var(--amber)}
+  .draftbar{background:#fbe9c0;border-bottom:1.5px solid var(--ink);color:#5b3f04;font-size:13px;line-height:1.5;padding:10px var(--gut);font-family:var(--m)}
+  .draftbar b{font-weight:500;text-transform:uppercase;letter-spacing:.04em}
 
   /* placeholder specs — visible on purpose, so nothing unverified ships quietly */
-  .tbd{
-    background:#fdf4e0;border-bottom:1.5px dashed var(--amber);color:#7a5406;
-    padding:0 3px;border-radius:3px;font-style:normal;cursor:help;
-  }
+  .tbd{background:#fdf4e0;border-bottom:1.5px dashed #c88912;color:#7a5406;padding:0 3px;font-style:normal;cursor:help}
 
   /* ---------- Nav ---------- */
-  nav.top{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:22px 40px;border-bottom:1px solid var(--line);
-    background:rgba(246,247,244,.85);backdrop-filter:saturate(140%) blur(8px);
-    position:sticky;top:0;z-index:20;
-  }
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px}
-  .logo .mark{width:30px;height:30px;border-radius:0;background:none;object-fit:contain;mix-blend-mode:multiply;display:block}
-  nav.top ul{display:flex;gap:30px;list-style:none;padding:0;margin:0;font-size:14px;color:var(--ink-2)}
-  nav.top li a:hover{color:var(--indigo)}
-  nav.top li.here{color:var(--indigo);font-weight:600}
-  nav.top .cta{background:var(--indigo);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.1px}
-  nav.top .cta:hover{background:var(--indigo-2)}
+  nav.top{position:sticky;top:0;z-index:30;height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:0 var(--gut);background:var(--snow);border-bottom:1.5px solid var(--ink)}
+  .mark{font-family:var(--d);font-weight:800;font-stretch:85%;font-size:27px;letter-spacing:-.05em;line-height:1}
+  nav.top ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  nav.top ul a{position:relative;padding:4px 0}
+  nav.top ul a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ez)}
+  nav.top ul a:hover::after{transform:scaleX(1);transform-origin:left}
+  nav.top .go{background:var(--heat);padding:11px 16px;font-weight:600;font-size:14px;border:1.5px solid var(--ink);white-space:nowrap}
+  nav.top .go:hover{background:var(--ink);color:var(--snow)}
+
+  /* ---------- Buttons: square, ink fill wipes up on hover ---------- */
+  .btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;padding:17px 22px;
+    font-family:var(--s);font-weight:600;font-size:15.5px;border:1.5px solid var(--ink);cursor:pointer;transition:color .35s var(--ez);color:var(--ink)}
+  .btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ez)}
+  .btn:hover{color:var(--snow)}
+  .btn:hover::before{transform:scaleY(1)}
+  .btn.hot{background:var(--heat)}
+  .btn svg{width:18px;height:18px;transition:transform .4s var(--ez)}
+  .btn:hover svg{transform:translateX(4px)}
 
   /* ---------- Hero ---------- */
-  .hero{padding:66px 0 54px;border-bottom:1px solid var(--line);background:var(--white)}
-  .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
-  .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--paper);color:var(--indigo);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-  .eyebrow-pill .dot{width:6px;height:6px;border-radius:999px;background:var(--teal)}
-  .hero h1{
-    font-family:var(--serif);font-weight:500;font-size:clamp(38px,5vw,64px);line-height:1.04;letter-spacing:-1.4px;
-    margin:20px 0 18px;color:var(--ink);max-width:19ch;text-wrap:balance;
-  }
-  .hero h1 em{font-style:italic;color:var(--indigo);font-weight:400}
-  .hero .lede{font-size:clamp(16px,1.5vw,18.5px);line-height:1.58;color:var(--muted);max-width:52ch;margin:0 0 30px;text-wrap:pretty}
-  .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;border:1px solid transparent;cursor:pointer}
-  .btn.primary{background:var(--indigo);color:#fff}
-  .btn.primary:hover{background:var(--indigo-2)}
-  .btn.ghost{background:transparent;color:var(--ink-2);border-color:var(--line-2)}
-  .btn.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
-  .btn svg{width:15px;height:15px}
+  .hero{padding-top:clamp(22px,3vw,40px)}
+  .kick{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+  .hero h1{font-family:var(--d);font-weight:800;font-stretch:76%;font-size:clamp(50px,12.6vw,214px);line-height:.84;letter-spacing:-.05em;margin:clamp(18px,3vw,40px) 0 clamp(26px,3.6vw,46px)}
+  .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.07em;margin-bottom:-.07em}
+  .hero h1 .ln > span{display:block}
+  .hero h1 .ln + .ln{text-align:right}
+  .hgrid{display:grid;grid-template-columns:repeat(12,1fr);border-top:1.5px solid var(--ink)}
+  .hcopy{grid-column:1/span 4;padding:30px 34px 34px 0;display:flex;flex-direction:column;gap:26px}
+  .hcopy .lede{font-size:clamp(17px,1.35vw,19px);line-height:1.5;margin:0;color:var(--ink-2);text-wrap:pretty}
+  .hcopy .acts{display:flex;flex-wrap:wrap;gap:10px}
+  .hcopy .acts .btn.line{background:transparent}
+  .ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;font-family:var(--m);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase}
+  .ticks li{padding:9px 0;border-top:1px solid var(--hair);display:flex;gap:10px}
+  .ticks li::before{content:"+";color:var(--heat);font-weight:500}
 
-  .ticks{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin:22px 0 0;padding:0;font-size:13.5px;font-weight:500;color:var(--ink-2)}
-  .ticks li{display:flex;align-items:center;gap:7px}
-  .ticks li::before{content:"";width:16px;height:16px;flex:0 0 auto;border-radius:99px;background:#e9f0ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e6b4e' stroke-width='3.2'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat}
-  .hero .shot{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 70px -40px rgba(11,18,32,.4);background:var(--paper-2)}
-  .hero .shot img{width:100%;height:100%;object-fit:cover;display:block}
-  .hero .chip{
-    position:absolute;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);color:var(--ink);
-    padding:8px 12px;border-radius:10px;box-shadow:0 10px 30px -12px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px;
-  }
-  .hero .chip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.18)}
-  .hero .chip.c1{top:16px;left:16px}
-  .hero .chip.c2{bottom:16px;right:16px;color:var(--green)}
-  /* manufacturer cutouts sit on white — contain, never crop the device */
-  .hero .shot.product{background:var(--white)}
-  .hero .shot.product img{object-fit:contain;padding:3% 6%;box-sizing:border-box}
+  .htile{grid-column:5/span 4;position:relative;background:var(--snow);border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);min-height:420px;overflow:hidden}
+  .htile .imgw{position:absolute;inset:0;display:grid;place-items:center;padding:12% 10% 16%}
+  .htile img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply}
+  /* the product photo sits on white; multiply drops that square so it can rotate on the tile */
+  .htile .fig{position:absolute;left:16px;right:16px;bottom:14px;display:flex;justify-content:space-between;font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+  /* registration marks in the corners, like a spec sheet */
+  .htile .reg{position:absolute;width:14px;height:14px;border:0 solid var(--ink)}
+  .htile .reg.a{top:14px;left:14px;border-top-width:1.5px;border-left-width:1.5px}
+  .htile .reg.b{top:14px;right:14px;border-top-width:1.5px;border-right-width:1.5px}
 
-  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:42px;border-top:1px solid var(--line);padding-top:26px}
-  .meta > div{padding-right:22px}
-  .meta .k{font-family:var(--mono);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-2);margin-bottom:7px}
-  .meta .v{font-size:16px;font-weight:600;color:var(--ink);line-height:1.35}
-  .meta .v small{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:3px}
+  .hread{grid-column:9/span 4;background:var(--ink);color:var(--ice);padding:22px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+  .hread .rtop,.hread .rbot{display:flex;justify-content:space-between;gap:12px;font-family:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.66)}
+  .hread .rbot{justify-content:flex-start;align-items:center;color:var(--ice)}
+  .hread .led{width:8px;height:8px;border-radius:50%;background:var(--heat);display:inline-block}
+  .hread .rtemp{font-family:var(--d);font-weight:700;font-stretch:78%;font-size:clamp(84px,9vw,148px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+  .hread .rtemp small{font-size:.32em;letter-spacing:-.02em;margin-left:.12em;vertical-align:top;color:var(--heat)}
+  .spark{width:100%;height:auto;display:block}
+  .spark .bandr{fill:rgba(207,224,227,.1)}
+  .spark .lim{stroke:rgba(228,236,238,.35);stroke-width:1;stroke-dasharray:3 4}
+  .spark text{font-family:var(--m);font-size:9.5px;fill:rgba(228,236,238,.55)}
+  .spark #sparkPath{fill:none;stroke:var(--heat);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+  .spark #sparkDot{fill:var(--heat)}
+  .spark #sparkRing{fill:none;stroke:var(--heat);stroke-width:1.5;transform-box:fill-box;transform-origin:center}
+  .hread .tbd{background:rgba(255,214,102,.14);color:#ffe08a;border-bottom-color:#ffc94a}
+
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .meta > div{padding:18px 20px 20px;border-left:1px solid var(--hair)}
+  .meta > div:first-child{border-left:0;padding-left:0}
+  .meta .k{font-family:var(--m);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+  .meta .v{font-family:var(--d);font-stretch:88%;font-weight:600;font-size:21px;line-height:1.15;letter-spacing:-.02em}
+  .meta .v small{display:block;font-family:var(--s);font-stretch:100%;font-weight:400;font-size:13.5px;letter-spacing:0;color:var(--mute);margin-top:5px}
+
+  /* ---------- Marquee ---------- */
+  .mq{background:var(--ink);color:var(--ice);overflow:hidden;border-bottom:1.5px solid var(--ink);padding:20px 0}
+  .mq-track{display:flex;width:max-content;white-space:nowrap}
+  .mq-track span{font-family:var(--d);font-weight:600;font-stretch:80%;font-size:clamp(28px,3.4vw,52px);letter-spacing:-.03em;line-height:1;padding:0 .45em;display:flex;align-items:center;gap:.9em}
+  .mq-track span::after{content:"°";color:var(--heat);font-weight:800}
 
   /* ---------- Section scaffolding ---------- */
-  section.block{padding:84px 0}
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:42px;flex-wrap:wrap}
-  h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.08;letter-spacing:-1px;margin:18px 0 0;color:var(--ink);max-width:17ch;text-wrap:balance}
-  h2 em{color:var(--indigo);font-style:italic;font-weight:400}
-  .sec-head .desc{font-size:15.5px;line-height:1.6;color:var(--muted);max-width:38ch;padding-bottom:6px}
+  section.s{padding:clamp(72px,9vw,140px) 0}
+  .shead{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;padding-top:16px;margin-bottom:clamp(36px,5vw,72px)}
+  .shead::before{content:"";position:absolute;left:0;right:0;top:0;height:1.5px;background:currentColor;transform:scaleX(var(--rule,1));transform-origin:left}
+  .slab{grid-column:1/span 3;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:10px}
+  .slab .no{font-weight:500;margin-right:10px}
+  .slab .no::after{content:"°";color:var(--heat)}
+  h2{grid-column:4/span 9;font-family:var(--d);font-weight:750;font-stretch:78%;font-size:clamp(40px,6.4vw,108px);line-height:.88;letter-spacing:-.045em;margin:0;text-wrap:balance}
+  h2 em{font-style:normal;color:var(--heat)}
+  .sdesc{grid-column:4/span 5;margin:26px 0 0;font-size:17px;line-height:1.55;color:var(--ink-2);text-wrap:pretty}
+  .wm{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+  .wi{display:inline-block}
 
-  /* ---------- Problem cards ---------- */
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .wcard{position:relative;border-radius:18px;padding:26px 24px 24px;min-height:228px;display:flex;flex-direction:column;border:1px solid transparent;overflow:hidden}
-  .wcard.a{background:#eef2f7;border-color:#dfe6ef}
-  .wcard.b{background:#f1efe8;border-color:#e6e2d6}
-  .wcard.c{background:#e9f0ee;border-color:#d8e5e0}
-  .wicon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--white);box-shadow:0 8px 20px -10px rgba(11,18,32,.3);margin-bottom:auto}
-  .wicon svg{width:24px;height:24px;color:var(--indigo)}
-  .wtags{display:flex;gap:7px;margin:20px 0 12px}
-  .wtag{padding:4px 11px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(255,255,255,.7);color:var(--ink-2);border:1px solid rgba(11,18,32,.08)}
-  .wcard h3{font-family:var(--serif);font-weight:600;font-size:18.5px;letter-spacing:-.2px;margin:0 0 6px;color:var(--ink)}
-  .wcard p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+  /* ---------- 01 Waarom ---------- */
+  .stmt{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px}
+  .stmt p{grid-column:4/span 9;margin:0;font-family:var(--d);font-weight:500;font-stretch:96%;font-size:clamp(25px,3.1vw,46px);line-height:1.1;letter-spacing:-.025em;text-wrap:pretty}
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(56px,7vw,100px);border-top:1.5px solid var(--ink)}
+  .trio > div{padding:22px 28px 0 0}
+  .trio > div + div{padding-left:24px;border-left:1px solid var(--hair)}
+  .trio .n{font-family:var(--m);font-size:12px;color:var(--heat);font-weight:500}
+  .trio h3{font-family:var(--d);font-weight:700;font-stretch:84%;font-size:clamp(24px,2.3vw,32px);letter-spacing:-.03em;line-height:1;margin:14px 0 12px}
+  .trio p{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 
-  /* ---------- How it works band ---------- */
-  .band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .band .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
-  .band .media{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 70px -40px rgba(11,18,32,.4)}
-  .band .media img{width:100%;height:100%;object-fit:cover;display:block}
-  .band h2{margin-top:18px}
-  .chainlist{list-style:none;padding:0;margin:30px 0 30px;display:flex;flex-direction:column;gap:0}
-  .chainlist li{position:relative;display:flex;gap:18px;padding:0 0 26px}
-  .chainlist li:last-child{padding-bottom:0}
-  .chainlist .node{position:relative;flex:0 0 auto;width:38px;display:flex;justify-content:center}
-  .chainlist .node .dot{width:38px;height:38px;border-radius:11px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;z-index:2;box-shadow:0 8px 18px -10px rgba(11,18,32,.3)}
-  .chainlist .node .dot svg{width:18px;height:18px;color:var(--green)}
-  .chainlist .node .dot b{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo)}
-  .chainlist li:not(:last-child) .node::after{content:"";position:absolute;top:38px;bottom:-26px;left:50%;width:2px;transform:translateX(-50%) scaleY(var(--draw,1));transform-origin:top;
-    background:repeating-linear-gradient(180deg,var(--line-2) 0 5px,transparent 5px 10px)}
-  .chainlist .txt{padding-top:7px}
-  .chainlist .txt b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;margin-bottom:2px}
-  .chainlist .txt span{font-size:14.5px;color:var(--muted);line-height:1.55}
-  .linkbtn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;color:var(--indigo);border-bottom:1.5px solid transparent;padding-bottom:2px;transition:border-color .15s}
-  .linkbtn:hover{border-color:var(--indigo)}
-  .linkbtn svg{width:15px;height:15px;transition:transform .2s}
-  .linkbtn:hover svg{transform:translateX(3px)}
+  /* ---------- 02 Loggers: a horizontal rail, pinned and scroll-driven on wide screens ---------- */
+  #loggers{padding-bottom:0}
+  .rail-stage{padding:0 0 clamp(64px,8vw,110px)}
+  .rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 18px;scrollbar-width:thin}
+  /* explicit width, not flex-basis: the pinned rail is width:max-content, and Chrome sizes that from each card's width */
+  .mcard{flex:0 0 auto;width:min(860px,86vw);scroll-snap-align:start;display:grid;grid-template-columns:1fr 1fr;background:var(--snow);border:1.5px solid var(--ink)}
+  /* Elitech's own spec graphics, shown uncropped — text is baked in, so contain, never crop */
+  .mcard .ph{position:relative;background:#fff;border-right:1.5px solid var(--ink);aspect-ratio:1/1.06}
+  .mcard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+  .mcard .mb{padding:26px 28px 26px;display:flex;flex-direction:column}
+  .mtop{display:flex;justify-content:space-between;font-family:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+  .mtop .tag{color:var(--ink);border:1px solid var(--ink);padding:2px 7px}
+  .mcard .maker{font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-top:22px;color:var(--mute)}
+  .mcard h3{font-family:var(--d);font-weight:800;font-stretch:78%;font-size:clamp(46px,5vw,76px);line-height:.86;letter-spacing:-.05em;margin:4px 0 16px}
+  .mcard p{margin:0 0 20px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+  .facts{margin:auto 0 0;padding:0}
+  .facts div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--hair);font-size:13px}
+  .facts dt{font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+  .facts dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .mcard.own{background:var(--heat);grid-template-columns:1fr}
+  .mcard.own .mb{padding:30px 32px}
+  .mcard.own .mtop,.mcard.own .maker{color:var(--ink)}
+  .mcard.own h3{font-size:clamp(56px,7vw,112px)}
+  .mcard.own .shape{margin:8px 0 26px;height:120px;max-width:340px;border:2px dashed var(--ink);display:grid;place-items:center;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase;position:relative}
+  .mcard.own .shape::after{content:"";position:absolute;right:-26px;top:50%;width:26px;height:44px;margin-top:-22px;border:2px dashed var(--ink);border-left:0}
+  .mcard.own .btn{align-self:flex-start;background:var(--snow);margin-top:auto}
+  .rail-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px var(--gut) 0;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+  .rail-foot .bar{flex:1;height:1.5px;background:var(--hair);position:relative;max-width:520px}
+  .rail-foot .bar i{position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+  .rail-foot .bar{display:none}
+  /* pinned: set by the script on wide screens only */
+  .pinned .rail-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav) + 20px) 0 28px}
+  .pinned .rail{overflow:visible;width:max-content;scroll-snap-type:none;padding-bottom:0;will-change:transform}
+  .pinned .mcard{width:min(900px,74vw);height:min(600px,calc(100vh - var(--nav) - 140px))}
+  .pinned .mcard .ph{aspect-ratio:auto}
+  .pinned .rail-foot .bar{display:block}
 
-  /* ---------- Comparison ---------- */
-  .compare{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .compare th,.compare td{text-align:left;padding:17px 22px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;vertical-align:top}
-  .compare thead th{background:var(--paper-2);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-2);font-weight:700;font-family:var(--mono)}
-  .compare tbody th{font-weight:600;color:var(--ink);width:24%}
-  .compare td{color:var(--muted)}
-  .compare td.on{color:var(--ink-2)}
-  .compare tr:last-child th,.compare tr:last-child td{border-bottom:0}
-  .compare .pick{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);font-weight:700}
-  .compare .pick .d{width:6px;height:6px;border-radius:99px;background:var(--teal)}
+  /* ---------- 03 Glog 5 live: ink section, the device turns inside a dial ---------- */
+  .live{background:var(--ink);color:var(--ice);overflow:hidden}
+  .live .sdesc{color:rgba(228,236,238,.78)}
+  .lgrid{display:grid;grid-template-columns:1fr minmax(220px,420px) 1fr;gap:0 clamp(20px,4vw,64px);align-items:center}
+  .lcol{display:flex;flex-direction:column}
+  .rd{border-top:1px solid rgba(228,236,238,.22);padding:16px 0 24px}
+  .rd b{display:block;font-family:var(--d);font-weight:700;font-stretch:78%;font-size:clamp(36px,4.4vw,68px);line-height:.92;letter-spacing:-.045em;color:var(--heat);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rd > span{display:block;margin-top:8px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.7)}
+  .lcol.r .rd{text-align:right}
+  .dev{position:relative;aspect-ratio:1;display:grid;place-items:center}
+  .dial{position:absolute;inset:-6%;width:112%;height:112%}
+  .dial circle{fill:none}
+  .dev .bob{position:relative;width:62%}
+  .dev img{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55))}
+  .lnote{margin-top:clamp(40px,5vw,64px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--ice);padding-top:14px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.7)}
 
-  /* ---------- Spec table ---------- */
-  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
-  .specs .row{display:flex;justify-content:space-between;gap:24px;padding:15px 0;border-bottom:1px solid var(--line)}
-  .specs dt{font-size:14.5px;color:var(--muted);font-weight:500}
-  .specs dd{margin:0;font-size:14.5px;color:var(--ink);font-weight:600;text-align:right;font-family:var(--mono)}
+  /* ---------- 04 Zo werkt het ---------- */
+  .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--hair)}
+  .steps .prog{position:absolute;left:0;right:0;top:-1.5px;height:1.5px;background:var(--ink);transform:scaleX(var(--p,1));transform-origin:left}
+  .step{padding:20px 26px 0 0}
+  .step + .step{padding-left:22px;border-left:1px solid var(--hair)}
+  .step .num{font-family:var(--d);font-weight:800;font-stretch:75%;font-size:clamp(96px,12vw,200px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--ink);transition:color .5s var(--ez),-webkit-text-stroke-color .5s var(--ez)}
+  .step.lit .num,.no-mo .step .num{color:var(--heat);-webkit-text-stroke-color:var(--heat)}
+  .step h3{font-family:var(--d);font-weight:700;font-stretch:84%;font-size:clamp(22px,2vw,28px);letter-spacing:-.03em;line-height:1.02;margin:22px 0 10px}
+  .step p{margin:0;font-size:15px;line-height:1.55;color:var(--ink-2)}
 
-  /* ---------- Order form ---------- */
-  .order{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
-  .order::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 85% -10%,rgba(82,176,191,.38),transparent 60%)}
-  .order .wrap{position:relative;z-index:1}
-  .order .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-  .order .eyebrow-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
-  .order h2{color:#fff}
-  .order h2 em{color:#9fd6e0}
-  .order .lead{color:rgba(255,255,255,.82);font-size:16px;max-width:44ch;margin:18px 0 26px}
-  .order .tbd{background:rgba(255,255,255,.14);border-bottom-color:#f0c76a;color:#ffe6ad}
-  .incl{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px}
-  .incl li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(255,255,255,.88);line-height:1.5}
-  .incl svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px;color:#9fd6e0}
+  /* ---------- 05 Het verschil ---------- */
+  .verschil{background:var(--snow);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .cmp{width:100%;border-collapse:collapse}
+  .cmp th,.cmp td{text-align:left;vertical-align:top;padding:22px 24px 22px 0;border-top:1px solid var(--hair);font-size:15.5px;line-height:1.5}
+  .cmp thead th{border-top:0;padding-top:0;font-family:var(--m);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+  .cmp thead th:last-child{color:var(--ink)}
+  .cmp tbody th{width:26%;font-family:var(--d);font-weight:700;font-stretch:84%;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.03em;line-height:1.1}
+  .cmp td{color:var(--mute);width:37%}
+  .cmp td.us{color:var(--ink);font-weight:600;position:relative;padding-left:30px}
+  .cmp td.us::before{content:"→";position:absolute;left:0;top:21px;color:var(--heat);font-weight:700}
+  .cmp tbody tr{position:relative}
 
-  .formcard{background:var(--white);border-radius:20px;padding:30px 30px 26px;box-shadow:0 40px 80px -40px rgba(0,0,0,.6);color:var(--ink)}
-  .formcard .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);font-weight:700}
-  .formcard h3{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.4px;margin:10px 0 6px}
-  .formcard .sub{font-size:14px;color:var(--muted);margin:0 0 22px;line-height:1.55}
-  .formcard label{display:block;margin-bottom:14px}
-  .cap{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
-  .formcard input,.formcard select,.formcard textarea{
-    width:100%;border:1px solid var(--line-2);background:var(--paper);border-radius:10px;
-    padding:12px 14px;font-family:var(--sans);font-size:14.5px;color:var(--ink);outline:0;transition:border-color .15s,background .15s;
-  }
-  .formcard textarea{resize:vertical;min-height:74px;line-height:1.5}
-  .formcard input:focus,.formcard select:focus,.formcard textarea:focus{border-color:var(--indigo);background:var(--white)}
-  .formcard input::placeholder,.formcard textarea::placeholder{color:var(--muted-2)}
-  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .submit{
-    width:100%;border:0;cursor:pointer;background:var(--indigo);color:#fff;font-family:var(--sans);font-weight:600;font-size:15px;
-    padding:15px 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:6px;transition:background .15s;
-  }
-  .submit:hover{background:var(--indigo-2)}
+  /* ---------- 06 Voor wie ---------- */
+  .sect{list-style:none;margin:0;padding:0;border-bottom:1.5px solid var(--ink)}
+  .sect li{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:baseline;padding:26px 0;border-top:1.5px solid var(--ink);transition:color .45s var(--ez)}
+  .sect li::before{content:"";position:absolute;inset:0 calc(var(--gut) * -1);z-index:-1;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ez)}
+  .sect li:hover{color:var(--ice)}
+  .sect li:hover::before{transform:scaleY(1)}
+  .sect h3{grid-column:1/span 6;margin:0;font-family:var(--d);font-weight:750;font-stretch:78%;font-size:clamp(36px,5.2vw,84px);line-height:.9;letter-spacing:-.045em;transition:transform .5s var(--ez)}
+  .sect li:hover h3{transform:translateX(18px)}
+  .sect p{grid-column:7/span 4;margin:0;font-size:16px;line-height:1.5}
+  .sect .t{grid-column:11/span 2;justify-self:end;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+  .sect li:hover .t{color:var(--heat)}
+
+  /* ---------- 07 Specificaties ---------- */
+  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 64px;margin:0;border-top:1.5px solid var(--ink)}
+  .specs .row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:16px 0;border-bottom:1px solid var(--hair)}
+  .specs dt{font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+  .specs dd{margin:0;font-weight:600;font-size:16px;text-align:right;font-variant-numeric:tabular-nums}
+
+  /* ---------- 08 Proefpakket ---------- */
+  .order{background:var(--heat);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .order .slab .no::after{color:var(--ink)}
+  .order .tbd{background:#fff3c4;color:#4d3300;border-bottom-color:var(--ink)}
+  .ogrid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:start}
+  .ocopy{grid-column:1/span 5}
+  .ocopy .lead{font-size:18px;line-height:1.55;margin:0 0 28px;text-wrap:pretty}
+  .incl{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+  .incl li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(13,15,15,.25);font-size:15.5px;line-height:1.45}
+  .incl li b{font-family:var(--m);font-weight:500;font-size:12px;padding-top:3px}
+  .form{grid-column:7/span 6;background:var(--snow);border:1.5px solid var(--ink);box-shadow:12px 12px 0 var(--ink);padding:30px 32px 28px}
+  .form .kick{margin-bottom:12px;color:var(--mute)}
+  .form h3{font-family:var(--d);font-weight:750;font-stretch:80%;font-size:clamp(32px,3.2vw,46px);line-height:.92;letter-spacing:-.04em;margin:0 0 10px}
+  .form .sub{font-size:14.5px;color:var(--ink-2);margin:0 0 22px;line-height:1.5}
+  .form label{display:block;margin-bottom:18px}
+  .cap{font-family:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+  .form input,.form select,.form textarea{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:transparent;border-radius:0;padding:9px 0 9px;
+    font-family:var(--s);font-size:17px;color:var(--ink);outline:0;transition:border-color .2s}
+  .form select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D0F0F' stroke-width='2.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 2px center/16px no-repeat}
+  .form textarea{resize:vertical;min-height:70px;line-height:1.45}
+  .form input:focus,.form select:focus,.form textarea:focus{border-bottom-color:var(--heat)}
+  .form input::placeholder,.form textarea::placeholder{color:#97a2a4}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+  .submit{width:100%;justify-content:space-between;margin-top:6px;background:var(--ink);color:var(--snow);font-size:16px;padding:19px 22px}
+  .submit::before{background:var(--heat)}
+  .submit:hover{color:var(--ink)}
   .submit:disabled{opacity:.6;cursor:default}
-  .submit svg{width:15px;height:15px}
-  .err{display:none;margin-top:12px;font-size:13.5px;color:#a3282a;background:#fdeceb;border:1px solid #f6cfcd;border-radius:9px;padding:10px 12px;line-height:1.5}
-  .fineprint{font-size:12px;color:var(--muted-2);margin:14px 0 0;line-height:1.55}
-  .formcard.off{display:none}
-  .done{display:none;text-align:center;padding:16px 8px 10px}
+  .err{display:none;margin-top:12px;font-size:14px;color:#8f1f0b;border-left:3px solid var(--heat);padding:8px 12px;background:#fde5dd;line-height:1.5}
+  .fineprint{font-size:12.5px;color:var(--mute);margin:16px 0 0;line-height:1.55}
+  .form.off{display:none}
+  .done{display:none}
   .done.on{display:block}
-  .done .check{width:54px;height:54px;border-radius:99px;background:#e9f0ee;display:grid;place-items:center;margin:0 auto 18px;color:var(--green)}
-  .done .check svg{width:26px;height:26px}
-  .done h3{font-family:var(--serif);font-weight:600;font-size:24px;margin:10px 0 8px}
-  .done p{font-size:14.5px;color:var(--muted);line-height:1.6;margin:0 auto 18px;max-width:38ch}
-  .done .also{font-size:13.5px;color:var(--muted)}
-  .done .also a{color:var(--indigo);font-weight:600;border-bottom:1.5px solid rgba(30,42,90,.3)}
+  .done .check{width:58px;height:58px;background:var(--heat);border:1.5px solid var(--ink);display:grid;place-items:center;margin-bottom:22px}
+  .done .check svg{width:28px;height:28px}
+  .done p{font-size:15.5px;line-height:1.6;color:var(--ink-2);margin:0 0 14px}
 
-  /* ---------- FAQ ---------- */
-  .faq{border-top:1px solid var(--line)}
-  .faq .list{margin-top:38px;border-top:1px solid var(--line)}
-  .faq details{border-bottom:1px solid var(--line)}
-  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
-    padding:24px 4px;font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.2px;color:var(--ink)}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary .pm{flex:0 0 auto;width:30px;height:30px;border-radius:99px;border:1px solid var(--line-2);
-    display:grid;place-items:center;color:var(--indigo);transition:transform .25s,background .2s,color .2s}
-  .faq details[open] summary .pm{transform:rotate(45deg);background:var(--indigo);color:#fff;border-color:var(--indigo)}
-  .faq summary .pm svg{width:15px;height:15px}
-  .faq .ans{padding:0 4px 26px;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:66ch}
-  .faq .ans a{color:var(--indigo);font-weight:600;border-bottom:1.5px solid rgba(30,42,90,.28)}
+  /* ---------- 09 FAQ ---------- */
+  .qlist{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px}
+  .qlist > div{grid-column:4/span 9;border-top:1.5px solid var(--ink)}
+  .qlist details{border-bottom:1px solid var(--hair)}
+  .qlist summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;
+    font-family:var(--d);font-weight:650;font-stretch:88%;font-size:clamp(20px,2vw,27px);letter-spacing:-.025em;line-height:1.12}
+  .qlist summary::-webkit-details-marker{display:none}
+  .qlist .pm{flex:0 0 auto;width:36px;height:36px;border:1.5px solid var(--ink);display:grid;place-items:center;transition:transform .4s var(--ez),background .3s}
+  .qlist .pm svg{width:16px;height:16px}
+  .qlist details[open] .pm{transform:rotate(45deg);background:var(--heat)}
+  .qlist details.closing .pm{transform:none;background:transparent}
+  .qlist summary:hover .pm{background:var(--heat)}
+  .qlist .ans{padding:0 0 26px;font-size:16px;line-height:1.65;color:var(--ink-2);max-width:68ch}
 
-  /* ---------- Final CTA + footer ---------- */
-  .cta-final{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
-  .cta-final::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 80% -10%,rgba(82,176,191,.4),transparent 60%)}
-  /* Final CTA: a grid floor tilted back into the distance, the hash chain lying on it as a
-     road, and a CSS-3D reefer van driving over it. Everything that must stay 3D (.floor, .van,
-     .bx) avoids mask/opacity/overflow — any of those flattens preserve-3d. */
-  .scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;perspective:640px;perspective-origin:50% -10%}
-  .floor{position:absolute;left:-50%;width:200%;height:1100px;bottom:0;transform-origin:50% 100%;transform:rotateX(64deg);transform-style:preserve-3d}
-  .floor .grid{position:absolute;inset:0;
-    background-image:linear-gradient(rgba(0,0,0,.62) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(0,0,0,.62) 1.5px,transparent 1.5px);
-    background-size:64px 64px;background-position:center bottom;
-    -webkit-mask:linear-gradient(to top,#000 35%,transparent 92%);mask:linear-gradient(to top,#000 35%,transparent 92%)}
-  .floor .road{position:absolute;left:0;right:0;bottom:118px;height:96px;background:rgba(0,0,0,.28);border-top:1.5px solid rgba(0,0,0,.6);border-bottom:1.5px solid rgba(0,0,0,.6)}
-  .cryptochain{position:absolute;left:0;right:0;bottom:142px;
-    -webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
-  .cryptochain .track{display:flex;align-items:center;width:max-content;font-family:var(--mono);animation:chainFlow 60s linear infinite}
-  .cryptochain .blk{display:flex;align-items:center;flex:0 0 auto}
-  .cryptochain .cube{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:1px solid rgba(255,255,255,.22);border-radius:7px;white-space:nowrap;background:rgba(10,16,40,.35);transition:border-color .5s,box-shadow .5s,background .5s}
-  .cryptochain .cube b{font-size:11px;letter-spacing:.4px;color:rgba(255,255,255,.7);font-weight:500;transition:color .5s}
-  .cryptochain .cube span{font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.42)}
-  /* lit as the van rolls over it — the block is "sealed" */
-  .cryptochain .cube.hit{border-color:#9fd6e0;background:rgba(31,122,140,.55);box-shadow:0 0 22px rgba(159,214,224,.55);transition-duration:.15s}
-  .cryptochain .cube.hit b{color:#fff}
-  .cryptochain .lnk{width:38px;height:1px;background:rgba(255,255,255,.3);position:relative;flex:0 0 auto}
-  .cryptochain .lnk::after{content:"";position:absolute;right:-1px;top:-2px;width:4px;height:4px;border-right:1px solid rgba(255,255,255,.4);border-top:1px solid rgba(255,255,255,.4);transform:rotate(45deg)}
-  @keyframes chainFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* ---------- Final + footer ---------- */
+  .fin{padding:clamp(72px,9vw,140px) 0 0;border-top:1.5px solid var(--ink)}
+  .fin .fgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+  .fin h2{grid-column:1/span 8}
+  .fin .fside{grid-column:9/span 4}
+  .fin .fside p{margin:0 0 22px;font-size:17px;line-height:1.55;color:var(--ink-2)}
+  .trace{display:block;width:100%;height:auto;margin-top:clamp(40px,6vw,80px)}
+  .trace .bandr{fill:var(--band)}
+  .trace .lim{stroke:var(--ink);stroke-width:1;stroke-dasharray:4 6;opacity:.45}
+  .trace text{font-family:var(--m);font-size:13px;fill:var(--mute)}
+  .trace #tracePath{fill:none;stroke:var(--heat);stroke-width:3;stroke-linejoin:round}
 
-  .van{position:absolute;left:0;bottom:122px;width:212px;height:58px;transform-style:preserve-3d;transform-origin:0 50%}
-  .van .shadow{position:absolute;left:-14px;top:-8px;width:244px;height:76px;border-radius:40px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent)}
-  .van .beam{position:absolute;left:212px;top:4px;width:190px;height:50px;background:linear-gradient(90deg,rgba(255,244,214,.38),transparent);clip-path:polygon(0 30%,100% 0,100% 100%,0 70%)}
-  .bx{position:absolute;transform-style:preserve-3d}
-  .bx i{position:absolute;left:0;top:0;display:block;box-sizing:border-box}
-  .bx.body i{background:#e3e8ee}
-  .bx.body .f-top{background:#f6f8fa}
-  .bx.body .f-left,.bx.body .f-right{background:#c5ccd5}
-  .bx.body .f-front{background:linear-gradient(#eef1f5,#dfe4ea);display:flex;flex-direction:column;justify-content:center;padding:0 16px}
-  .bx.body .f-front:after{content:"";position:absolute;left:0;right:0;bottom:12px;height:5px;background:var(--teal)}
-  .van .brand{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--indigo);letter-spacing:-.3px;line-height:1}
-  .van .temp{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--teal);margin-top:5px}
-  .bx.cab i{background:#1a6a7a}
-  .bx.cab .f-top{background:#2b8fa2}
-  .bx.cab .f-front{background:#1f7a8c}
-  .bx.cab .f-front:before{content:"";position:absolute;right:6px;top:7px;width:22px;height:15px;border-radius:3px 7px 2px 2px;background:linear-gradient(135deg,#bfe6ee,#5aa9b8)}
-  .bx.cab .f-right{background:linear-gradient(#bfe6ee 0 48%,#16606e 48%)}
-  .bx.cab .f-right:after{content:"";position:absolute;left:5px;right:5px;bottom:6px;height:5px;background:linear-gradient(90deg,#fff6d8 0 22%,transparent 22% 78%,#fff6d8 78%);border-radius:2px}
-  .bx.unit i{background:#9aa3ae}
-  .bx.unit .f-top{background:#b8c0c9}
-  .wheel{position:absolute;bottom:-11px;width:24px;height:24px;border-radius:50%;background:#111;border:4px solid #2a2a2a;box-sizing:border-box}
-  .wheel:after{content:"";position:absolute;left:50%;top:1px;bottom:1px;width:2px;margin-left:-1px;background:#777;animation:spin .45s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion:reduce){.cryptochain .track,.wheel:after{animation:none}}
-  .cta-final .wrap{position:relative;z-index:1;padding:92px 40px 270px;text-align:center}
-  .cta-final h2{color:#fff;max-width:20ch;margin:0 auto}
-  .cta-final h2 em{color:#9fd6e0}
-  .cta-final p{color:rgba(255,255,255,.8);font-size:17px;max-width:48ch;margin:18px auto 32px}
-  .cta-final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .cta-final .btn.primary{background:#fff;color:var(--indigo)}
-  .cta-final .btn.primary:hover{background:#eef0ff}
-  .cta-final .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
-  .cta-final .btn.ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+  footer.site{background:var(--ink);color:var(--ice);overflow:hidden}
+  .bigmark{font-family:var(--d);font-weight:800;font-stretch:75%;font-size:33vw;line-height:.8;letter-spacing:-.06em;padding:4vw 0 .04em;margin-left:-.04em;display:flex;white-space:nowrap;overflow:hidden}
+  .bigmark span{display:inline-block}
+  .fbar{display:flex;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;padding:22px var(--gut) 26px;border-top:1px solid rgba(228,236,238,.2);font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.66)}
+  .fbar nav{display:flex;gap:22px;flex-wrap:wrap}
+  .fbar a:hover{color:var(--heat)}
 
-  footer.site{background:#0b1220;color:rgba(255,255,255,.6);font-size:13px}
-  footer.site .wrap{padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  footer.site .logo{color:#fff}
-  footer.site .logo .mark{mix-blend-mode:normal;background:#fff;border-radius:8px;padding:2px}
-  footer.site .links{display:flex;gap:24px}
-  footer.site .links a:hover{color:#fff}
+  /* ---------- Motion start states (only when <html class="mo">; the script drops .mo if Motion is missing) ---------- */
+  .mo .hero h1 .ln > span{transform:translateY(105%)}
+  .mo [data-in]{opacity:0}
+  .mo .htile .imgw{clip-path:inset(100% 0 0 0)}
+  .mo .hread{clip-path:inset(0 0 0 100%)}
+  .mo .wi{transform:translateY(105%)}
+  .mo .shead{--rule:0}
+  .mo .rv{opacity:0}
+  .mo .steps{--p:0}
+  .mo .bigmark span{transform:translateY(100%)}
+  .mo .stmt .sw{opacity:.16}
 
-  /* ---------- Reveal ---------- */
-  /* hardware models */
-  .models{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-  .model{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-  /* Elitech's own spec graphics, shown uncropped — text is baked in, so never crop or pad them */
-  .model .ph{background:var(--white);border-bottom:1px solid var(--line)}
-  .model .ph img{width:100%;height:auto;display:block}
-  .model .body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .model .wtag{align-self:flex-start;background:var(--paper)}
-  .model h3{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.3px;margin:4px 0 0;color:var(--ink)}
-  .model p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0}
-  .model .facts{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.3px;color:var(--ink-2);line-height:1.7}
-  .models-note{margin:22px 0 0;font-size:13px;color:var(--muted-2)}
-  .custom{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--white);border:1px dashed var(--line-2);border-radius:20px;padding:24px 28px}
-  .custom h3{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:-.3px;margin:0 0 6px;color:var(--ink)}
-  .custom p{font-size:14.5px;line-height:1.58;color:var(--muted);margin:0;max-width:640px}
-  @media (max-width:980px){.models{grid-template-columns:1fr}}
-
-
-  /* ---------- Glog 5 journey: pinned stage, the logger flies between per-chapter keyframes ----------
-     Our own take on a scroll-posed hero object (no template code). Without .jx (set by the script)
-     the chapters simply stack, so the section still reads with JS off. */
-  .journey{background:#0b1220;color:#fff;position:relative}
-  .journey .jstage{position:relative;overflow:hidden}
-  .journey .jbg{position:absolute;inset:0;z-index:0}
-  .journey .jbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
-  .journey .jbg img:first-child{opacity:1}
-  .journey .jbg::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,rgba(11,18,32,.88) 0%,rgba(11,18,32,.62) 42%,rgba(11,18,32,.25) 100%),linear-gradient(0deg,rgba(11,18,32,.7),transparent 35%)}
-  .journey .jcaps{position:relative;z-index:3;list-style:none;margin:0;padding:120px 0 80px}
-  .journey .jcap{padding:0 6%;max-width:560px;margin-bottom:64px}
-  .journey .jcap .k{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9fd6e0}
-  .journey .jcap h3{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.8px;margin:12px 0 14px;text-wrap:balance}
-  .journey .jcap h3 em{font-style:italic;color:#9fd6e0;font-weight:400}
-  .journey .jcap p{font-size:16px;line-height:1.6;color:rgba(255,255,255,.82);margin:0;max-width:44ch}
-  .journey .jfly,.journey .jshadow,.journey .jroute{display:none}
-
-  .jx .journey .jtrack{height:420vh}
-  .jx .journey .jstage{position:sticky;top:0;height:100vh;min-height:560px}
-  .jx .journey .jcaps{position:absolute;inset:0;padding:0}
-  .jx .journey .jcap{position:absolute;left:0;top:50%;margin:0;opacity:0;transform:translateY(-50%)}
-  .jx .journey .jfly{display:block;position:absolute;left:0;top:0;z-index:2;width:clamp(200px,24vw,340px);will-change:transform;pointer-events:none}
-  .jx .journey .jbank{position:relative;transform-style:preserve-3d}
-  .jx .journey .jbank img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
-  .jx .journey .jshadow{display:block;position:absolute;left:0;top:0;z-index:1;width:clamp(160px,18vw,260px);height:34px;border-radius:50%;
-    background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);will-change:transform,opacity;pointer-events:none}
-  /* sits above the shell's top-right corner, clear of the Elitech wordmark */
-  .journey .jchip{position:absolute;left:66%;top:-3%;white-space:nowrap;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);
-    color:var(--ink);padding:7px 11px;border-radius:9px;box-shadow:0 10px 30px -12px rgba(0,0,0,.5);display:flex;align-items:center;gap:7px}
-  .journey .jchip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.2)}
-  .jx .journey .jroute{display:flex;position:absolute;z-index:3;left:6%;right:6%;bottom:46px;align-items:center;gap:0;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.55)}
-  .journey .jroute .bar{position:absolute;left:0;right:0;top:50%;height:2px;background:rgba(255,255,255,.18)}
-  .journey .jroute .fill{position:absolute;left:0;top:50%;height:2px;width:100%;background:#9fd6e0;transform-origin:0 50%;transform:scaleX(0)}
-  .journey .jroute span{position:relative;flex:1;display:flex;align-items:center}
-  /* labels hang below their stop so the line never runs through them */
-  .journey .jroute span b{position:absolute;left:-2px;top:14px;font-weight:500;white-space:nowrap}
-  .journey .jroute span:last-child b{left:auto;right:-2px}
-  .journey .jroute span:last-child{flex:0 0 auto}
-  .journey .jroute span i{width:10px;height:10px;border-radius:99px;background:#0b1220;border:2px solid rgba(255,255,255,.45);transition:background .3s,border-color .3s}
-  .journey .jroute span.on{color:#fff}
-  .journey .jroute span.on i{background:#9fd6e0;border-color:#9fd6e0}
-  @media (max-width:760px){
-    .journey .jbg::after{background:linear-gradient(180deg,rgba(11,18,32,.9) 0%,rgba(11,18,32,.55) 50%,rgba(11,18,32,.75) 100%)}
-    .jx .journey .jcap{top:96px;transform:none;padding:0 22px}
-    .jx .journey .jcap p{font-size:15px}
-    .journey .jroute{bottom:22px}
-    .journey .jroute b{display:none}
+  @media (max-width:1100px){
+    .hcopy{grid-column:1/span 6;padding-right:24px}
+    .htile{grid-column:7/span 6;border-right:0}
+    .hread{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.4fr;align-items:end;gap:18px 28px}
+    .hread .rtop{grid-column:1/-1}
+    .hread .rbot{grid-column:1/-1}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .step:nth-child(4){border-left:1px solid var(--hair)}
+    .step:nth-child(n+3){padding-top:40px}
+    .step:nth-child(3){padding-left:0;border-left:0}
+    .sect p{grid-column:7/span 6}
+    .sect .t{display:none}
   }
-
-  /* Motion (motion.dev, self-hosted) drives entrances when <html class="mo"> is set.
-     These are only its start states; the inline script drops .mo if the library is missing. */
-  .mo .hero [data-enter]{opacity:0}
-  .mo .reveal{transition:none}
-  .w{display:inline-block}
-  /* the logger image gets a transform (tilt, drift), which would otherwise paint it over the chips */
-  .hero .chip{z-index:2}
-  .mo .chainlist li{--draw:0}
-  .faq details.closing summary .pm{transform:none;background:transparent;color:var(--indigo);border-color:var(--line-2)}
-  .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
-
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-  .reveal.d1{transition-delay:.08s}
-  .reveal.d2{transition-delay:.16s}
-  .reveal.d3{transition-delay:.24s}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-
-  @media (max-width:980px){
+  @media (max-width:900px){
     nav.top ul{display:none}
-    .hero .grid,.band .grid,.order .grid{grid-template-columns:1fr;gap:38px}
-    .hero .shot{order:-1;aspect-ratio:16/10}
-    .band .media{order:-1;aspect-ratio:4/3}
-    .meta{grid-template-columns:repeat(2,1fr);gap:22px 0}
-    .cards3{grid-template-columns:1fr}
-    .specs{grid-template-columns:1fr;gap:0}
-    section.block{padding:60px 0}
-    .wrap{padding:0 22px}
-    .draftbar{padding:11px 22px}
-    nav.top{padding:18px 22px}
-    .compare th,.compare td{padding:14px 15px;font-size:13.5px}
-    .compare tbody th{width:32%}
+    .hgrid,.shead,.stmt,.ogrid,.qlist,.fin .fgrid{grid-template-columns:1fr}
+    .hcopy,.htile,.hread,.slab,h2,.sdesc,.stmt p,.ocopy,.form,.qlist > div,.fin h2,.fin .fside{grid-column:1/-1}
+    .hcopy{padding:26px 0 30px}
+    .htile{border-left:0;border-top:1.5px solid var(--ink);min-height:0;aspect-ratio:1/1}
+    .hread{display:flex}
+    .slab{padding:0 0 16px}
+    .meta{grid-template-columns:repeat(2,1fr)}
+    .meta > div:nth-child(3){border-left:0;padding-left:0}
+    .meta > div:nth-child(n+3){border-top:1px solid var(--hair)}
+    .trio{grid-template-columns:1fr}
+    .trio > div + div{padding-left:0;border-left:0;border-top:1px solid var(--hair);margin-top:24px}
+    .mcard{grid-template-columns:1fr}
+    .mcard .ph{border-right:0;border-bottom:1.5px solid var(--ink)}
+    .lgrid{grid-template-columns:1fr 1fr;gap:0 20px}
+    .dev{grid-column:1/-1;grid-row:1;width:min(78vw,380px);margin:0 auto 24px}
+    .lcol.r .rd{text-align:left}
+    .sect li{grid-template-columns:1fr;gap:10px}
+    .sect h3,.sect p{grid-column:1/-1}
+    .specs{grid-template-columns:1fr}
+    .form{margin-top:44px;box-shadow:8px 8px 0 var(--ink);padding:24px 22px}
   }
   @media (max-width:560px){
+    .steps{grid-template-columns:1fr}
+    .step,.step + .step,.step:nth-child(n){padding:22px 0 0;border-left:0}
+    .step + .step{border-top:1px solid var(--hair);margin-top:26px}
     .frow{grid-template-columns:1fr}
-    /* Dutch compounds ("standaardbehuizing", "hashketen") are wider than a phone column */
-    .compare{table-layout:fixed}
-    .compare th,.compare td{padding:12px 10px;hyphens:manual;overflow-wrap:break-word}
-    .compare thead th{letter-spacing:.4px}
-    .cta-final .wrap{padding:66px 22px 270px}
+    .hcopy .acts .btn{width:100%;justify-content:space-between}
+    .cmp,.cmp tbody,.cmp tr,.cmp th,.cmp td,.cmp tbody th{display:block;width:auto}
+    .cmp thead{display:none}
+    .cmp tbody tr{border-top:1.5px solid var(--ink);padding:16px 0 18px}
+    .cmp tbody th,.cmp td{border-top:0;padding:4px 0}
+    .cmp td{padding-left:30px;position:relative}
+    .cmp td::before{content:"Los: ";font-family:var(--m);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+    .cmp td.us::before{content:"→";top:4px}
+    .mcard .mb{padding:22px 20px}
   }
 </style>
 <script>
@@ -534,60 +494,73 @@
 </script>
 </head>
 <body>
-<div class="scrollbar" aria-hidden="true"></div>
 
 <!-- DRAFT BANNER — delete this element (and the .draftbar CSS) before launch. -->
 <div class="draftbar" id="draftbar">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-  <div><b>Interne conceptversie — niet gepubliceerd.</b> Elk cijfer met een amberkleurige stippellijn eronder is een tijdelijke waarde in afwachting van de datasheet. Controleer ze een voor een, verwijder daarna deze balk en zet de pagina op <code>index,follow</code>. De checklist voor de lancering staat bovenaan het bestand.</div>
+  <b>Interne conceptversie — niet gepubliceerd.</b> Elk cijfer met een amberkleurige stippellijn eronder is een tijdelijke waarde in afwachting van de datasheet. Controleer ze een voor een, verwijder daarna deze balk en zet de pagina op <code>index,follow</code>. De checklist voor de lancering staat bovenaan het bestand.
 </div>
 
-<nav class="top" data-screen-label="USB Logger page">
-  <a class="logo" href="/"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
+<nav class="top">
+  <a class="mark" href="#top" aria-label="koudwijs, naar boven">koudwijs<span class="deg">°</span></a>
   <ul>
-    <li class="here">USB-logger</li>
-    <li><a href="/hash-chain">Data-integriteit</a></li>
-    <li><a href="/cold-chain-excursion-playbook">Draaiboek</a></li>
+    <li><a href="#loggers">Loggers</a></li>
+    <li><a href="#glog5">Live 4G</a></li>
+    <li><a href="#werking">Zo werkt het</a></li>
     <li><a href="#specs">Specificaties</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#faq">Vragen</a></li>
   </ul>
-  <a href="#order" class="cta">Proefpakket aanvragen</a>
+  <a class="go" href="#order">Proefpakket →</a>
 </nav>
 
 <!-- ===================== HERO ===================== -->
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap">
-    <div class="grid">
-      <div>
-        <span class="eyebrow-pill" data-enter><span class="dot"></span> Hardware · USB-logger voor eenmalig gebruik</span>
-        <h1 data-enter>Elke logger geeft je een pdf. Deze geeft je <em>bewijs</em>.</h1>
-        <p class="lede" data-enter>De USB-logger voor eenmalig gebruik van FahCel reist mee met de zending. Je ontvanger steekt hem in een willekeurige laptop — geen app, geen account, geen bereik nodig — en het temperatuurrapport staat er al op. Elke meting is vastgelegd in een hashketen, zodat je het rapport kunt controleren in plaats van het op goed vertrouwen aan te nemen.</p>
-        <div class="cta-row" data-enter>
-          <a class="btn primary" href="#order">Vraag een proefpakket aan
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <div class="kick" data-in><span>USB-temperatuurloggers</span><span>Elitech-hardware · door ons ingesteld</span><span>NL · BE</span></div>
+    <h1><span class="ln"><span>Koud gehouden?</span></span><span class="ln"><span>Zwart op wit<span class="deg">.</span></span></span></h1>
+
+    <div class="hgrid">
+      <div class="hcopy">
+        <p class="lede" data-in>USB-temperatuurloggers die met je zending meereizen. Wij leveren ze ingesteld op jouw route en grenswaarden. Jij verstuurt, je ontvanger steekt de logger bij aankomst in een laptop en leest het temperatuurverloop uit.</p>
+        <div class="acts" data-in>
+          <a class="btn hot" href="#order">Vraag een proefpakket aan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn ghost" href="/hash-chain">Zo werkt de verificatie</a>
+          <a class="btn line" href="#loggers">Bekijk de loggers</a>
         </div>
-        <ul class="ticks" data-enter>
-          <li>Geen software</li>
-          <li>Geen account</li>
-          <li>Werkt op elke laptop</li>
+        <ul class="ticks" data-in>
+          <li>Vier Elitech-modellen</li>
+          <li>Ingesteld op jouw route</li>
           <li>Ook in je eigen ontwerp</li>
         </ul>
       </div>
 
-      <!-- Elitech's product photo, self-hosted. An in-situ photo on a real pallet would sell harder. -->
-      <div class="shot product" data-enter>
-        <div class="chip c1"><span class="led"></span> registreert · <span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">1.440 metingen</span></div>
-        <div class="chip c2">verifyChain() → valid: true</div>
-        <img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, met lcd-scherm en ingebouwde USB-aansluiting" loading="eager" decoding="async" />
-      </div>
+      <figure class="htile" style="margin:0">
+        <span class="reg a"></span><span class="reg b"></span>
+        <div class="imgw"><img src="/assets/elitech-loget-1.webp" width="1000" height="1000" alt="Elitech LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, met lcd-scherm en ingebouwde USB-aansluiting" loading="eager" decoding="async" /></div>
+        <figcaption class="fig"><span>Fig. 01 — Elitech LogEt 1</span><span>Eenmalig · USB</span></figcaption>
+      </figure>
+
+      <!-- Illustrative trace inside a 2–8 °C band, labelled as an example — not a measured claim. -->
+      <aside class="hread" aria-label="Voorbeeld van een meting">
+        <div class="rtop"><span>LogEt 1 · 2–8 °C</span><span>voorbeeldmeting</span></div>
+        <div class="rtemp" aria-hidden="true"><span id="tval">4,6</span><small>°C</small></div>
+        <svg class="spark" viewBox="0 0 300 130" aria-hidden="true">
+          <defs><clipPath id="sparkClip"><rect x="0" y="0" width="300" height="130"/></clipPath></defs>
+          <rect class="bandr" x="0" y="32" width="300" height="66"/>
+          <line class="lim" x1="0" x2="300" y1="32" y2="32"/><line class="lim" x1="0" x2="300" y1="98" y2="98"/>
+          <text x="2" y="27">8 °C</text><text x="2" y="112">2 °C</text>
+          <g clip-path="url(#sparkClip)"><g id="sparkG"><path id="sparkPath" d=""/></g></g>
+          <circle id="sparkRing" r="5" cx="0" cy="0"/>
+          <circle id="sparkDot" r="4" cx="0" cy="0"/>
+        </svg>
+        <div class="rbot"><span class="led"></span>&nbsp; registreert · <span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">1.440 metingen</span></div>
+      </aside>
     </div>
 
-    <div class="meta" data-enter>
+    <div class="meta" data-in>
       <div>
         <div class="k">Uitvoering</div>
-        <div class="v">USB, eenmalig <small>Eén rit · geen retourlogistiek</small></div>
+        <div class="v">USB, eenmalig of herbruikbaar <small>Vier modellen, één aanspreekpunt</small></div>
       </div>
       <div>
         <div class="k">Bereik</div>
@@ -598,299 +571,251 @@
         <div class="v"><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">Tot 90 dagen</span> <small><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">bij een interval van 10 minuten</span></small></div>
       </div>
       <div>
-        <div class="k">Integriteit</div>
-        <div class="v">SHA-256-keten <small>Te verifiëren zonder FahCel</small></div>
+        <div class="k">Rapport</div>
+        <div class="v">Pdf bij insteken <small>LogEt 1 en RC-17, zonder software</small></div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ===================== PROBLEM ===================== -->
-<section class="block">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Het probleem</span>
-        <h2 class="reveal d1">Een temperatuurrapport is maar zo betrouwbaar als het <em>bestand</em> waarin het staat.</h2>
-      </div>
-      <p class="desc reveal d2">De meeste wegwerploggers eindigen op dezelfde manier: als pdf op iemands bureaublad. Dat gaat prima, tot er twijfel ontstaat over de lading. Dan niet meer.</p>
-    </div>
-
-    <div class="cards3">
-      <article class="wcard a reveal">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l6-6"/></svg></div>
-        <div class="wtags"><span class="wtag">Integriteit</span><span class="wtag">Geschillen</span></div>
-        <h3>Een pdf is gewoon een bestand</h3>
-        <p>Het document waarmee je zending wordt vrijgegeven, kan worden geopend, bewerkt en opnieuw opgeslagen zoals elk ander bestand. Niets erin laat zien dat dat is gebeurd.</p>
-      </article>
-
-      <article class="wcard b reveal d1">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7L12 19"/></svg></div>
-        <div class="wtags"><span class="wtag">Beheer</span><span class="wtag">Overdrachten</span></div>
-        <h3>Het overdrachtsspoor zit vol gaten</h3>
-        <p>Een logger die van vervoerder naar expediteur naar ontvanger gaat, legt niet vast wie hem wanneer in handen had. Je bewijs begint bij het insteken, niet bij het laaddock.</p>
-      </article>
-
-      <article class="wcard c reveal d2">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="wtags"><span class="wtag">Audit</span><span class="wtag">Vertrouwen</span></div>
-        <h3>Niemand kan het controleren behalve jij</h3>
-        <p>Het QA-team van je klant kan het rapport lezen, maar niet nagaan of het echt het rapport is dat van de logger kwam. Ze vertrouwen dus op jou, niet op de data.</p>
-      </article>
-    </div>
+<!-- ===================== MARQUEE ===================== -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span>LogEt 1 — 16.000 metingen</span><span>RC-17 — 8 mm dun</span><span>RC-5 — herbruikbaar</span><span>Glog 5 — live via 4G</span><span>Ook in je eigen ontwerp</span>
+    <span>LogEt 1 — 16.000 metingen</span><span>RC-17 — 8 mm dun</span><span>RC-5 — herbruikbaar</span><span>Glog 5 — live via 4G</span><span>Ook in je eigen ontwerp</span>
   </div>
-</section>
+</div>
 
-<!-- ===================== HOW IT WORKS ===================== -->
-<section class="band block">
+<!-- ===================== 01 WAAROM ===================== -->
+<section class="s">
   <div class="wrap">
-    <div class="grid">
-      <div class="media reveal">
-        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1400&q=80" alt="Gangpad in een koelcel waar een zending vóór vertrek met de logger wordt ingepakt" loading="lazy" decoding="async" />
+    <div class="shead">
+      <div class="slab"><span class="no">01</span>Waarom wij</div>
+      <h2>Een logger kopen is makkelijk. Hem goed laten <em>werken</em> niet.</h2>
+    </div>
+    <div class="stmt">
+      <p>Een kastje in de doos is pas iets waard als het goed staat ingesteld, als iemand het bij aankomst uitleest en als het rapport daarna bij de vrachtpapieren belandt. Daar zorgen wij voor, met beproefde hardware van Elitech en zonder dat je ontvanger iets hoeft te leren.</p>
+    </div>
+    <div class="trio">
+      <div class="rv">
+        <div class="n">a.</div>
+        <h3>Ingesteld op jouw route</h3>
+        <p>Geen fabrieksinstellingen die je zelf moet aanpassen. Interval en grenswaarden staan goed voordat de logger de deur uitgaat.</p>
       </div>
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Vier stappen, geen installatie</span>
-        <h2 class="reveal d1">Lostrekken, verzenden, insteken, <em>verifiëren</em>.</h2>
-        <ul class="chainlist">
-          <li class="reveal d1">
-            <div class="node"><span class="dot"><b>01</b></span></div>
-            <div class="txt"><b>Trek los en start.</b> <span>Trek aan het lipje en de logger begint te meten op het ingestelde interval. Geen telefoon, geen koppeling, geen software die je zelf hoeft te installeren.</span></div>
-          </li>
-          <li class="reveal d1">
-            <div class="node"><span class="dot"><b>02</b></span></div>
-            <div class="txt"><b>Verstuur hem met de goederen.</b> <span>Leg hem in de doos of maak hem vast aan de pallet. Hij blijft meten bij elke overdracht, in de vrachtwagen van elke vervoerder, zonder eigen verbinding.</span></div>
-          </li>
-          <li class="reveal d2">
-            <div class="node"><span class="dot"><b>03</b></span></div>
-            <div class="txt"><b>Steek hem in een willekeurige laptop.</b> <span>Hij verschijnt als gewone USB-stick en het rapport staat er al op — geen driver, geen download, geen account voor de medewerker bij de goederenontvangst.</span></div>
-          </li>
-          <li class="reveal d3">
-            <div class="node"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-            <div class="txt"><b>Verifieer de keten.</b> <span>Sleep het bestand naar de verificatietool van FahCel. Die berekent elke hash opnieuw en bevestigt dat de metingen precies zijn wat de logger heeft vastgelegd — of wijst de eerste meting aan die is gewijzigd.</span></div>
-          </li>
-        </ul>
-        <a class="linkbtn reveal d3" href="/hash-chain">Zo werkt de hashketen
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+      <div class="rv">
+        <div class="n">b.</div>
+        <h3>Uitgelezen bij aankomst</h3>
+        <p>Elke logger gaat de doos in met een instructiekaartje voor de goederenontvangst. Zo belandt hij in een laptop, niet in een la.</p>
+      </div>
+      <div class="rv">
+        <div class="n">c.</div>
+        <h3>Herkenbaar als de jouwe</h3>
+        <p>Ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers in handen krijgen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== HARDWARE ===================== -->
-<section class="block" id="hardware">
+<!-- ===================== 02 LOGGERS ===================== -->
+<!-- LogEt 1 and RC-5 figures: Elitech's product pages (elitecheu.com, checked 2026-09-25).
+     RC-17 and Glog 5 figures: Elitech's own spec graphics, supplied by the operator 2026-10-02.
+     Images are those Elitech graphics, uncropped, as the operator asked. The LogEt 1 graphic is
+     Elitech's WHO PQS certificate (E006/083) — the page text deliberately makes no PQS claim of its own.
+     LogEt 260 (reusable 4G) is wanted here too; add its card once there is an image for it. -->
+<section class="s" id="loggers">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> De hardware</span>
-        <h2 class="reveal d1">Vier Elitech-loggers. Eén <em>verzegelde registratie</em>.</h2>
-      </div>
-      <p class="desc reveal d2">We leveren beproefde hardware van Elitech in plaats van zelf loggers te bouwen. Kies op basis van hoe de logger reist — eenmalig of steeds opnieuw — en of je de metingen tijdens transport live wilt volgen.</p>
+    <div class="shead">
+      <div class="slab"><span class="no">02</span>De loggers</div>
+      <h2>Vier loggers. Kies op hoe je zending <em>reist</em>.</h2>
+      <p class="sdesc">We leveren beproefde hardware van Elitech in plaats van zelf loggers te bouwen. Eenmalig of herbruikbaar, uitlezen bij aankomst of live onderweg.</p>
     </div>
-
-    <!-- LogEt 1 and RC-5 figures: Elitech's product pages (elitecheu.com, checked 2026-09-25).
-         RC-17 and Glog 5 figures: Elitech's own spec graphics, supplied by the operator 2026-10-02.
-         Images are those Elitech graphics, uncropped, as the operator asked. The LogEt 1 graphic is
-         Elitech's WHO PQS certificate (E006/083) — the page text deliberately makes no PQS claim of its own.
-         LogEt 260 (reusable 4G) is wanted here too; add its card once there is an image for it. -->
-    <div class="models">
-      <article class="model reveal d1">
-        <div class="ph"><img src="/assets/elitech-loget-1-who.jpg" width="1179" height="1270" alt="Elitech LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, voor zijn WHO PQS-certificaat, met FDA-, FCC-, CE- en TÜV SÜD-keurmerken" loading="lazy" decoding="async" /></div>
-        <div class="body">
-          <span class="wtag">Eenmalig · USB</span>
-          <h3>Elitech LogEt 1</h3>
-          <p>Reist één zending mee en blijft bij de ontvanger. Bij het insteken opent het pdf-rapport direct vanaf het apparaat — de ontvanger hoeft niets te installeren.</p>
-          <div class="facts">16.000 metingen · −30 °C tot +70 °C · ±0,5 °C (−20 tot +40 °C) · IP67 · EN 12830</div>
-        </div>
-      </article>
-      <article class="model reveal d2">
-        <div class="ph"><img src="/assets/elitech-rc-17.jpg" width="1179" height="1286" alt="Elitech RC-17, USB-temperatuurlogger voor eenmalig gebruik, in zijn waterdichte zakje, met specificaties" loading="lazy" decoding="async" /></div>
-        <div class="body">
-          <span class="wtag">Eenmalig · USB</span>
-          <h3>Elitech RC-17</h3>
-          <p>De dunste optie: een kaartje van 8 mm dat in elke doos of verzendverpakking past. Insteken en het pdf-rapport staat klaar — geen software, geen kabel.</p>
-          <div class="facts">16.000 metingen · −30 °C tot +70 °C · tot 120 dagen · IP67</div>
-        </div>
-      </article>
-      <article class="model reveal d1">
-        <div class="ph"><img src="/assets/elitech-rc-5-spec.jpg" width="1179" height="1148" alt="Elitech RC-5, herbruikbare USB-temperatuurlogger met lcd-scherm, met specificaties" loading="lazy" decoding="async" /></div>
-        <div class="body">
-          <span class="wtag">Herbruikbaar · USB</span>
-          <h3>Elitech RC-5</h3>
-          <p>Voor koelkasten, medicijnkasten en routes die je steeds opnieuw rijdt. Je leest het rapport uit met de gratis ElitechLog-software, daarna start de logger opnieuw voor de volgende lading.</p>
-          <div class="facts">32.000 metingen · −30 °C tot +70 °C · ±0,5 °C (−20 tot +40 °C) · IP67 · CR2032-batterij</div>
-        </div>
-      </article>
-      <article class="model reveal d2">
-        <div class="ph"><img src="/assets/elitech-glog-5.webp" width="1119" height="1119" alt="Elitech Glog 5, 4G-temperatuurlogger voor eenmalig gebruik met externe sensor, die temperatuur, licht, schokken en locatie meet" loading="lazy" decoding="async" /></div>
-        <div class="body">
-          <span class="wtag">Eenmalig · 4G live</span>
-          <h3>Elitech Glog 5</h3>
-          <p>Voor als je niet tot aankomst kunt wachten. De metingen komen tijdens transport live binnen via 4G, met licht, schokken en locatie naast de temperatuur — en een vliegtuigmodus voor luchtvracht.</p>
-          <div class="facts">−30 °C tot +70 °C intern · −200 °C tot +150 °C sensor · 0–52.000 lux · 0–16 g schok · LBS-locatie</div>
-        </div>
-      </article>
-    </div>
-    <p class="models-note reveal">Alle vier voeden dezelfde FahCel-hashketen: de logger registreert, FahCel maakt de registratie verifieerbaar. Productafbeeldingen: Elitech.</p>
-
-    <div class="custom reveal">
-      <div>
-        <h3>Je eigen ontwerp</h3>
-        <p>USB-loggers zijn ook verkrijgbaar in een eigen ontwerp — met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket.</p>
+  </div>
+  <div class="rail-pin">
+    <div class="rail-stage">
+      <div class="rail">
+        <article class="mcard">
+          <div class="ph"><img src="/assets/elitech-loget-1-who.jpg" width="1179" height="1270" alt="Elitech LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, voor zijn WHO PQS-certificaat, met FDA-, FCC-, CE- en TÜV SÜD-keurmerken" loading="lazy" decoding="async" /></div>
+          <div class="mb">
+            <div class="mtop"><span>01 / 05</span><span class="tag">Eenmalig · USB</span></div>
+            <div class="maker">Elitech</div>
+            <h3>LogEt 1</h3>
+            <p>Reist één zending mee en blijft bij de ontvanger. Bij het insteken opent het pdf-rapport direct vanaf het apparaat. De ontvanger hoeft niets te installeren.</p>
+            <dl class="facts">
+              <div><dt>Geheugen</dt><dd>16.000 metingen</dd></div>
+              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
+              <div><dt>Nauwkeurigheid</dt><dd>±0,5 °C (−20 tot +40 °C)</dd></div>
+              <div><dt>Behuizing</dt><dd>IP67</dd></div>
+              <div><dt>Norm</dt><dd>EN 12830</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="mcard">
+          <div class="ph"><img src="/assets/elitech-rc-17.jpg" width="1179" height="1286" alt="Elitech RC-17, USB-temperatuurlogger voor eenmalig gebruik, in zijn waterdichte zakje, met specificaties" loading="lazy" decoding="async" /></div>
+          <div class="mb">
+            <div class="mtop"><span>02 / 05</span><span class="tag">Eenmalig · USB</span></div>
+            <div class="maker">Elitech</div>
+            <h3>RC-17</h3>
+            <p>De dunste optie: een kaartje van 8 mm dat in elke doos of verzendverpakking past. Insteken en het pdf-rapport staat klaar, zonder software of kabel.</p>
+            <dl class="facts">
+              <div><dt>Geheugen</dt><dd>16.000 metingen</dd></div>
+              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
+              <div><dt>Looptijd</dt><dd>tot 120 dagen</dd></div>
+              <div><dt>Dikte</dt><dd>8 mm</dd></div>
+              <div><dt>Behuizing</dt><dd>IP67</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="mcard">
+          <div class="ph"><img src="/assets/elitech-rc-5-spec.jpg" width="1179" height="1148" alt="Elitech RC-5, herbruikbare USB-temperatuurlogger met lcd-scherm, met specificaties" loading="lazy" decoding="async" /></div>
+          <div class="mb">
+            <div class="mtop"><span>03 / 05</span><span class="tag">Herbruikbaar · USB</span></div>
+            <div class="maker">Elitech</div>
+            <h3>RC-5</h3>
+            <p>Voor koelkasten, medicijnkasten en routes die je steeds opnieuw rijdt. Je leest het rapport uit met de gratis ElitechLog-software, daarna start de logger opnieuw voor de volgende lading.</p>
+            <dl class="facts">
+              <div><dt>Geheugen</dt><dd>32.000 metingen</dd></div>
+              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
+              <div><dt>Nauwkeurigheid</dt><dd>±0,5 °C (−20 tot +40 °C)</dd></div>
+              <div><dt>Behuizing</dt><dd>IP67</dd></div>
+              <div><dt>Batterij</dt><dd>CR2032</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="mcard">
+          <div class="ph"><img src="/assets/elitech-glog-5.webp" width="1119" height="1119" alt="Elitech Glog 5, 4G-temperatuurlogger voor eenmalig gebruik met externe sensor, die temperatuur, licht, schokken en locatie meet" loading="lazy" decoding="async" /></div>
+          <div class="mb">
+            <div class="mtop"><span>04 / 05</span><span class="tag">Eenmalig · 4G live</span></div>
+            <div class="maker">Elitech</div>
+            <h3>Glog 5</h3>
+            <p>Voor als je niet tot aankomst wilt wachten. De metingen komen tijdens transport live binnen via 4G, met licht, schokken en locatie naast de temperatuur, plus een vliegtuigmodus voor luchtvracht.</p>
+            <dl class="facts">
+              <div><dt>Intern</dt><dd>−30 °C tot +70 °C</dd></div>
+              <div><dt>Sensor</dt><dd>−200 °C tot +150 °C</dd></div>
+              <div><dt>Licht</dt><dd>0–52.000 lux</dd></div>
+              <div><dt>Schok</dt><dd>0–16 g</dd></div>
+              <div><dt>Locatie</dt><dd>LBS</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="mcard own">
+          <div class="mb">
+            <div class="mtop"><span>05 / 05</span><span class="tag">Op maat</span></div>
+            <div class="maker">Jouw ontwerp</div>
+            <h3>Jouw logo hier.</h3>
+            <div class="shape">jouw huisstijl</div>
+            <p>USB-loggers zijn ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket.</p>
+            <a class="btn" href="#order">Vraag naar een eigen ontwerp
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
       </div>
-      <a class="btn ghost" href="#order">Vraag naar een eigen ontwerp</a>
+      <div class="rail-foot"><span id="railCount">01 / 05</span><span class="bar"><i id="railBar"></i></span><span>Productafbeeldingen: Elitech</span></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== GLOG 5 JOURNEY ===================== -->
-<!-- Figures: Elitech's Glog 5 spec graphic (same source as the hardware card above). The flying
-     image is Elitech's Glog 5 product photo (supplied by the operator 2026-10-04), cut out of its
-     white background here; the source is only 700px, so don't size .jfly up past ~340px. -->
-<section class="journey" id="glog5" aria-label="De Glog 5 onderweg">
-  <div class="jtrack">
-    <div class="jstage">
-      <div class="jbg" aria-hidden="true">
-        <img src="/assets/coverage-storage-tablet.jpg" alt="" loading="lazy" decoding="async" />
-        <img src="/assets/coverage-transit-driver.jpg" alt="" loading="lazy" decoding="async" />
-        <img src="/assets/coverage-retail-pharmacy.jpg" alt="" loading="lazy" decoding="async" />
+<!-- ===================== 03 GLOG 5 LIVE ===================== -->
+<!-- Figures: Elitech's Glog 5 spec graphic (same source as the card above). The cutout is
+     Elitech's photo, cut from its white background; the source is 700px, keep it ≤ 340px wide. -->
+<section class="s live" id="glog5">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab"><span class="no">03</span>Glog 5 · live 4G</div>
+      <h2>Live onderweg. Niet pas bij <em>aankomst</em>.</h2>
+      <p class="sdesc">De Elitech Glog 5 stuurt zijn metingen tijdens het transport via 4G door: temperatuur, licht, schokken en locatie. Eén druk op START en hij reist mee.</p>
+    </div>
+    <div class="lgrid">
+      <div class="lcol l">
+        <div class="rd rv"><b>−200 → +150 °C</b><span>Externe sensor</span></div>
+        <div class="rd rv"><b>−30 → +70 °C</b><span>Logger zelf</span></div>
+        <div class="rd rv"><b>4G · LBS</b><span>Live locatie</span></div>
       </div>
-      <div class="jshadow" aria-hidden="true"></div>
-      <div class="jfly">
-        <div class="jbank">
-          <img src="/assets/elitech-glog-5-cutout.webp" width="372" height="557" alt="Elitech Glog 5, 4G-temperatuurlogger met externe sensor" />
-          <span class="jchip"><span class="led"></span><span class="jtxt">START · registratie loopt</span></span>
-        </div>
+      <div class="dev" aria-hidden="true">
+        <svg class="dial" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="96" stroke="rgba(228,236,238,.18)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="90" stroke="rgba(228,236,238,.5)" stroke-width="6" stroke-dasharray="0.6 4.11"/>
+          <circle cx="100" cy="100" r="90" stroke="#FF4A1C" stroke-width="6" stroke-dasharray="0.8 46.3"/>
+          <circle cx="100" cy="100" r="78" stroke="#FF4A1C" stroke-width="1.5" stroke-dasharray="120 370"/>
+        </svg>
+        <div class="bob"><img src="/assets/elitech-glog-5-cutout.webp" width="372" height="557" alt="" /></div>
       </div>
-      <ol class="jcaps">
-        <li class="jcap">
-          <div class="k">01 · Vertrek</div>
-          <h3>Eén druk op START, en hij <em>reist mee</em>.</h3>
-          <p>De externe sensor meet van −200 °C tot +150 °C, de logger zelf van −30 °C tot +70 °C. Van vriezer tot koelcel: hij registreert vanaf het moment dat de lading vertrekt.</p>
-        </li>
-        <li class="jcap">
-          <div class="k">02 · Onderweg</div>
-          <h3>Live via 4G, niet pas <em>bij aankomst</em>.</h3>
-          <p>Temperatuur, licht (tot 52.000 lux) en schokken (tot 16 g) komen tijdens het transport binnen, met de locatie via LBS. Gaat de lading de lucht in, dan zet je hem in vliegtuigmodus.</p>
-        </li>
-        <li class="jcap">
-          <div class="k">03 · Aflevering</div>
-          <h3>Bij aankomst ligt het <em>bewijs</em> er al.</h3>
-          <p>Elke meting is onderweg al vastgelegd in de FahCel-hashketen. De ontvanger controleert het verloop in plaats van het op goed vertrouwen aan te nemen.</p>
-        </li>
-      </ol>
-      <div class="jroute" aria-hidden="true">
-        <div class="bar"></div><div class="fill"></div>
-        <span><i></i><b>Opslag</b></span><span><i></i><b>Onderweg</b></span><span><i></i><b>Aflevering</b></span>
+      <div class="lcol r">
+        <div class="rd rv"><b><span data-count="52000">52.000</span> lux</b><span>Licht, vanaf 0</span></div>
+        <div class="rd rv"><b><span data-count="16">16</span> g</b><span>Schok, vanaf 0</span></div>
+        <div class="rd rv"><b>✈ modus</b><span>Voor luchtvracht</span></div>
       </div>
+    </div>
+    <div class="lnote"><span>Elitech Glog 5 · eenmalig · 4G</span><span>Cijfers: specificaties van Elitech</span></div>
+  </div>
+</section>
+
+<!-- ===================== 04 ZO WERKT HET ===================== -->
+<section class="s" id="werking">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab"><span class="no">04</span>Zo werkt het</div>
+      <h2>Instellen, versturen, insteken. <em>Klaar</em>.</h2>
+    </div>
+    <div class="steps">
+      <span class="prog" aria-hidden="true"></span>
+      <div class="step"><div class="num">1</div><h3>Wij stellen hem in.</h3><p>Meetinterval en grenswaarden naar jouw route en product, voordat de logger de deur uitgaat.</p></div>
+      <div class="step"><div class="num">2</div><h3>Start en verstuur.</h3><p>Start de logger en leg hem bij de lading: in de doos of vast aan de pallet. Hij meet bij elke overdracht door.</p></div>
+      <div class="step"><div class="num">3</div><h3>Insteken bij aankomst.</h3><p>Bij de LogEt 1 en RC-17 staat het pdf-rapport al klaar. De RC-5 lees je uit met de gratis ElitechLog-software.</p></div>
+      <div class="step"><div class="num">4</div><h3>Bewaren bij de papieren.</h3><p>Het rapport gaat bij de vrachtpapieren, klaar voor je klant, je auditor of je verzekeraar.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== USE CASES ===================== -->
-<section class="block band">
+<!-- ===================== 05 HET VERSCHIL ===================== -->
+<section class="s verschil">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Gemaakt voor</span>
-        <h2 class="reveal d1">Voor elke zending die <em>koel</em> moet blijven.</h2>
-      </div>
-      <p class="desc reveal d2">Of je nu geneesmiddelen, verse producten of andermans lading vervoert: de logger reist mee en het bewijs komt mee aan.</p>
+    <div class="shead">
+      <div class="slab"><span class="no">05</span>Het verschil</div>
+      <h2>Dezelfde hardware. Een ander <em>resultaat</em>.</h2>
+      <p class="sdesc">Op papier lijken USB-loggers op elkaar. Het verschil zit in alles eromheen.</p>
     </div>
-
-    <div class="cards3">
-      <article class="wcard a reveal">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 20.5l10-10a4.95 4.95 0 00-7-7l-10 10a4.95 4.95 0 007 7z"/><path d="M8.5 8.5l7 7"/></svg></div>
-        <div class="wtags"><span class="wtag">2–8 °C</span><span class="wtag">Vaccins</span></div>
-        <h3>Farma &amp; apotheek</h3>
-        <p>Geneesmiddelen en vaccins die binnen hun bereik moeten blijven. Elke zending krijgt een rapport dat je klant zelf kan controleren.</p>
-      </article>
-      <article class="wcard b reveal d1">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
-        <div class="wtags"><span class="wtag">Gekoeld</span><span class="wtag">Diepvries</span></div>
-        <h3>Voeding &amp; vers</h3>
-        <p>Gekoelde en diepgevroren producten, van producent tot winkel. Het temperatuurbewijs zit gewoon in de doos.</p>
-      </article>
-      <article class="wcard c reveal d2">
-        <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><path d="M5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path d="M18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div>
-        <div class="wtags"><span class="wtag">Vervoerders</span><span class="wtag">3PL</span></div>
-        <h3>Logistiek &amp; expeditie</h3>
-        <p>Bied je klanten meer dan een pdf: aantoonbaar correct vervoer, per zending, zonder extra systemen bij de ontvanger.</p>
-      </article>
-    </div>
+    <table class="cmp">
+      <thead>
+        <tr><th scope="col">&nbsp;</th><th scope="col">Los gekocht</th><th scope="col">Via koudwijs°</th></tr>
+      </thead>
+      <tbody>
+        <tr class="rv"><th scope="row">Instellingen</th><td>Fabrieks&shy;instellingen, die je zelf moet aanpassen.</td><td class="us">Vooraf ingesteld op jouw interval en grens&shy;waarden.</td></tr>
+        <tr class="rv"><th scope="row">Bij aankomst</th><td>De ontvanger weet niet wat hij ermee moet.</td><td class="us">Een instructiekaartje voor de goederen&shy;ontvangst.</td></tr>
+        <tr class="rv"><th scope="row">Keuze</th><td>Zelf uitzoeken welk model past.</td><td class="us">Advies per route, uit vier Elitech-modellen.</td></tr>
+        <tr class="rv"><th scope="row">Uitstraling</th><td>De standaard&shy;behuizing van de fabrikant.</td><td class="us">Ook verkrijgbaar in jouw eigen huisstijl.</td></tr>
+        <tr class="rv"><th scope="row">Na de rit</th><td>Weggooien.</td><td class="us">Recyclen. <span class="tbd" title="Tijdelijke waarde — voorwaarden voor afvoer en terugname bevestigen">Terugname&shy;regeling beschikbaar</span>.</td></tr>
+        <tr class="rv"><th scope="row">Kennismaken</th><td>Een doos bestellen en hopen dat het past.</td><td class="us">Eerst een proefpakket op je eigen route.</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- ===================== THE DIFFERENCE ===================== -->
-<section class="block">
+<!-- ===================== 06 VOOR WIE ===================== -->
+<section class="s">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Het verschil</span>
-        <h2 class="reveal d1">Elke logger meet. Alleen deze <em>bewijst</em>.</h2>
-      </div>
-      <p class="desc reveal d2">Op papier lijken USB-loggers op elkaar. Het verschil merk je zodra een klant, auditor of verzekeraar om bewijs vraagt.</p>
+    <div class="shead">
+      <div class="slab"><span class="no">06</span>Voor wie</div>
+      <h2>Voor alles wat <em>koel</em> moet blijven.</h2>
     </div>
-
-    <div class="reveal d1">
-      <table class="compare">
-        <thead>
-          <tr>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">Gewone USB-logger</th>
-            <th scope="col">FahCel USB-logger</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Het rapport</th>
-            <td>Een pdf die iedereen kan openen, aanpassen en opnieuw opslaan.</td>
-            <td class="on">Een pdf waarvan elke meting is verzegeld in een hashketen.</td>
-          </tr>
-          <tr>
-            <th scope="row">Bij een geschil</th>
-            <td>Jouw woord tegen dat van de ander.</td>
-            <td class="on">Je klant controleert het rapport zelf, in een browser.</td>
-          </tr>
-          <tr>
-            <th scope="row">Bij een audit</th>
-            <td>Je levert een bestand aan en hoopt dat het volstaat.</td>
-            <td class="on">Je levert bewijs dat de auditor zelf kan nagaan.</td>
-          </tr>
-          <tr>
-            <th scope="row">De registratie</th>
-            <td>Losse metingen.</td>
-            <td class="on"><span class="pick"><span class="d"></span> Verzegelde hashketen</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Uitstraling</th>
-            <td>De standaardbehuizing van de fabrikant.</td>
-            <td class="on">Ook verkrijgbaar in jouw eigen huisstijl.</td>
-          </tr>
-          <tr>
-            <th scope="row">Na de rit</th>
-            <td>Weggooien.</td>
-            <td class="on">Recyclen. <span class="tbd" title="Tijdelijke waarde — voorwaarden voor afvoer en terugname bevestigen">Terugname&shy;regeling beschikbaar</span>.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ul class="sect">
+      <li class="rv"><h3>Farma &amp; apotheek</h3><p>Geneesmiddelen en vaccins die binnen hun bereik moeten blijven, met een rapport bij elke zending.</p><span class="t">2–8 °C</span></li>
+      <li class="rv"><h3>Voeding &amp; vers</h3><p>Gekoelde en diepgevroren producten, van producent tot winkel. Het temperatuurverloop zit gewoon in de doos.</p><span class="t">Gekoeld · Diepvries</span></li>
+      <li class="rv"><h3>Transport &amp; expeditie</h3><p>Geef je klanten bij elke zending een temperatuurrapport, zonder extra systemen bij de ontvanger.</p><span class="t">Vervoerders · 3PL</span></li>
+    </ul>
   </div>
 </section>
 
-<!-- ===================== SPECS ===================== -->
-<section class="block band" id="specs">
+<!-- ===================== 07 SPECIFICATIES ===================== -->
+<section class="s" id="specs" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> Specificaties</span>
-        <h2 class="reveal d1">De cijfers waar je QA-team <em>om vraagt</em>.</h2>
-      </div>
-      <p class="desc reveal d2">Elk cijfer hieronder komt uit de datasheet van het apparaat. Amberkleurige waarden wachten nog op definitieve bevestiging voordat deze pagina live gaat.</p>
+    <div class="shead">
+      <div class="slab"><span class="no">07</span>Specificaties</div>
+      <h2>De cijfers waar je QA-team <em>om vraagt</em>.</h2>
+      <p class="sdesc">Elk cijfer hieronder komt uit de datasheet van het apparaat. Amberkleurige waarden wachten nog op definitieve bevestiging voordat deze pagina live gaat.</p>
     </div>
-
     <!-- TODO(pre-launch): every .tbd below needs a datasheet-confirmed value. -->
-    <div class="specs reveal d1">
+    <dl class="specs rv">
       <div class="row"><dt>Meetbereik</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">−30 °C tot +70 °C</span></dd></div>
       <div class="row"><dt>Nauwkeurigheid</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">±0,5 °C (−20 tot +40 °C)</span></dd></div>
       <div class="row"><dt>Resolutie</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">0,1 °C</span></dd></div>
@@ -899,514 +824,397 @@
       <div class="row"><dt>Batterijduur</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">90 dagen vanaf de start</span></dd></div>
       <div class="row"><dt>Startmethode</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">Treklipje, één druk op de knop</span></dd></div>
       <div class="row"><dt>Rapportformaat</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">Pdf + csv op het apparaat</span></dd></div>
-      <div class="row"><dt>Integriteit</dt><dd>SHA-256-keten per meting</dd></div>
       <div class="row"><dt>Interface</dt><dd>USB-A, massaopslag</dd></div>
       <div class="row"><dt>Behuizing</dt><dd><span class="tbd" title="Tijdelijke waarde — controleren aan de hand van de datasheet">IP54, 86 × 26 × 8 mm</span></dd></div>
       <div class="row"><dt>Certificering</dt><dd><span class="tbd" title="Tijdelijke waarde — gereguleerde claim, bevestigen vóór publicatie">CE, RoHS, kalibratiecertificaat</span></dd></div>
-    </div>
+    </dl>
   </div>
 </section>
 
-<!-- ===================== ORDER ===================== -->
-<section class="block order" id="order">
+<!-- ===================== 08 PROEFPAKKET ===================== -->
+<section class="s order" id="order">
   <div class="wrap">
-    <div class="grid">
-      <div>
-        <span class="eyebrow-pill"><span class="dot"></span> Proefpakket</span>
-        <h2>Zet er vijf in op een route die je <em>al rijdt</em>.</h2>
-        <p class="lead">Vertel ons om welke route het gaat en we sturen je een proefpakket — <span class="tbd" title="Tijdelijke waarde — commerciële voorwaarden bevestigen">kosteloos en vrijblijvend</span>. Verstuur zoals altijd, steek ze bij aankomst in en we nemen de rapporten samen met je door zodra ze binnen zijn.</p>
+    <div class="shead">
+      <div class="slab"><span class="no">08</span>Proefpakket</div>
+      <h2>Vijf loggers. Jouw eigen route.</h2>
+    </div>
+    <div class="ogrid">
+      <div class="ocopy">
+        <p class="lead">Vertel ons om welke route het gaat en we sturen je een proefpakket, <span class="tbd" title="Tijdelijke waarde — commerciële voorwaarden bevestigen">kosteloos en vrijblijvend</span>. Verstuur zoals altijd, lees ze bij aankomst uit en we nemen de rapporten samen met je door.</p>
         <ul class="incl">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><span class="tbd" title="Tijdelijke waarde — inhoud van het pakket bevestigen">Vijf loggers</span>, vooraf ingesteld op jouw interval en grenswaarden</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Instructiekaartjes voor het uitlezen, gericht aan de goederenontvangst</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Uitleg van de verificatie aan de hand van je eigen rapport, niet van een demozending</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Een prijs per zending voor de route, zodra je hebt gezien dat het werkt</span></li>
+          <li><b>01</b><span><span class="tbd" title="Tijdelijke waarde — inhoud van het pakket bevestigen">Vijf loggers</span>, vooraf ingesteld op jouw interval en grenswaarden</span></li>
+          <li><b>02</b><span>Instructiekaartjes voor het uitlezen, gericht aan de goederenontvangst</span></li>
+          <li><b>03</b><span>Advies over het model dat bij jouw route past</span></li>
+          <li><b>04</b><span>Een prijs per zending voor de route, zodra je hebt gezien dat het werkt</span></li>
         </ul>
       </div>
 
-      <div>
-        <div class="formcard" id="formWrap">
-          <div class="kicker">Proefpakket aanvragen</div>
-          <h3>Waar mogen we ze naartoe sturen?</h3>
-          <p class="sub">Kost twee minuten. We bevestigen het verzendadres per e-mail — je hoeft het nu nog niet op te zoeken.</p>
-          <form id="sampleForm" novalidate>
-            <label><div class="cap">Zakelijk e-mailadres</div><input id="email" type="email" autocomplete="email" placeholder="jij@bedrijf.nl" required /></label>
-            <div class="frow">
-              <label><div class="cap">Naam</div><input id="fname" type="text" autocomplete="name" placeholder="Sanne de Vries" required /></label>
-              <label><div class="cap">Bedrijf</div><input id="company" type="text" autocomplete="organization" placeholder="Je bedrijf" /></label>
-            </div>
-            <div class="frow">
-              <label><div class="cap">Je functie</div>
-                <select id="role">
-                  <option value="">Maak een keuze…</option>
-                  <option>QA / Kwaliteit</option>
-                  <option>Logistiek / Supply chain</option>
-                  <option>Operations</option>
-                  <option>Compliance / Regelgeving</option>
-                  <option>Inkoop</option>
-                  <option>Oprichter / Directie</option>
-                  <option>Anders</option>
-                </select>
-              </label>
-              <label><div class="cap">Zendingen per maand</div>
-                <select id="volume">
-                  <option value="">Maak een keuze…</option>
-                  <option>Minder dan 10</option>
-                  <option>10 – 50</option>
-                  <option>50 – 250</option>
-                  <option>250+</option>
-                </select>
-              </label>
-            </div>
-            <label><div class="cap">De route die je wilt testen</div>
-              <textarea id="lane" placeholder="bijv. Rotterdam → Milaan, 2–8 °C farma, over de weg, externe vervoerder"></textarea>
+      <div class="form" id="formWrap">
+        <div class="kick"><span>Proefpakket aanvragen</span><span>± 2 min</span></div>
+        <h3>Waar mogen ze naartoe?</h3>
+        <p class="sub">We bevestigen het verzendadres per e-mail, dus je hoeft het nu nog niet op te zoeken.</p>
+        <form id="sampleForm" novalidate>
+          <label><div class="cap">Zakelijk e-mailadres</div><input id="email" type="email" autocomplete="email" placeholder="jij@bedrijf.nl" required /></label>
+          <div class="frow">
+            <label><div class="cap">Naam</div><input id="fname" type="text" autocomplete="name" placeholder="Sanne de Vries" required /></label>
+            <label><div class="cap">Bedrijf</div><input id="company" type="text" autocomplete="organization" placeholder="Je bedrijf" /></label>
+          </div>
+          <div class="frow">
+            <label><div class="cap">Je functie</div>
+              <select id="role">
+                <option value="">Maak een keuze…</option>
+                <option>QA / Kwaliteit</option>
+                <option>Logistiek / Supply chain</option>
+                <option>Operations</option>
+                <option>Compliance / Regelgeving</option>
+                <option>Inkoop</option>
+                <option>Oprichter / Directie</option>
+                <option>Anders</option>
+              </select>
             </label>
-            <button class="submit" id="submitBtn" type="submit">Vraag het proefpakket aan
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <div class="err" id="submitErr"></div>
-            <p class="fineprint">We gebruiken je e-mailadres alleen om het proefpakket te regelen en de resultaten met je door te nemen. Geen mailinglijst, niets wordt gedeeld, afmelden met één klik.</p>
-          </form>
-        </div>
+            <label><div class="cap">Zendingen per maand</div>
+              <select id="volume">
+                <option value="">Maak een keuze…</option>
+                <option>Minder dan 10</option>
+                <option>10 – 50</option>
+                <option>50 – 250</option>
+                <option>250+</option>
+              </select>
+            </label>
+          </div>
+          <label><div class="cap">De route die je wilt testen</div>
+            <textarea id="lane" placeholder="bijv. Rotterdam → Milaan, 2–8 °C farma, over de weg, externe vervoerder"></textarea>
+          </label>
+          <button class="btn submit" id="submitBtn" type="submit">Vraag het proefpakket aan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </button>
+          <div class="err" id="submitErr"></div>
+          <p class="fineprint">We gebruiken je e-mailadres alleen om het proefpakket te regelen en de resultaten met je door te nemen. Geen mailinglijst, niets wordt gedeeld.</p>
+        </form>
+      </div>
 
-        <div class="formcard done" id="done">
-          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="kicker">Aanvraag ontvangen</div>
-          <h3>We gaan ermee aan de slag.</h3>
-          <p>Jesse mailt binnen één werkdag naar <b id="sentEmail">jij@bedrijf.nl</b> om het verzendadres te bevestigen en het meetinterval voor jouw route in te stellen.</p>
-          <p class="also">Alvast benieuwd? <a href="/hash-chain">Zo werkt de verificatie van de keten →</a></p>
-        </div>
+      <div class="form done" id="done">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="kick"><span>Aanvraag ontvangen</span></div>
+        <h3>We gaan ermee aan de slag.</h3>
+        <p>We mailen binnen één werkdag naar <b id="sentEmail">jij@bedrijf.nl</b> om het verzendadres te bevestigen en het meetinterval voor jouw route in te stellen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FAQ ===================== -->
-<section class="block faq" id="faq">
+<!-- ===================== 09 FAQ ===================== -->
+<section class="s" id="faq">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="shead">
+      <div class="slab"><span class="no">09</span>Vragen</div>
+      <h2>Wat kopers ons <em>echt</em> vragen.</h2>
+    </div>
+    <div class="qlist">
       <div>
-        <span class="eyebrow-pill reveal"><span class="dot"></span> FAQ</span>
-        <h2 class="reveal d1">De vragen die kopers ons <em>echt stellen</em>.</h2>
+        <details>
+          <summary>Hebben we naast de logger nog iets anders nodig?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Voor de LogEt 1 en de RC-17 niet: de logger maakt zelf het pdf-rapport, en dat opent zodra hij in een laptop zit. Voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software. Kies je de Glog 5 met live 4G, dan stemmen we de opzet met je af bij je aanvraag.</div>
+        </details>
+        <details>
+          <summary>Wat moet de ontvanger van de zending installeren?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Bij de LogEt 1 en de RC-17: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt.</div>
+        </details>
+        <details>
+          <summary>Wat is het verschil met de USB-loggers die we nu al kopen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">De hardware is beproefd Elitech; het verschil zit in alles eromheen. Wij leveren de loggers ingesteld op jouw interval en grenswaarden, met een instructiekaartje voor de goederenontvangst en advies over welk model bij je route past. En als je wilt, met jouw huisstijl erop.</div>
+        </details>
+        <details>
+          <summary>Kunnen we ze gebruiken op routes die we niet zelf in de hand hebben?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Daar zijn ze juist voor gemaakt. De logger reist met de goederen mee via externe vervoerders en expediteurs, en niemand in de keten heeft een account of gateway nodig. De registratie volgt het product, niet het gebouw.</div>
+        </details>
+        <details>
+          <summary>Welke logger past bij onze zendingen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je.</div>
+        </details>
+        <details>
+          <summary>Kunnen we de loggers in onze eigen huisstijl krijgen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">Ja. USB-loggers zijn ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket, dan bespreken we de mogelijkheden.</div>
+        </details>
+        <details>
+          <summary>Wat gebeurt er als niemand de logger uitleest?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <div class="ans">De metingen blijven in het geheugen staan tot iemand het apparaat uitleest, dus de registratie gaat niet verloren. Elk pakket wordt geleverd met een instructiekaartje voor de goederenontvangst, zodat die stap niet wordt overgeslagen.</div>
+        </details>
       </div>
-      <p class="desc lead reveal d2">Eerlijke antwoorden over wat de logger wel en niet doet, en wat je ontvanger moet doen.</p>
-    </div>
-    <div class="list reveal d1">
-      <details>
-        <summary>Hebben we naast de logger nog iets anders nodig?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Nee. De logger maakt zelf het temperatuurrapport, en de verificatie van de keten draait gewoon in een browser, zonder account of installatie. Alleen voor de herbruikbare RC-5 gebruik je de gratis ElitechLog-software.</div>
-      </details>
-      <details>
-        <summary>Wat moet de ontvanger van de zending installeren?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Het werkt op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten — en dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt.</div>
-      </details>
-      <details>
-        <summary>Wat is het verschil met de USB-loggers die we nu al kopen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Elke meting wordt bij het wegschrijven gehasht en gekoppeld aan de vorige, zodat het rapport zijn eigen bewijs meedraagt. Een gewone logger geeft je een pdf, en dat is een bestand dat iedereen kan bewerken. Deze geeft je een pdf plus een controle die je klant, je auditor of je verzekeraar zelf kan uitvoeren — lees <a href="/hash-chain">hoe de hashketen werkt</a>.</div>
-      </details>
-      <details>
-        <summary>Kunnen we hem gebruiken op routes die we niet zelf in de hand hebben?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Daar is hij juist voor gemaakt. Hij reist met de goederen mee via externe vervoerders en expediteurs, en niemand in de keten heeft een account, een gateway of mobiel bereik nodig. De registratie volgt het product, niet het gebouw.</div>
-      </details>
-      <details>
-        <summary>Welke logger past bij onze zendingen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je.</div>
-      </details>
-      <details>
-        <summary>Kunnen we de loggers in onze eigen huisstijl krijgen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">Ja. USB-loggers zijn ook verkrijgbaar in een eigen ontwerp, met jouw huisstijl op de logger die je ontvangers insteken. Geef het aan bij je aanvraag voor een proefpakket, dan bespreken we de mogelijkheden.</div>
-      </details>
-      <details>
-        <summary>Wat gebeurt er als niemand de logger uitleest?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="ans">De metingen blijven in het geheugen staan tot iemand het apparaat uitleest, dus de registratie gaat niet verloren. Elk pakket wordt geleverd met een instructiekaartje voor de goederenontvangst, zodat die stap niet wordt overgeslagen.</div>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- ===================== FINAL CTA ===================== -->
-<section class="cta-final">
-  <div class="scene" aria-hidden="true">
-    <div class="floor" id="floor">
-      <div class="grid"></div>
-      <div class="road"></div>
-      <div class="cryptochain"><div class="track" id="cryptoTrack"></div></div>
-    </div>
-  </div>
+<!-- ===================== FINAL ===================== -->
+<section class="fin">
   <div class="wrap">
-    <h2 class="reveal">Verstuur de volgende zending met <em>bewijs</em> in de doos.</h2>
-    <p class="reveal d1">Zet een proefpakket in op een route die je al rijdt, en zie hoe een verifieerbaar rapport eruitziet als het binnenkomt.</p>
-    <div class="row reveal d2">
-      <a class="btn primary" href="#order">Vraag een proefpakket aan
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="btn ghost" href="/book-a-demo">Plan een demo van 20 minuten</a>
+    <div class="fgrid">
+      <h2 style="margin:0">Je volgende zending, zwart op <em>wit</em>.</h2>
+      <div class="fside rv">
+        <p>Zet een proefpakket in op een route die je al rijdt, en zie hoe het rapport eruitziet als het binnenkomt.</p>
+        <a class="btn hot" href="#order">Vraag een proefpakket aan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
+  <!-- the trace draws itself as you scroll to the end of the page: one trip, never out of band -->
+  <svg class="trace" id="trace" viewBox="0 0 1400 220" preserveAspectRatio="none" aria-hidden="true">
+    <rect class="bandr" x="0" y="50" width="1400" height="120"/>
+    <line class="lim" x1="0" x2="1400" y1="50" y2="50"/><line class="lim" x1="0" x2="1400" y1="170" y2="170"/>
+    <path id="tracePath" d="" vector-effect="non-scaling-stroke"/>
+  </svg>
 </section>
 
 <footer class="site">
-  <div class="wrap">
-    <a class="logo" href="/"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</a>
-    <div class="links">
-      <a href="/usb-logger">USB-logger</a>
-      <a href="/hash-chain">Data-integriteit</a>
-      <a href="/cold-chain-excursion-playbook">Draaiboek excursies</a>
-      <a href="/book-a-demo">Demo plannen</a>
-    </div>
-    <div>© 2026 FahCel — Integriteit in de koudeketen · <span style="opacity:.8">Laatst bijgewerkt op <time datetime="2026-10-02">2 oktober 2026</time></span></div>
+  <div class="bigmark" aria-hidden="true"><span>k</span><span>o</span><span>u</span><span>d</span><span>w</span><span>i</span><span>j</span><span>s</span><span class="deg">°</span></div>
+  <div class="fbar">
+    <span>© 2026 koudwijs° — USB-temperatuurloggers</span>
+    <nav aria-label="Voettekst">
+      <a href="#loggers">Loggers</a><a href="#werking">Zo werkt het</a><a href="#specs">Specificaties</a><a href="#faq">Vragen</a><a href="#order">Proefpakket</a>
+    </nav>
+    <span>Hardware: Elitech</span>
   </div>
 </footer>
 
 <script src="/assets/vendor/motion-13.5.1.js"></script>
 <script>
-  // Motion (motion.dev, MIT, self-hosted: no build step here and no third-party request).
-  // If it failed to load, drop .mo so the hero shows and fall back to the plain observer
-  // the other public pages use.
+  // ---- static drawings: the hero sparkline and the closing trace. These render with or without
+  // Motion; the animated layer below only moves them.
+  var spark = (function(){
+    var path = document.getElementById('sparkPath'), dot = document.getElementById('sparkDot'), ring = document.getElementById('sparkRing');
+    var g = document.getElementById('sparkG'), val = document.getElementById('tval');
+    if (!path) return null;
+    var N = 34, STEP = 284 / (N - 1), pts = [];
+    for (var i = 0; i < N; i++) pts.push(4.6 + Math.sin(i * .5) * .75 + Math.sin(i * 1.9) * .22);
+    // 0–10 °C onto y 120–10, so the 2–8 °C band is y 98–32
+    function Y(t){ return 10 + (10 - t) * 11; }
+    function d(list){ return list.map(function(t, i){ return (i ? 'L' : 'M') + (40 + i * STEP).toFixed(1) + ' ' + Y(t).toFixed(1); }).join(' '); }
+    function draw(){
+      path.setAttribute('d', d(pts));
+      var x = 40 + (N - 1) * STEP, y = Y(pts[N - 1]);
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y.toFixed(1));
+      ring.setAttribute('cx', x); ring.setAttribute('cy', y.toFixed(1));
+    }
+    draw();
+    return { pts:pts, N:N, STEP:STEP, Y:Y, d:d, draw:draw, path:path, g:g, dot:dot, ring:ring, val:val };
+  })();
+  (function(){
+    var p = document.getElementById('tracePath');
+    if (!p) return;
+    var s = '';
+    for (var i = 0; i <= 140; i++) {
+      var t = 5 + Math.sin(i * .11) * 1.6 + Math.sin(i * .37) * .55 + Math.sin(i * .9) * .2;
+      s += (i ? 'L' : 'M') + (i * 10) + ' ' + (110 - (t - 5) * 20).toFixed(1) + ' ';
+    }
+    p.setAttribute('d', s);
+  })();
+
+  // ---- Motion layer (motion.dev, MIT, self-hosted). Its language here is masks and scroll: lines
+  // rise out of clipped boxes, rules draw, the rail and the dial are driven by scroll position.
+  // Any failure drops .mo so the page is simply static, never invisible.
   (function(){
     var M = window.Motion, root = document.documentElement;
-    if (!M || !root.classList.contains('mo')) {
-      root.classList.remove('mo');
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-      return;
-    }
+    if (!M || !root.classList.contains('mo')) { root.classList.remove('mo'); root.classList.add('no-mo'); return; }
+    try {
+      var ez = [.7,0,.15,1], out = [.2,.8,.2,1];
+      var wide = matchMedia('(min-width:901px)');
 
-    var ease = [.2,.7,.2,1];
-    var spring = { type:'spring', stiffness:220, damping:24 };
-    var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
-    // keep the d1/d2/d3 stagger the markup already declares
-    function delayOf(el){ return el.classList.contains('d3') ? .24 : el.classList.contains('d2') ? .16 : el.classList.contains('d1') ? .08 : 0; }
+      // h2: every word rises out of its own mask. An <em> stays one unit.
+      function splitWords(el){
+        (function walk(node){
+          [].slice.call(node.childNodes).forEach(function(n){
+            if (n.nodeType === 3) {
+              var frag = document.createDocumentFragment();
+              n.textContent.split(/(\s+)/).forEach(function(t){
+                if (!t) return;
+                if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+                var m = document.createElement('span'), w = document.createElement('span');
+                m.className = 'wm'; w.className = 'wi'; w.textContent = t; m.appendChild(w); frag.appendChild(m);
+              });
+              node.replaceChild(frag, n);
+            } else if (n.nodeType === 1 && n.tagName === 'EM') {
+              var m = document.createElement('span'), w = document.createElement('span');
+              m.className = 'wm'; w.className = 'wi';
+              node.replaceChild(m, n); w.appendChild(n); m.appendChild(w);
+            }
+          });
+        })(el);
+        return el.querySelectorAll('.wi');
+      }
 
-    // Wrap each word of a heading in .w so words can enter one by one. An <em> stays one unit,
-    // and a bare "." or "," gets a plain inline span (not inline-block) so it can never wrap
-    // onto a line of its own; it only fades.
-    function splitWords(el){
-      (function walk(node){
-        [].slice.call(node.childNodes).forEach(function(n){
-          if (n.nodeType === 3) {
-            var frag = document.createDocumentFragment();
-            n.textContent.split(/(\s+)/).forEach(function(t){
-              if (!t) return;
-              if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
-              var w = document.createElement('span');
-              w.className = /^[.,;:!?…]+$/.test(t) ? 'wp' : 'w';
-              w.textContent = t; frag.appendChild(w);
+      // ---- hero
+      M.animate('.hero h1 .ln > span', { y:['105%','0%'] }, { duration:1.15, delay:M.stagger(.13, { startDelay:.1 }), ease:ez });
+      M.animate('.hero [data-in]', { opacity:[0,1], y:[14,0] }, { duration:.8, delay:M.stagger(.08, { startDelay:.55 }), ease:out });
+      M.animate('.htile .imgw', { clipPath:['inset(100% 0 0 0)','inset(0% 0 0 0)'] }, { duration:1.1, delay:.45, ease:ez });
+      M.animate('.hread', { clipPath:['inset(0 0 0 100%)','inset(0 0 0 0%)'] }, { duration:1, delay:.6, ease:ez });
+      var hero = document.querySelector('.hero');
+      M.scroll(M.animate('.htile img', { rotate:[-5,9], y:[0,46] }, { ease:'linear' }), { target:hero, offset:['start start','end start'] });
+
+      // readout: the trace draws in, then a new sample slides in every few seconds
+      if (spark) {
+        M.animate(spark.path, { pathLength:[0,1] }, { duration:1.6, delay:.9, ease:'easeInOut' });
+        M.animate(spark.ring, { scale:[1,3.2], opacity:[.8,0] }, { duration:1.6, repeat:Infinity, ease:'easeOut' });
+        var cur = spark.pts[spark.N - 1], fmt = function(v){ return v.toFixed(1).replace('.', ','); };
+        setInterval(function(){
+          if (document.hidden) return;
+          var next = Math.max(3.4, Math.min(6.2, cur + (Math.random() - .5) * .7));
+          spark.path.setAttribute('d', spark.d(spark.pts.concat(next)));
+          var y = spark.Y(next).toFixed(1);
+          M.animate(spark.g, { x:[0, -spark.STEP] }, { duration:.9, ease:'easeInOut' }).then(function(){
+            spark.pts.push(next); spark.pts.shift(); spark.draw(); spark.g.style.transform = 'none';
+          });
+          M.animate([spark.dot, spark.ring], { cy:y }, { duration:.9, ease:'easeInOut' });
+          M.animate(cur, next, { duration:.9, ease:'easeInOut', onUpdate:function(v){ spark.val.textContent = fmt(v); } });
+          cur = next;
+        }, 2800);
+      }
+
+      // "registreert · 1.440 metingen" counts up, then keeps recording. The figure is a
+      // placeholder (.tbd); the count follows whatever number the markup carries.
+      var count = document.querySelector('.hread .tbd');
+      if (count) {
+        var target = parseInt(count.textContent.replace(/\D/g, ''), 10) || 0;
+        var label = count.textContent.replace(/^[\d.,\s]+/, '');
+        var show = function(v){ count.textContent = Math.round(v).toLocaleString('nl-NL') + ' ' + label; };
+        M.animate(0, target, { duration:1.8, delay:1, ease:out, onUpdate:show }).then(function(){
+          setInterval(function(){ if (!document.hidden) show(++target); }, 3000);
+        });
+      }
+
+      // ---- marquee: steady drift that speeds up with scroll velocity, then settles
+      var mq = M.animate('.mq-track', { x:['0%','-50%'] }, { duration:40, repeat:Infinity, ease:'linear' });
+      var lastY = scrollY, boost = 0, decaying = false;
+      addEventListener('scroll', function(){
+        boost = Math.min(7, boost + Math.abs(scrollY - lastY) * .025); lastY = scrollY;
+        if (!decaying) { decaying = true; requestAnimationFrame(function settle(){
+          boost *= .93; mq.speed = 1 + boost;
+          if (boost > .02) requestAnimationFrame(settle); else { mq.speed = 1; decaying = false; }
+        }); }
+      }, { passive:true });
+
+      // ---- section heads: the rule draws, then the words rise
+      document.querySelectorAll('.shead').forEach(function(sh){
+        var words = splitWords(sh.querySelector('h2'));
+        var rest = sh.querySelectorAll('.slab, .sdesc');
+        [].forEach.call(rest, function(el){ el.style.opacity = 0; });
+        M.inView(sh, function(){
+          M.animate(sh, { '--rule':[0,1] }, { duration:.9, ease:ez });
+          M.animate(words, { y:['105%','0%'] }, { duration:.9, delay:M.stagger(.045, { startDelay:.15 }), ease:ez });
+          M.animate(rest, { opacity:[0,1], y:[10,0] }, { duration:.7, delay:M.stagger(.12, { startDelay:.3 }), ease:out });
+        }, { amount:.35 });
+      });
+      var fin = document.querySelector('.fin h2');
+      var finWords = splitWords(fin);
+      M.inView(fin, function(){ M.animate(finWords, { y:['105%','0%'] }, { duration:1, delay:M.stagger(.06), ease:ez }); }, { amount:.4 });
+
+      // ---- generic reveals
+      M.inView('.rv', function(el){
+        var sibs = el.parentNode.querySelectorAll(':scope > .rv'), i = [].indexOf.call(sibs, el);
+        M.animate(el, { opacity:[0,1], y:[22,0] }, { duration:.8, delay:Math.max(0, i) * .08, ease:out });
+      }, { amount:.2 });
+
+      // ---- 01: the statement lights up word by word as it scrolls through the viewport
+      var stmt = document.querySelector('.stmt p');
+      if (stmt) {
+        stmt.innerHTML = stmt.textContent.trim().split(/\s+/).map(function(w){ return '<span class="sw">' + w + '</span>'; }).join(' ');
+        var sws = stmt.querySelectorAll('.sw'), n = sws.length;
+        M.scroll(function(p){
+          for (var i = 0; i < n; i++) sws[i].style.opacity = Math.max(.16, Math.min(1, p * n * 1.1 - i + 1));
+        }, { target:stmt, offset:['start 85%','end 55%'] });
+      }
+
+      // ---- 02: the rail pins and scrolls sideways on wide screens; elsewhere it is a swipeable strip
+      var pin = document.querySelector('.rail-pin'), rail = pin.querySelector('.rail');
+      var cards = rail.children, railCount = document.getElementById('railCount'), railBar = document.getElementById('railBar');
+      var dist = 0;
+      function sizeRail(){
+        if (!wide.matches) { pin.classList.remove('pinned'); pin.style.height = ''; rail.style.transform = ''; return; }
+        pin.classList.add('pinned');
+        dist = Math.max(0, rail.scrollWidth - innerWidth);
+        pin.style.height = (innerHeight + dist) + 'px';
+      }
+      sizeRail();
+      addEventListener('resize', sizeRail);
+      if (document.fonts) document.fonts.ready.then(sizeRail);
+      M.scroll(function(p){
+        if (!wide.matches) return;
+        rail.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+        railBar.style.transform = 'scaleX(' + p + ')';
+        var k = Math.min(cards.length, Math.round(p * (cards.length - 1)) + 1);
+        railCount.textContent = (k < 10 ? '0' : '') + k + ' / 0' + cards.length;
+      }, { target:pin, offset:['start start','end end'] });
+
+      // ---- 03: the Glog 5 turns inside its dial as the section passes
+      var live = document.getElementById('glog5');
+      M.scroll(M.animate('.dev .bob', { rotate:[-16,12], y:[50,-50] }, { ease:'linear' }), { target:live, offset:['start end','end start'] });
+      M.scroll(M.animate('.dial', { rotate:[-60,120] }, { ease:'linear' }), { target:live, offset:['start end','end start'] });
+      M.animate('.dev img', { y:[0,-12,0] }, { duration:4.2, repeat:Infinity, ease:'easeInOut' });
+      M.inView('[data-count]', function(el){
+        var to = +el.getAttribute('data-count');
+        M.animate(0, to, { duration:1.6, ease:out, onUpdate:function(v){ el.textContent = Math.round(v).toLocaleString('nl-NL'); } });
+      }, { amount:.6 });
+
+      // ---- 04: one rule runs across the steps; each numeral fills as the rule reaches it
+      var steps = document.querySelector('.steps'), stepEls = steps.querySelectorAll('.step');
+      M.scroll(function(p){
+        steps.style.setProperty('--p', p);
+        for (var i = 0; i < stepEls.length; i++) stepEls[i].classList.toggle('lit', p >= i / stepEls.length + .04);
+      }, { target:steps, offset:['start 80%','end 55%'] });
+
+      // ---- closing trace draws with the last stretch of scroll; the wordmark rises letter by letter
+      M.scroll(M.animate('#tracePath', { pathLength:[0,1] }, { ease:'linear' }), { target:document.getElementById('trace'), offset:['start end','end end'] });
+      M.inView('.bigmark', function(el){
+        M.animate(el.querySelectorAll('span:not(.deg)'), { y:['100%','0%'] }, { duration:1, delay:M.stagger(.05), ease:ez });
+        M.animate(el.querySelector('.deg'), { y:['100%','0%'], rotate:[-200,0] }, { type:'spring', stiffness:120, damping:12, delay:.5 });
+      }, { amount:.3 });
+
+      // ---- presses
+      M.press('.btn, nav.top .go', function(el){
+        M.animate(el, { scale:.96 }, { duration:.12 });
+        return function(){ M.animate(el, { scale:1 }, { type:'spring', stiffness:500, damping:20 }); };
+      });
+
+      // ---- FAQ: height animates open and closed instead of snapping
+      document.querySelectorAll('.qlist details').forEach(function(d){
+        var ans = d.querySelector('.ans'), clip = document.createElement('div'), busy = false;
+        clip.style.overflow = 'hidden';
+        ans.parentNode.insertBefore(clip, ans); clip.appendChild(ans);
+        d.querySelector('summary').addEventListener('click', function(e){
+          e.preventDefault();
+          if (busy) return;
+          busy = true;
+          if (!d.open) {
+            d.open = true;
+            M.animate(ans, { opacity:[0,1], y:[-8,0] }, { duration:.4, delay:.05, ease:out });
+            M.animate(clip, { height:[0, clip.scrollHeight] }, { duration:.5, ease:ez }).then(function(){ clip.style.height = 'auto'; busy = false; });
+          } else {
+            d.classList.add('closing');
+            M.animate(ans, { opacity:0 }, { duration:.2 });
+            M.animate(clip, { height:[clip.offsetHeight, 0] }, { duration:.4, ease:ez }).then(function(){
+              d.open = false; d.classList.remove('closing'); clip.style.height = ''; busy = false;
             });
-            node.replaceChild(frag, n);
-          } else if (n.nodeType === 1) {
-            if (n.tagName === 'EM') n.classList.add('w'); else walk(n);
           }
         });
-      })(el);
-      var words = el.querySelectorAll('.w, .wp');
-      [].forEach.call(words, function(w){ w.style.opacity = 0; });
-      return words;
-    }
-    function wordsIn(words, startDelay){
-      return M.animate(words, { opacity:[0,1], y:['0.45em',0], filter:['blur(6px)','blur(0px)'] },
-        { duration:.7, delay:M.stagger(.05, { startDelay:startDelay }), ease:ease });
-    }
-
-    // ---- hero
-    var h1 = document.querySelector('.hero h1'), h1Words = splitWords(h1);
-    h1.style.opacity = 1;
-    wordsIn(h1Words, .12);
-    M.animate('.hero [data-enter]:not(h1)', { opacity:[0,1], y:[18,0] }, { duration:.8, delay:M.stagger(.1, { startDelay:.05 }), ease:ease });
-    M.animate('.hero .shot', { scale:[.96,1] }, { duration:1.1, delay:.3, ease:ease });
-    document.querySelectorAll('.hero .chip').forEach(function(c, i){
-      M.animate(c, { y:[0,-6,0] }, { duration:4.5, delay:1.4 + i*1.2, repeat:Infinity, ease:'easeInOut' });
-    });
-    M.animate('.hero .chip .led', { boxShadow:['0 0 0 0 rgba(46,107,78,.45)','0 0 0 9px rgba(46,107,78,0)'] }, { duration:1.6, repeat:Infinity, ease:'easeOut' });
-    M.animate('.hero .shot img', { rotate:[-1.2,1.2,-1.2] }, { duration:7, repeat:Infinity, ease:'easeInOut' });
-    // the logger drifts slower than the page as the hero scrolls away
-    M.scroll(M.animate('.hero .shot img', { y:[0,36] }, { ease:'linear' }),
-      { target:document.querySelector('.hero'), offset:['start start','end start'] });
-
-    // "registreert · 1.440 metingen" counts up, then keeps recording. The figure is a
-    // placeholder (.tbd) — the count follows whatever number the markup carries.
-    var count = document.querySelector('.hero .chip.c1 .tbd');
-    if (count) {
-      var target = parseInt(count.textContent.replace(/\D/g,''), 10) || 0;
-      var label = count.textContent.replace(/^[\d.,\s]+/, '');
-      var show = function(v){ count.textContent = Math.round(v).toLocaleString('nl-NL') + ' ' + label; };
-      M.animate(0, target, { duration:1.8, delay:.8, ease:ease, onUpdate:show }).then(function(){
-        setInterval(function(){ if (!document.hidden) show(++target); }, 3000);
       });
+
+      // ---- sample-pack success: the box drops in, the check draws
+      var done = document.getElementById('done');
+      new MutationObserver(function(){
+        if (!done.classList.contains('on')) return;
+        M.animate(done, { y:[30,0], opacity:[0,1] }, { type:'spring', stiffness:220, damping:20 });
+        M.animate(done.querySelector('.check'), { rotate:[-90,0], scale:[0,1] }, { type:'spring', stiffness:260, damping:14, delay:.1 });
+        M.animate(done.querySelectorAll('.check path'), { pathLength:[0,1] }, { duration:.5, delay:.3, ease:'easeOut' });
+      }).observe(done, { attributes:true, attributeFilter:['class'] });
+    } catch (err) {
+      root.classList.remove('mo'); root.classList.add('no-mo');
+      console.warn('motion layer disabled:', err);
     }
-
-    // ---- headings outside the hero: word by word once in view
-    var headWords = new Map();
-    document.querySelectorAll('h2').forEach(function(h){ headWords.set(h, splitWords(h)); });
-    document.querySelectorAll('h2:not(.reveal)').forEach(function(h){
-      M.inView(h, function(){ wordsIn(headWords.get(h), 0); }, { amount:.3 });
-    });
-
-    // ---- section reveals
-    M.inView('.reveal', function(el){
-      var d = delayOf(el);
-      if (headWords.has(el)) {
-        el.style.opacity = 1; el.style.transform = 'none';
-        wordsIn(headWords.get(el), d);
-        return;
-      }
-      M.animate(el, { opacity:[0,1], y:[26,0] }, { duration:.75, delay:d, ease:ease });
-
-      var img = el.querySelector('.ph img') || (el.classList.contains('media') && el.querySelector('img'));
-      if (img) M.animate(img, { scale:[1.06,1] }, { duration:1.2, delay:d, ease:ease });
-
-      // problem-card icons draw themselves
-      var paths = el.querySelectorAll('.wicon svg path');
-      if (paths.length) M.animate(paths, { pathLength:[0,1], opacity:[0,1] }, { duration:1.1, delay:M.stagger(.15, { startDelay:d + .25 }), ease:'easeInOut' });
-
-      // step marker pops, then the dashed connector to the next step draws down
-      var dot = el.querySelector('.node .dot');
-      if (dot) {
-        M.animate(dot, { scale:[.6,1] }, { type:'spring', stiffness:380, damping:18, delay:d + .1 });
-        M.animate(el, { '--draw':[0,1] }, { duration:.7, delay:d + .35, ease:ease });
-      }
-
-      // table and spec rows cascade
-      var rows = el.querySelectorAll('.compare tbody tr, .specs .row');
-      [].forEach.call(rows, function(r, i){
-        M.animate(r.children, { opacity:[0,1], y:[10,0] }, { duration:.5, delay:d + .15 + i*.07, ease:ease });
-      });
-    }, { amount:.12, margin:'0px 0px -8% 0px' });
-    M.animate('.compare .pick .d', { scale:[1,1.7,1], opacity:[1,.5,1] }, { duration:2.2, repeat:Infinity, ease:'easeInOut' });
-
-    // ---- pointer: cards lift and tilt, primary buttons pull toward the cursor
-    M.hover('.model', function(el){
-      M.animate(el, { y:-6 }, { duration:.25, ease:ease });
-      return function(){ M.animate(el, { y:0 }, { duration:.35, ease:ease }); };
-    });
-    if (finePointer) {
-      document.querySelectorAll('.model, .hero .shot, .wcard').forEach(function(el){
-        var max = el.classList.contains('shot') ? 6 : 5;
-        M.animate(el, { transformPerspective:1000 }, { duration:0 });
-        el.addEventListener('pointermove', function(e){
-          var r = el.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-          M.animate(el, { rotateY:px * max, rotateX:-py * max }, spring);
-        });
-        el.addEventListener('pointerleave', function(){ M.animate(el, { rotateX:0, rotateY:0 }, spring); });
-      });
-      document.querySelectorAll('.btn.primary, nav.top .cta, .submit').forEach(function(el){
-        el.addEventListener('pointermove', function(e){
-          var r = el.getBoundingClientRect();
-          M.animate(el, { x:(e.clientX - r.left - r.width/2) * .22, y:(e.clientY - r.top - r.height/2) * .3 }, { type:'spring', stiffness:300, damping:20 });
-        });
-        el.addEventListener('pointerleave', function(){ M.animate(el, { x:0, y:0 }, { type:'spring', stiffness:300, damping:15 }); });
-      });
-    }
-    M.press('.btn, nav.top .cta, .submit', function(el){
-      M.animate(el, { scale:.95 }, { duration:.12 });
-      return function(){ M.animate(el, { scale:1 }, { type:'spring', stiffness:500, damping:18 }); };
-    });
-
-    // ---- FAQ: height animates open and closed instead of snapping
-    document.querySelectorAll('.faq details').forEach(function(d){
-      var ans = d.querySelector('.ans'), clip = document.createElement('div'), busy = false;
-      clip.style.overflow = 'hidden';
-      ans.parentNode.insertBefore(clip, ans); clip.appendChild(ans);
-      d.querySelector('summary').addEventListener('click', function(e){
-        e.preventDefault();
-        if (busy) return;
-        busy = true;
-        if (!d.open) {
-          d.open = true;
-          M.animate(ans, { opacity:[0,1], y:[-8,0] }, { duration:.35, delay:.05, ease:ease });
-          M.animate(clip, { height:[0, clip.scrollHeight] }, { duration:.42, ease:ease }).then(function(){ clip.style.height = 'auto'; busy = false; });
-        } else {
-          d.classList.add('closing');
-          M.animate(ans, { opacity:0 }, { duration:.2 });
-          M.animate(clip, { height:[clip.offsetHeight, 0] }, { duration:.32, ease:ease }).then(function(){
-            d.open = false; d.classList.remove('closing'); clip.style.height = ''; busy = false;
-          });
-        }
-      });
-    });
-
-    // ---- sample-pack success: the check pops and draws
-    var done = document.getElementById('done');
-    if (done) new MutationObserver(function(){
-      if (!done.classList.contains('on')) return;
-      M.animate(done.querySelector('.check'), { scale:[0,1], rotate:[-90,0] }, { type:'spring', stiffness:260, damping:14 });
-      M.animate(done.querySelectorAll('.check path'), { pathLength:[0,1] }, { duration:.5, delay:.25, ease:'easeOut' });
-      M.animate(done.querySelectorAll(':scope > :not(.check)'), { opacity:[0,1], y:[12,0] }, { duration:.5, delay:M.stagger(.08, { startDelay:.2 }), ease:ease });
-    }).observe(done, { attributes:true, attributeFilter:['class'] });
-
-    M.scroll(M.animate('.scrollbar', { scaleX:[0,1] }, { ease:'linear' }));
-  })();
-
-  // Glog 5 journey: the section pins for ~4 screens while the logger flies between one pose per
-  // chapter (storage → transit → delivery). Scroll sets the target pose; the logger eases toward
-  // it, so it banks into each move by how far it still has to go, and tilts toward the pointer.
-  // Runs only while the section is on screen. Reduced motion: the logger holds still and only
-  // the chapters cross-fade.
-  (function(){
-    var sec = document.getElementById('glog5');
-    if (!sec) return;
-    document.documentElement.classList.add('jx');
-    var track = sec.querySelector('.jtrack'), stage = sec.querySelector('.jstage');
-    var fly = sec.querySelector('.jfly'), bank = sec.querySelector('.jbank'), shadow = sec.querySelector('.jshadow');
-    var bgs = sec.querySelectorAll('.jbg img'), caps = sec.querySelectorAll('.jcap');
-    var fill = sec.querySelector('.jroute .fill'), stops = sec.querySelectorAll('.jroute span'), chip = sec.querySelector('.jtxt');
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var narrow = matchMedia('(max-width:760px)');
-    var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    // poses as fractions of the stage: centre x/y, roll in degrees, scale
-    var WIDE = [{x:.74,y:.58,r:-7,s:.9}, {x:.72,y:.52,r:-5,s:1}, {x:.6,y:.38,r:9,s:1.1}, {x:.76,y:.57,r:-3,s:.96}];
-    var SLIM = [{x:.5,y:.76,r:-6,s:.6}, {x:.52,y:.72,r:-4,s:.68}, {x:.42,y:.64,r:8,s:.74}, {x:.56,y:.73,r:-2,s:.66}];
-    // scroll progress → pose index: fly in, hold, fly, hold, fly, hold
-    var SEG = [[0,.17,0,1], [.17,.3,1,1], [.3,.5,1,2], [.5,.63,2,2], [.63,.83,2,3], [.83,1.01,3,3]];
-    var WIN = [[-1,.3], [.3,.63], [.63,2]];
-    var CHIP = ['START · registratie loopt', '4G live · 4,6 °C · 0,4 g', 'keten intact · verzegeld'];
-
-    function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-    function smooth(t){ return t * t * (3 - 2 * t); }
-    function pose(p){
-      var K = narrow.matches ? SLIM : WIDE;
-      if (reduce) return K[1];
-      for (var i = 0; i < SEG.length; i++) {
-        var g = SEG[i];
-        if (p < g[1] || i === SEG.length - 1) {
-          var t = smooth(clamp((p - g[0]) / (g[1] - g[0]), 0, 1)), a = K[g[2]], b = K[g[3]];
-          return { x:a.x + (b.x - a.x) * t, y:a.y + (b.y - a.y) * t, r:a.r + (b.r - a.r) * t, s:a.s + (b.s - a.s) * t };
-        }
-      }
-    }
-    function weight(i, p){ var w = WIN[i]; return clamp((p - w[0]) / .06, 0, 1) * clamp((w[1] - p) / .06, 0, 1); }
-
-    var cur = null, tilt = { x:0, y:0 }, aim = { x:0, y:0 }, last = 0, raf = 0, chipAt = -1;
-    function frame(now){
-      var dt = last ? Math.min(now - last, 64) : 16.7; last = now;
-      var rect = track.getBoundingClientRect(), W = stage.clientWidth, H = stage.clientHeight;
-      var p = clamp(-rect.top / Math.max(1, rect.height - H), 0, 1);
-      var tg = pose(p), tx = tg.x * W, ty = tg.y * H;
-      if (!cur || reduce) cur = { x:tx, y:ty, r:tg.r, s:tg.s };
-      var k = 1 - Math.pow(1 - .085, dt / 16.7);
-      var vx = tx - cur.x, vy = ty - cur.y;
-      cur.x += vx * k; cur.y += vy * k; cur.r += (tg.r - cur.r) * k; cur.s += (tg.s - cur.s) * k;
-      tilt.x += (aim.x - tilt.x) * k; tilt.y += (aim.y - tilt.y) * k;
-
-      // bank into the move, nose down while climbing, plus a slow hover bob
-      var bankZ = clamp(vx * .05, -16, 16), pitch = clamp(vy * .04, -10, 10);
-      var bob = reduce ? 0 : Math.sin(now / 650) * 6;
-      var w = fly.offsetWidth, h = fly.offsetHeight;
-      fly.style.transform = 'translate(' + (cur.x - w / 2) + 'px,' + (cur.y - h / 2 + bob) + 'px) rotate(' + (cur.r + bankZ) + 'deg) scale(' + cur.s + ')';
-      bank.style.transform = 'perspective(900px) rotateY(' + (tilt.x * 22 - bankZ * .8) + 'deg) rotateX(' + (-tilt.y * 14 + pitch) + 'deg)';
-
-      // the shadow stays on the ground and shrinks as the logger climbs
-      var ground = H * (narrow.matches ? .97 : .9), alt = clamp((ground - cur.y) / H, 0, 1);
-      var sw = shadow.offsetWidth;
-      shadow.style.transform = 'translate(' + (cur.x - sw / 2) + 'px,' + (ground - 17) + 'px) scale(' + (1.15 - alt * .9) * cur.s + ')';
-      shadow.style.opacity = clamp(1 - alt * 1.3, .12, .8);
-
-      var active = 0;
-      for (var i = 0; i < caps.length; i++) {
-        var o = weight(i, p);
-        if (o > .5) active = i;
-        caps[i].style.opacity = o;
-        caps[i].style.transform = narrow.matches ? 'translateY(' + (1 - o) * 18 + 'px)' : 'translateY(calc(-50% + ' + (1 - o) * 18 + 'px))';
-        caps[i].style.visibility = o > 0 ? 'visible' : 'hidden';
-        if (i > 0) {
-          // later scenes fade in over the first, which always sits underneath
-          bgs[i].style.opacity = clamp((p - WIN[i][0] + .05) / .1, 0, 1);
-        }
-        var local = clamp((p - Math.max(0, WIN[i][0])) / (Math.min(1, WIN[i][1]) - Math.max(0, WIN[i][0])), 0, 1);
-        bgs[i].style.transform = 'scale(' + (1.1 - local * .1) + ')';
-      }
-      if (active !== chipAt) { chip.textContent = CHIP[active]; chipAt = active; }
-      fill.style.transform = 'scaleX(' + p + ')';
-      for (i = 0; i < stops.length; i++) stops[i].classList.toggle('on', p >= [0, .4, .73][i]);
-
-      raf = requestAnimationFrame(frame);
-    }
-    function play(){ if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
-    function stop(){ if (raf) cancelAnimationFrame(raf); raf = 0; }
-
-    if (finePointer && !reduce) {
-      stage.addEventListener('pointermove', function(e){
-        var r = stage.getBoundingClientRect();
-        aim.x = (e.clientX - r.left) / r.width - .5; aim.y = (e.clientY - r.top) / r.height - .5;
-      });
-      stage.addEventListener('pointerleave', function(){ aim.x = 0; aim.y = 0; });
-    }
-    new IntersectionObserver(function(entries){ entries[0].isIntersecting && !document.hidden ? play() : stop(); }).observe(sec);
-    document.addEventListener('visibilitychange', function(){
-      if (document.hidden) return stop();
-      var r = sec.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < innerHeight) play();
-    });
-  })();
-
-  // Final CTA scene: the hash chain lies on a tilted grid floor and a CSS-3D reefer van
-  // drives over it, lighting each record_hash block as it passes.
-  (function(){
-    var track=document.getElementById('cryptoTrack'), floor=document.getElementById('floor');
-    if(!track || !floor) return;
-    var hashes=['a17b…39fc','7d22…8e01','b91c…4a20','03fe…6a15','52dd…ee39','e4a6…1123','c4f0…91ae','2f6d…d8b3'];
-    var set=function(){ return hashes.map(function(hx){
-      return '<div class="blk"><div class="cube"><b>'+hx+'</b><span>record_hash</span></div><div class="lnk"></div></div>';
-    }).join(''); };
-    track.innerHTML=set()+set()+set();
-
-    // A box in floor coordinates: x along the road, y toward the viewer, z up off the floor.
-    // Viewer-facing faces hinge on their bottom edge so their content stays upright.
-    function box(cls, x, y, z, w, d, h, front){
-      var px=function(v){ return v+'px'; };
-      return '<div class="bx '+cls+'" style="left:'+px(x)+';top:'+px(y)+';width:'+px(w)+';height:'+px(d)+';transform:translateZ('+px(z)+')">'
-        + '<i class="f-back" style="width:'+px(w)+';height:'+px(h)+';top:'+px(-h)+';transform-origin:0 100%;transform:rotateX(-90deg)"></i>'
-        + '<i class="f-left" style="width:'+px(h)+';height:'+px(d)+';transform-origin:0 0;transform:rotateY(-90deg)"></i>'
-        + '<i class="f-right" style="width:'+px(h)+';height:'+px(d)+';left:'+px(w)+';transform-origin:0 0;transform:rotateY(-90deg)"></i>'
-        + '<i class="f-top" style="width:'+px(w)+';height:'+px(d)+';transform:translateZ('+px(h)+')"></i>'
-        + '<i class="f-front" style="width:'+px(w)+';height:'+px(h)+';top:'+px(d-h)+';transform-origin:0 100%;transform:rotateX(-90deg)">'+(front||'')+'</i>'
-        + '</div>';
-    }
-    var van=document.createElement('div');
-    van.className='van';
-    van.innerHTML='<div class="shadow"></div><div class="beam"></div>'
-      + box('body', 0, 0, 0, 156, 58, 70, '<span class="brand">FahCel</span><span class="temp">❄ 2–8 °C · VERZEGELD</span><span class="wheel" style="left:18px"></span><span class="wheel" style="left:50px"></span><span class="wheel" style="left:116px"></span>')
-      + box('unit', 142, 12, 70, 12, 34, 9)
-      + box('cab', 160, 2, 0, 52, 54, 50, '<span class="wheel" style="left:20px"></span>');
-    floor.appendChild(van);
-
-    var cubes=track.getElementsByClassName('cube');
-    var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var DUR=9000, start=null, running=false, scale=1, fw=0;
-    function measure(){ fw=floor.offsetWidth; scale=Math.max(.62, Math.min(1, innerWidth/1300)); }
-    function place(p, t){
-      // the section shows the middle half of the floor; enter left of it, leave right of it
-      var x=fw*.25 - 280 + p*(fw*.5 + 560);
-      van.style.transform='translate3d('+x+'px,0,0) scale3d('+scale+','+scale+','+scale+')';
-      var vr=van.getBoundingClientRect();
-      for (var i=0;i<cubes.length;i++){
-        var c=cubes[i], r=c.getBoundingClientRect();
-        if (r.right > vr.left + vr.width*.1 && r.left < vr.right - vr.width*.1) { c.classList.add('hit'); c._hit=t; }
-        else if (c._hit && t - c._hit > 1600) { c.classList.remove('hit'); c._hit=0; }
-      }
-    }
-    function frame(t){
-      if(!running) return;
-      if(start===null) start=t;
-      place(((t-start)%DUR)/DUR, t);
-      requestAnimationFrame(frame);
-    }
-    measure();
-    addEventListener('resize', measure);
-    if (reduce) { place(.5, 0); return; }
-    new IntersectionObserver(function(es){
-      var on=es[0].isIntersecting && !document.hidden;
-      if(on && !running){ running=true; start=null; requestAnimationFrame(frame); }
-      if(!on) running=false;
-    }).observe(floor.parentNode);
   })();
 
   // ---------- sample pack capture ----------
   (function(){
-    var API_BASE = '/api'; // vercel.json rewrites /api/* to the FahCel backend
+    var API_BASE = '/api'; // vercel.json rewrites /api/* to the shared backend
     var form = document.getElementById('sampleForm');
     var btn = document.getElementById('submitBtn');
     var errEl = document.getElementById('submitErr');
@@ -1430,24 +1238,24 @@
       var role = document.getElementById('role').value || 'Other';
       var volume = document.getElementById('volume').value || 'not given';
       var lane = document.getElementById('lane').value.trim();
-      if(!email || email.indexOf('@')<0){ showErr('⚠ Vul een geldig zakelijk e-mailadres in, zodat we het verzendadres kunnen bevestigen.'); return; }
-      if(!name){ showErr('⚠ Vul je naam in.'); return; }
+      if(!email || email.indexOf('@')<0){ showErr('Vul een geldig zakelijk e-mailadres in, zodat we het verzendadres kunnen bevestigen.'); return; }
+      if(!name){ showErr('Vul je naam in.'); return; }
 
-      var ref = 'FC-'+Math.random().toString(36).slice(2,7).toUpperCase();
-      var note = 'USB logger sample pack request. Lane: ' + (lane || 'not given') + '. Volume: ' + volume + '.';
+      var ref = 'KW-'+Math.random().toString(36).slice(2,7).toUpperCase();
+      var note = 'USB logger sample pack request (koudwijs brand page). Lane: ' + (lane || 'not given') + '. Volume: ' + volume + '.';
 
-      // Tenant-scoped so FahCel and Dr. Fry never see each other's leads on the shared backend.
+      // The page is its own brand, but the lead lands in the FahCel tenant on purpose: that is
+      // the operator's dashboard. Tenant-scoped so FahCel and Dr. Fry never see each other's leads.
       //
       // Deliberately NO enroll/sequenceId: capture-lead only enrolls when one is sent, and
       // an unknown sequenceId falls back to `<tenant>-founding` — FahCel's COLD pitch, wrong
-      // for someone who asked us for hardware. A sample-pack request needs a human to ship a
-      // box, which the backend's notifyNewLead already triggers on capture. Add a real
-      // 'fahcel-usb-sample' sequence to lib/sequences.js before enrolling anyone here.
+      // for someone who asked for hardware (and in another brand's voice). A sample-pack request
+      // needs a human to ship a box, which the backend's notifyNewLead already triggers on capture.
       var payload = { tenant:'fahcel', email:email, name:name, org:org, role:role, note:note, source:'fahcel-usb-logger-sample', ref:ref };
       var opts = { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) };
 
       btn.disabled = true;
-      btn.innerHTML = 'Versturen…';
+      btn.textContent = 'Versturen…';
       try {
         // Hit the backend directly first — the /api/* rewrite can sit behind Vercel
         // Deployment Protection ("preview token required"); the absolute URL doesn't.
@@ -1464,7 +1272,7 @@
         document.getElementById('formWrap').classList.add('off');
         document.getElementById('done').classList.add('on');
       } catch(err){
-        showErr('⚠ Je aanvraag kon NIET worden verstuurd — '+String(err.message||err)+'. Probeer het opnieuw of mail naar hello@fahcel.eu.');
+        showErr('Je aanvraag kon NIET worden verstuurd (' + String(err.message||err) + '). Probeer het over een paar minuten opnieuw.');
         btn.disabled = false;
         btn.innerHTML = BTN_LABEL;
       }
