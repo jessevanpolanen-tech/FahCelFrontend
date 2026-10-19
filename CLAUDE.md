@@ -335,7 +335,16 @@ illustration for a real photo, delete `.draftbar` + its CSS, flip robots to
 `index,follow`, uncomment the sitemap block, then add the page to `llms.txt`.
 `grep -c 'class="tbd"' usb-logger.html` must be 0 before launch.
 
-**Hardware is Elitech, named on the page** (decided 2026-09-25). A
+**White-label since 2026-10-19 (operator's call): the page never names Elitech.** Images live in
+`assets/loggers/` with Elitech's orange header bar cropped off, the logo and web address on each
+logger painted out, and a dashed **"JOUW LOGO HIER"** placeholder where the logo was (the
+`elitech-*` originals were removed; they are in git history). Copy says "beproefde hardware",
+"gratis uitleessoftware" (not ElitechLog), "specificaties van de fabrikant"; the card `.maker`
+label reads "Jouw logo hier"; Product JSON-LD `brand` is FahCel Dataloggers. Model names
+(LogEt 1, RC-17, RC-5, Glog 5) stay. Everything below describes where the hardware and
+figures come from, which still holds — just keep it off the page.
+
+**Hardware is Elitech** (decided 2026-09-25). A
 `#hardware` section shows two model cards, **LogEt 1** (single-use, auto-PDF,
 no software needed) and **RC-5** (reusable, report via ElitechLog software), and
 the hero photo is the LogEt 1. Images are Elitech's own product photos from
