@@ -23,237 +23,106 @@
 <meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
 <link rel="icon" href="/assets/fahcel-logo.jpg" />
 
-<link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/ds/fonts/Fraunces-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/ds/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds/tokens.css">
+<link rel="stylesheet" href="/assets/ds/components.css">
+<link rel="stylesheet" href="/assets/ds/site.css">
 <style>
-  :root{
-    --paper:#F6F7F4;
-    --paper-2:#ecedea;
-    --white:#ffffff;
-    --ink:#0B1220;
-    --ink-2:#222938;
-    --muted:#5a6374;
-    --muted-2:#8a93a5;
-    --line:#e1e2dd;
-    --line-2:#d3d5cd;
-    --indigo:#1E2A5A;
-    --indigo-2:#2a3a79;
-    --teal:#1f7a8c;
-    --green:#2E6B4E;
-    --amber:#c88912;
-    --serif:'Source Serif 4', Georgia, serif;
-    --sans:'Inter', system-ui, sans-serif;
-    --mono:'JetBrains Mono', ui-monospace, monospace;
-  }
+  /* Layout only: colour, type and components come from the FahCel design system (/assets/ds). */
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  html,body{margin:0;padding:0;background:#0b1220;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  body{font-size:16px;line-height:1.6}
+  html,body{margin:0;padding:0;background:var(--brand-navy)}
+  body{font-size:16px;line-height:1.55}
   a{color:inherit;text-decoration:none}
-  ::selection{background:#d9ddf0;color:var(--indigo)}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 var(--space-32)}
 
-  /* ---------- Sticky hero ---------- */
-  .hero{
-    position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden;z-index:0;
-    display:flex;flex-direction:column;
-  }
-  .hero .bg{position:absolute;inset:0;z-index:0}
-  .hero .bg img{width:100%;height:100%;object-fit:cover;display:block}
-  .hero .bg::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(11,18,32,.55) 0%,rgba(11,18,32,.15) 30%,rgba(11,18,32,.35) 70%,rgba(11,18,32,.7) 100%);
-  }
+  /* ---------- Sticky hero: the Navy theme, seal-glow, no photography ---------- */
+  .hero{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden;z-index:0;display:flex;flex-direction:column;color:var(--text)}
+  nav.top{position:relative;z-index:3;max-width:var(--container);width:100%;margin:0 auto;padding:var(--space-24) var(--space-32);border-bottom:var(--hairline) solid var(--line)}
+  nav.top ul li{cursor:default}
 
-  nav.top{
-    position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;
-    margin:18px auto 0;max-width:1200px;width:calc(100% - 40px);
-    padding:12px 14px 12px 20px;border-radius:999px;
-    background:rgba(255,255,255,.9);backdrop-filter:saturate(140%) blur(10px);
-    box-shadow:0 10px 30px -16px rgba(11,18,32,.5);
-  }
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
-  .logo .mark{
-    width:30px;height:30px;border-radius:0;background:none;object-fit:contain;mix-blend-mode:multiply;display:block;
-  }
-  nav.top ul{display:flex;gap:28px;list-style:none;padding:0;margin:0;font-size:14px;color:var(--ink-2);font-weight:500}
-  nav.top li{cursor:pointer;transition:color .15s}
-  nav.top li:hover{color:var(--indigo)}
-  nav.top .right{display:flex;align-items:center;gap:8px}
-  nav.top .signin{font-size:14px;font-weight:600;color:var(--ink-2);padding:8px 12px}
-  nav.top .cta{background:var(--indigo);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:7px}
-  nav.top .cta svg{width:13px;height:13px}
+  .hero-inner{flex:1;display:flex;align-items:center}
+  .hero-inner .wrap{width:100%;display:grid;grid-template-columns:1.25fr .75fr;gap:var(--space-48);align-items:center}
+  .hero h1{margin:var(--space-18) 0 var(--space-24);font-family:var(--font-display);font-weight:500;font-size:clamp(38.4px,5.4vw,60px);line-height:1.04;letter-spacing:-.02em;color:var(--ink);max-width:14ch;text-wrap:balance}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero .fc-lede{margin:0 0 var(--space-32)}
+  .herocta{display:flex;align-items:center;gap:var(--space-20);flex-wrap:wrap}
+  /* the seal sits in its white tile on navy, never straight on it */
+  .hero .seal{justify-self:end;display:grid;place-items:center;width:clamp(150px,18vw,220px);aspect-ratio:1;border-radius:36px;background:#FFFFFF;box-shadow:var(--shadow-raised)}
+  .hero .seal img{display:block;width:72%;height:auto}
 
-  .hero-inner{position:relative;z-index:2;flex:1;display:flex;align-items:center}
-  .hero-inner .wrap{width:100%}
-  .h-eyebrow{
-    display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
-    color:#fff;font-size:11.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(4px);
-  }
-  .h-eyebrow .dot{width:6px;height:6px;border-radius:999px;background:#52b0bf;box-shadow:0 0 0 4px rgba(82,176,191,.3)}
-  .hero h1{
-    font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.4vw,86px);line-height:1.02;letter-spacing:-1.6px;
-    margin:22px 0 18px;color:#fff;max-width:14ch;text-wrap:balance;
-  }
-  .hero h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
-  .hero .lede{font-size:clamp(16px,1.6vw,20px);line-height:1.5;color:rgba(255,255,255,.85);max-width:50ch;margin:0 0 30px;text-wrap:pretty}
-
-  .lookup{
-    display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.96);
-    border-radius:999px;padding:7px 7px 7px 20px;max-width:480px;
-    box-shadow:0 20px 50px -22px rgba(0,0,0,.6);
-  }
-  .lookup svg.pin{width:16px;height:16px;color:var(--muted);flex:0 0 auto}
-  .lookup input{flex:1;border:0;outline:0;background:transparent;font-family:var(--mono);font-size:13.5px;color:var(--ink);letter-spacing:.3px}
-  .lookup input::placeholder{color:var(--muted-2)}
-  .lookup button{
-    border:0;cursor:pointer;background:var(--indigo);color:#fff;font-family:var(--sans);font-weight:600;font-size:13.5px;
-    padding:11px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;transition:background .15s;
-  }
-  .lookup button:hover{background:var(--indigo-2)}
-  .lookup button svg{width:13px;height:13px}
-  .herocta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .herocta .btn{text-decoration:none}
-  .herocta .btn.primary:hover{background:#eef0ff}
-  .herocta .btn.ghost:hover{border-color:rgba(255,255,255,.6)}
-
-  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.7);font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-  .scrollcue .mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.5);border-radius:12px;position:relative}
-  .scrollcue .mouse::after{content:"";position:absolute;top:6px;left:50%;width:3px;height:6px;border-radius:2px;background:#fff;transform:translateX(-50%);animation:wheel 1.6s ease-in-out infinite}
+  .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:var(--text-subtle);font-family:var(--font-mono);font-size:9.6px;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:var(--space-8)}
+  .scrollcue .mouse{width:22px;height:34px;border:1.5px solid var(--line);border-radius:12px;position:relative}
+  .scrollcue .mouse::after{content:"";position:absolute;top:6px;left:50%;width:3px;height:6px;border-radius:2px;background:var(--accent);transform:translateX(-50%);animation:wheel 1.6s ease-in-out infinite}
   @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
 
-  /* ---------- Content sheet (scrolls over hero) ---------- */
-  .sheet{
-    position:relative;z-index:2;background:var(--paper);
-    margin-top:-34px;border-radius:30px 30px 0 0;
-    box-shadow:0 -30px 80px -20px rgba(11,18,32,.55);
-  }
-  .sheet::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:44px;height:4px;border-radius:99px;background:var(--line-2)}
+  /* ---------- Content sheet: the Paper theme, sliding up over the hero ---------- */
+  .sheet{position:relative;z-index:2;background:var(--surface-alt);border-top:var(--hairline) solid var(--line)}
+  section.block{padding:var(--space-88) 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-48);margin-bottom:var(--space-48);flex-wrap:wrap}
+  .sec-head .fc-lede{padding-bottom:6px;max-width:26rem}
 
+  /* coverage: three hairline cards, white on the cream band */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-20)}
+  .cards3 .fc-card{display:flex;flex-direction:column}
+  .cardtags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 var(--space-18)}
 
-  /* section scaffolding */
-  section.block{padding:84px 0}
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:42px;flex-wrap:wrap}
-  .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--white);color:var(--indigo);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-  .eyebrow-pill .dot{width:6px;height:6px;border-radius:999px;background:var(--teal)}
-  h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.6vw,50px);line-height:1.08;letter-spacing:-1px;margin:18px 0 0;color:var(--ink);max-width:16ch;text-wrap:balance}
-  h2 em{color:var(--indigo);font-style:italic;font-weight:400}
-  .sec-head .desc{font-size:15.5px;line-height:1.6;color:var(--muted);max-width:36ch;padding-bottom:6px}
+  /* feature band: the chain readout stands where a photo would */
+  .band{background:var(--surface);border-top:var(--hairline) solid var(--line);border-bottom:var(--hairline) solid var(--line)}
+  .band .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-56);align-items:center}
+  .band .media{background:var(--surface-panel);border-radius:var(--radius-m);padding:var(--space-24)}
+  .band .media .fc-island{display:flex;flex-direction:column;gap:var(--space-12)}
+  .band .media .fc-eyebrow{margin-bottom:var(--space-4)}
+  .band .fc-chain__foot{flex-wrap:wrap}
+  .band .chip{display:inline-flex;align-items:center;gap:var(--space-8);white-space:nowrap}
+  /* code stays in its own case */
+  .band .chip.c2{color:var(--text);text-transform:none;letter-spacing:.04em}
+  .band .copy .fc-lede{margin:var(--space-24) 0 var(--space-24)}
 
-  /* service image cards */
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .scard{display:flex;flex-direction:column}
-  .scard .ph{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:5/4;background:var(--paper-2)}
-  .scard .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-  .scard:hover .ph img{transform:scale(1.05)}
-  .scard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.35),rgba(11,18,32,0) 45%)}
-  .tags{position:absolute;top:14px;left:14px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
-  .tag{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.2px;background:rgba(255,255,255,.92);color:var(--ink);backdrop-filter:blur(4px)}
-  .tag .d{width:6px;height:6px;border-radius:99px;background:var(--teal)}
-  .scard h3{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.3px;margin:18px 0 8px;color:var(--ink)}
-  .scard p{font-size:14px;line-height:1.6;color:var(--muted);margin:0;max-width:34ch}
+  /* sealed-at-ingestion stage: the canvas paints marks only; the ground and glow are CSS so
+     there is no seam beside the 1280px stage */
+  .sealed{padding:0}
+  .sealed .stage{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;overflow:hidden}
+  .sealed canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .sealed .eb{position:absolute;left:5.4%;top:8.6%;display:flex;align-items:center;gap:11px;margin:0}
+  .sealed .eb .dot{width:7px;height:7px;border-radius:var(--radius-round);background:var(--accent)}
+  .sealed .tl{position:absolute;left:5.4%;bottom:9%;max-width:60%;margin:0;font-family:var(--font-display);font-weight:500;font-style:italic;font-size:clamp(21px,2.9vw,38px);line-height:1.12;color:var(--ink);letter-spacing:-.01em;text-wrap:pretty}
+  .sealed .tl span{color:var(--accent)}
+  @media (max-width:700px){.sealed .stage{aspect-ratio:1/1}.sealed .tl{max-width:88%}}
 
-  /* feature band */
-  .band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .band .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center}
-  .band .media{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 70px -40px rgba(11,18,32,.4)}
-  .band .media img{width:100%;height:100%;object-fit:cover;display:block}
-  .band .chip{position:absolute;font-family:var(--mono);font-size:11px;font-weight:500;background:rgba(255,255,255,.95);color:var(--ink);padding:8px 12px;border-radius:10px;box-shadow:0 10px 30px -12px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px}
-  .band .chip .led{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 0 4px rgba(46,107,78,.18)}
-  .band .chip.c1{top:18px;left:18px}
-  .band .chip.c2{bottom:18px;right:18px;color:var(--green)}
-  .band h2{margin-top:18px}
-  /* linked-node chain replacing plain bullets */
-  .band .chainlist{list-style:none;padding:0;margin:30px 0 30px;display:flex;flex-direction:column;gap:0}
-  .band .chainlist li{position:relative;display:flex;gap:18px;padding:0 0 26px}
-  .band .chainlist li:last-child{padding-bottom:0}
-  .band .chainlist .node{position:relative;flex:0 0 auto;width:38px;display:flex;justify-content:center}
-  .band .chainlist .node .dot{width:38px;height:38px;border-radius:11px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;z-index:2;box-shadow:0 8px 18px -10px rgba(11,18,32,.3)}
-  .band .chainlist .node .dot svg{width:18px;height:18px;color:var(--green)}
-  .band .chainlist .node .dot b{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--indigo)}
-  .band .chainlist li:not(:last-child) .node::after{content:"";position:absolute;top:38px;bottom:-26px;left:50%;width:2px;transform:translateX(-50%);
-    background:repeating-linear-gradient(180deg,var(--line-2) 0 5px,transparent 5px 10px)}
-  .band .chainlist .txt{padding-top:7px}
-  .band .chainlist .txt b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;margin-bottom:2px}
-  .band .chainlist .txt span{font-size:14.5px;color:var(--muted);line-height:1.55}
-  .linkbtn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;color:var(--indigo);border-bottom:1.5px solid transparent;padding-bottom:2px;transition:border-color .15s}
-  .linkbtn:hover{border-color:var(--indigo)}
-  .linkbtn svg{width:15px;height:15px;transition:transform .2s}
-  .linkbtn:hover svg{transform:translateX(3px)}
-
-  /* why / colored cards */
-  .why .cards3{gap:20px}
-  .wcard{position:relative;border-radius:18px;padding:26px 24px 24px;min-height:230px;display:flex;flex-direction:column;border:1px solid transparent;overflow:hidden}
-  .wcard.a{background:#eef2f7;border-color:#dfe6ef}
-  .wcard.b{background:#f1efe8;border-color:#e6e2d6}
-  .wcard.c{background:#e9f0ee;border-color:#d8e5e0}
-  .wicon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--white);box-shadow:0 8px 20px -10px rgba(11,18,32,.3);margin-bottom:auto}
-  .wicon svg{width:24px;height:24px;color:var(--indigo)}
-  .warrow{position:absolute;top:22px;right:22px;width:34px;height:34px;border-radius:99px;border:1px solid var(--line-2);display:grid;place-items:center;background:rgba(255,255,255,.6);color:var(--ink-2);transition:.18s}
-  .wcard:hover .warrow{background:var(--ink);color:#fff;border-color:var(--ink)}
+  /* why: three cards with an index numeral, a ghost arrow where there is somewhere to go */
+  .why .fc-card{position:relative;background:var(--surface);min-height:230px;display:flex;flex-direction:column}
+  .why .fc-card__title{margin-top:auto}
+  .warrow{position:absolute;top:var(--space-20);right:var(--space-20);width:32px;height:32px;border:var(--hairline) solid var(--line);border-radius:var(--radius-xs);display:grid;place-items:center;color:var(--ink);transition:background .2s,color .2s,border-color .2s}
   .warrow svg{width:14px;height:14px}
-  .wtags{display:flex;gap:7px;margin:20px 0 12px}
-  .wtag{padding:4px 11px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(255,255,255,.7);color:var(--ink-2);border:1px solid rgba(11,18,32,.08)}
-  .wcard h3{font-family:var(--serif);font-weight:600;font-size:18.5px;letter-spacing:-.2px;margin:0 0 6px;color:var(--ink)}
-  .wcard p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+  .why .fc-card:hover .warrow{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+  .wtags{display:flex;gap:6px;margin:var(--space-24) 0 var(--space-12)}
 
-  /* CTA footer */
-  .cta-final{background:var(--indigo);color:#fff;position:relative;overflow:hidden}
-  .cta-final::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 400px at 80% -10%,rgba(82,176,191,.4),transparent 60%)}
-  /* decorative flowing cryptochain (left 30%Y → right 70%Y) */
-  .cryptochain{
-    position:absolute;left:50%;top:50%;width:150%;z-index:0;pointer-events:none;
-    transform:translate(-50%,-50%) rotate(9.5deg);opacity:.5;
-    -webkit-mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
-            mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
-  }
-  .cryptochain .track{display:flex;align-items:center;width:max-content;font-family:var(--mono);animation:chainFlow 40s linear infinite}
+  /* FAQ */
+  .faq{border-top:var(--hairline) solid var(--line)}
+  .faq .fc-faq{margin-top:var(--space-48)}
+  .faq .ans{padding:0 var(--space-4) 26px;font-size:16px;line-height:1.6;color:var(--text);max-width:64ch}
+
+  /* closing CTA: navy, seal-glow, the chain drifting behind it */
+  .cta-final{position:relative;overflow:hidden}
+  .cryptochain{position:absolute;left:50%;top:50%;width:150%;z-index:0;pointer-events:none;transform:translate(-50%,-50%) rotate(9.5deg);opacity:.5;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+  .cryptochain .track{display:flex;align-items:center;width:max-content;font-family:var(--font-mono);animation:chainFlow 40s linear infinite}
   .cryptochain .blk{display:flex;align-items:center;flex:0 0 auto}
-  .cryptochain .cube{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:1px solid rgba(255,255,255,.16);border-radius:7px;white-space:nowrap}
-  .cryptochain .cube b{font-size:11px;letter-spacing:.4px;color:rgba(255,255,255,.6);font-weight:500}
-  .cryptochain .cube span{font-size:8.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.36)}
-  .cryptochain .lnk{width:38px;height:1px;background:rgba(255,255,255,.24);position:relative;flex:0 0 auto}
-  .cryptochain .lnk::after{content:"";position:absolute;right:-1px;top:-2px;width:4px;height:4px;border-right:1px solid rgba(255,255,255,.32);border-top:1px solid rgba(255,255,255,.32);transform:rotate(45deg)}
+  .cryptochain .cube{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:var(--hairline) solid var(--line);border-radius:var(--radius-s);white-space:nowrap}
+  .cryptochain .cube b{font-size:10.5px;letter-spacing:.04em;color:var(--text-subtle);font-weight:400}
+  .cryptochain .cube span{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-subtle);opacity:.7}
+  .cryptochain .lnk{width:38px;height:1px;background:var(--line);position:relative;flex:0 0 auto}
+  .cryptochain .lnk::after{content:"";position:absolute;right:-1px;top:-2px;width:4px;height:4px;border-right:1px solid var(--line);border-top:1px solid var(--line);transform:rotate(45deg)}
   @keyframes chainFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion:reduce){.cryptochain .track{animation:none}}
-  .cta-final .wrap{position:relative;z-index:1;padding:96px 40px;text-align:center}
-  .cta-final h2{color:#fff;max-width:18ch;margin:0 auto}
-  .cta-final h2 em{color:#9fd6e0}
-  .cta-final p{color:rgba(255,255,255,.8);font-size:17px;max-width:48ch;margin:18px auto 32px}
-  .cta-final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:999px;font-size:15px;font-weight:600;border:1px solid transparent;cursor:pointer}
-  .btn.primary{background:#fff;color:var(--indigo)}
-  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
-  .btn svg{width:15px;height:15px}
+  .cta-final .wrap{position:relative;z-index:1;padding:var(--space-88) var(--space-32);text-align:center}
+  .cta-final h2{margin:var(--space-18) auto 0;font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.4vw,48px);line-height:1.1;letter-spacing:-.02em;color:var(--ink);max-width:18ch}
+  .cta-final h2 em{font-style:italic;color:var(--accent)}
+  .cta-final .fc-lede{margin:var(--space-18) auto var(--space-32);max-width:34rem}
+  .cta-final .row{display:flex;gap:var(--space-20);justify-content:center;align-items:center;flex-wrap:wrap}
 
-  footer.site{background:#0b1220;color:rgba(255,255,255,.6);font-size:13px}
-  footer.site .wrap{padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  footer.site .logo{color:#fff}
-  footer.site .logo .mark{mix-blend-mode:normal;background:#fff;border-radius:8px;padding:2px}
-  footer.site .links{display:flex;gap:24px}
-  footer.site .links a:hover{color:#fff}
-
-  /* orbital hover on cards */
-  @property --orbit{syntax:'<angle>';inherits:false;initial-value:0deg}
-  .scard .ph,.wcard{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)}
-  .scard:hover .ph{transform:translateY(-5px);box-shadow:0 34px 54px -28px rgba(11,18,32,.55)}
-  .wcard:hover{transform:translateY(-5px);box-shadow:0 28px 48px -30px rgba(11,18,32,.4)}
-  .scard .ph::before,.wcard::before{
-    content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;
-    background:conic-gradient(from var(--orbit),transparent 0deg,transparent 248deg,rgba(242,184,75,.5) 296deg,#F2B84B 322deg,#fff7e6 344deg,transparent 360deg);
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask-composite:exclude;
-    opacity:0;transition:opacity .35s;pointer-events:none;z-index:4;
-  }
-  .scard:hover .ph::before,.wcard:hover::before{opacity:1;animation:orbit 2.6s linear infinite}
-  @keyframes orbit{to{--orbit:360deg}}
-  @media (prefers-reduced-motion:reduce){
-    .scard:hover .ph::before,.wcard:hover::before{animation:none;opacity:.7}
-    .scard:hover .ph,.wcard:hover,.scard:hover .ph img{transform:none}
-  }
+  .w{display:inline-block}
 
   /* scroll reveal */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -267,33 +136,18 @@
      These are only its start states; the inline script drops .mo if the library is missing. */
   .mo .hero [data-enter]{opacity:0}
   .mo .reveal{transition:none}
-  /* Motion owns the card transform (reveal, lift, tilt); a CSS transform transition would smear it */
-  .mo .wcard.reveal{transition:box-shadow .45s cubic-bezier(.2,.7,.2,1)}
-  .mo .wcard:hover{transform:none}
-  .w{display:inline-block}
-  .faq details.closing summary .pm{transform:none;background:transparent;color:var(--indigo);border-color:var(--line-2)}
-  .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
+  .scrollbar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--brand-amber);transform:scaleX(0);transform-origin:0 50%;z-index:70;pointer-events:none}
 
-  /* sealed-at-ingestion stage: canvas scene ported from the Claude Design hero component */
-  /* same gradient the canvas paints, so there is no seam beside the 1280px stage */
-  .sealed{background:linear-gradient(180deg,#22305f,#18234a);padding:0}
-  .sealed .stage{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;overflow:hidden}
-  .sealed canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .sealed .eb{position:absolute;left:5.4%;top:8.6%;display:flex;align-items:center;gap:11px;margin:0}
-  .sealed .eb .dot{width:7px;height:7px;border-radius:50%;background:#F2B84B;box-shadow:0 0 0 4px rgba(242,184,75,.18)}
-  .sealed .eb span:last-child{font-weight:600;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);opacity:.72}
-  .sealed .tl{position:absolute;left:5.4%;bottom:9%;max-width:60%;margin:0;font-family:var(--serif);font-weight:500;font-style:italic;
-    font-size:clamp(21px,2.9vw,38px);line-height:1.12;color:var(--paper);letter-spacing:-.01em;text-wrap:pretty}
-  .sealed .tl span{opacity:.62}
-  /* the canvas switches to a square 680 frame: two linked cards, text still legible */
-  @media (max-width:700px){.sealed .stage{aspect-ratio:1/1}.sealed .tl{max-width:88%}}
-
-  @media (max-width:880px){
+  @media (max-width:860px){
     nav.top ul{display:none}
+    .hero-inner .wrap{grid-template-columns:1fr}
+    .hero .seal{display:none}
     .cards3{grid-template-columns:1fr}
-    .band .grid{grid-template-columns:1fr;gap:36px}
-    .band .media{order:-1;aspect-ratio:4/3}
-    section.block{padding:60px 0}
+    .band .grid{grid-template-columns:1fr;gap:var(--space-32)}
+    section.block,.cta-final .wrap{padding-top:var(--space-62);padding-bottom:var(--space-62)}
+  }
+  @media (max-width:520px){
+    .wrap,nav.top,.cta-final .wrap{padding-left:var(--space-20);padding-right:var(--space-20)}
   }
 </style>
 <script>
@@ -382,13 +236,15 @@
 </head>
 <body>
 <div class="scrollbar" aria-hidden="true"></div>
+<div class="fc-corners--fixed" aria-hidden="true">
+  <span class="fc-corner fc-corner--tl"></span><span class="fc-corner fc-corner--tr"></span>
+  <span class="fc-corner fc-corner--bl"></span><span class="fc-corner fc-corner--br"></span>
+</div>
 
 <!-- ===================== HERO ===================== -->
-<header class="hero" data-screen-label="Hero">
-  <div class="bg"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2200&q=80" alt="Gang in einem Kühllager" fetchpriority="high" decoding="async" /></div>
-
-  <nav class="top" data-enter>
-    <div class="logo"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+<header class="hero fc-glow" data-theme="dark" data-screen-label="Hero">
+  <nav class="top fc-nav" data-enter>
+    <a class="fc-lockup" href="/de"><span class="fc-lockup__disc" aria-hidden="true"></span>FahCel</a>
     <ul>
       <li>Plattform</li>
       <li>Abdeckung</li>
@@ -398,7 +254,7 @@
     </ul>
     <div class="right">
       <a class="signin" href="#">Anmelden</a>
-      <a class="cta" href="/de/book-a-demo">Demo buchen
+      <a class="cta fc-btn fc-btn--outline" href="/de/book-a-demo">Demo buchen
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -406,15 +262,20 @@
 
   <div class="hero-inner">
     <div class="wrap">
-      <span class="h-eyebrow" data-enter><span class="dot"></span> HACCP · Kühlkettenintegrität</span>
-      <h1 data-enter>Kühlung nachgewiesen, <em>von Anfang bis Ende</em>.</h1>
-      <p class="lede" data-enter>FahCel versiegelt jeden Logger-Messwert in einem überprüfbaren Datensatz. So kannst du belegen, dass deine Kühlkette von der Laderampe bis ins Regal intakt blieb.</p>
-      <div class="herocta" data-enter>
-        <a class="btn primary" href="/de/book-a-demo">Demo buchen
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a class="btn ghost" href="/de/hash-chain">So funktioniert die Hash-Kette</a>
+      <div>
+        <p class="fc-eyebrow" data-enter>HACCP · Kühlkettenintegrität</p>
+        <h1 data-enter>Kühlung nachgewiesen, <em>von Anfang bis Ende</em>.</h1>
+        <p class="fc-lede" data-enter>FahCel versiegelt jeden Logger-Messwert in einem überprüfbaren Datensatz. So kannst du belegen, dass deine Kühlkette von der Laderampe bis ins Regal intakt blieb.</p>
+        <div class="herocta" data-enter>
+          <a class="btn primary fc-btn fc-btn--primary" href="/de/book-a-demo">Demo buchen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn fc-btn fc-btn--ghost" href="/de/hash-chain">So funktioniert die Hash-Kette
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
+      <div class="seal" data-enter><img src="/assets/fahcel-logo.jpg" alt="FahCel" width="160" height="160" /></div>
     </div>
   </div>
 
@@ -422,45 +283,39 @@
 </header>
 
 <!-- ===================== SHEET ===================== -->
-<main class="sheet">
+<main class="sheet" data-theme="light">
 
   <!-- coverage / services -->
   <section class="block">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Unsere Abdeckung</span>
-          <h2 class="reveal d1">Überwachung folgt dem <em>Produkt</em>, nicht dem Gebäude.</h2>
+          <p class="fc-eyebrow reveal">Unsere Abdeckung</p>
+          <h2 class="fc-title reveal d1">Überwachung folgt dem <em>Produkt</em>, nicht dem Gebäude.</h2>
         </div>
-        <p class="desc reveal d2">Drahtlose Logger erfassen auf jeder Etappe Temperatur, Feuchtigkeit, Erschütterungen und Licht. FahCel verkettet jeden Messwert, damit sich die Historie nicht unbemerkt umschreiben lässt.</p>
+        <p class="fc-lede reveal d2">Drahtlose Logger erfassen auf jeder Etappe Temperatur, Feuchtigkeit, Erschütterungen und Licht. FahCel verkettet jeden Messwert, damit sich die Historie nicht unbemerkt umschreiben lässt.</p>
       </div>
 
       <div class="cards3">
-        <article class="scard reveal">
-          <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> Lagerung</span><span class="tag">−24 °C → +8 °C</span></div>
-            <img src="/assets/coverage-storage-tablet.jpg" alt="Ein Lagerleiter prüft Messwerte verschiedener Kühlzonen auf einem Tablet" loading="lazy" decoding="async" />
-          </div>
-          <h3>Kühllagerung</h3>
-          <p>Erfasse jeden Gefrierschrank, Kühlraum und jede Zone. Bei Grenzwertüberschreitungen wird das zuständige Team gewarnt, bevor das Produkt gefährdet ist.</p>
+        <article class="fc-card fc-card--on-alt reveal">
+          <span class="fc-card__index">01</span>
+          <div class="cardtags"><span class="fc-chip">Lagerung</span><span class="fc-chip">−24 °C → +8 °C</span></div>
+          <h3 class="fc-card__title">Kühllagerung</h3>
+          <p class="fc-card__body">Erfasse jeden Gefrierschrank, Kühlraum und jede Zone. Bei Grenzwertüberschreitungen wird das zuständige Team gewarnt, bevor das Produkt gefährdet ist.</p>
         </article>
 
-        <article class="scard reveal d1">
-          <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> Unterwegs</span><span class="tag">GPS + Erschütterungen</span></div>
-            <img src="/assets/coverage-transit-driver.jpg" alt="Ein Fahrer prüft eine Sendung auf einem Tablet neben Kartons im Lieferwagen" loading="lazy" decoding="async" />
-          </div>
-          <h3>Unterwegs</h3>
-          <p>Logger begleiten die Palette bei jeder Übergabe und erfassen durchgehend Standort, Erschütterungen und Türöffnungen.</p>
+        <article class="fc-card fc-card--on-alt reveal d1">
+          <span class="fc-card__index">02</span>
+          <div class="cardtags"><span class="fc-chip">Unterwegs</span><span class="fc-chip">GPS + Erschütterungen</span></div>
+          <h3 class="fc-card__title">Unterwegs</h3>
+          <p class="fc-card__body">Logger begleiten die Palette bei jeder Übergabe und erfassen durchgehend Standort, Erschütterungen und Türöffnungen.</p>
         </article>
 
-        <article class="scard reveal d2">
-          <div class="ph">
-            <div class="tags"><span class="tag"><span class="d"></span> Letzte Meile</span><span class="tag">Auditbereit</span></div>
-            <img src="/assets/coverage-retail-pharmacy.jpg" alt="Ein Apotheker prüft einen Liefernachweis auf einem Bildschirm vor gefüllten Regalen" loading="lazy" decoding="async" />
-          </div>
-          <h3>Handel &amp; letzte Meile</h3>
-          <p>Gib Filialen und Prüfern einen überprüfbaren Transportnachweis – ohne Klemmbretter, Lücken oder Streitfälle.</p>
+        <article class="fc-card fc-card--on-alt reveal d2">
+          <span class="fc-card__index">03</span>
+          <div class="cardtags"><span class="fc-chip">Letzte Meile</span><span class="fc-chip">Auditbereit</span></div>
+          <h3 class="fc-card__title">Handel &amp; letzte Meile</h3>
+          <p class="fc-card__body">Gib Filialen und Prüfern einen überprüfbaren Transportnachweis – ohne Klemmbretter, Lücken oder Streitfälle.</p>
         </article>
       </div>
     </div>
@@ -471,15 +326,24 @@
     <div class="wrap">
       <div class="grid">
         <div class="media reveal">
-          <div class="chip c1"><span class="led"></span> Kette intakt · <span class="n">4,210</span> Messwerte</div>
-          <div class="chip c2">verifyChain() → valid: true</div>
-          <img src="/assets/hash-chain-verify.jpg" alt="Eine Qualitätsleitung prüft eine Kühlketten-Hash-Kette auf einem Tablet; der erste veränderte Messwert ist markiert" loading="lazy" decoding="async" />
+          <div class="fc-island" data-theme="dark">
+            <div class="fc-chain" aria-hidden="true">
+              <div class="fc-reading"><span class="fc-reading__idx">01</span><span class="fc-reading__val">08:14:02 4.2°C <span class="fc-reading__hash">a3f9…e21b</span></span><svg class="fc-reading__mark fc-reading__mark--ok" viewBox="0 0 12 12"><path d="M6 0l6 6-6 6-6-6z"/></svg></div>
+              <div class="fc-reading"><span class="fc-reading__idx">02</span><span class="fc-reading__val">08:14:16 5.1°C <span class="fc-reading__hash">7c1d…9f04</span></span><svg class="fc-reading__mark fc-reading__mark--ok" viewBox="0 0 12 12"><path d="M6 0l6 6-6 6-6-6z"/></svg></div>
+              <div class="fc-reading"><span class="fc-reading__idx">03</span><span class="fc-reading__val">08:14:30 3.8°C <span class="fc-reading__hash">e58a…b3c7</span></span><svg class="fc-reading__mark fc-reading__mark--ok" viewBox="0 0 12 12"><path d="M6 0l6 6-6 6-6-6z"/></svg></div>
+              <div class="fc-reading"><span class="fc-reading__idx">04</span><span class="fc-reading__val">08:14:44 4.6°C <span class="fc-reading__hash">1b6e…44da</span></span><svg class="fc-reading__mark fc-reading__mark--ok" viewBox="0 0 12 12"><path d="M6 0l6 6-6 6-6-6z"/></svg></div>
+            </div>
+            <div class="fc-chain__foot">
+              <span class="chip c1 fc-chain__status"><span class="led fc-live-dot"></span> Kette intakt · <span class="n">4,210</span> Messwerte</span>
+              <span class="chip c2">verifyChain() → valid: true</span>
+            </div>
+          </div>
         </div>
         <div class="copy">
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Manipulationen von Grund auf erkennbar</span>
-          <h2 class="reveal d1">Jeder Messwert wird versiegelt in einer <em>Hash-Kette</em>.</h2>
-          <p class="reveal d1">Jeder Messwert enthält den Hash seines Vorgängers. Eine Änderung der Historie unterbricht daher die Kette. Kanonisches JSON macht den Nachweis überall nachrechenbar; der erste veränderte Messwert ist sofort erkennbar.</p>
-          <a class="linkbtn reveal d3" href="/de/hash-chain">So funktioniert die Hash-Kette
+          <p class="fc-eyebrow reveal">Manipulationen von Grund auf erkennbar</p>
+          <h2 class="fc-title reveal d1">Jeder Messwert wird versiegelt in einer <em>Hash-Kette</em>.</h2>
+          <p class="fc-lede reveal d1">Jeder Messwert enthält den Hash seines Vorgängers. Eine Änderung der Historie unterbricht daher die Kette. Kanonisches JSON macht den Nachweis überall nachrechenbar; der erste veränderte Messwert ist sofort erkennbar.</p>
+          <a class="linkbtn fc-btn fc-btn--ghost reveal d3" href="/de/hash-chain">So funktioniert die Hash-Kette
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -488,10 +352,10 @@
   </section>
 
   <!-- sealed at ingestion: live hash-chain scene -->
-  <section class="sealed" aria-label="Bei Eingang versiegelte Messwerte">
+  <section class="sealed fc-glow" data-theme="dark" aria-label="Bei Eingang versiegelte Messwerte">
     <div class="stage">
       <canvas id="sealCanvas" role="img" aria-label="Ein Sensor sendet Temperaturmesswerte. Jeder wird bei Eingang mit einem SHA-256-Hash versiegelt, geprüft und mit dem vorherigen Datensatz verknüpft."></canvas>
-      <p class="eb reveal"><span class="dot"></span><span>Integrität durch Hash-Verkettung</span></p>
+      <p class="eb fc-eyebrow reveal"><span class="dot"></span><span>Integrität durch Hash-Verkettung</span></p>
       <p class="tl reveal d2">Bei Eingang versiegelt.<br><span>Nicht erst im Nachhinein.</span></p>
     </div>
   </section>
@@ -501,66 +365,51 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Warum FahCel</span>
-          <h2 class="reveal d1">Für Menschen, die <em>Verantwortung übernehmen</em> für Sicherheit.</h2>
+          <p class="fc-eyebrow reveal">Warum FahCel</p>
+          <h2 class="fc-title reveal d1">Für Menschen, die <em>Verantwortung übernehmen</em> für Sicherheit.</h2>
         </div>
-        <p class="desc reveal d2">Qualitätsleitungen, Logistikteams und Auditoren arbeiten mit einem gemeinsamen Datensatz: weniger Tabellen, schnellere Freigaben und belastbare Nachweise.</p>
+        <p class="fc-lede reveal d2">Qualitätsleitungen, Logistikteams und Auditoren arbeiten mit einem gemeinsamen Datensatz: weniger Tabellen, schnellere Freigaben und belastbare Nachweise.</p>
       </div>
 
       <div class="cards3">
-        <article class="wcard a reveal">
-          <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
+        <article class="fc-card reveal">
+          <span class="fc-card__index">01</span>
           <a class="warrow" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Compliance</span><span class="wtag">Audit</span></div>
-          <h3>In Sekunden prüfbereit</h3>
-          <p>Exportiere ein signiertes PDF mit der vollständigen Temperaturhistorie einer Sendung und dem Ergebnis der Integritätsprüfung.</p>
+          <div class="wtags"><span class="fc-chip">Compliance</span><span class="fc-chip">Audit</span></div>
+          <h3 class="fc-card__title">In Sekunden prüfbereit</h3>
+          <p class="fc-card__body">Exportiere ein signiertes PDF mit der vollständigen Temperaturhistorie einer Sendung und dem Ergebnis der Integritätsprüfung.</p>
         </article>
 
-        <article class="wcard b reveal d1">
-          <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <article class="fc-card reveal d1">
+          <span class="fc-card__index">02</span>
           <a class="warrow" href="/de/cold-chain-excursion-playbook" aria-label="Leitfaden für Kühlkettenabweichungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Warnungen</span><span class="wtag">Echtzeit</span></div>
-          <h3>Abweichungen sofort erkennen</h3>
-          <p>Warnungen zu Grenzwerten und Türöffnungen erreichen dein Handy sofort – nicht erst bei der nächsten manuellen Kontrolle.</p>
+          <div class="wtags"><span class="fc-chip">Warnungen</span><span class="fc-chip">Echtzeit</span></div>
+          <h3 class="fc-card__title">Abweichungen sofort erkennen</h3>
+          <p class="fc-card__body">Warnungen zu Grenzwerten und Türöffnungen erreichen dein Handy sofort – nicht erst bei der nächsten manuellen Kontrolle.</p>
         </article>
 
-        <article class="wcard c reveal d2">
-          <div class="wicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <article class="fc-card reveal d2">
+          <span class="fc-card__index">03</span>
           <a class="warrow" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-          <div class="wtags"><span class="wtag">Streitfälle</span><span class="wtag">Nachweis</span></div>
-          <h3>Schluss mit Schuldzuweisungen</h3>
-          <p>Wird eine Ladung abgelehnt, zeigt die Kette genau, wo und wann die Kühlung ausfiel und wer die Ladung zu diesem Zeitpunkt betreute.</p>
+          <div class="wtags"><span class="fc-chip">Streitfälle</span><span class="fc-chip">Nachweis</span></div>
+          <h3 class="fc-card__title">Schluss mit Schuldzuweisungen</h3>
+          <p class="fc-card__body">Wird eine Ladung abgelehnt, zeigt die Kette genau, wo und wann die Kühlung ausfiel und wer die Ladung zu diesem Zeitpunkt betreute.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <style>
-    .faq{padding:84px 0;border-top:1px solid var(--line)}
-    .faq .lead{max-width:34ch}
-    .faq .list{margin-top:38px;border-top:1px solid var(--line)}
-    .faq details{border-bottom:1px solid var(--line)}
-    .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
-      padding:24px 4px;font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.2px;color:var(--ink)}
-    .faq summary::-webkit-details-marker{display:none}
-    .faq summary .pm{flex:0 0 auto;width:30px;height:30px;border-radius:99px;border:1px solid var(--line-2);
-      display:grid;place-items:center;color:var(--indigo);transition:transform .25s,background .2s,color .2s}
-    .faq details[open] summary .pm{transform:rotate(45deg);background:var(--indigo);color:#fff;border-color:var(--indigo)}
-    .faq summary .pm svg{width:15px;height:15px}
-    .faq .ans{padding:0 4px 26px;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:64ch}
-    @media (max-width:880px){.faq{padding:60px 0}.faq summary{font-size:17px}}
-  </style>
   <section class="block faq" id="faq">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow-pill reveal"><span class="dot"></span> Häufige Fragen</span>
-          <h2 class="reveal d1">Fragen von Menschen, die <em>Verantwortung übernehmen</em>.</h2>
+          <p class="fc-eyebrow reveal">Häufige Fragen</p>
+          <h2 class="fc-title reveal d1">Fragen von Menschen, die <em>Verantwortung übernehmen</em>.</h2>
         </div>
-        <p class="desc lead reveal d2">Klare Antworten dazu, wie die Kette funktioniert, was FahCel überwacht und wie der Nachweis einer Prüfung standhält.</p>
+        <p class="fc-lede reveal d2">Klare Antworten dazu, wie die Kette funktioniert, was FahCel überwacht und wie der Nachweis einer Prüfung standhält.</p>
       </div>
-      <div class="list reveal d1">
+      <div class="fc-faq reveal d1">
         <details>
           <summary>Was bedeutet Kühlkettenintegrität?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
           <div class="ans">Kühlkettenintegrität belegt, dass ein verderbliches Produkt in jeder Phase innerhalb seines vorgeschriebenen Temperaturbereichs blieb – von der Lagerung über den Transport bis zur letzten Meile. FahCel erfasst jeden Logger-Messwert und versiegelt ihn in einer Hash-Kette, die Manipulationen erkennbar macht. So lässt sich die Historie überprüfen, statt ihr nur zu vertrauen.</div>
@@ -586,30 +435,30 @@
   </section>
 
   <!-- final CTA -->
-  <section class="cta-final" id="cta">
+  <section class="cta-final fc-glow" data-theme="dark" id="cta">
     <div class="cryptochain" aria-hidden="true"><div class="track" id="cryptoTrack"></div></div>
     <div class="wrap">
       <h2 class="reveal">Belege, dass deine Kühlkette <em>intakt blieb</em>.</h2>
-      <p class="reveal d1">Erlebe FahCel an einer echten Sendung: Logger, Warnungen und eine überprüfbare Hash-Kette in einer 20-minütigen Demo.</p>
+      <p class="fc-lede reveal d1">Erlebe FahCel an einer echten Sendung: Logger, Warnungen und eine überprüfbare Hash-Kette in einer 20-minütigen Demo.</p>
       <div class="row reveal d2">
-        <a class="btn primary" href="/de/book-a-demo">Demo buchen
+        <a class="btn primary fc-btn fc-btn--primary" href="/de/book-a-demo">Demo buchen
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn ghost" href="/de/hash-chain">Hash-Kette entdecken</a>
+        <a class="btn fc-btn fc-btn--ghost" href="/de/hash-chain">Hash-Kette entdecken</a>
       </div>
     </div>
   </section>
 
-  <footer class="site">
-    <div class="wrap">
-      <div class="logo"><img class="mark" src="/assets/fahcel-logo.jpg" alt="FahCel" /> FahCel</div>
+  <footer class="fc-foot">
+    <div class="fc-foot__in">
+      <a class="fc-lockup" href="/de"><span class="fc-lockup__disc" aria-hidden="true"></span>FahCel</a>
       <div class="links">
         <a href="#">Plattform</a>
         <a href="#">Compliance</a>
         <a href="/de/cold-chain-excursion-playbook">Leitfaden bei Abweichungen</a>
         <a href="#">Datenschutz</a>
       </div>
-      <div>© 2026 FahCel | Kühlkettenintegrität · <span style="opacity:.8">Zuletzt aktualisiert <time datetime="2026-09-09">9. September 2026</time></span></div>
+      <div>© 2026 FahCel | Kühlkettenintegrität · <span>Zuletzt aktualisiert <time datetime="2026-09-09">9. September 2026</time></span></div>
     </div>
   </footer>
 
@@ -632,8 +481,6 @@
     }
 
     var ease = [.2,.7,.2,1];
-    var spring = { type:'spring', stiffness:220, damping:24 };
-    var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
     // keep the d1/d2/d3 stagger the markup already declares
     function delayOf(el){ return el.classList.contains('d3') ? .24 : el.classList.contains('d2') ? .16 : el.classList.contains('d1') ? .08 : 0; }
 
@@ -672,12 +519,11 @@
       return words;
     }
     function wordsIn(words, startDelay){
-      return M.animate(words, { opacity:[0,1], y:['0.45em',0], filter:['blur(6px)','blur(0px)'] },
+      return M.animate(words, { opacity:[0,1], y:['0.45em',0] },
         { duration:.7, delay:M.stagger(.05, { startDelay:startDelay }), ease:ease });
     }
 
     // ---- hero
-    M.animate('.hero .bg img', { scale:[1.12,1] }, { duration:2.4, ease:ease });
     M.animate('nav.top', { opacity:[0,1], y:[-14,0] }, { duration:.7, ease:ease });
     var h1 = document.querySelector('.hero h1'), h1Words = splitWords(h1);
     h1.style.opacity = 1;
@@ -687,20 +533,18 @@
     M.animate('.scrollcue', { opacity:[0,1] }, { duration:.8, delay:1.2 });
 
     // The hero is sticky and the sheet slides up over it: as it does, the copy lifts and
-    // fades, the photo pushes in, and the scroll cue is the first thing to go.
-    // Driven off scrollY, not the sheet's offset: the sheet already overlaps the hero by 34px
-    // at rest, so a target-based progress starts above zero and dims the hero before any scroll.
-    var heroInner = document.querySelector('.hero-inner'), heroBg = document.querySelector('.hero .bg'), mouse = document.querySelector('.scrollcue .mouse');
+    // fades, and the scroll cue is the first thing to go. Driven off scrollY so the hero
+    // stays put until the reader actually scrolls.
+    var heroInner = document.querySelector('.hero-inner'), mouse = document.querySelector('.scrollcue .mouse');
     M.scroll(function(){
       var t = Math.min(1, Math.max(0, scrollY / innerHeight));
       var out = Math.min(1, t / .75);
       heroInner.style.opacity = 1 - out;
       heroInner.style.transform = 'translateY(' + (-70 * out) + 'px)';
-      heroBg.style.transform = 'scale(' + (1 + .1 * t) + ')';
       mouse.style.opacity = 1 - Math.min(1, t / .2);
     });
 
-    // ---- hash-chain band: the readings chip counts up, then verifyChain() confirms
+    // ---- hash-chain band: the rows land one by one, the count runs up, then verifyChain() confirms
     var count = document.querySelector('.band .chip.c1 .n'), verify = document.querySelector('.band .chip.c2');
     var target = count ? parseInt(count.textContent.replace(/\D/g,''), 10) || 0 : 0;
     var show = function(v){ count.textContent = Math.round(v).toLocaleString('de-DE'); };
@@ -708,14 +552,11 @@
     if (verify) verify.style.opacity = 0;
     function chainIn(d){
       M.animate('.band .chip.c1', { opacity:[0,1], y:[10,0] }, { duration:.5, delay:d + .3, ease:ease });
-      M.animate('.band .chip .led', { boxShadow:['0 0 0 0 rgba(46,107,78,.45)','0 0 0 9px rgba(46,107,78,0)'] }, { duration:1.6, repeat:Infinity, ease:'easeOut' });
+      M.animate('.band .fc-reading', { opacity:[0,1], x:[-8,0] }, { duration:.45, delay:M.stagger(.12, { startDelay:d + .15 }), ease:ease });
       var counted = count ? M.animate(0, target, { duration:1.6, delay:d + .4, ease:ease, onUpdate:show }) : Promise.resolve();
       counted.then(function(){
         if (verify) M.animate(verify, { opacity:[0,1], scale:[.85,1], y:[8,0] }, { type:'spring', stiffness:320, damping:18 });
         if (count) setInterval(function(){ if (!document.hidden) show(++target); }, 3000);
-        document.querySelectorAll('.band .chip').forEach(function(c, i){
-          M.animate(c, { y:[0,-5,0] }, { duration:4.5, delay:.6 + i*1.2, repeat:Infinity, ease:'easeInOut' });
-        });
       });
     }
 
@@ -736,49 +577,11 @@
       }
       M.animate(el, { opacity:[0,1], y:[26,0] }, { duration:.75, delay:d, ease:ease });
 
-      // only the band photo: the coverage photos keep their CSS hover zoom, which an inline
-      // transform left behind by Motion would override
-      if (el.classList.contains('media')) {
-        M.animate(el.querySelector(':scope > img'), { scale:[1.08,1] }, { duration:1.3, delay:d, ease:ease });
-        chainIn(d);
-      }
-
-      // why-card icons draw themselves
-      var paths = el.querySelectorAll('.wicon svg path');
-      if (paths.length) M.animate(paths, { pathLength:[0,1], opacity:[0,1] }, { duration:1.1, delay:d + .25, ease:'easeInOut' });
+      if (el.classList.contains('media')) chainIn(d);
 
       // the hash-chain link's arrow nudges once it lands
       if (el.classList.contains('linkbtn')) M.animate(el.querySelector('svg'), { x:[0,5,0] }, { duration:.7, delay:d + .7, ease:'easeInOut' });
     }, { amount:.12, margin:'0px 0px -8% 0px' });
-
-    // ---- pointer: cards lift and tilt, primary buttons pull toward the cursor
-    M.hover('.wcard', function(el){
-      M.animate(el, { y:-5 }, { duration:.25, ease:ease });
-      return function(){ M.animate(el, { y:0 }, { duration:.35, ease:ease }); };
-    });
-    if (finePointer) {
-      document.querySelectorAll('.wcard, .band .media').forEach(function(el){
-        var max = el.classList.contains('media') ? 4 : 5;
-        M.animate(el, { transformPerspective:1000 }, { duration:0 });
-        el.addEventListener('pointermove', function(e){
-          var r = el.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-          M.animate(el, { rotateY:px * max, rotateX:-py * max }, spring);
-        });
-        el.addEventListener('pointerleave', function(){ M.animate(el, { rotateX:0, rotateY:0 }, spring); });
-      });
-      document.querySelectorAll('.btn.primary, nav.top .cta').forEach(function(el){
-        el.addEventListener('pointermove', function(e){
-          var r = el.getBoundingClientRect();
-          M.animate(el, { x:(e.clientX - r.left - r.width/2) * .22, y:(e.clientY - r.top - r.height/2) * .3 }, { type:'spring', stiffness:300, damping:20 });
-        });
-        el.addEventListener('pointerleave', function(){ M.animate(el, { x:0, y:0 }, { type:'spring', stiffness:300, damping:15 }); });
-      });
-    }
-    M.press('.btn, nav.top .cta', function(el){
-      M.animate(el, { scale:.95 }, { duration:.12 });
-      return function(){ M.animate(el, { scale:1 }, { type:'spring', stiffness:500, damping:18 }); };
-    });
 
     // ---- FAQ: height animates open and closed instead of snapping
     document.querySelectorAll('.faq details').forEach(function(d){
@@ -817,8 +620,8 @@
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     var narrow = matchMedia('(max-width:700px)');
 
-    var NAVY = '#1E2A5A', AMBER = '#F2B84B', GREEN = '#2E6B4E', CREAM = '#F6F7F4', NAVY_D = '#16203f';
-    var SANS = 'Inter, system-ui, sans-serif', MONO = "'JetBrains Mono', ui-monospace, monospace";
+    var NAVY = '#1E2A5A', AMBER = '#F2B84B', GREEN = '#2E6B4E', CREAM = '#F6F7F4', NAVY_D = '#141D40';
+    var SANS = '"Schibsted Grotesk", system-ui, sans-serif', MONO = '"Martian Mono", ui-monospace, monospace';
     function clamp(x, a, b){ a = a === undefined ? 0 : a; b = b === undefined ? 1 : b; return Math.max(a, Math.min(b, x)); }
     function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
     function easeInOut(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
@@ -882,7 +685,7 @@
       }
       ctx.save();
       ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 10;
-      roundRect(sx - 34, sy - 46, 68, 92, 14); ctx.fillStyle = CREAM; ctx.fill();
+      roundRect(sx - 34, sy - 46, 68, 92, 8); ctx.fillStyle = CREAM; ctx.fill();
       ctx.restore();
       roundRect(sx - 22, sy - 34, 44, 30, 5); ctx.fillStyle = NAVY; ctx.fill();
       // mini waveform on the logger's screen
@@ -934,18 +737,18 @@
 
       ctx.save();
       ctx.shadowColor = 'rgba(0,0,0,.32)'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12;
-      roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.fillStyle = CREAM; ctx.fill();
+      roundRect(-cardW/2, -cardH/2, cardW, cardH, 6); ctx.fillStyle = CREAM; ctx.fill();
       ctx.restore();
-      roundRect(-cardW/2, footTop, cardW, cardH/2 - footTop, { tl:0, tr:0, br:15, bl:15 }); ctx.fillStyle = NAVY_D; ctx.fill();
+      roundRect(-cardW/2, footTop, cardW, cardH/2 - footTop, { tl:0, tr:0, br:6, bl:6 }); ctx.fillStyle = NAVY_D; ctx.fill();
 
       // amber glow while the record is being sealed
       if (life < .5) {
         ctx.save();
         ctx.shadowColor = rgba(AMBER, .9 * (1 - sealP)); ctx.shadowBlur = 22 * (1 - sealP) + 4;
-        roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.strokeStyle = AMBER; ctx.lineWidth = 2.4; ctx.stroke();
+        roundRect(-cardW/2, -cardH/2, cardW, cardH, 6); ctx.strokeStyle = AMBER; ctx.lineWidth = 2.4; ctx.stroke();
         ctx.restore();
       }
-      roundRect(-cardW/2, -cardH/2, cardW, cardH, 15); ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.stroke();
+      roundRect(-cardW/2, -cardH/2, cardW, cardH, 6); ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.stroke();
 
       var padL = -cardW/2 + 18;
       ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
@@ -989,13 +792,8 @@
     }
 
     function drawBg(){
+      // transparent: the section's navy and seal-glow show through, edge to edge
       ctx.clearRect(0, 0, W, H);
-      var g = ctx.createLinearGradient(0, 0, 0, H);
-      g.addColorStop(0, '#22305f'); g.addColorStop(1, '#18234a');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      var rg = ctx.createRadialGradient(W*.42, cy, 60, W*.42, cy, 720);
-      rg.addColorStop(0, 'rgba(120,140,210,.14)'); rg.addColorStop(1, 'rgba(120,140,210,0)');
-      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
       ctx.fillStyle = 'rgba(246,247,244,.045)';
       for (var gx = 40; gx < W; gx += 48) for (var gy = 40; gy < H; gy += 48) { ctx.beginPath(); ctx.arc(gx, gy, 1, 0, Math.PI*2); ctx.fill(); }
       ctx.strokeStyle = 'rgba(246,247,244,.08)'; ctx.lineWidth = 1;

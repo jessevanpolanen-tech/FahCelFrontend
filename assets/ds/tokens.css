@@ -1,0 +1,98 @@
+/* FahCel — generated from tokens.json by scripts/build-tokens.py. Do not edit. */
+
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-Variable-Italic.woff2") format("woff2");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url("fonts/SchibstedGrotesk-Variable.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url("fonts/SchibstedGrotesk-Variable-Italic.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Martian Mono";src:url("fonts/MartianMono-Variable.woff2") format("woff2");font-weight:100 800;font-style:normal;font-display:swap}
+
+:root,[data-theme="light"]{
+  --brand-navy:#1E2A5A;
+  --brand-navy-deep:#141D40;
+  --brand-amber:#F2B84B;
+  --brand-seal:#BE1E29;
+  --brand-green:#2E6B4E;
+  --brand-cream:#F6F7F4;
+  --brand-dot:#28519D;
+  --surface:#FFFFFF;
+  --surface-alt:var(--brand-cream);
+  --surface-panel:var(--brand-navy);
+  --ink:var(--brand-navy);
+  --text:#5A6178;
+  --text-subtle:#5A6178;
+  --line:#E3E5DF;
+  --eyebrow:var(--brand-green);
+  --accent:var(--brand-amber);
+  --accent-tint:#FDF3DC;
+  --accent-line:#F0DCA8;
+  --chip:#E9ECF5;
+  --chip-ink:#2A3A72;
+  --tag-ink:var(--brand-navy);
+  --tag-line:var(--brand-navy);
+  --on-accent:var(--brand-navy-deep);
+  --seal:var(--brand-seal);
+  --seal-tint:rgba(190, 30, 41, 0.08);
+  --seal-text:var(--brand-seal);
+  --verified:var(--brand-green);
+  --verified-text:var(--brand-green);
+  --focus-ring:var(--brand-navy);
+  --glow-amber:rgba(242, 184, 75, 0.16);
+  --glow-green:rgba(46, 107, 78, 0.2);
+  --font-display:Fraunces, Cambria, Georgia, serif;
+  --font-sans:"Schibsted Grotesk", Calibri, "Helvetica Neue", -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"Martian Mono", Consolas, "SF Mono", ui-monospace, monospace;
+  --space-4:4px;
+  --space-8:8px;
+  --space-12:12px;
+  --space-14:14px;
+  --space-18:18px;
+  --space-20:20px;
+  --space-24:24px;
+  --space-28:28px;
+  --space-32:32px;
+  --space-48:48px;
+  --space-56:56px;
+  --space-62:62px;
+  --space-88:88px;
+  --radius-xs:2px;
+  --radius-s:4px;
+  --radius-m:6px;
+  --radius-l:8px;
+  --radius-pill:999px;
+  --radius-round:50%;
+  --shadow-raised:inset 0 1px 0 rgba(246, 247, 244, 0.06), 0 24px 60px rgba(0, 0, 0, 0.35);
+  --shadow-accent:0 6px 20px rgba(242, 184, 75, 0.24);
+  --shadow-accent-hover:0 10px 28px rgba(242, 184, 75, 0.34);
+  --shadow-seal-ring:0 0 0 3px rgba(190, 30, 41, 0.12);
+  --container:1120px;
+  --measure-lede:30rem;
+  --measure-title:32rem;
+  --hairline:1px;
+  --bracket-size:26px;
+  --bracket-stroke:1.5px;
+  --bracket-inset:18px;
+}
+[data-theme="dark"]{
+  --surface:var(--brand-navy);
+  --surface-alt:rgba(246, 247, 244, 0.03);
+  --surface-panel:var(--brand-navy-deep);
+  --ink:var(--brand-cream);
+  --text:#C8CEE4;
+  --text-subtle:#9AA2C4;
+  --line:rgba(246, 247, 244, 0.14);
+  --eyebrow:var(--brand-amber);
+  --accent-tint:rgba(242, 184, 75, 0.12);
+  --accent-line:rgba(242, 184, 75, 0.5);
+  --chip:rgba(246, 247, 244, 0.08);
+  --chip-ink:var(--brand-cream);
+  --tag-ink:var(--brand-amber);
+  --tag-line:rgba(242, 184, 75, 0.5);
+  --seal-tint:rgba(190, 30, 41, 0.14);
+  --seal-text:var(--brand-cream);
+  --verified-text:var(--brand-cream);
+  --focus-ring:var(--brand-amber);
+  --accent:var(--brand-amber);
+  --on-accent:var(--brand-navy-deep);
+  --seal:var(--brand-seal);
+  --verified:var(--brand-green);
+}

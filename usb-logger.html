@@ -3,20 +3,20 @@
 <head>
 <!--
   ============================================================================
-  PRE-LAUNCH CHECKLIST — /usb-logger  (brand: koudwijs°, working name)
+  PRE-LAUNCH CHECKLIST — /usb-logger  (FahCel Dataloggers)
   ============================================================================
-  Since 2026-10-13 this page is its own brand: no FahCel name, logo, links,
-  hash chain or verification anywhere a visitor can see. Only the plumbing is
-  shared: the form still posts to the FahCel tenant so the lead reaches the
-  operator's dashboard.
+  Sold as "FahCel Dataloggers" since 2026-10-19 (was the working name
+  koudwijs°). It keeps its own look — square ink rules, condensed display
+  type, scroll-driven motion — in FahCel's colours and body fonts. Still a
+  pure logger sales page: no hash chain or platform upsell (see CLAUDE.md).
+  The form posts to the FahCel tenant so the lead reaches the operator's
+  dashboard.
 
   It still ships with PLACEHOLDER hardware figures. Every one of them is
   wrapped in <span class="tbd"> and renders with an amber dashed underline, so
   an unverified number cannot reach a customer unnoticed.
 
   Before publishing:
-    [ ] Confirm the brand name "koudwijs°" (working name) and give it its own
-        domain; the canonical below still points at fahcel.eu
     [ ] Replace every .tbd value against the real datasheet (search: class="tbd")
     [ ] Confirm the sample-pack commercial terms (free? paid? quantity?)
     [ ] Confirm certifications — these are regulated claims, do not guess
@@ -24,26 +24,26 @@
     [ ] Flip <meta name="robots"> from noindex,nofollow to index,follow
     [ ] Uncomment the /usb-logger entry in sitemap.xml
     [ ] Add price + availability to the Product JSON-LD "offers" block
-    [ ] Add an og:image in this brand's style (the FahCel one was removed)
+    [ ] Add an og:image for this page
   ============================================================================
 -->
 <meta charset="utf-8" />
-<title>USB-temperatuurloggers, ingesteld op jouw route | koudwijs°</title>
+<title>USB-temperatuurloggers, ingesteld op jouw route | FahCel Dataloggers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="USB-temperatuurloggers van Elitech die met je zending meereizen, door ons ingesteld op jouw interval en grenswaarden. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
 <link rel="canonical" href="https://www.fahcel.eu/usb-logger" />
 <!-- TODO(pre-launch): flip to index,follow once every .tbd spec is verified. -->
 <meta name="robots" content="noindex,nofollow" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="koudwijs°" />
+<meta property="og:site_name" content="FahCel Dataloggers" />
 <meta property="og:locale" content="nl_NL" />
 <meta property="og:url" content="https://www.fahcel.eu/usb-logger" />
-<meta property="og:title" content="Koud gehouden? Zwart op wit. | koudwijs°" />
+<meta property="og:title" content="Koud gehouden? Zwart op wit. | FahCel Dataloggers" />
 <meta property="og:description" content="USB-temperatuurloggers van Elitech, door ons ingesteld op jouw route. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Koud gehouden? Zwart op wit. | koudwijs°" />
+<meta name="twitter:title" content="Koud gehouden? Zwart op wit. | FahCel Dataloggers" />
 <meta name="twitter:description" content="USB-temperatuurloggers van Elitech, door ons ingesteld op jouw route. Insteken bij aankomst en het temperatuurverloop staat zwart op wit." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0F0F'/%3E%3Ccircle cx='16' cy='16' r='7.5' fill='none' stroke='%23FF4A1C' stroke-width='5'/%3E%3C/svg%3E" />
+<link rel="icon" href="/assets/fahcel-logo.jpg" />
 <!-- NOTE(pre-launch): the Product node below has no "offers" block on purpose.
      Add price, priceCurrency and availability once commercial terms are set — a
      fabricated price in structured data is both a rich-result penalty and a
@@ -56,7 +56,7 @@
     {
       "@type": "Organization",
       "@id": "https://www.fahcel.eu/usb-logger#org",
-      "name": "koudwijs°",
+      "name": "FahCel Dataloggers",
       "url": "https://www.fahcel.eu/usb-logger"
     },
     {
@@ -126,22 +126,28 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/ds/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  /* koudwijs° — its own brand, deliberately sharing nothing visual with FahCel: square corners,
-     ink rules instead of cards, a condensed grotesk instead of serif, and one hot accent on ice. */
+  /* FahCel Dataloggers — the logger shop keeps its own composition (square corners, ink rules
+     instead of cards, a condensed grotesk instead of serif) but wears FahCel's palette: navy ink,
+     cream ground, amber as the one hot accent. Body and mono come from the FahCel design system
+     (/assets/ds); declared here rather than via tokens.css, whose --ink would collide. */
+  @font-face{font-family:"Schibsted Grotesk";src:url("/assets/ds/fonts/SchibstedGrotesk-Variable.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+  @font-face{font-family:"Schibsted Grotesk";src:url("/assets/ds/fonts/SchibstedGrotesk-Variable-Italic.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
+  @font-face{font-family:"Martian Mono";src:url("/assets/ds/fonts/MartianMono-Variable.woff2") format("woff2");font-weight:100 800;font-display:swap}
   :root{
-    --ice:#E4ECEE;
-    --snow:#F5F8F8;
-    --ink:#0D0F0F;
-    --ink-2:#2B3031;
-    --mute:#566163;
-    --hair:rgba(13,15,15,.16);
-    --heat:#FF4A1C;
-    --band:#CFE0E3;
+    --ice:#F6F7F4;   /* FahCel cream */
+    --snow:#FFFFFF;
+    --ink:#1E2A5A;   /* FahCel navy */
+    --ink-2:#5A6178;
+    --mute:#5A6178;
+    --hair:rgba(30,42,90,.16);
+    --heat:#F2B84B;  /* FahCel amber: fills and marks; never small text on the light grounds */
+    --band:#E9ECF5;
     --d:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
-    --s:'Instrument Sans',system-ui,sans-serif;
-    --m:'DM Mono',ui-monospace,monospace;
+    --s:'Schibsted Grotesk',system-ui,sans-serif;
+    --m:'Martian Mono',ui-monospace,monospace;
     --gut:clamp(18px,3.2vw,44px);
     --nav:64px;
     --ez:cubic-bezier(.7,0,.15,1);
@@ -156,6 +162,7 @@
   .wrap{max-width:1400px;margin:0 auto;padding-inline:var(--gut)}
   section{scroll-margin-top:var(--nav)}
   .deg{color:var(--heat)}
+  .mark .sub{font-weight:500}
 
   /* ---------- DRAFT BANNER — delete this block and the .draftbar element before launch ---------- */
   .draftbar{background:#fbe9c0;border-bottom:1.5px solid var(--ink);color:#5b3f04;font-size:13px;line-height:1.5;padding:10px var(--gut);font-family:var(--m)}
@@ -212,15 +219,15 @@
   .htile .reg.b{top:14px;right:14px;border-top-width:1.5px;border-right-width:1.5px}
 
   .hread{grid-column:9/span 4;background:var(--ink);color:var(--ice);padding:22px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
-  .hread .rtop,.hread .rbot{display:flex;justify-content:space-between;gap:12px;font-family:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.66)}
+  .hread .rtop,.hread .rbot{display:flex;justify-content:space-between;gap:12px;font-family:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.66)}
   .hread .rbot{justify-content:flex-start;align-items:center;color:var(--ice)}
   .hread .led{width:8px;height:8px;border-radius:50%;background:var(--heat);display:inline-block}
   .hread .rtemp{font-family:var(--d);font-weight:700;font-stretch:78%;font-size:clamp(84px,9vw,148px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
   .hread .rtemp small{font-size:.32em;letter-spacing:-.02em;margin-left:.12em;vertical-align:top;color:var(--heat)}
   .spark{width:100%;height:auto;display:block}
-  .spark .bandr{fill:rgba(207,224,227,.1)}
-  .spark .lim{stroke:rgba(228,236,238,.35);stroke-width:1;stroke-dasharray:3 4}
-  .spark text{font-family:var(--m);font-size:9.5px;fill:rgba(228,236,238,.55)}
+  .spark .bandr{fill:rgba(246,247,244,.08)}
+  .spark .lim{stroke:rgba(246,247,244,.35);stroke-width:1;stroke-dasharray:3 4}
+  .spark text{font-family:var(--m);font-size:9.5px;fill:rgba(246,247,244,.55)}
   .spark #sparkPath{fill:none;stroke:var(--heat);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
   .spark #sparkDot{fill:var(--heat)}
   .spark #sparkRing{fill:none;stroke:var(--heat);stroke-width:1.5;transform-box:fill-box;transform-origin:center}
@@ -258,7 +265,7 @@
   .trio{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(56px,7vw,100px);border-top:1.5px solid var(--ink)}
   .trio > div{padding:22px 28px 0 0}
   .trio > div + div{padding-left:24px;border-left:1px solid var(--hair)}
-  .trio .n{font-family:var(--m);font-size:12px;color:var(--heat);font-weight:500}
+  .trio .n{font-family:var(--m);font-size:12px;color:var(--ink);font-weight:500}
   .trio h3{font-family:var(--d);font-weight:700;font-stretch:84%;font-size:clamp(24px,2.3vw,32px);letter-spacing:-.03em;line-height:1;margin:14px 0 12px}
   .trio p{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 
@@ -280,7 +287,7 @@
   .facts{margin:auto 0 0;padding:0}
   .facts div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--hair);font-size:13px}
   .facts dt{font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
-  .facts dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .facts dd{margin:0;font-weight:600;text-align:right}
   .mcard.own{background:var(--heat);grid-template-columns:1fr}
   .mcard.own .mb{padding:30px 32px}
   .mcard.own .mtop,.mcard.own .maker{color:var(--ink)}
@@ -301,19 +308,19 @@
 
   /* ---------- 03 Glog 5 live: ink section, the device turns inside a dial ---------- */
   .live{background:var(--ink);color:var(--ice);overflow:hidden}
-  .live .sdesc{color:rgba(228,236,238,.78)}
+  .live .sdesc{color:rgba(246,247,244,.78)}
   .lgrid{display:grid;grid-template-columns:1fr minmax(220px,420px) 1fr;gap:0 clamp(20px,4vw,64px);align-items:center}
   .lcol{display:flex;flex-direction:column}
-  .rd{border-top:1px solid rgba(228,236,238,.22);padding:16px 0 24px}
+  .rd{border-top:1px solid rgba(246,247,244,.22);padding:16px 0 24px}
   .rd b{display:block;font-family:var(--d);font-weight:700;font-stretch:78%;font-size:clamp(36px,4.4vw,68px);line-height:.92;letter-spacing:-.045em;color:var(--heat);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .rd > span{display:block;margin-top:8px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.7)}
+  .rd > span{display:block;margin-top:8px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.7)}
   .lcol.r .rd{text-align:right}
   .dev{position:relative;aspect-ratio:1;display:grid;place-items:center}
   .dial{position:absolute;inset:-6%;width:112%;height:112%}
   .dial circle{fill:none}
   .dev .bob{position:relative;width:62%}
-  .dev img{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55))}
-  .lnote{margin-top:clamp(40px,5vw,64px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--ice);padding-top:14px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.7)}
+  .dev img{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 34px rgba(10,14,32,.55))}
+  .lnote{margin-top:clamp(40px,5vw,64px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--ice);padding-top:14px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.7)}
 
   /* ---------- 04 Zo werkt het ---------- */
   .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--hair)}
@@ -353,7 +360,7 @@
   .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:0 64px;margin:0;border-top:1.5px solid var(--ink)}
   .specs .row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:16px 0;border-bottom:1px solid var(--hair)}
   .specs dt{font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
-  .specs dd{margin:0;font-weight:600;font-size:16px;text-align:right;font-variant-numeric:tabular-nums}
+  .specs dd{margin:0;font-weight:600;font-size:16px;text-align:right}
 
   /* ---------- 08 Proefpakket ---------- */
   .order{background:var(--heat);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
@@ -363,7 +370,7 @@
   .ocopy{grid-column:1/span 5}
   .ocopy .lead{font-size:18px;line-height:1.55;margin:0 0 28px;text-wrap:pretty}
   .incl{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
-  .incl li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(13,15,15,.25);font-size:15.5px;line-height:1.45}
+  .incl li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(30,42,90,.25);font-size:15.5px;line-height:1.45}
   .incl li b{font-family:var(--m);font-weight:500;font-size:12px;padding-top:3px}
   .form{grid-column:7/span 6;background:var(--snow);border:1.5px solid var(--ink);box-shadow:12px 12px 0 var(--ink);padding:30px 32px 28px}
   .form .kick{margin-bottom:12px;color:var(--mute)}
@@ -377,13 +384,13 @@
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D0F0F' stroke-width='2.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 2px center/16px no-repeat}
   .form textarea{resize:vertical;min-height:70px;line-height:1.45}
   .form input:focus,.form select:focus,.form textarea:focus{border-bottom-color:var(--heat)}
-  .form input::placeholder,.form textarea::placeholder{color:#97a2a4}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(90,97,120,.75)}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
   .submit{width:100%;justify-content:space-between;margin-top:6px;background:var(--ink);color:var(--snow);font-size:16px;padding:19px 22px}
   .submit::before{background:var(--heat)}
   .submit:hover{color:var(--ink)}
   .submit:disabled{opacity:.6;cursor:default}
-  .err{display:none;margin-top:12px;font-size:14px;color:#8f1f0b;border-left:3px solid var(--heat);padding:8px 12px;background:#fde5dd;line-height:1.5}
+  .err{display:none;margin-top:12px;font-size:14px;color:#BE1E29;border-left:3px solid #BE1E29;padding:8px 12px;background:rgba(190,30,41,.08);line-height:1.5}
   .fineprint{font-size:12.5px;color:var(--mute);margin:16px 0 0;line-height:1.55}
   .form.off{display:none}
   .done{display:none}
@@ -421,7 +428,7 @@
   footer.site{background:var(--ink);color:var(--ice);overflow:hidden}
   .bigmark{font-family:var(--d);font-weight:800;font-stretch:75%;font-size:33vw;line-height:.8;letter-spacing:-.06em;padding:4vw 0 .04em;margin-left:-.04em;display:flex;white-space:nowrap;overflow:hidden}
   .bigmark span{display:inline-block}
-  .fbar{display:flex;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;padding:22px var(--gut) 26px;border-top:1px solid rgba(228,236,238,.2);font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(228,236,238,.66)}
+  .fbar{display:flex;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;padding:22px var(--gut) 26px;border-top:1px solid rgba(246,247,244,.2);font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.66)}
   .fbar nav{display:flex;gap:22px;flex-wrap:wrap}
   .fbar a:hover{color:var(--heat)}
 
@@ -501,7 +508,7 @@
 </div>
 
 <nav class="top">
-  <a class="mark" href="#top" aria-label="koudwijs, naar boven">koudwijs<span class="deg">°</span></a>
+  <a class="mark" href="#top" aria-label="FahCel Dataloggers, naar boven">FahCel <span class="sub">Dataloggers</span><span class="deg">°</span></a>
   <ul>
     <li><a href="#loggers">Loggers</a></li>
     <li><a href="#glog5">Live 4G</a></li>
@@ -733,10 +740,10 @@
       </div>
       <div class="dev" aria-hidden="true">
         <svg class="dial" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="96" stroke="rgba(228,236,238,.18)" stroke-width="1"/>
-          <circle cx="100" cy="100" r="90" stroke="rgba(228,236,238,.5)" stroke-width="6" stroke-dasharray="0.6 4.11"/>
-          <circle cx="100" cy="100" r="90" stroke="#FF4A1C" stroke-width="6" stroke-dasharray="0.8 46.3"/>
-          <circle cx="100" cy="100" r="78" stroke="#FF4A1C" stroke-width="1.5" stroke-dasharray="120 370"/>
+          <circle cx="100" cy="100" r="96" stroke="rgba(246,247,244,.18)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="90" stroke="rgba(246,247,244,.5)" stroke-width="6" stroke-dasharray="0.6 4.11"/>
+          <circle cx="100" cy="100" r="90" stroke="#F2B84B" stroke-width="6" stroke-dasharray="0.8 46.3"/>
+          <circle cx="100" cy="100" r="78" stroke="#F2B84B" stroke-width="1.5" stroke-dasharray="120 370"/>
         </svg>
         <div class="bob"><img src="/assets/elitech-glog-5-cutout.webp" width="372" height="557" alt="" /></div>
       </div>
@@ -777,7 +784,7 @@
     </div>
     <table class="cmp">
       <thead>
-        <tr><th scope="col">&nbsp;</th><th scope="col">Los gekocht</th><th scope="col">Via koudwijs°</th></tr>
+        <tr><th scope="col">&nbsp;</th><th scope="col">Los gekocht</th><th scope="col">Via FahCel Dataloggers</th></tr>
       </thead>
       <tbody>
         <tr class="rv"><th scope="row">Instellingen</th><td>Fabrieks&shy;instellingen, die je zelf moet aanpassen.</td><td class="us">Vooraf ingesteld op jouw interval en grens&shy;waarden.</td></tr>
@@ -967,9 +974,9 @@
 </section>
 
 <footer class="site">
-  <div class="bigmark" aria-hidden="true"><span>k</span><span>o</span><span>u</span><span>d</span><span>w</span><span>i</span><span>j</span><span>s</span><span class="deg">°</span></div>
+  <div class="bigmark" aria-hidden="true"><span>F</span><span>a</span><span>h</span><span>C</span><span>e</span><span>l</span><span class="deg">°</span></div>
   <div class="fbar">
-    <span>© 2026 koudwijs° — USB-temperatuurloggers</span>
+    <span>© 2026 FahCel Dataloggers — USB-temperatuurloggers</span>
     <nav aria-label="Voettekst">
       <a href="#loggers">Loggers</a><a href="#werking">Zo werkt het</a><a href="#specs">Specificaties</a><a href="#faq">Vragen</a><a href="#order">Proefpakket</a>
     </nav>
@@ -1242,9 +1249,9 @@
       if(!name){ showErr('Vul je naam in.'); return; }
 
       var ref = 'KW-'+Math.random().toString(36).slice(2,7).toUpperCase();
-      var note = 'USB logger sample pack request (koudwijs brand page). Lane: ' + (lane || 'not given') + '. Volume: ' + volume + '.';
+      var note = 'USB logger sample pack request (FahCel Dataloggers page). Lane: ' + (lane || 'not given') + '. Volume: ' + volume + '.';
 
-      // The page is its own brand, but the lead lands in the FahCel tenant on purpose: that is
+      // The lead lands in the FahCel tenant on purpose: that is
       // the operator's dashboard. Tenant-scoped so FahCel and Dr. Fry never see each other's leads.
       //
       // Deliberately NO enroll/sequenceId: capture-lead only enrolls when one is sent, and

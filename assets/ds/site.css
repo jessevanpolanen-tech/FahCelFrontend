@@ -1,0 +1,51 @@
+/* FahCel site layer: what the public pages share on top of tokens.css and components.css.
+   Every value reads a design-system token; page <style> blocks hold layout only. */
+
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent-tint);color:var(--ink)}
+:where(a,button,summary,input,select,textarea):focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+
+/* Section title: display-m, sentence case, one italic accent phrase */
+.fc-title{margin:var(--space-18) 0 0;font-family:var(--font-display);font-weight:500;font-size:clamp(28.8px,3.6vw,41.6px);line-height:1.1;letter-spacing:-.015em;color:var(--ink);max-width:var(--measure-title);text-wrap:balance}
+.fc-title em{font-style:italic;color:var(--accent)}
+
+/* Site nav: the header lockup, mono links, the outline CTA. Takes the theme it sits in. */
+.fc-nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-24)}
+.fc-nav ul{display:flex;gap:var(--space-28);list-style:none;margin:0;padding:0;font-family:var(--font-mono);font-size:10.56px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
+.fc-nav li a{color:inherit;text-decoration:none;transition:color .15s}
+.fc-nav li a:hover{color:var(--ink)}
+.fc-nav .right{display:flex;align-items:center;gap:var(--space-12)}
+.fc-nav .signin{font-family:var(--font-mono);font-size:10.56px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text);text-decoration:none;padding:8px 6px}
+.fc-nav .signin:hover{color:var(--ink)}
+.fc-btn svg{width:13px;height:13px;flex:none}
+.fc-btn--ghost svg{transition:transform .2s}
+.fc-btn--ghost:hover svg{transform:translateX(3px)}
+
+/* The FAQ disclosure: Fraunces question, hairline rules, square +/- toggle */
+.fc-faq{border-top:var(--hairline) solid var(--line)}
+.fc-faq details{border-bottom:var(--hairline) solid var(--line)}
+.fc-faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:var(--space-24);padding:var(--space-24) var(--space-4);font-family:var(--font-display);font-weight:500;font-size:20.8px;line-height:1.3;color:var(--ink)}
+.fc-faq summary::-webkit-details-marker{display:none}
+.fc-faq .pm{flex:none;width:30px;height:30px;border:var(--hairline) solid var(--line);border-radius:var(--radius-xs);display:grid;place-items:center;color:var(--ink);transition:transform .25s,background .2s,color .2s,border-color .2s}
+.fc-faq .pm svg{width:14px;height:14px}
+.fc-faq details[open] summary .pm{transform:rotate(45deg);background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.fc-faq details.closing summary .pm{transform:none;background:transparent;color:var(--ink);border-color:var(--line)}
+@media (max-width:860px){.fc-faq summary{font-size:18.4px}}
+
+/* Mono footer line: hairline above, descriptor left, links and date right */
+.fc-foot{border-top:var(--hairline) solid var(--line);background:var(--surface-alt)}
+.fc-foot .fc-foot__in{max-width:var(--container);margin:0 auto;padding:var(--space-24) var(--space-32) var(--space-32);display:flex;align-items:center;justify-content:space-between;gap:var(--space-20);flex-wrap:wrap;font-family:var(--font-mono);font-size:10.56px;line-height:1.7;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
+.fc-foot a:not(.fc-lockup){color:inherit;text-decoration:none}
+.fc-foot a:not(.fc-lockup):hover{color:var(--ink)}
+.fc-foot .links{display:flex;gap:var(--space-24);flex-wrap:wrap}
+.fc-foot .fc-lockup{font-size:18px;text-transform:none;letter-spacing:-.01em}
+.fc-foot .fc-lockup__disc{width:18px;height:18px}
+@media (max-width:520px){.fc-foot .fc-foot__in{padding:var(--space-20)}}
+
+/* Navy grounds carry the seal-glow and nothing else */
+/* isolation + z-index:-1 keeps the glow under every child without repositioning them */
+.fc-glow{position:relative;overflow:hidden;isolation:isolate;background:var(--surface)}
+.fc-glow::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(720px 520px at 88% 0%,var(--glow-amber),transparent 60%),radial-gradient(640px 640px at 6% 100%,var(--glow-green),transparent 62%)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

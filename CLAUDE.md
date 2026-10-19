@@ -51,6 +51,28 @@ is served raw and transpiled in the browser by `@babel/standalone`. That means:
 - **Nothing type-checks it.** A syntax error is a blank white dashboard.
 - Verify changes parse before deploying (see *Verifying changes*).
 
+## Design system (public pages)
+
+The five public pages (`index`, `hash-chain`, `cold-chain-excursion-playbook`,
+`playbook-download`, `book-a-demo`) and their generated `nl/` + `de/` copies follow the
+**FahCel design system** artifact (claude.ai/artifact/KW9ZHhiJUhPbBsM2BArEam), applied 2026-10-19.
+
+| Path | What it is |
+|---|---|
+| `assets/ds/tokens.json` | Verbatim copy of the system's tokens. Re-sync = replace it, run `python3 scripts/build-tokens.py`. |
+| `assets/ds/tokens.css` | **Generated** (`--check` detects drift). `:root` = Paper theme, `[data-theme="dark"]` = Navy. |
+| `assets/ds/components.css` | Verbatim copy of the system's `components/bundle.css` (`fc-` classes). |
+| `assets/ds/site.css` | Site layer on top: nav, FAQ disclosure, footer line, `.fc-glow` (seal-glow on navy). |
+| `assets/ds/fonts/` | Fraunces, Schibsted Grotesk, Martian Mono, self-hosted (no Google Fonts on these pages). |
+
+Rules that matter when editing: navy grounds get `data-theme="dark"` so tokens flip; amber is
+never small text on paper (1.8:1); no photography, no pictogram icons, no gradients except the
+seal-glow; buttons are `fc-btn--primary` (amber) / `--outline` / `--ghost`. Each page's
+`<style>` maps its old variable names (`--indigo`, `--teal`, `--muted`…) onto the tokens, so
+existing rules keep working. **Do not change visible copy without updating `locales/*.tsv`**:
+`build-locales.py` translates by exact text, and an unmatched string ships in English on
+`/nl` and `/de`. Its form-page switcher anchors on `<a class="fc-lockup">`.
+
 ## Backend
 
 Shared Node/Postgres sequencer on Vercel, **multi-tenant** — FahCel and Dr. Fry
@@ -260,7 +282,13 @@ independently and the backend has silently rolled back at least once.
 
 ## USB logger page — launch status
 
-`usb-logger.html` → `/usb-logger`. **The page is in Dutch** (`lang="nl"`, `nl_NL`,
+`usb-logger.html` → `/usb-logger`. **Sold as "FahCel Dataloggers"** (renamed 2026-10-19 from the
+working name *koudwijs°*). It keeps its **own look** on purpose — square ink rules, condensed
+Bricolage Grotesque display type, the scroll-driven Motion layer — and does *not* use
+`assets/ds/`. Only its palette follows FahCel (navy `--ink`, cream `--ice`, amber `--heat`) and its
+body/mono fonts are the system's Schibsted Grotesk + Martian Mono (declared in-page, because
+`tokens.css` would clobber its `--ink`). Keep the display face informal; don't move it to Fraunces.
+**The page is in Dutch** (`lang="nl"`, `nl_NL`,
 `inLanguage: nl-NL`) since 2026-10-02, the only Dutch page on an otherwise English
 site, at the operator's request; the old English copy is in git history. Use informal
 *je*, Dutch number format (`16.000`, `±0,5 °C`), *pdf* lower-case. The form's

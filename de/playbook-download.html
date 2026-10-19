@@ -23,92 +23,84 @@
 <meta name="twitter:description" content="Hol dir den kostenlosen Leitfaden für Kühlkettenabweichungen: Sechs-Schritte-Protokoll, Grenzwerttabelle und Freigabecheckliste für Sendungen außerhalb des Temperaturbereichs." />
 <meta name="twitter:image" content="https://www.fahcel.eu/assets/og-fahcel.jpg" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/ds/fonts/Fraunces-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/ds/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds/tokens.css">
+<link rel="stylesheet" href="/assets/ds/components.css">
+<link rel="stylesheet" href="/assets/ds/site.css">
 <style>
+  /* The page's own names, mapped onto the FahCel design system (/assets/ds/tokens.css) so
+     every rule below reads its tokens. --ink and --line come from the system unchanged. */
   :root{
-    --paper:#F6F7F4; --paper-2:#ecedea; --white:#ffffff;
-    --ink:#0B1220; --ink-2:#222938; --muted:#5a6374; --muted-2:#8a93a5;
-    --line:#e1e2dd; --line-2:#d3d5cd;
-    --indigo:#1E2A5A; --indigo-2:#2a3a79; --teal:#1f7a8c; --teal-2:#52b0bf; --green:#2E6B4E; --red:#b3402f;
-    --serif:'Source Serif 4', Georgia, serif;
-    --sans:'Inter', system-ui, sans-serif;
-    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --paper:var(--surface-alt); --paper-2:var(--line); --white:var(--surface);
+    --ink-2:var(--text); --muted:var(--text); --muted-2:var(--text-subtle); --line-2:var(--line);
+    --indigo:var(--brand-navy); --indigo-2:var(--brand-navy-deep);
+    --teal:var(--brand-green); --teal-2:var(--brand-amber); --green:var(--brand-green); --red:var(--brand-seal);
+    --serif:var(--font-display); --sans:var(--font-sans); --mono:var(--font-mono);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:#0b1220;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  html,body{margin:0;padding:0;background:var(--surface-alt);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
   body{font-size:16px;line-height:1.6}
-  a{color:var(--indigo);text-decoration:none}
-  a:hover{color:var(--indigo-2)}
+  a{color:var(--ink);text-decoration:none}
   button{font-family:inherit}
-  ::selection{background:#d9ddf0;color:var(--indigo)}
 
-  .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;
-    background:
-      radial-gradient(1100px 520px at 12% -8%,rgba(82,176,191,.18),transparent 60%),
-      radial-gradient(900px 480px at 108% 110%,rgba(46,107,78,.16),transparent 60%),
-      #0b1220;
-    padding:34px;}
-  .card{width:100%;max-width:1000px;background:var(--paper);border-radius:26px;overflow:hidden;
-    display:grid;grid-template-columns:1fr 1fr;
-    box-shadow:0 50px 120px -40px rgba(0,0,0,.7);}
+  /* paper ground, one hairline card; the navy rail is the page's one panel */
+  .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--space-56) var(--space-32)}
+  .card{width:100%;max-width:1000px;background:var(--surface);border:var(--hairline) solid var(--line);border-radius:var(--radius-m);overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr}
 
   /* ---------- left preview rail ---------- */
-  .rail{background:var(--indigo);color:#fff;padding:40px 38px;position:relative;overflow:hidden;display:flex;flex-direction:column}
-  .rail::before{content:"";position:absolute;inset:0;background:radial-gradient(560px 300px at 112% -8%,rgba(82,176,191,.42),transparent 60%),radial-gradient(440px 300px at -10% 114%,rgba(46,107,78,.32),transparent 62%)}
-  .rail>*{position:relative;z-index:1}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;font-size:18px}
-  .logo .m{width:28px;height:28px;border-radius:8px;background:#fff;padding:2px;object-fit:contain;display:block;box-sizing:border-box}
-  .rail .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-2);font-weight:600;margin-top:30px}
-  .rail .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:var(--teal-2);box-shadow:0 0 0 4px rgba(82,176,191,.28)}
-  .rail h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.8px;margin:16px 0 0;text-wrap:balance}
-  .rail h1 em{font-style:italic;color:#9fd6e0;font-weight:400}
-  .rail p.sub{font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.8);margin:15px 0 0;max-width:34ch;text-wrap:pretty}
+  .rail{padding:40px 38px;display:flex;flex-direction:column;color:var(--text)}
+  .rail .eyebrow{display:block;font-family:var(--mono);font-size:10.56px;letter-spacing:.14em;text-transform:uppercase;color:var(--eyebrow);font-weight:500;margin-top:30px}
+  .rail .eyebrow .dot{display:none}
+  .rail h1{font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:var(--space-18) 0 0;color:var(--ink);text-wrap:balance}
+  .rail h1 em{font-style:italic;color:var(--accent)}
+  .rail p.sub{font-size:14.72px;line-height:1.55;color:var(--text);margin:15px 0 0;max-width:34ch;text-wrap:pretty}
   .toc{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
-  .toc li{display:flex;gap:13px;align-items:baseline;padding:11px 0;border-top:1px solid rgba(255,255,255,.14);font-size:13.5px;color:rgba(255,255,255,.9)}
+  .toc li{display:flex;gap:13px;align-items:baseline;padding:11px 0;border-top:var(--hairline) solid var(--line);font-size:14.72px;color:var(--ink)}
   .toc li:first-child{border-top:0}
-  .toc .n{font-family:var(--mono);font-size:11px;color:var(--teal-2);font-weight:700;flex:0 0 auto}
-  .toc li span.d{color:rgba(255,255,255,.55);font-size:12.5px}
-  .railfoot{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5)}
-  .railfoot .doc{width:34px;height:44px;border-radius:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);flex:0 0 auto;position:relative}
-  .railfoot .doc::after{content:"PDF";position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:8px;letter-spacing:.5px;color:var(--teal-2);font-weight:700}
-  .railfoot .doc::before{content:"";position:absolute;left:7px;right:7px;top:9px;height:2px;background:rgba(255,255,255,.3);box-shadow:0 5px 0 rgba(255,255,255,.3),0 10px 0 rgba(255,255,255,.3)}
+  .toc .n{font-family:var(--mono);font-size:11.52px;letter-spacing:.14em;color:var(--accent);flex:0 0 auto}
+  .toc li span.d{color:var(--text);font-size:13.5px}
+  .railfoot{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:9.6px;line-height:1.7;letter-spacing:.14em;text-transform:uppercase;color:var(--text-subtle)}
+  .railfoot .doc{width:34px;height:44px;border-radius:var(--radius-xs);border:var(--hairline) solid var(--line);flex:0 0 auto;position:relative}
+  .railfoot .doc::after{content:"PDF";position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:7px;letter-spacing:.08em;color:var(--accent)}
+  .railfoot .doc::before{content:"";position:absolute;left:7px;right:7px;top:9px;height:1px;background:var(--line);box-shadow:0 5px 0 var(--line),0 10px 0 var(--line)}
 
   /* ---------- right form panel ---------- */
   .panel{padding:44px 44px 38px;display:flex;flex-direction:column;justify-content:center;min-height:560px}
-  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);font-weight:600}
-  .panel h2{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;letter-spacing:-.5px;margin:9px 0 0;color:var(--ink)}
-  .panel .lead{font-size:14px;color:var(--muted);margin:9px 0 26px;max-width:40ch;text-wrap:pretty}
+  .kicker{font-family:var(--mono);font-size:10.56px;letter-spacing:.14em;text-transform:uppercase;color:var(--eyebrow);font-weight:500}
+  .panel h2{font-family:var(--serif);font-weight:500;font-size:28.8px;line-height:1.15;letter-spacing:-.015em;margin:var(--space-12) 0 0;color:var(--ink)}
+  .panel .lead{font-size:14.72px;color:var(--text);margin:9px 0 26px;max-width:40ch;text-wrap:pretty}
   form{display:flex;flex-direction:column;gap:15px}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   label{display:block}
-  .cap{font-size:11.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:var(--muted-2);margin:0 0 7px}
-  input,select{width:100%;border:1px solid var(--line-2);background:var(--white);border-radius:11px;padding:12px 14px;font-family:var(--sans);font-size:14.5px;color:var(--ink);outline:0;transition:.15s}
-  input::placeholder{color:var(--muted-2)}
-  input:focus,select:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(30,42,90,.12)}
-  .submit{margin-top:6px;border:0;cursor:pointer;background:var(--indigo);color:#fff;font-weight:600;font-size:15px;padding:15px 20px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background .15s}
-  .submit:hover{background:var(--indigo-2)}
-  .submit:disabled{opacity:.7;cursor:default}
-  .submit svg{width:15px;height:15px}
-  .fineprint{font-size:11.5px;color:var(--muted-2);line-height:1.5;margin:12px 0 0}
-  .err{display:none;background:#fbecea;border:1px solid #e9c9c2;color:var(--red);font-size:13px;line-height:1.45;border-radius:11px;padding:12px 14px;margin-top:2px}
+  .cap{font-family:var(--mono);font-size:9.6px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin:0 0 7px}
+  input,select{width:100%;border:var(--hairline) solid var(--line);background:var(--white);border-radius:var(--radius-xs);padding:12px 14px;font-family:var(--sans);font-size:15px;color:var(--ink);outline:0;transition:.15s}
+  input::placeholder{color:var(--text-subtle);opacity:.75}
+  input:focus,select:focus{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+  /* the system's primary Button */
+  .submit{margin-top:6px;border:var(--hairline) solid var(--accent);cursor:pointer;background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow-accent);font-family:var(--mono);font-weight:600;font-size:10.88px;letter-spacing:.1em;text-transform:uppercase;padding:16px 20px;border-radius:var(--radius-xs);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-8);transition:transform .15s,box-shadow .2s}
+  .submit:hover{transform:translateY(-2px);box-shadow:var(--shadow-accent-hover)}
+  .submit:disabled{opacity:.7;cursor:default;transform:none}
+  .submit svg{width:13px;height:13px}
+  .fineprint{font-size:12.48px;color:var(--text);line-height:1.6;margin:12px 0 0}
+  .err{display:none;background:var(--seal-tint);border:var(--hairline) solid var(--seal);color:var(--seal-text);font-size:14px;line-height:1.5;border-radius:var(--radius-s);padding:12px 14px;margin-top:2px}
 
   /* success state */
   .done{display:none;flex-direction:column;align-items:flex-start}
   .done.on{display:flex}
   .form-wrap.off{display:none}
-  .check{width:56px;height:56px;border-radius:999px;background:var(--green);display:grid;place-items:center;margin-bottom:18px}
-  .check svg{width:28px;height:28px;color:#fff}
+  .check{width:56px;height:56px;border-radius:var(--radius-round);background:var(--verified);display:grid;place-items:center;margin-bottom:18px}
+  .check svg{width:28px;height:28px;color:var(--brand-cream)}
   .done h2{margin:0}
   .done .lead{margin:9px 0 24px}
-  .dlbtn{border:0;cursor:pointer;background:var(--indigo);color:#fff;font-weight:600;font-size:15px;padding:15px 24px;border-radius:12px;display:inline-flex;align-items:center;gap:10px;transition:background .15s;text-decoration:none}
-  .dlbtn:hover{background:var(--indigo-2);color:#fff}
-  .dlbtn svg{width:16px;height:16px}
-  .done .also{font-size:13px;color:var(--muted);margin:20px 0 0}
-  .done .also a{font-weight:600;text-decoration:underline;text-underline-offset:2px}
-  .sent-to{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
-  .sent-to b{color:var(--ink-2);font-weight:600}
+  .dlbtn{border:var(--hairline) solid var(--accent);cursor:pointer;background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow-accent);font-family:var(--mono);font-weight:600;font-size:10.88px;letter-spacing:.1em;text-transform:uppercase;padding:15px 26px;border-radius:var(--radius-xs);display:inline-flex;align-items:center;gap:var(--space-8);transition:transform .15s,box-shadow .2s;text-decoration:none}
+  .dlbtn:hover{transform:translateY(-2px);box-shadow:var(--shadow-accent-hover);color:var(--on-accent)}
+  .dlbtn svg{width:13px;height:13px}
+  .done .also{font-size:14.72px;color:var(--text);margin:20px 0 0}
+  .done .also a{font-weight:600;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+  .sent-to{font-family:var(--mono);font-size:11.52px;color:var(--text);margin-top:14px}
+  .sent-to b{color:var(--ink);font-weight:500}
 </style>
 <script type="application/ld+json">
 {
@@ -146,11 +138,15 @@
 <!-- /languages:head -->
 </head>
 <body>
+<div class="fc-corners--fixed" aria-hidden="true">
+  <span class="fc-corner fc-corner--tl"></span><span class="fc-corner fc-corner--tr"></span>
+  <span class="fc-corner fc-corner--bl"></span><span class="fc-corner fc-corner--br"></span>
+</div>
 <div class="stage">
   <div class="card">
     <!-- LEFT: what they're getting -->
-    <div class="rail">
-      <div class="logo"><img class="m" src="/assets/fahcel-logo.jpg" alt="" width="28" height="28" />FahCel</div>
+    <div class="rail fc-glow" data-theme="dark">
+      <a class="fc-lockup" href="/de"><span class="fc-lockup__disc" aria-hidden="true"></span>FahCel</a>
 <!-- languages:nav --><div class="language-switcher" role="navigation" aria-label="Sprache"><a href="/playbook-download" lang="en" hreflang="en" aria-label="English">EN</a><a href="/nl/playbook-download" lang="nl" hreflang="nl" aria-label="Nederlands">NL</a><a href="/de/playbook-download" lang="de" hreflang="de" aria-label="Deutsch" aria-current="page">DE</a></div><!-- /languages:nav -->
       <div class="eyebrow"><span class="dot"></span>Kostenloser Praxisleitfaden</div>
       <h1>Der Leitfaden für <em>Kühlkettenabweichungen</em></h1>

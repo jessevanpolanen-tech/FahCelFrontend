@@ -85,7 +85,7 @@ def add_language_ui(source, page, lang):
     if page in ['index', 'hash-chain']:
         source = source.replace('</nav>', nav + '</nav>', 1)
     elif page in ['book-a-demo', 'playbook-download']:
-        source = re.sub(r'(<div class="logo">.*?</div>)', lambda m: m[0] + '\n' + nav, source, count=1)
+        source = re.sub(r'(<a class="fc-lockup".*?</a>)', lambda m: m[0] + '\n' + nav, source, count=1)
     else:
         source = source.replace('<doc-page', '<div class="document-languages">' + nav + '</div>\n<doc-page', 1)
     return source
