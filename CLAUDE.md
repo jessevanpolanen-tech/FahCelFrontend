@@ -339,7 +339,8 @@ illustration for a real photo, delete `.draftbar` + its CSS, flip robots to
 `assets/loggers/` with Elitech's orange header bar cropped off, the logo and web address on each
 logger painted out, and a **different fictional example brand** on each image where the logo was
 (Veldvers hero, Polderpharma LogEt 1, Noordvries RC-17, Slagerij Kroon RC-5, Havenkoel Glog 5,
-Zuidbloem CTA cutout; card `.maker` reads "Voorbeeld: …"). Keep them invented — never a real company (the
+Zuidbloem CTA cutout; card `.maker` reads "Voorbeeld: …"). Elitech's orange is recoloured to each
+example brand's colour too (green, blue, teal, red, magenta), on the devices and the spec-graphic text. Keep them invented — never a real company (the
 `elitech-*` originals were removed; they are in git history). Copy says "beproefde hardware",
 "gratis uitleessoftware" (not ElitechLog), "specificaties van de fabrikant"; Product JSON-LD `brand` is FahCel Dataloggers. Model names
 (LogEt 1, RC-17, RC-5, Glog 5) stay. Everything below describes where the hardware and
