@@ -337,13 +337,19 @@ illustration for a real photo, delete `.draftbar` + its CSS, flip robots to
 
 **White-label since 2026-10-19 (operator's call): the page never names Elitech.** Images live in
 `assets/loggers/` with Elitech's orange header bar cropped off, the logo and web address on each
-logger painted out, and a **different fictional example brand** on each image where the logo was
-(Veldvers hero, Polderpharma LogEt 1, Noordvries RC-17, Slagerij Kroon RC-5, Havenkoel Glog 5,
-Zuidbloem CTA cutout; card `.maker` reads "Voorbeeld: …"). Elitech's orange is recoloured to each
-example brand's colour too (green, blue, teal, red, magenta), on the devices and the spec-graphic text. Keep them invented — never a real company (the
+logger painted out, and a **fictional example brand** where the logo was (Veldvers on the LogEt 1,
+recoloured from Elitech orange to green; card `.maker` reads "Voorbeeld: …"). Keep them invented — never a real company (the
 `elitech-*` originals were removed; they are in git history). Copy says "beproefde hardware",
-"gratis uitleessoftware" (not ElitechLog), "specificaties van de fabrikant"; Product JSON-LD `brand` is FahCel Dataloggers. Model names
-(LogEt 1, RC-17, RC-5, Glog 5) stay. Everything below describes where the hardware and
+"gratis uitleessoftware" (not ElitechLog), "specificaties van de fabrikant"; Product JSON-LD `brand` is FahCel Dataloggers. Model names stay.
+
+**Two models only since 2026-10-20 (operator's call): LogEt 1 Fresh (Elitech) and Tempu 09
+(Tzone).** RC-17, RC-5, Glog 5, their images and the whole "Live 4G" Glog 5 section (03, with its
+dial animation) were removed; later sections were renumbered 03–08. Neither maker is named. The
+LogEt 1 Fresh card shows the plain LogEt 1 photo and the LogEt 1's figures, all `.tbd` until
+confirmed for the Fresh; the WHO graphic was dropped because that listing is the plain LogEt 1's.
+Tempu 09 has **no photo yet** (a dashed "Productfoto volgt" frame, `.ph.soon`) and every figure is
+`.tbd`: retailer listings disagree (10.000 vs 32.000 readings, +60 vs +70 °C) and tzonedigital.com
+is blocked from cloud sessions. History below of the four-card range is superseded. Everything below describes where the hardware and
 figures come from, which still holds — just keep it off the page.
 
 **Hardware is Elitech** (decided 2026-09-25). A

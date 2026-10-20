@@ -73,7 +73,7 @@
     {
       "@type": "Product",
       "@id": "https://www.fahcel.eu/usb-logger#product",
-      "name": "LogEt 1 USB-temperatuurlogger voor eenmalig gebruik",
+      "name": "LogEt 1 Fresh USB-temperatuurlogger voor eenmalig gebruik",
       "category": "Temperatuurdatalogger",
       "brand": { "@type": "Brand", "name": "FahCel Dataloggers" },
       "image": "https://www.fahcel.eu/assets/loggers/loget-1.webp",
@@ -87,12 +87,12 @@
         {
           "@type": "Question",
           "name": "Hebben we naast de logger nog iets anders nodig?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Voor de LogEt 1 en de RC-17 niet: de logger maakt zelf het pdf-rapport, en dat opent zodra hij in een laptop zit. Voor de herbruikbare RC-5 gebruik je de gratis uitleessoftware. Kies je de Glog 5 met live 4G, dan stemmen we de opzet met je af bij je aanvraag." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Nee. De LogEt 1 Fresh en de Tempu 09 maken allebei zelf hun rapport, en dat opent zodra de logger in een laptop zit." }
         },
         {
           "@type": "Question",
           "name": "Wat moet de ontvanger van de zending installeren?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Bij de LogEt 1 en de RC-17: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Bij de LogEt 1 Fresh en de Tempu 09: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt." }
         },
         {
           "@type": "Question",
@@ -107,7 +107,7 @@
         {
           "@type": "Question",
           "name": "Welke logger past bij onze zendingen?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Beide gaan één keer mee en blijven bij de ontvanger. De Tempu 09 registreert tot 90 dagen, voor lange routes. Twijfel je? Vertel ons je route, dan adviseren we je." }
         },
         {
           "@type": "Question",
@@ -290,6 +290,9 @@
   .facts div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--hair);font-size:13px}
   .facts dt{font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
   .facts dd{margin:0;font-weight:600;text-align:right}
+  /* no photo of this model yet: a dashed frame holds its place */
+  .mcard .ph.soon{display:grid;place-items:center;min-height:320px;background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(30,42,90,.05) 14px 15px)}
+  .mcard .ph.soon span{border:2px dashed var(--ink);padding:14px 18px;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
   .mcard.own{background:var(--heat);color:var(--on-heat);grid-template-columns:1fr}
   .mcard.own p{color:var(--on-heat)}
   .mcard.own .mb{padding:30px 32px}
@@ -308,22 +311,6 @@
   .pinned .mcard{width:min(900px,74vw);height:min(600px,calc(100vh - var(--nav) - 140px))}
   .pinned .mcard .ph{aspect-ratio:auto}
   .pinned .rail-foot .bar{display:block}
-
-  /* ---------- 03 Glog 5 live: ink section, the device turns inside a dial ---------- */
-  .live{background:var(--ink);color:var(--ice);overflow:hidden}
-  .live .sdesc{color:rgba(246,247,244,.78)}
-  .lgrid{display:grid;grid-template-columns:1fr minmax(220px,420px) 1fr;gap:0 clamp(20px,4vw,64px);align-items:center}
-  .lcol{display:flex;flex-direction:column}
-  .rd{border-top:1px solid rgba(246,247,244,.22);padding:16px 0 24px}
-  .rd b{display:block;font-family:var(--d);font-weight:700;font-stretch:78%;font-size:clamp(36px,4.4vw,68px);line-height:.92;letter-spacing:-.045em;color:var(--heat);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .rd > span{display:block;margin-top:8px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.7)}
-  .lcol.r .rd{text-align:right}
-  .dev{position:relative;aspect-ratio:1;display:grid;place-items:center}
-  .dial{position:absolute;inset:-6%;width:112%;height:112%}
-  .dial circle{fill:none}
-  .dev .bob{position:relative;width:62%}
-  .dev img{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 34px rgba(10,14,32,.55))}
-  .lnote{margin-top:clamp(40px,5vw,64px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--ice);padding-top:14px;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(246,247,244,.7)}
 
   /* ---------- 04 Zo werkt het ---------- */
   .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--hair)}
@@ -475,9 +462,6 @@
     .trio > div + div{padding-left:0;border-left:0;border-top:1px solid var(--hair);margin-top:24px}
     .mcard{grid-template-columns:1fr}
     .mcard .ph{border-right:0;border-bottom:1.5px solid var(--ink)}
-    .lgrid{grid-template-columns:1fr 1fr;gap:0 20px}
-    .dev{grid-column:1/-1;grid-row:1;width:min(78vw,380px);margin:0 auto 24px}
-    .lcol.r .rd{text-align:left}
     .sect li{grid-template-columns:1fr;gap:10px}
     .sect h3,.sect p{grid-column:1/-1}
     .specs{grid-template-columns:1fr}
@@ -514,7 +498,6 @@
   <a class="mark" href="#top" aria-label="FahCel Dataloggers, naar boven">FahCel <span class="sub">Dataloggers</span><span class="deg">°</span></a>
   <ul>
     <li><a href="#loggers">Loggers</a></li>
-    <li><a href="#glog5">Live 4G</a></li>
     <li><a href="#werking">Zo werkt het</a></li>
     <li><a href="#specs">Specificaties</a></li>
     <li><a href="#faq">Vragen</a></li>
@@ -538,7 +521,7 @@
           <a class="btn line" href="#loggers">Bekijk de loggers</a>
         </div>
         <ul class="ticks" data-in>
-          <li>Vier modellen</li>
+          <li>Twee modellen</li>
           <li>Ingesteld op jouw route</li>
           <li>Ook in je eigen ontwerp</li>
         </ul>
@@ -546,13 +529,13 @@
 
       <figure class="htile" style="margin:0">
         <span class="reg a"></span><span class="reg b"></span>
-        <div class="imgw"><img src="/assets/loggers/loget-1.webp" width="1000" height="1000" alt="LogEt 1, USB-temperatuurlogger voor eenmalig gebruik met voorbeeldlogo Veldvers, met lcd-scherm en ingebouwde USB-aansluiting" loading="eager" decoding="async" /></div>
-        <figcaption class="fig"><span>Fig. 01 — LogEt 1</span><span>Eenmalig · USB</span></figcaption>
+        <div class="imgw"><img src="/assets/loggers/loget-1.webp" width="1000" height="1000" alt="LogEt 1 Fresh, USB-temperatuurlogger voor eenmalig gebruik met voorbeeldlogo Veldvers, met lcd-scherm en ingebouwde USB-aansluiting" loading="eager" decoding="async" /></div>
+        <figcaption class="fig"><span>Fig. 01 — LogEt 1 Fresh</span><span>Eenmalig · USB</span></figcaption>
       </figure>
 
       <!-- Illustrative trace inside a 2–8 °C band, labelled as an example — not a measured claim. -->
       <aside class="hread" aria-label="Voorbeeld van een meting">
-        <div class="rtop"><span>LogEt 1 · 2–8 °C</span><span>voorbeeldmeting</span></div>
+        <div class="rtop"><span>LogEt 1 Fresh · 2–8 °C</span><span>voorbeeldmeting</span></div>
         <div class="rtemp" aria-hidden="true"><span id="tval">4,6</span><small>°C</small></div>
         <svg class="spark" viewBox="0 0 300 130" aria-hidden="true">
           <defs><clipPath id="sparkClip"><rect x="0" y="0" width="300" height="130"/></clipPath></defs>
@@ -570,7 +553,7 @@
     <div class="meta" data-in>
       <div>
         <div class="k">Uitvoering</div>
-        <div class="v">USB, eenmalig of herbruikbaar <small>Vier modellen, één aanspreekpunt</small></div>
+        <div class="v">USB, eenmalig <small>Twee modellen, één aanspreekpunt</small></div>
       </div>
       <div>
         <div class="k">Bereik</div>
@@ -582,7 +565,7 @@
       </div>
       <div>
         <div class="k">Rapport</div>
-        <div class="v">Pdf bij insteken <small>LogEt 1 en RC-17, zonder software</small></div>
+        <div class="v">Pdf bij insteken <small>LogEt 1 Fresh en Tempu 09, zonder software</small></div>
       </div>
     </div>
   </div>
@@ -591,8 +574,8 @@
 <!-- ===================== MARQUEE ===================== -->
 <div class="mq" aria-hidden="true">
   <div class="mq-track">
-    <span>LogEt 1 — 16.000 metingen</span><span>RC-17 — 8 mm dun</span><span>RC-5 — herbruikbaar</span><span>Glog 5 — live via 4G</span><span>Ook in je eigen ontwerp</span>
-    <span>LogEt 1 — 16.000 metingen</span><span>RC-17 — 8 mm dun</span><span>RC-5 — herbruikbaar</span><span>Glog 5 — live via 4G</span><span>Ook in je eigen ontwerp</span>
+    <span>LogEt 1 Fresh — pdf bij insteken</span><span>Tempu 09 — tot 90 dagen</span><span>Ingesteld op jouw route</span><span>Ook in je eigen ontwerp</span>
+    <span>LogEt 1 Fresh — pdf bij insteken</span><span>Tempu 09 — tot 90 dagen</span><span>Ingesteld op jouw route</span><span>Ook in je eigen ontwerp</span>
   </div>
 </div>
 
@@ -627,91 +610,58 @@
 </section>
 
 <!-- ===================== 02 LOGGERS ===================== -->
-<!-- Card figures: the manufacturer's product pages and spec graphics (sources in CLAUDE.md).
-     The images are white-labelled: brand header cropped, the logo on each logger replaced by a
-     different made-up example brand (Veldvers, Polderpharma, Noordvries, Slagerij Kroon,
-     Havenkoel, Zuidbloem) to show how a customer's own logo looks on it; the manufacturer's
-     orange is recoloured to each example brand's colour. The LogEt 1 graphic shows its WHO PQS listing (E006/083) —
-     the page text deliberately makes no PQS claim of its own.
-     LogEt 260 (reusable 4G) is wanted here too; add its card once there is an image for it. -->
+<!-- Two models only (operator, 2026-10-20): LogEt 1 Fresh and Tempu 09 (a second manufacturer;
+     neither maker is named on the page). LogEt 1 Fresh figures are the plain LogEt 1's, marked .tbd
+     until confirmed for the Fresh. Tempu 09 figures come from retailer listings that disagree
+     (10.000 vs 32.000 readings, +60 vs +70 °C), so all of them are .tbd; it has no photo yet.
+     The LogEt 1 photo is white-labelled: logo replaced by the made-up example brand Veldvers and
+     the manufacturer's orange recoloured green, to show how a customer's own logo looks on it. -->
 <section class="s" id="loggers">
   <div class="wrap">
     <div class="shead">
       <div class="slab"><span class="no">02</span>De loggers</div>
-      <h2>Vier loggers. Kies op hoe je zending <em>reist</em>.</h2>
-      <p class="sdesc">We leveren beproefde hardware in plaats van zelf loggers te bouwen, met jouw logo erop. Eenmalig of herbruikbaar, uitlezen bij aankomst of live onderweg.</p>
+      <h2>Twee loggers. Kies op hoe je zending <em>reist</em>.</h2>
+      <p class="sdesc">We leveren beproefde hardware in plaats van zelf loggers te bouwen, met jouw logo erop. Allebei eenmalig, allebei met het rapport direct op de logger.</p>
     </div>
   </div>
   <div class="rail-pin">
     <div class="rail-stage">
       <div class="rail">
         <article class="mcard">
-          <div class="ph"><img src="/assets/loggers/loget-1-who.jpg" width="1179" height="1045" alt="LogEt 1, USB-temperatuurlogger voor eenmalig gebruik, met voorbeeldlogo Polderpharma, voor zijn WHO PQS-certificaat, met FDA-, FCC-, CE- en TÜV SÜD-keurmerken" loading="lazy" decoding="async" /></div>
+          <div class="ph"><img src="/assets/loggers/loget-1.webp" width="1000" height="1000" alt="LogEt 1 Fresh, USB-temperatuurlogger voor eenmalig gebruik met voorbeeldlogo Veldvers, met lcd-scherm en ingebouwde USB-aansluiting" loading="lazy" decoding="async" /></div>
           <div class="mb">
-            <div class="mtop"><span>01 / 05</span><span class="tag">Eenmalig · USB</span></div>
-            <div class="maker">Voorbeeld: Polderpharma</div>
-            <h3>LogEt 1</h3>
+            <div class="mtop"><span>01 / 03</span><span class="tag">Eenmalig · USB</span></div>
+            <div class="maker">Voorbeeld: Veldvers</div>
+            <h3>LogEt 1 Fresh</h3>
             <p>Reist één zending mee en blijft bij de ontvanger. Bij het insteken opent het pdf-rapport direct vanaf het apparaat. De ontvanger hoeft niets te installeren.</p>
             <dl class="facts">
-              <div><dt>Geheugen</dt><dd>16.000 metingen</dd></div>
-              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
-              <div><dt>Nauwkeurigheid</dt><dd>±0,5 °C (−20 tot +40 °C)</dd></div>
-              <div><dt>Behuizing</dt><dd>IP67</dd></div>
-              <div><dt>Norm</dt><dd>EN 12830</dd></div>
+              <div><dt>Geheugen</dt><dd><span class="tbd" title="Waarde van de LogEt 1 — bevestigen voor de LogEt 1 Fresh">16.000 metingen</span></dd></div>
+              <div><dt>Bereik</dt><dd><span class="tbd" title="Waarde van de LogEt 1 — bevestigen voor de LogEt 1 Fresh">−30 °C tot +70 °C</span></dd></div>
+              <div><dt>Nauwkeurigheid</dt><dd><span class="tbd" title="Waarde van de LogEt 1 — bevestigen voor de LogEt 1 Fresh">±0,5 °C (−20 tot +40 °C)</span></dd></div>
+              <div><dt>Behuizing</dt><dd><span class="tbd" title="Waarde van de LogEt 1 — bevestigen voor de LogEt 1 Fresh">IP67</span></dd></div>
+              <div><dt>Norm</dt><dd><span class="tbd" title="Waarde van de LogEt 1 — bevestigen voor de LogEt 1 Fresh">EN 12830</span></dd></div>
             </dl>
           </div>
         </article>
         <article class="mcard">
-          <div class="ph"><img src="/assets/loggers/rc-17.jpg" width="1179" height="1064" alt="RC-17, USB-temperatuurlogger voor eenmalig gebruik, met voorbeeldlogo Noordvries, in zijn waterdichte zakje, met specificaties" loading="lazy" decoding="async" /></div>
+          <div class="ph soon"><span>Productfoto volgt</span></div>
           <div class="mb">
-            <div class="mtop"><span>02 / 05</span><span class="tag">Eenmalig · USB</span></div>
-            <div class="maker">Voorbeeld: Noordvries</div>
-            <h3>RC-17</h3>
-            <p>De dunste optie: een kaartje van 8 mm dat in elke doos of verzendverpakking past. Insteken en het pdf-rapport staat klaar, zonder software of kabel.</p>
+            <div class="mtop"><span>02 / 03</span><span class="tag">Eenmalig · USB</span></div>
+            <div class="maker">Jouw logo hier</div>
+            <h3>Tempu 09</h3>
+            <p>Voor langere routes: registreert tot 90 dagen en toont de status onderweg op het lcd-scherm. Bij het insteken staat het rapport klaar als pdf en csv, zonder software.</p>
             <dl class="facts">
-              <div><dt>Geheugen</dt><dd>16.000 metingen</dd></div>
-              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
-              <div><dt>Looptijd</dt><dd>tot 120 dagen</dd></div>
-              <div><dt>Dikte</dt><dd>8 mm</dd></div>
-              <div><dt>Behuizing</dt><dd>IP67</dd></div>
-            </dl>
-          </div>
-        </article>
-        <article class="mcard">
-          <div class="ph"><img src="/assets/loggers/rc-5-spec.jpg" width="1179" height="951" alt="RC-5, herbruikbare USB-temperatuurlogger met lcd-scherm en voorbeeldlogo Slagerij Kroon, met specificaties" loading="lazy" decoding="async" /></div>
-          <div class="mb">
-            <div class="mtop"><span>03 / 05</span><span class="tag">Herbruikbaar · USB</span></div>
-            <div class="maker">Voorbeeld: Slagerij Kroon</div>
-            <h3>RC-5</h3>
-            <p>Voor koelkasten, medicijnkasten en routes die je steeds opnieuw rijdt. Je leest het rapport uit met de gratis uitleessoftware, daarna start de logger opnieuw voor de volgende lading.</p>
-            <dl class="facts">
-              <div><dt>Geheugen</dt><dd>32.000 metingen</dd></div>
-              <div><dt>Bereik</dt><dd>−30 °C tot +70 °C</dd></div>
-              <div><dt>Nauwkeurigheid</dt><dd>±0,5 °C (−20 tot +40 °C)</dd></div>
-              <div><dt>Behuizing</dt><dd>IP67</dd></div>
-              <div><dt>Batterij</dt><dd>CR2032</dd></div>
-            </dl>
-          </div>
-        </article>
-        <article class="mcard">
-          <div class="ph"><img src="/assets/loggers/glog-5.webp" width="1119" height="967" alt="Glog 5, 4G-temperatuurlogger voor eenmalig gebruik met voorbeeldlogo Havenkoel en externe sensor, die temperatuur, licht, schokken en locatie meet" loading="lazy" decoding="async" /></div>
-          <div class="mb">
-            <div class="mtop"><span>04 / 05</span><span class="tag">Eenmalig · 4G live</span></div>
-            <div class="maker">Voorbeeld: Havenkoel</div>
-            <h3>Glog 5</h3>
-            <p>Voor als je niet tot aankomst wilt wachten. De metingen komen tijdens transport live binnen via 4G, met licht, schokken en locatie naast de temperatuur, plus een vliegtuigmodus voor luchtvracht.</p>
-            <dl class="facts">
-              <div><dt>Intern</dt><dd>−30 °C tot +70 °C</dd></div>
-              <div><dt>Sensor</dt><dd>−200 °C tot +150 °C</dd></div>
-              <div><dt>Licht</dt><dd>0–52.000 lux</dd></div>
-              <div><dt>Schok</dt><dd>0–16 g</dd></div>
-              <div><dt>Locatie</dt><dd>LBS</dd></div>
+              <div><dt>Looptijd</dt><dd><span class="tbd" title="Tijdelijke waarde — bevestigen met de datasheet van de Tempu 09">90 dagen</span></dd></div>
+              <div><dt>Geheugen</dt><dd><span class="tbd" title="Tijdelijke waarde — bevestigen met de datasheet van de Tempu 09">10.000 metingen</span></dd></div>
+              <div><dt>Bereik</dt><dd><span class="tbd" title="Tijdelijke waarde — bevestigen met de datasheet van de Tempu 09">−30 °C tot +60 °C</span></dd></div>
+              <div><dt>Nauwkeurigheid</dt><dd><span class="tbd" title="Tijdelijke waarde — bevestigen met de datasheet van de Tempu 09">±0,5 °C (−20 tot +40 °C)</span></dd></div>
+              <div><dt>Rapport</dt><dd><span class="tbd" title="Tijdelijke waarde — bevestigen met de datasheet van de Tempu 09">pdf en csv</span></dd></div>
             </dl>
           </div>
         </article>
         <article class="mcard own">
           <div class="mb">
-            <div class="mtop"><span>05 / 05</span><span class="tag">Op maat</span></div>
+            <div class="mtop"><span>03 / 03</span><span class="tag">Op maat</span></div>
             <div class="maker">Jouw ontwerp</div>
             <h3>Jouw logo hier.</h3>
             <div class="shape">jouw huisstijl</div>
@@ -722,68 +672,33 @@
           </div>
         </article>
       </div>
-      <div class="rail-foot"><span id="railCount">01 / 05</span><span class="bar"><i id="railBar"></i></span><span>Jouw logo hier op de logger</span></div>
+      <div class="rail-foot"><span id="railCount">01 / 03</span><span class="bar"><i id="railBar"></i></span><span>Jouw logo hier op de logger</span></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== 03 GLOG 5 LIVE ===================== -->
-<!-- Figures: the Glog 5 spec graphic (same source as the card above). The cutout is the
-     manufacturer's photo, cut from its white background and white-labelled; keep it ≤ 340px wide. -->
-<section class="s live" id="glog5">
-  <div class="wrap">
-    <div class="shead">
-      <div class="slab"><span class="no">03</span>Glog 5 · live 4G</div>
-      <h2>Live onderweg. Niet pas bij <em>aankomst</em>.</h2>
-      <p class="sdesc">De Glog 5 stuurt zijn metingen tijdens het transport via 4G door: temperatuur, licht, schokken en locatie. Eén druk op START en hij reist mee.</p>
-    </div>
-    <div class="lgrid">
-      <div class="lcol l">
-        <div class="rd rv"><b>−200 → +150 °C</b><span>Externe sensor</span></div>
-        <div class="rd rv"><b>−30 → +70 °C</b><span>Logger zelf</span></div>
-        <div class="rd rv"><b>4G · LBS</b><span>Live locatie</span></div>
-      </div>
-      <div class="dev" aria-hidden="true">
-        <svg class="dial" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="96" stroke="rgba(246,247,244,.18)" stroke-width="1"/>
-          <circle cx="100" cy="100" r="90" stroke="rgba(246,247,244,.5)" stroke-width="6" stroke-dasharray="0.6 4.11"/>
-          <circle cx="100" cy="100" r="90" stroke="#BE1E29" stroke-width="6" stroke-dasharray="0.8 46.3"/>
-          <circle cx="100" cy="100" r="78" stroke="#BE1E29" stroke-width="1.5" stroke-dasharray="120 370"/>
-        </svg>
-        <div class="bob"><img src="/assets/loggers/glog-5-cutout.webp" width="372" height="557" alt="" /></div>
-      </div>
-      <div class="lcol r">
-        <div class="rd rv"><b><span data-count="52000">52.000</span> lux</b><span>Licht, vanaf 0</span></div>
-        <div class="rd rv"><b><span data-count="16">16</span> g</b><span>Schok, vanaf 0</span></div>
-        <div class="rd rv"><b>✈ modus</b><span>Voor luchtvracht</span></div>
-      </div>
-    </div>
-    <div class="lnote"><span>Glog 5 · eenmalig · 4G</span><span>Cijfers: specificaties van de fabrikant</span></div>
-  </div>
-</section>
-
-<!-- ===================== 04 ZO WERKT HET ===================== -->
+<!-- ===================== 03 ZO WERKT HET ===================== -->
 <section class="s" id="werking">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">04</span>Zo werkt het</div>
+      <div class="slab"><span class="no">03</span>Zo werkt het</div>
       <h2>Instellen, versturen, insteken. <em>Klaar</em>.</h2>
     </div>
     <div class="steps">
       <span class="prog" aria-hidden="true"></span>
       <div class="step"><div class="num">1</div><h3>Wij stellen hem in.</h3><p>Meetinterval en grenswaarden naar jouw route en product, voordat de logger de deur uitgaat.</p></div>
       <div class="step"><div class="num">2</div><h3>Start en verstuur.</h3><p>Start de logger en leg hem bij de lading: in de doos of vast aan de pallet. Hij meet bij elke overdracht door.</p></div>
-      <div class="step"><div class="num">3</div><h3>Insteken bij aankomst.</h3><p>Bij de LogEt 1 en RC-17 staat het pdf-rapport al klaar. De RC-5 lees je uit met de gratis uitleessoftware.</p></div>
+      <div class="step"><div class="num">3</div><h3>Insteken bij aankomst.</h3><p>Bij de LogEt 1 Fresh en de Tempu 09 staat het rapport al klaar, zonder software.</p></div>
       <div class="step"><div class="num">4</div><h3>Bewaren bij de papieren.</h3><p>Het rapport gaat bij de vrachtpapieren, klaar voor je klant, je auditor of je verzekeraar.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== 05 HET VERSCHIL ===================== -->
+<!-- ===================== 04 HET VERSCHIL ===================== -->
 <section class="s verschil">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">05</span>Het verschil</div>
+      <div class="slab"><span class="no">04</span>Het verschil</div>
       <h2>Dezelfde hardware. Een ander <em>resultaat</em>.</h2>
       <p class="sdesc">Op papier lijken USB-loggers op elkaar. Het verschil zit in alles eromheen.</p>
     </div>
@@ -794,7 +709,7 @@
       <tbody>
         <tr class="rv"><th scope="row">Instellingen</th><td>Fabrieks&shy;instellingen, die je zelf moet aanpassen.</td><td class="us">Vooraf ingesteld op jouw interval en grens&shy;waarden.</td></tr>
         <tr class="rv"><th scope="row">Bij aankomst</th><td>De ontvanger weet niet wat hij ermee moet.</td><td class="us">Een instructiekaartje voor de goederen&shy;ontvangst.</td></tr>
-        <tr class="rv"><th scope="row">Keuze</th><td>Zelf uitzoeken welk model past.</td><td class="us">Advies per route, uit vier modellen.</td></tr>
+        <tr class="rv"><th scope="row">Keuze</th><td>Zelf uitzoeken welk model past.</td><td class="us">Advies per route, uit twee modellen.</td></tr>
         <tr class="rv"><th scope="row">Uitstraling</th><td>De standaard&shy;behuizing van de fabrikant.</td><td class="us">Ook verkrijgbaar in jouw eigen huisstijl.</td></tr>
         <tr class="rv"><th scope="row">Na de rit</th><td>Weggooien.</td><td class="us">Recyclen. <span class="tbd" title="Tijdelijke waarde — voorwaarden voor afvoer en terugname bevestigen">Terugname&shy;regeling beschikbaar</span>.</td></tr>
         <tr class="rv"><th scope="row">Kennismaken</th><td>Een doos bestellen en hopen dat het past.</td><td class="us">Eerst een proefpakket op je eigen route.</td></tr>
@@ -803,11 +718,11 @@
   </div>
 </section>
 
-<!-- ===================== 06 VOOR WIE ===================== -->
+<!-- ===================== 05 VOOR WIE ===================== -->
 <section class="s">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">06</span>Voor wie</div>
+      <div class="slab"><span class="no">05</span>Voor wie</div>
       <h2>Voor alles wat <em>koel</em> moet blijven.</h2>
     </div>
     <ul class="sect">
@@ -818,11 +733,11 @@
   </div>
 </section>
 
-<!-- ===================== 07 SPECIFICATIES ===================== -->
+<!-- ===================== 06 SPECIFICATIES ===================== -->
 <section class="s" id="specs" style="padding-top:0">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">07</span>Specificaties</div>
+      <div class="slab"><span class="no">06</span>Specificaties</div>
       <h2>De cijfers waar je QA-team <em>om vraagt</em>.</h2>
       <p class="sdesc">Elk cijfer hieronder komt uit de datasheet van het apparaat. Amberkleurige waarden wachten nog op definitieve bevestiging voordat deze pagina live gaat.</p>
     </div>
@@ -843,11 +758,11 @@
   </div>
 </section>
 
-<!-- ===================== 08 PROEFPAKKET ===================== -->
+<!-- ===================== 07 PROEFPAKKET ===================== -->
 <section class="s order" id="order">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">08</span>Proefpakket</div>
+      <div class="slab"><span class="no">07</span>Proefpakket</div>
       <h2>Vijf loggers. Jouw eigen route.</h2>
     </div>
     <div class="ogrid">
@@ -915,22 +830,22 @@
   </div>
 </section>
 
-<!-- ===================== 09 FAQ ===================== -->
+<!-- ===================== 08 FAQ ===================== -->
 <section class="s" id="faq">
   <div class="wrap">
     <div class="shead">
-      <div class="slab"><span class="no">09</span>Vragen</div>
+      <div class="slab"><span class="no">08</span>Vragen</div>
       <h2>Wat kopers ons <em>echt</em> vragen.</h2>
     </div>
     <div class="qlist">
       <div>
         <details>
           <summary>Hebben we naast de logger nog iets anders nodig?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Voor de LogEt 1 en de RC-17 niet: de logger maakt zelf het pdf-rapport, en dat opent zodra hij in een laptop zit. Voor de herbruikbare RC-5 gebruik je de gratis uitleessoftware. Kies je de Glog 5 met live 4G, dan stemmen we de opzet met je af bij je aanvraag.</div>
+          <div class="ans">Nee. De LogEt 1 Fresh en de Tempu 09 maken allebei zelf hun rapport, en dat opent zodra de logger in een laptop zit.</div>
         </details>
         <details>
           <summary>Wat moet de ontvanger van de zending installeren?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Bij de LogEt 1 en de RC-17: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt.</div>
+          <div class="ans">Bij de LogEt 1 Fresh en de Tempu 09: niets. De logger verschijnt als gewone USB-stick en het rapport staat er al op. Dat werkt ook op een dichtgetimmerde laptop bij het laaddock, zonder internetverbinding, driver of beheerdersrechten. En dat is meestal precies het verschil tussen een logger die wordt uitgelezen en een die in een la belandt.</div>
         </details>
         <details>
           <summary>Wat is het verschil met de USB-loggers die we nu al kopen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -942,7 +857,7 @@
         </details>
         <details>
           <summary>Welke logger past bij onze zendingen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-          <div class="ans">Gaat de logger één keer mee en blijft hij bij de ontvanger, kies dan de LogEt 1 of de extra dunne RC-17. Voor koelkasten en vaste routes die je steeds opnieuw rijdt, is de herbruikbare RC-5 de beste keuze. Wil je de temperatuur onderweg live volgen, dan is er de Glog 5 met 4G. Twijfel je? Vertel ons je route, dan adviseren we je.</div>
+          <div class="ans">Beide gaan één keer mee en blijven bij de ontvanger. De Tempu 09 registreert tot 90 dagen, voor lange routes. Twijfel je? Vertel ons je route, dan adviseren we je.</div>
         </details>
         <details>
           <summary>Kunnen we de loggers in onze eigen huisstijl krijgen?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -1157,17 +1072,7 @@
         railCount.textContent = (k < 10 ? '0' : '') + k + ' / 0' + cards.length;
       }, { target:pin, offset:['start start','end end'] });
 
-      // ---- 03: the Glog 5 turns inside its dial as the section passes
-      var live = document.getElementById('glog5');
-      M.scroll(M.animate('.dev .bob', { rotate:[-16,12], y:[50,-50] }, { ease:'linear' }), { target:live, offset:['start end','end start'] });
-      M.scroll(M.animate('.dial', { rotate:[-60,120] }, { ease:'linear' }), { target:live, offset:['start end','end start'] });
-      M.animate('.dev img', { y:[0,-12,0] }, { duration:4.2, repeat:Infinity, ease:'easeInOut' });
-      M.inView('[data-count]', function(el){
-        var to = +el.getAttribute('data-count');
-        M.animate(0, to, { duration:1.6, ease:out, onUpdate:function(v){ el.textContent = Math.round(v).toLocaleString('nl-NL'); } });
-      }, { amount:.6 });
-
-      // ---- 04: one rule runs across the steps; each numeral fills as the rule reaches it
+      // ---- 03: one rule runs across the steps; each numeral fills as the rule reaches it
       var steps = document.querySelector('.steps'), stepEls = steps.querySelectorAll('.step');
       M.scroll(function(p){
         steps.style.setProperty('--p', p);
