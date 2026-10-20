@@ -290,9 +290,6 @@
   .facts div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--hair);font-size:13px}
   .facts dt{font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
   .facts dd{margin:0;font-weight:600;text-align:right}
-  /* no photo of this model yet: a dashed frame holds its place */
-  .mcard .ph.soon{display:grid;place-items:center;min-height:320px;background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(30,42,90,.05) 14px 15px)}
-  .mcard .ph.soon span{border:2px dashed var(--ink);padding:14px 18px;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
   .mcard.own{background:var(--heat);color:var(--on-heat);grid-template-columns:1fr}
   .mcard.own p{color:var(--on-heat)}
   .mcard.own .mb{padding:30px 32px}
@@ -613,7 +610,8 @@
 <!-- Two models only (operator, 2026-10-20): LogEt 1 Fresh and Tempu 09 (a second manufacturer;
      neither maker is named on the page). LogEt 1 Fresh figures are the plain LogEt 1's, marked .tbd
      until confirmed for the Fresh. Tempu 09 figures come from retailer listings that disagree
-     (10.000 vs 32.000 readings, +60 vs +70 °C), so all of them are .tbd; it has no photo yet.
+     (10.000 vs 32.000 readings, +60 vs +70 °C), so all of them are .tbd. Its image is the
+     operator's own label artwork (FahCel design with the Farm Frites logo), supplied 2026-10-20.
      The LogEt 1 photo is white-labelled: logo replaced by the made-up example brand Veldvers and
      the manufacturer's orange recoloured green, to show how a customer's own logo looks on it. -->
 <section class="s" id="loggers">
@@ -644,10 +642,10 @@
           </div>
         </article>
         <article class="mcard">
-          <div class="ph soon"><span>Productfoto volgt</span></div>
+          <div class="ph"><img src="/assets/loggers/tempu-09.webp" width="587" height="678" alt="Tempu 09, USB-temperatuurlogger voor eenmalig gebruik, voor- en achterkant van het label met voorbeeldlogo Farm Frites, startknop en ruimte voor het scherm" loading="lazy" decoding="async" /></div>
           <div class="mb">
             <div class="mtop"><span>02 / 03</span><span class="tag">Eenmalig · USB</span></div>
-            <div class="maker">Jouw logo hier</div>
+            <div class="maker">Voorbeeld: Farm Frites</div>
             <h3>Tempu 09</h3>
             <p>Voor langere routes: registreert tot 90 dagen en toont de status onderweg op het lcd-scherm. Bij het insteken staat het rapport klaar als pdf en csv, zonder software.</p>
             <dl class="facts">

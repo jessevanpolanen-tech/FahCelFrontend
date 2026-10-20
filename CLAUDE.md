@@ -347,7 +347,10 @@ recoloured from Elitech orange to green; card `.maker` reads "Voorbeeld: …"). 
 dial animation) were removed; later sections were renumbered 03–08. Neither maker is named. The
 LogEt 1 Fresh card shows the plain LogEt 1 photo and the LogEt 1's figures, all `.tbd` until
 confirmed for the Fresh; the WHO graphic was dropped because that listing is the plain LogEt 1's.
-Tempu 09 has **no photo yet** (a dashed "Productfoto volgt" frame, `.ph.soon`) and every figure is
+Tempu 09's card image is the operator's own flat label artwork (`assets/loggers/tempu-09.webp`,
+supplied 2026-10-20: green "LogTec-S1" label with the **Farm Frites** logo and www.fahcel.com),
+its front and back halves stacked so it fills the square card. Farm Frites is a real company — the one exception to the invented-brands rule,
+by the operator's choice; don't copy it elsewhere. Every Tempu 09 figure is
 `.tbd`: retailer listings disagree (10.000 vs 32.000 readings, +60 vs +70 °C) and tzonedigital.com
 is blocked from cloud sessions. History below of the four-card range is superseded. Everything below describes where the hardware and
 figures come from, which still holds — just keep it off the page.
