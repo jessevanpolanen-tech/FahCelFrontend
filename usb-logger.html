@@ -131,7 +131,7 @@
 <style>
   /* FahCel Dataloggers — the logger shop keeps its own composition (square corners, ink rules
      instead of cards, a condensed grotesk instead of serif) but wears FahCel's palette: navy ink,
-     cream ground, amber as the one hot accent. Body and mono come from the FahCel design system
+     cream ground, FahCel seal-red as the one hot accent. Body and mono come from the FahCel design system
      (/assets/ds); declared here rather than via tokens.css, whose --ink would collide. */
   @font-face{font-family:"Schibsted Grotesk";src:url("/assets/ds/fonts/SchibstedGrotesk-Variable.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
   @font-face{font-family:"Schibsted Grotesk";src:url("/assets/ds/fonts/SchibstedGrotesk-Variable-Italic.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
@@ -143,7 +143,9 @@
     --ink-2:#5A6178;
     --mute:#5A6178;
     --hair:rgba(30,42,90,.16);
-    --heat:#F2B84B;  /* FahCel amber: fills and marks; never small text on the light grounds */
+    --heat:#BE1E29;  /* FahCel seal-red: the one hot accent. 6.2:1 on white, so it can carry text on light grounds;
+                        on navy it only marks. Anything set on a red fill is white (--on-heat). */
+    --on-heat:#FFFFFF;
     --band:#E9ECF5;
     --d:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
     --s:'Schibsted Grotesk',system-ui,sans-serif;
@@ -158,7 +160,7 @@
   body{font-size:16.5px;line-height:1.55;overflow-x:clip}
   a{color:inherit;text-decoration:none}
   img{max-width:100%}
-  ::selection{background:var(--heat);color:var(--ink)}
+  ::selection{background:var(--heat);color:var(--on-heat)}
   .wrap{max-width:1400px;margin:0 auto;padding-inline:var(--gut)}
   section{scroll-margin-top:var(--nav)}
   .deg{color:var(--heat)}
@@ -179,7 +181,7 @@
   nav.top ul a{position:relative;padding:4px 0}
   nav.top ul a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ez)}
   nav.top ul a:hover::after{transform:scaleX(1);transform-origin:left}
-  nav.top .go{background:var(--heat);padding:11px 16px;font-weight:600;font-size:14px;border:1.5px solid var(--ink);white-space:nowrap}
+  nav.top .go{background:var(--heat);color:var(--on-heat);padding:11px 16px;font-weight:600;font-size:14px;border:1.5px solid var(--ink);white-space:nowrap}
   nav.top .go:hover{background:var(--ink);color:var(--snow)}
 
   /* ---------- Buttons: square, ink fill wipes up on hover ---------- */
@@ -188,7 +190,7 @@
   .btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ez)}
   .btn:hover{color:var(--snow)}
   .btn:hover::before{transform:scaleY(1)}
-  .btn.hot{background:var(--heat)}
+  .btn.hot{background:var(--heat);color:var(--on-heat)}
   .btn svg{width:18px;height:18px;transition:transform .4s var(--ez)}
   .btn:hover svg{transform:translateX(4px)}
 
@@ -288,12 +290,13 @@
   .facts div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-top:1px solid var(--hair);font-size:13px}
   .facts dt{font-family:var(--m);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
   .facts dd{margin:0;font-weight:600;text-align:right}
-  .mcard.own{background:var(--heat);grid-template-columns:1fr}
+  .mcard.own{background:var(--heat);color:var(--on-heat);grid-template-columns:1fr}
+  .mcard.own p{color:var(--on-heat)}
   .mcard.own .mb{padding:30px 32px}
-  .mcard.own .mtop,.mcard.own .maker{color:var(--ink)}
+  .mcard.own .mtop,.mcard.own .maker{color:var(--on-heat)}
   .mcard.own h3{font-size:clamp(56px,7vw,112px)}
-  .mcard.own .shape{margin:8px 0 26px;height:120px;max-width:340px;border:2px dashed var(--ink);display:grid;place-items:center;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase;position:relative}
-  .mcard.own .shape::after{content:"";position:absolute;right:-26px;top:50%;width:26px;height:44px;margin-top:-22px;border:2px dashed var(--ink);border-left:0}
+  .mcard.own .shape{margin:8px 0 26px;height:120px;max-width:340px;border:2px dashed var(--on-heat);display:grid;place-items:center;font-family:var(--m);font-size:12px;letter-spacing:.06em;text-transform:uppercase;position:relative}
+  .mcard.own .shape::after{content:"";position:absolute;right:-26px;top:50%;width:26px;height:44px;margin-top:-22px;border:2px dashed var(--on-heat);border-left:0}
   .mcard.own .btn{align-self:flex-start;background:var(--snow);margin-top:auto}
   .rail-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px var(--gut) 0;font-family:var(--m);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
   .rail-foot .bar{flex:1;height:1.5px;background:var(--hair);position:relative;max-width:520px}
@@ -363,16 +366,16 @@
   .specs dd{margin:0;font-weight:600;font-size:16px;text-align:right}
 
   /* ---------- 08 Proefpakket ---------- */
-  .order{background:var(--heat);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
-  .order .slab .no::after{color:var(--ink)}
+  .order{background:var(--heat);color:var(--on-heat);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .order .slab .no::after{color:var(--on-heat)}
   .order .tbd{background:#fff3c4;color:#4d3300;border-bottom-color:var(--ink)}
   .ogrid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:start}
   .ocopy{grid-column:1/span 5}
   .ocopy .lead{font-size:18px;line-height:1.55;margin:0 0 28px;text-wrap:pretty}
-  .incl{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
-  .incl li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(30,42,90,.25);font-size:15.5px;line-height:1.45}
+  .incl{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--on-heat)}
+  .incl li{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.35);font-size:15.5px;line-height:1.45}
   .incl li b{font-family:var(--m);font-weight:500;font-size:12px;padding-top:3px}
-  .form{grid-column:7/span 6;background:var(--snow);border:1.5px solid var(--ink);box-shadow:12px 12px 0 var(--ink);padding:30px 32px 28px}
+  .form{grid-column:7/span 6;background:var(--snow);color:var(--ink);border:1.5px solid var(--ink);box-shadow:12px 12px 0 var(--ink);padding:30px 32px 28px}
   .form .kick{margin-bottom:12px;color:var(--mute)}
   .form h3{font-family:var(--d);font-weight:750;font-stretch:80%;font-size:clamp(32px,3.2vw,46px);line-height:.92;letter-spacing:-.04em;margin:0 0 10px}
   .form .sub{font-size:14.5px;color:var(--ink-2);margin:0 0 22px;line-height:1.5}
@@ -388,14 +391,14 @@
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
   .submit{width:100%;justify-content:space-between;margin-top:6px;background:var(--ink);color:var(--snow);font-size:16px;padding:19px 22px}
   .submit::before{background:var(--heat)}
-  .submit:hover{color:var(--ink)}
+  .submit:hover{color:var(--on-heat)}
   .submit:disabled{opacity:.6;cursor:default}
   .err{display:none;margin-top:12px;font-size:14px;color:#BE1E29;border-left:3px solid #BE1E29;padding:8px 12px;background:rgba(190,30,41,.08);line-height:1.5}
   .fineprint{font-size:12.5px;color:var(--mute);margin:16px 0 0;line-height:1.55}
   .form.off{display:none}
   .done{display:none}
   .done.on{display:block}
-  .done .check{width:58px;height:58px;background:var(--heat);border:1.5px solid var(--ink);display:grid;place-items:center;margin-bottom:22px}
+  .done .check{width:58px;height:58px;background:var(--heat);color:var(--on-heat);border:1.5px solid var(--ink);display:grid;place-items:center;margin-bottom:22px}
   .done .check svg{width:28px;height:28px}
   .done p{font-size:15.5px;line-height:1.6;color:var(--ink-2);margin:0 0 14px}
 
@@ -408,9 +411,9 @@
   .qlist summary::-webkit-details-marker{display:none}
   .qlist .pm{flex:0 0 auto;width:36px;height:36px;border:1.5px solid var(--ink);display:grid;place-items:center;transition:transform .4s var(--ez),background .3s}
   .qlist .pm svg{width:16px;height:16px}
-  .qlist details[open] .pm{transform:rotate(45deg);background:var(--heat)}
-  .qlist details.closing .pm{transform:none;background:transparent}
-  .qlist summary:hover .pm{background:var(--heat)}
+  .qlist details[open] .pm{transform:rotate(45deg);background:var(--heat);color:var(--on-heat)}
+  .qlist details.closing .pm{transform:none;background:transparent;color:inherit}
+  .qlist summary:hover .pm{background:var(--heat);color:var(--on-heat)}
   .qlist .ans{padding:0 0 26px;font-size:16px;line-height:1.65;color:var(--ink-2);max-width:68ch}
 
   /* ---------- Final + footer ---------- */
@@ -744,8 +747,8 @@
         <svg class="dial" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="96" stroke="rgba(246,247,244,.18)" stroke-width="1"/>
           <circle cx="100" cy="100" r="90" stroke="rgba(246,247,244,.5)" stroke-width="6" stroke-dasharray="0.6 4.11"/>
-          <circle cx="100" cy="100" r="90" stroke="#F2B84B" stroke-width="6" stroke-dasharray="0.8 46.3"/>
-          <circle cx="100" cy="100" r="78" stroke="#F2B84B" stroke-width="1.5" stroke-dasharray="120 370"/>
+          <circle cx="100" cy="100" r="90" stroke="#BE1E29" stroke-width="6" stroke-dasharray="0.8 46.3"/>
+          <circle cx="100" cy="100" r="78" stroke="#BE1E29" stroke-width="1.5" stroke-dasharray="120 370"/>
         </svg>
         <div class="bob"><img src="/assets/loggers/glog-5-cutout.webp" width="372" height="557" alt="" /></div>
       </div>

@@ -285,7 +285,7 @@ independently and the backend has silently rolled back at least once.
 `usb-logger.html` → `/usb-logger`. **Sold as "FahCel Dataloggers"** (renamed 2026-10-19 from the
 working name *koudwijs°*). It keeps its **own look** on purpose — square ink rules, condensed
 Bricolage Grotesque display type, the scroll-driven Motion layer — and does *not* use
-`assets/ds/`. Only its palette follows FahCel (navy `--ink`, cream `--ice`, amber `--heat`) and its
+`assets/ds/`. Only its palette follows FahCel (navy `--ink`, cream `--ice`, seal-red `--heat` since 2026-10-20; anything on a red fill is white, `--on-heat`; the amber left on the page is the draft `.tbd`/`.draftbar` markers only) and its
 body/mono fonts are the system's Schibsted Grotesk + Martian Mono (declared in-page, because
 `tokens.css` would clobber its `--ink`). Keep the display face informal; don't move it to Fraunces.
 **The page is in Dutch** (`lang="nl"`, `nl_NL`,
