@@ -288,6 +288,8 @@ Bricolage Grotesque display type, the scroll-driven Motion layer — and does *n
 `assets/ds/`. Only its palette follows FahCel (navy `--ink`, cream `--ice`, seal-red `--heat` since 2026-10-20; anything on a red fill is white, `--on-heat`; the amber left on the page is the draft `.tbd`/`.draftbar` markers only) and its
 body/mono fonts are the system's Schibsted Grotesk + Martian Mono (declared in-page, because
 `tokens.css` would clobber its `--ink`). Keep the display face informal; don't move it to Fraunces.
+The header shows the real FahCel seal (`assets/fahcel-logo-mark.png`, cut from `fahcel-logo.jpg`) followed by
+"Dataloggers" in type and the red `°`.
 **The page is in Dutch** (`lang="nl"`, `nl_NL`,
 `inLanguage: nl-NL`) since 2026-10-02, the only Dutch page on an otherwise English
 site, at the operator's request; the old English copy is in git history. Use informal

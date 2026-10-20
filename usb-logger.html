@@ -165,6 +165,9 @@
   section{scroll-margin-top:var(--nav)}
   .deg{color:var(--heat)}
   .mark .sub{font-weight:500}
+  /* the real FahCel seal stands in for the wordmark; "Dataloggers°" stays set in type beside it */
+  .mark{display:inline-flex;align-items:center}
+  .mark .seal{width:44px;height:44px;display:block;margin-right:10px}
 
   /* ---------- DRAFT BANNER — delete this block and the .draftbar element before launch ---------- */
   .draftbar{background:#fbe9c0;border-bottom:1.5px solid var(--ink);color:#5b3f04;font-size:13px;line-height:1.5;padding:10px var(--gut);font-family:var(--m)}
@@ -492,7 +495,7 @@
 </div>
 
 <nav class="top">
-  <a class="mark" href="#top" aria-label="FahCel Dataloggers, naar boven">FahCel <span class="sub">Dataloggers</span><span class="deg">°</span></a>
+  <a class="mark" href="#top" aria-label="FahCel Dataloggers, naar boven"><img class="seal" src="/assets/fahcel-logo-mark.png" width="66" height="66" alt="FahCel" /><span class="sub">Dataloggers</span><span class="deg">°</span></a>
   <ul>
     <li><a href="#loggers">Loggers</a></li>
     <li><a href="#werking">Zo werkt het</a></li>
