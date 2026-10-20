@@ -342,8 +342,10 @@ recoloured from Elitech orange to green; card `.maker` reads "Voorbeeld: …"). 
 `elitech-*` originals were removed; they are in git history). Copy says "beproefde hardware",
 "gratis uitleessoftware" (not ElitechLog), "specificaties van de fabrikant"; Product JSON-LD `brand` is FahCel Dataloggers. Model names stay.
 
-**Two models only since 2026-10-20 (operator's call): LogEt 1 Fresh (Elitech) and Tempu 09
-(Tzone).** RC-17, RC-5, Glog 5, their images and the whole "Live 4G" Glog 5 section (03, with its
+**Two models only since 2026-10-20 (operator's call), sold under FahCel names: LogTec-S1 = Tzone
+Tempu 09, LogTec-S2 = Elitech LogEt 1 Fresh.** The page only ever says LogTec-S1/S2 (S1 card first);
+the hardware names live in the `<!-- Two models only -->` comment. The hero photo's printed
+"LogEt 1" is repainted as "LogTec-S2" (`brands.py` in the image job). RC-17, RC-5, Glog 5, their images and the whole "Live 4G" Glog 5 section (03, with its
 dial animation) were removed; later sections were renumbered 03–08. Neither maker is named. The
 LogEt 1 Fresh card shows the plain LogEt 1 photo and the LogEt 1's figures, all `.tbd` until
 confirmed for the Fresh; the WHO graphic was dropped because that listing is the plain LogEt 1's.
