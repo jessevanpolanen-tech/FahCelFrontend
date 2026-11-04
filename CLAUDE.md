@@ -53,9 +53,13 @@ is served raw and transpiled in the browser by `@babel/standalone`. That means:
 
 ## Design system (public pages)
 
-The five public pages (`index`, `hash-chain`, `cold-chain-excursion-playbook`,
-`playbook-download`, `book-a-demo`) and their generated `nl/` + `de/` copies follow the
-**FahCel design system** artifact (claude.ai/artifact/KW9ZHhiJUhPbBsM2BArEam), applied 2026-10-19.
+**Reverted 2026-11-04 (operator's call):** the five public pages (`index`, `hash-chain`,
+`cold-chain-excursion-playbook`, `playbook-download`, `book-a-demo`), their generated `nl/` + `de/`
+copies, `assets/analytics.css`, `assets/languages.css` and `scripts/build-locales.py` are back to
+their pre-2026-10-19 look (state of `4ec607a^`). They no longer load `assets/ds/`. The
+restyle onto the **FahCel design system** artifact (claude.ai/artifact/KW9ZHhiJUhPbBsM2BArEam)
+is in `4ec607a` if it is ever wanted again. `assets/ds/` stays because `usb-logger.html` uses its
+fonts. The notes below describe that design system, not what the public pages use now.
 
 | Path | What it is |
 |---|---|
